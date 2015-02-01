@@ -1,31 +1,42 @@
-//--Game Project developers, James Gregory,   ,   .
+//*************** MAIN FILE ******************//
 
+//*******************
+//  *DEVELOPERS
+// - James Gregory
+// -
+// -
+//*******************
 
-#include <TL-Engine.h>
+#include <TL-Engine.h>	// TL-Engine include file and namespace
+
+//--USING NAMESPACES--//
 using namespace tle;
 
+//--MAIN FUNCTION--//
 void main()
 {
+	//--TL:ENGINE INITIALISATION--//
 	// Create a 3D engine (using TLX engine here) and open a window for it
 	I3DEngine* myEngine = New3DEngine( kTLX );
+	// Create window can alter the size 
 	myEngine->StartWindowed();
 
+	//--MEDIA FILE DIRECTORIES--//
 	// Add default folder for meshes and other media
 	myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
 
-	/**** Set up your scene here ****/
+	//--SCENE SETUP--//
 
 
-	// The main game loop, repeat until engine is stopped
+	//--MAIN GAME LOOP--//
 	while (myEngine->IsRunning())
 	{
-		// Draw the scene
+		//--DRAWN SCENE--//
 		myEngine->DrawScene();
 
-		/**** Update your scene each frame here ****/
+		
 
 	}
-
-	// Delete the 3D engine now we are finished with it
+	//--ENGINE DELETION--//
 	myEngine->Delete();
 }
