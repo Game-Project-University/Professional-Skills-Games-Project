@@ -39,7 +39,7 @@ void main()
 	//--CAMERA CREATION--//
 	ICamera* myCamera = myEngine->CreateCamera(kManual); //Creation of kManual camera
 
-	//--LOAD FONT--//
+	//--LOAD FONT--///
 	stringstream interfaceText;
 	IFont* MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
 
