@@ -34,14 +34,17 @@ void main()
 	//--MEDIA FILE DIRECTORIES--//
 	// Add default folder for meshes and other media
 	myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
+	myEngine->AddMediaFolder(".\\Media");
 
 	//****--SCENE SETUP--****//
 	//--CAMERA CREATION--//
-	ICamera* myCamera = myEngine->CreateCamera(kManual); //Creation of kManual camera
+	ICamera* myCamera = myEngine->CreateCamera(kFPS); //Creation of kFPS camera
 
 	//--LOAD FONT--///
 	stringstream interfaceText;
 	IFont* MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
+
+	//--LOAD MESH--//
 
 	//--FRAMETIME VARIABLE--//
 	float frameTime;
