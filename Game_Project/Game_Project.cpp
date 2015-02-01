@@ -29,7 +29,7 @@ void main()
 	// Create a 3D engine (using TLX engine here) and open a window for it
 	I3DEngine* myEngine = New3DEngine( kTLX );
 	// Create window can alter the size 
-	myEngine->StartWindowed();
+	myEngine->StartWindowed(1280, 900);
 
 	//--MEDIA FILE DIRECTORIES--//
 	// Add default folder for meshes and other media
@@ -38,11 +38,15 @@ void main()
 
 	//****--SCENE SETUP--****//
 	//--CAMERA CREATION--//
-	ICamera* myCamera = myEngine->CreateCamera(kFPS); //Creation of kFPS camera
+	ICamera* myCamera = myEngine->CreateCamera(kManual); //Creation of kFPS camera
 
 	//--LOAD FONT--///
 	stringstream interfaceText;
 	IFont* MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
+
+	ISprite* sprite = myEngine->CreateSprite("lol.png");
+
+	sprite->SetZ(0);
 
 	//--LOAD MESH--//
 
@@ -59,10 +63,6 @@ void main()
 		interfaceText << "FPS: " << 1/frameTime;
 		MyFont->Draw(interfaceText.str(), FontFpsX, FontFpsY);
 		interfaceText.str("");
-
-
-
-
 
 		//--DRAWN SCENE--//
 		myEngine->DrawScene();
