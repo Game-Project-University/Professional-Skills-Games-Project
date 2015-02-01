@@ -7,10 +7,20 @@
 // -
 //*******************
 
+//--INCLUDES--//
 #include <TL-Engine.h>	// TL-Engine include file and namespace
+#include <sstream>
 
 //--USING NAMESPACES--//
 using namespace tle;
+
+//--COSTANT GLOBAL VARIABLES--//
+/* KeyCodes*/
+const EKeyCode EXIT = Key_Escape;
+/*Font Variables*/
+// Positions of the FPS Text
+const float FontFpsX = 40.0f;
+const float FontFpsY = 0.0f;
 
 //--MAIN FUNCTION--//
 void main()
@@ -25,17 +35,40 @@ void main()
 	// Add default folder for meshes and other media
 	myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
 
-	//--SCENE SETUP--//
+	//****--SCENE SETUP--****//
+	//--CAMERA CREATION--//
+	ICamera* myCamera = myEngine->CreateCamera(kManual); //Creation of kManual camera
 
+	//--LOAD FONT--//
+	stringstream interfaceText;
+	IFont* MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
+
+	//--FRAMETIME VARIABLE--//
+	float frameTime;
 
 	//--MAIN GAME LOOP--//
 	while (myEngine->IsRunning())
 	{
+		//--TIMER INTIALISING--//
+		frameTime = myEngine->Timer();
+
+		//--STATS INTERFACE--//
+		interfaceText << "FPS: " << 1/frameTime;
+		MyFont->Draw(interfaceText.str(), FontFpsX, FontFpsY);
+		interfaceText.str("");
+
+
+
+
+
 		//--DRAWN SCENE--//
 		myEngine->DrawScene();
 
-		
-
+		//--Exit Statement--//
+		if (myEngine->KeyHit(EXIT))
+		{
+			myEngine->Stop();
+		}
 	}
 	//--ENGINE DELETION--//
 	myEngine->Delete();
