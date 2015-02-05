@@ -45,6 +45,7 @@ using namespace tle;
 
 I3DEngine* myEngine;
 IFont* MyFont;
+IFont* frontFont;
 ISprite* sprite;
 ICamera* myCamera;
 
@@ -92,17 +93,26 @@ void ProgramShutdown()
 //--FRONT END SETUP/SHUTDOWN--//
 void FrontEndSetup()
 {
+	//--LOAD MESH/SPRITES--//
 
+	//--LOAD FONT--///
+	frontFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
+
+	//--CREATE SCENE--//
+
+	//--CAMERA CREATION--//
+	myCamera = myEngine->CreateCamera(kManual, 0.0f, 50.0f, -180.0f);
 }
 
 void FrontEndUpdate()
 {
-
+	frontFont->Draw("P to Play", 200, 200);
+	frontFont->Draw("Q to Quit", 200, 250);
 }
 
 void FrontEndShutdown()
 {
-
+	myEngine->RemoveFont(frontFont);
 }
 
 ///////////////////////////
@@ -112,6 +122,9 @@ void GameSetup()
 	//--LOAD MESH/SPRITES--//
 	sprite = myEngine->CreateSprite("lol.png");
 	sprite->SetZ(0);
+
+	//--LOAD FONT--///
+	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
 	
 	//--CREATE SCENE--//
 
@@ -119,8 +132,6 @@ void GameSetup()
 	//--CAMERA CREATION--//
 	myCamera = myEngine->CreateCamera(kManual); //Creation of kFPS camera
 
-	//--LOAD FONT--///
-	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
 }
 
 void GameUpdate()
@@ -148,7 +159,25 @@ void GameShutdown()
 void main()
 {
 	ProgramSetup();
-	
+	FrontEndSetup();
+
+	while (!myEngine->KeyHit(Key_P))
+	{
+		// Draw the scene
+		myEngine->DrawScene();
+
+		FrontEndUpdate();
+
+		// Program exit required (user pressed Q, closed window or pressed Alt-F4)
+		if (myEngine->KeyHit(Key_Q) || !myEngine->IsRunning())
+		{
+			ProgramShutdown();
+			return;
+		}
+	}
+
+	FrontEndShutdown();
+
 	GameSetup();
 
 	//--MAIN GAME LOOP--//
