@@ -94,6 +94,8 @@ void ProgramShutdown()
 void FrontEndSetup()
 {
 	//--LOAD MESH/SPRITES--//
+	sprite = myEngine->CreateSprite("StarClouds.jpg");
+	sprite->SetZ(0);
 
 	//--LOAD FONT--///
 	frontFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
@@ -101,18 +103,23 @@ void FrontEndSetup()
 	//--CREATE SCENE--//
 
 	//--CAMERA CREATION--//
-	myCamera = myEngine->CreateCamera(kManual, 0.0f, 50.0f, -180.0f);
+	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f);
 }
 
 void FrontEndUpdate()
 {
+	//Draw Text
 	frontFont->Draw("P to Play", 200, 200);
 	frontFont->Draw("Q to Quit", 200, 250);
+
+	//Any movements on Front End modles goes here
 }
 
 void FrontEndShutdown()
 {
+	//Remove everything in the setup
 	myEngine->RemoveFont(frontFont);
+	myEngine->RemoveSprite(sprite);
 }
 
 ///////////////////////////
@@ -138,6 +145,7 @@ void GameUpdate()
 {
 	//--FRAMETIME VARIABLE--//
 	float frameTime;
+
 	//--TIMER INTIALISING--//
 	frameTime = myEngine->Timer();
 
@@ -150,6 +158,7 @@ void GameUpdate()
 
 void GameShutdown()
 {
+	//Remove everything in the setup
 	myEngine->RemoveFont(MyFont);
 	myEngine->RemoveCamera(myCamera);
 	myEngine->RemoveSprite(sprite);
@@ -168,7 +177,7 @@ void main()
 
 		FrontEndUpdate();
 
-		// Program exit required (user pressed Q, closed window or pressed Alt-F4)
+		// Program exit
 		if (myEngine->KeyHit(Key_Q) || !myEngine->IsRunning())
 		{
 			ProgramShutdown();
