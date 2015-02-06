@@ -12,5 +12,13 @@
     <ClCompile Include="Game_Project.cpp">
       <Filter>CppFiles</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>CppFiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Player.h">
+      <Filter>HeaderFiles</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

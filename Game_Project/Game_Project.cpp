@@ -30,30 +30,47 @@
 
 //--Team Programming Convention--//
 // any desires write below
-//- 
-//-
+//- class names in format  CClassname
+//- private then public in class declaration 
 //-
 //-
 
 //--INCLUDES--//
 #include <TL-Engine.h>	// TL-Engine include file and namespace
 #include <sstream>
+#include <iostream>
+//- local
+#include "Player.h"
+
+
 using namespace tle;
 
 ////////////////////////
 //--GLOBAL VARIABLES--//
-
 I3DEngine* myEngine;
 IFont* MyFont;
 IFont* frontFont;
 ISprite* sprite;
 ICamera* myCamera;
 
+///////////////
+//--OBJECTS--//
+CPlayer* cPlayer;
+
+
+////////////////////
+//--LOAD MESHSES--//
+IMesh* playerMsh;
+
 ////////////////
 //--CONSTANTS-//
 
 /* KeyCodes*/
-const EKeyCode EXIT = Key_Escape;
+const EKeyCode EXIT    = Key_Escape;
+const EKeyCode FORWARD = Key_W;
+const EKeyCode REVERSE = Key_S;
+const EKeyCode LEFT    = Key_A;
+const EKeyCode RIGHT   = Key_D;
 
 /*Font Variables*/
 // Positions of the FPS Text
@@ -74,10 +91,12 @@ bool ProgramSetup()
 	}
 	myEngine->StartWindowed(1280, 900);
 	
+	
 	//--MEDIA FILE DIRECTORIES--//
 	// Add default folder for meshes and other media
 	myEngine->AddMediaFolder("C:\\ProgramData\\TL-Engine\\Media");
 	myEngine->AddMediaFolder(".\\Media");
+	myEngine->AddMediaFolder(".\\Media\\Vechs");
 
 	return true;
 }
@@ -94,7 +113,7 @@ void ProgramShutdown()
 void FrontEndSetup()
 {
 	//--LOAD MESH/SPRITES--//
-	sprite = myEngine->CreateSprite("StarClouds.jpg");
+	sprite = myEngine->CreateSprite("MainMenuPic.jpg"); // random image that i had, can use this for now *** CHANGE IMAGE WE NEED A NAME ***
 	sprite->SetZ(0);
 
 	//--LOAD FONT--///
@@ -109,8 +128,8 @@ void FrontEndSetup()
 void FrontEndUpdate()
 {
 	//Draw Text
-	frontFont->Draw("P to Play", 200, 200);
-	frontFont->Draw("Q to Quit", 200, 250);
+	frontFont->Draw("P to Play", 400, 400, kWhite);
+	frontFont->Draw("Q to Quit", 400, 450, kWhite);
 
 	//Any movements on Front End modles goes here
 }
@@ -127,17 +146,34 @@ void FrontEndShutdown()
 void GameSetup()
 {
 	//--LOAD MESH/SPRITES--//
-	sprite = myEngine->CreateSprite("lol.png");
-	sprite->SetZ(0);
+	// - hmmwv.x
+	// - HoverTank01.x
+	// - 4x4jeep.x
+	// - amartin.x
+	// - GMC.x
+	// - volvo_nh12.x
+
+	std::string vechName = "hmmwv.x";
+	playerMsh = myEngine->LoadMesh(vechName);
+
+	///////////////////////////////////////////////////
+	IMesh* ss = myEngine->LoadMesh("skybox.X");
+	IModel* jj = ss->CreateModel();
+	jj->Scale(3);
+
+	IMesh* tt = myEngine->LoadMesh("floor.x");		// THIS WILL BE REMOVED CHECKING OUT SKYMAPS
+	IModel* ff = tt->CreateModel(0.0f,1.0f,0.0f);
+	ff->SetSkin("ground_07.jpg");
+	/////////////////////////////////////////////////////
 
 	//--LOAD FONT--///
 	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
 	
 	//--CREATE SCENE--//
-
+	cPlayer = new CPlayer(playerMsh); // interface to playerclass // constructor creates player vech
 
 	//--CAMERA CREATION--//
-	myCamera = myEngine->CreateCamera(kManual); //Creation of kFPS camera
+	myCamera = myEngine->CreateCamera(kFPS); //Creation of kFPS camera
 
 }
 
@@ -154,14 +190,40 @@ void GameUpdate()
 	interfaceText << "FPS: " << 1 / frameTime;
 	MyFont->Draw(interfaceText.str(), FontFpsX, FontFpsY);
 	interfaceText.str("");
+
+	//--Player movement--//
+	///////////////////////
+	//- player movement direction dependent on what key is hit
+	if (myEngine->KeyHeld(FORWARD))
+	{
+		cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
+	}
+
+	if (myEngine->KeyHeld(REVERSE))
+	{
+		cPlayer->GetModel()->MoveLocalZ(-frameTime* cPlayer->GetPlayerS());
+	}
+
+	if (myEngine->KeyHeld(RIGHT))
+	{
+		cPlayer->GetModel()->RotateLocalY(frameTime* cPlayer->GetPlayerRotationS());
+	}
+
+	if (myEngine->KeyHeld(LEFT))
+	{
+		cPlayer->GetModel()->RotateLocalY(-frameTime* cPlayer->GetPlayerRotationS());
+	}
+	
+
 }
 
 void GameShutdown()
 {
 	//Remove everything in the setup
+	//- Tl Engine related
 	myEngine->RemoveFont(MyFont);
 	myEngine->RemoveCamera(myCamera);
-	myEngine->RemoveSprite(sprite);
+	myEngine->RemoveMesh(playerMsh);
 }
 
 //--MAIN FUNCTION--//
