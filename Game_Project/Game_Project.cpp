@@ -17,16 +17,6 @@ CPlayer* cPlayer;
 //--LOAD MESHSES--//
 IMesh* playerMsh;
 
-////////////////
-//--CONSTANTS-//
-
-/* KeyCodes*/
-const EKeyCode EXIT    = Key_Escape;
-const EKeyCode FORWARD = Key_W;
-const EKeyCode REVERSE = Key_S;
-const EKeyCode LEFT    = Key_A;
-const EKeyCode RIGHT   = Key_D;
-
 /*Font Variables*/
 // Positions of the FPS Text
 const float FontFpsX = 40.0f;
@@ -108,7 +98,7 @@ void GameSetup()
 	// - GMC.x
 	// - volvo_nh12.x
 
-	std::string vechName = "hovertank01.x";
+	std::string vechName = "GMC.x";
 	playerMsh = myEngine->LoadMesh(vechName);
 
 	///////////////////////////////////////////////////
@@ -151,29 +141,8 @@ void GameUpdate()
 	//- player movement direction dependent on what key is hit
 	cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
 
-	if (myEngine->KeyHeld(FORWARD))
-	{
-		cPlayer->IncreaseAccelration();
-	}
-	else if (myEngine->KeyHeld(REVERSE))
-	{
-		cPlayer->DecreaseAccelration();
-	}
-	else if (cPlayer->GetPlayerS() > 0)
-	{
-		cPlayer->DecreaseAccelration();
-	}
-
-	if (myEngine->KeyHeld(RIGHT))
-	{
-		cPlayer->GetModel()->RotateLocalY(frameTime* cPlayer->GetPlayerRotationS());
-	}
-	if (myEngine->KeyHeld(LEFT))
-	{
-		cPlayer->GetModel()->RotateLocalY(-frameTime* cPlayer->GetPlayerRotationS());
-	}
-	
-
+	cPlayer->ForwardReverseMovement(frameTime);
+	cPlayer->RightLeftMovement(frameTime);
 }
 
 void GameShutdown()
