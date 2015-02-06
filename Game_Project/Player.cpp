@@ -39,7 +39,7 @@ float CPlayer::GetPlayerRotationS()
 	return playerRotationS;
 }
 
-//////////////////
+///////////////
 //--SETTERS--//
 void CPlayer::IncreaseAccelration()
 {
@@ -50,3 +50,5 @@ void CPlayer::DecreaseAccelration()
 {
 	playerMovementS -= playerAccelrationS*2;
 }
+
+//////////////////

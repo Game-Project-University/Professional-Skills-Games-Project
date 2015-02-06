@@ -4,30 +4,51 @@
     <Filter Include="HeaderFiles">
       <UniqueIdentifier>{5a4dd893-1a04-4c5f-9488-499bb50a56bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CppFiles">
-      <UniqueIdentifier>{6c702a7d-ba44-4e72-b668-ef91906b5a4e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{afc2e340-e49f-4aa0-9afb-cf236c5e6d9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Players">
+      <UniqueIdentifier>{2e37b90c-2305-4406-9417-ecec5e0a3052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{6c702a7d-ba44-4e72-b668-ef91906b5a4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Human">
+      <UniqueIdentifier>{655ed2ce-1c65-49e0-819d-35f8a5475aaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Human\Cpp Files">
+      <UniqueIdentifier>{e0721d69-d551-40c6-b8ab-fa89d40b34ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Human\Header Files">
+      <UniqueIdentifier>{f015d02a-090f-455d-a903-e34460e67984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Cpp Files">
+      <UniqueIdentifier>{47f1f4c3-5ce9-43bd-847f-b40ae8286538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Header Files">
+      <UniqueIdentifier>{12b5363d-f7ba-482f-9e52-679b114a4476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\Cpp Files">
+      <UniqueIdentifier>{90cc9e67-0f07-4962-bb8a-9a31b14ee063}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game_Project.cpp">
-      <Filter>CppFiles</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>CppFiles</Filter>
+      <Filter>Players\Human\Cpp Files</Filter>
     </ClCompile>
     <ClCompile Include="Global.cpp">
-      <Filter>Global</Filter>
+      <Filter>Global\Cpp Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game_Project.cpp">
+      <Filter>Main\Cpp Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
-      <Filter>HeaderFiles</Filter>
+      <Filter>Players\Human\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
-      <Filter>Global</Filter>
+      <Filter>Global\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

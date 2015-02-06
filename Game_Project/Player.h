@@ -1,5 +1,5 @@
 #pragma once
-#include "TL-Engine.h"
+#include "Global.h"
 
 using namespace tle;
 
@@ -28,5 +28,10 @@ public:
 	//--SETTERS--//
 	void IncreaseAccelration();
 	void DecreaseAccelration();
+
+	////////////////
+	//--Movement--//
+	void ForwardReverseMovement();
+	void RightLeftMovement();
 	
 };
