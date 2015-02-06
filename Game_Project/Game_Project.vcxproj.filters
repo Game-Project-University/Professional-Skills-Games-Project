@@ -7,6 +7,9 @@
     <Filter Include="CppFiles">
       <UniqueIdentifier>{6c702a7d-ba44-4e72-b668-ef91906b5a4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{afc2e340-e49f-4aa0-9afb-cf236c5e6d9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Project.cpp">
@@ -15,10 +18,16 @@
     <ClCompile Include="Player.cpp">
       <Filter>CppFiles</Filter>
     </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
       <Filter>HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

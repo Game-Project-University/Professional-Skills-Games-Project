@@ -5,9 +5,11 @@
 CPlayer::CPlayer(IMesh* playerMsh)
 {
 	//- set the player movement speed
-	playerMovementS = 20.0f;
+	playerMovementS = 0.0f;
 	//- set the player rotation speed
 	playerRotationS = 100.0f;
+	//- set the speed that the player accelrates
+	playerAccelrationS = 0.005;
 
 	playerMdl = playerMsh->CreateModel(0.0f, 1.0f, 0.0f);
 	playerMdl->Scale(3);
@@ -39,3 +41,12 @@ float CPlayer::GetPlayerRotationS()
 
 //////////////////
 //--SETTERS--//
+void CPlayer::IncreaseAccelration()
+{
+	playerMovementS+= playerAccelrationS;
+}
+
+void CPlayer::DecreaseAccelration()
+{
+	playerMovementS -= playerAccelrationS*2;
+}

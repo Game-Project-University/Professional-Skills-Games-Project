@@ -1,53 +1,9 @@
-//*************** MAIN FILE ******************//
+////--INCLUDES--//
+#include "Global.h"
 
-//*******************
-//  *DEVELOPERS
-// - James Gregory
-// - Matthew Cross
-// - Michael Byrne
-//*******************
-
-// DEBUGGING //
-
-// problem:
-// file location:
-// Extra info:
-//*******************
-
-//--Main Tasks--//
-//- interface(Game menu / starting menu)
-//- Track with vech( laps, visual map etc)
-
-//--Extra features--//
-//- Weapons
-//- spped ups
-//- change vechs
-//- partical effect
-//-
-//-
-//-
-//-
-
-//--Team Programming Convention--//
-// any desires write below
-//- class names in format  CClassname
-//- private then public in class declaration 
-//-
-//-
-
-//--INCLUDES--//
-#include <TL-Engine.h>	// TL-Engine include file and namespace
-#include <sstream>
-#include <iostream>
-//- local
-#include "Player.h"
-
-
-using namespace tle;
-
-////////////////////////
-//--GLOBAL VARIABLES--//
-I3DEngine* myEngine;
+//////////////////////////
+////--GLOBAL VARIABLES--//
+//I3DEngine* myEngine;
 IFont* MyFont;
 IFont* frontFont;
 ISprite* sprite;
@@ -56,7 +12,6 @@ ICamera* myCamera;
 ///////////////
 //--OBJECTS--//
 CPlayer* cPlayer;
-
 
 ////////////////////
 //--LOAD MESHSES--//
@@ -153,7 +108,7 @@ void GameSetup()
 	// - GMC.x
 	// - volvo_nh12.x
 
-	std::string vechName = "hmmwv.x";
+	std::string vechName = "hovertank01.x";
 	playerMsh = myEngine->LoadMesh(vechName);
 
 	///////////////////////////////////////////////////
@@ -194,21 +149,25 @@ void GameUpdate()
 	//--Player movement--//
 	///////////////////////
 	//- player movement direction dependent on what key is hit
+	cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
+
 	if (myEngine->KeyHeld(FORWARD))
 	{
-		cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
+		cPlayer->IncreaseAccelration();
 	}
-
-	if (myEngine->KeyHeld(REVERSE))
+	else if (myEngine->KeyHeld(REVERSE))
 	{
-		cPlayer->GetModel()->MoveLocalZ(-frameTime* cPlayer->GetPlayerS());
+		cPlayer->DecreaseAccelration();
+	}
+	else if (cPlayer->GetPlayerS() > 0)
+	{
+		cPlayer->DecreaseAccelration();
 	}
 
 	if (myEngine->KeyHeld(RIGHT))
 	{
 		cPlayer->GetModel()->RotateLocalY(frameTime* cPlayer->GetPlayerRotationS());
 	}
-
 	if (myEngine->KeyHeld(LEFT))
 	{
 		cPlayer->GetModel()->RotateLocalY(-frameTime* cPlayer->GetPlayerRotationS());

@@ -10,6 +10,8 @@ private:
 
 	float playerMovementS;
 	float playerRotationS;
+	float playerAccelrationS;
+
 public:
 	CPlayer(IMesh* playerMsh);
 	~CPlayer();
@@ -24,6 +26,7 @@ public:
 
 	///////////////
 	//--SETTERS--//
-	
+	void IncreaseAccelration();
+	void DecreaseAccelration();
 	
 };
