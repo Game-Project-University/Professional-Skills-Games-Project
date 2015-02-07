@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\TL-Engine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\TL-Engine\include;C:\Program Files %28x86%29\OpenAL 1.1 SDK\freealut-1.1.0-bin\include;C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <PrecompiledHeader>
@@ -68,7 +68,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\ProgramData\TL-Engine\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\ProgramData\TL-Engine\lib;C:\Program Files %28x86%29\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)Game_Project.pdb</ProgramDatabaseFile>
       <DataExecutionPrevention>
@@ -80,14 +80,12 @@
     </Link>
     <PostBuildEvent>
       <Message>Copying DLLs &amp; shaders...</Message>
-      <Command>copy "C:\ProgramData\TL-Engine\3rd Party\Irrlicht-0.7\bin\VisualStudio\IrrlichtDebug.dll" "$(OutDir)" &gt; NUL
-copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; NUL
-</Command>
+      <Command>copy "C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib\alut.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\ProgramData\TL-Engine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\ProgramData\TL-Engine\include;C:\Program Files %28x86%29\OpenAL 1.1 SDK\freealut-1.1.0-bin\include;C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -99,7 +97,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
       <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\ProgramData\TL-Engine\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\ProgramData\TL-Engine\lib;C:\Program Files %28x86%29\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <DataExecutionPrevention>
@@ -110,9 +108,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     </Link>
     <PostBuildEvent>
       <Message>Copying DLLs &amp; shaders...</Message>
-      <Command>copy "C:\ProgramData\TL-Engine\3rd Party\Irrlicht-0.7\bin\VisualStudio\Irrlicht.dll" "$(OutDir)" &gt; NUL
-copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; NUL
-</Command>
+      <Command>copy "C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib\alut.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
