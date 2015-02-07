@@ -24,6 +24,16 @@ CPlayer::CPlayer(IMesh* playerMsh)
 	vechArray[3] = "amartin.x";
 	vechArray[4] = "GMC.x";
 	vechArray[5] = "volvo_nh12.x";
+
+	//- Camera Attachment to player
+	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f); // create camera
+	myCamera->SetPosition(0.0f, 3.0f, -10.0f); // set camera position
+	myCamera->AttachToParent(playerMdl);// attach camera to the players car
+
+	//-- Camera Variables intialisation
+	camerRotationS = 0.001; // speed of the rotation of the camera
+	cameraMaxX = 5.0; // max amount the camera can move to the right
+	cameraCounter = 0.0f; // counter used to track how much the camera has moved
 }
 
 //////////////////
@@ -96,14 +106,39 @@ void CPlayer::ForwardReverseMovement(float frameTime)
 
 void CPlayer::RightLeftMovement(float frameTime)
 {
+	//- if the Keyhit D then enter statment 
 	if (myEngine->KeyHeld(RIGHT))
 	{
-		//playerMdl->GetNode(3)->RotateY(frameTime * 900);
-		//playerMdl->GetNode(4)->RotateY(frameTime * 900);
-		playerMdl->RotateLocalY(frameTime* playerRotationS);
+		//- rotate the model right
+		playerMdl->RotateLocalY(frameTime* playerRotationS); 
+		
+		//- statement to make the camera move offset to the car
+		if (cameraCounter < cameraMaxX)
+		{
+			myCamera->MoveLocalX(camerRotationS);
+			cameraCounter+= 0.001;
+		}
 	}
+	//- if the camera has been moved and the player is no longer turning slowly reset the position of the camera
+	else if (cameraCounter > 0)
+	{
+		myCamera->MoveLocalX(-0.002);
+		cameraCounter -= 0.002;
+	}
+
 	if (myEngine->KeyHeld(LEFT))
 	{
 		playerMdl->RotateLocalY(-frameTime* playerRotationS);
+
+		if (cameraCounter > -cameraMaxX)
+		{
+			myCamera->MoveLocalX(-camerRotationS);
+			cameraCounter -= 0.001;
+		}
+	}
+	else if (cameraCounter < 0)
+	{
+		myCamera->MoveLocalX(0.002);
+		cameraCounter += 0.002;
 	}
 }

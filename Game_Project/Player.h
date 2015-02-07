@@ -17,6 +17,7 @@ class CPlayer
 {
 private:
 	IModel* playerMdl;
+	ICamera* myCamera;
 
 	//////////////////////////
 	//--MOVEMENT VARIABLES--//
@@ -25,6 +26,13 @@ private:
 	float playerAccelrationS;
 	float playerMaxSpeed;
 	float playerReverseMaxSpeed;
+	
+	//////////////////////////////////
+	//--CAMERA MOVEMENTS VARIABLES--//
+	float camerRotationS;
+	float cameraMaxX;
+	float cameraCounter;
+
 
 	//////////////////
 	//--VECH ARRAY--//

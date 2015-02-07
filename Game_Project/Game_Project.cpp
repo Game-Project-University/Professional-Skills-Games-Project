@@ -115,10 +115,10 @@ void GameSetup()
 	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
 	
 	//--CREATE SCENE--//
-	cPlayer = new CPlayer(playerMsh); // interface to playerclass // constructor creates player vech
+	cPlayer = new CPlayer(playerMsh); // interface to playerclass // constructor creates player vech // Camera creation and attachment
 
 	//--CAMERA CREATION--//
-	myCamera = myEngine->CreateCamera(kFPS); //Creation of kFPS camera
+	
 
 }
 
