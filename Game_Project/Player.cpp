@@ -110,7 +110,7 @@ void CPlayer::RightLeftMovement(float frameTime)
 	if (myEngine->KeyHeld(RIGHT))
 	{
 		//- rotate the model right
-		if (playerMovementS > 1)
+		if (playerMovementS > 1 || playerMovementS < -1)
 		{
 			playerMdl->RotateLocalY(frameTime* playerRotationS);
 
@@ -132,7 +132,7 @@ void CPlayer::RightLeftMovement(float frameTime)
 
 	if (myEngine->KeyHeld(LEFT))
 	{
-		if (playerMovementS > 1)
+		if (playerMovementS > 1 || playerMovementS < -1)
 		{
 			playerMdl->RotateLocalY(-frameTime* playerRotationS);
 
@@ -162,4 +162,14 @@ void CPlayer::PullHandbrake()
 			playerMdl->RotateLocalY(0.005);
 		}
 	}
+	
+	if (playerMovementS < -1)
+	{
+		playerMovementS += 0.008f;
+		if (myEngine->KeyHeld(LEFT) || myEngine->KeyHeld(RIGHT))
+		{
+			playerMdl->RotateLocalY(0.005);
+		}
+	}
+
 }

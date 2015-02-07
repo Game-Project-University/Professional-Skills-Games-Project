@@ -1,10 +1,2 @@
-﻿  Game_Project.cpp
-c:\git hub repositorys\professional-skills-games-project\game_project\game_project.cpp(65): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-c:\git hub repositorys\professional-skills-games-project\game_project\game_project.cpp(115): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-c:\git hub repositorys\professional-skills-games-project\game_project\game_project.cpp(136): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
-  Generating Code...
-  Compiling...
-  Player.cpp
-  Global.cpp
-  Generating Code...
+﻿  Player.cpp
   Game_Project.vcxproj -> C:\Git Hub Repositorys\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.exe
