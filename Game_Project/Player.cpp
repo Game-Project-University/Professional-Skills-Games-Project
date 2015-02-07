@@ -11,7 +11,7 @@ CPlayer::CPlayer(IMesh* playerMsh)
 	//- set the speed that the player accelrates
 	playerAccelrationS = 0.005;
 	//- set the max player speed
-	playerMaxSpeed = 30.0f;
+	playerMaxSpeed = 60.0f;
 	//- set the max reverse player speed
 	playerReverseMaxSpeed = 30.0f;
 
@@ -73,8 +73,8 @@ void CPlayer::DecreaseAccelration()
 }
 
 //////////////////////
-//--PlayerMovement--//
-void CPlayer::ForwardReverseMovement(float frameTime)
+//--PLAYERMOVEMENT--//
+void CPlayer::ForwardReverseMovement(float frameTime) 
 {
 	if (myEngine->KeyHeld(FORWARD) && playerMovementS < playerMaxSpeed)
 	{
@@ -83,7 +83,7 @@ void CPlayer::ForwardReverseMovement(float frameTime)
 		playerMdl->GetNode(6)->RotateLocalX(frameTime * 800);
 		playerMdl->GetNode(7)->RotateLocalX(frameTime * 800);
 
-		IncreaseAccelration();
+			IncreaseAccelration();
 	}
 	else if (myEngine->KeyHeld(REVERSE) && playerMovementS > -playerReverseMaxSpeed)
 	{
@@ -110,13 +110,17 @@ void CPlayer::RightLeftMovement(float frameTime)
 	if (myEngine->KeyHeld(RIGHT))
 	{
 		//- rotate the model right
-		playerMdl->RotateLocalY(frameTime* playerRotationS); 
-		
-		//- statement to make the camera move offset to the car
-		if (cameraCounter < cameraMaxX)
+		if (playerMovementS > 1)
 		{
-			myCamera->MoveLocalX(camerRotationS);
-			cameraCounter+= 0.001;
+			playerMdl->RotateLocalY(frameTime* playerRotationS);
+
+
+			//- statement to make the camera move offset to the car
+			if (cameraCounter < cameraMaxX)
+			{
+				myCamera->MoveLocalX(camerRotationS);
+				cameraCounter += 0.001;
+			}
 		}
 	}
 	//- if the camera has been moved and the player is no longer turning slowly reset the position of the camera
@@ -128,17 +132,34 @@ void CPlayer::RightLeftMovement(float frameTime)
 
 	if (myEngine->KeyHeld(LEFT))
 	{
-		playerMdl->RotateLocalY(-frameTime* playerRotationS);
-
-		if (cameraCounter > -cameraMaxX)
+		if (playerMovementS > 1)
 		{
-			myCamera->MoveLocalX(-camerRotationS);
-			cameraCounter -= 0.001;
+			playerMdl->RotateLocalY(-frameTime* playerRotationS);
+
+			if (cameraCounter > -cameraMaxX)
+			{
+				myCamera->MoveLocalX(-camerRotationS);
+				cameraCounter -= 0.001;
+			}
 		}
 	}
 	else if (cameraCounter < 0)
 	{
 		myCamera->MoveLocalX(0.002);
 		cameraCounter += 0.002;
+	}
+}
+
+/////////////////////////
+//--PLAYER ATIVATIONS--//
+void CPlayer::PullHandbrake()
+{
+	if (playerMovementS > 0)
+	{
+		playerMovementS -= 0.008f;
+		if (myEngine->KeyHeld(LEFT) || myEngine->KeyHeld(RIGHT))
+		{
+			playerMdl->RotateLocalY(0.005);
+		}
 	}
 }

@@ -12,6 +12,7 @@ const EKeyCode FORWARD = Key_W;
 const EKeyCode REVERSE = Key_S;
 const EKeyCode LEFT = Key_A;
 const EKeyCode RIGHT = Key_D;
+const EKeyCode HANDBRAKE = Key_Space;
 
 class CPlayer
 {
@@ -59,4 +60,5 @@ public:
 	//--Movement--//
 	void ForwardReverseMovement(float frameTime);
 	void RightLeftMovement(float frameTime);	
+	void PullHandbrake();
 };

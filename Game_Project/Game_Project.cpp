@@ -104,7 +104,7 @@ void GameSetup()
 	///////////////////////////////////////////////////
 	IMesh* ss = myEngine->LoadMesh("skybox.X");
 	IModel* jj = ss->CreateModel();
-	jj->Scale(3);
+	jj->Scale(2);
 
 	IMesh* tt = myEngine->LoadMesh("floor.x");		// THIS WILL BE REMOVED CHECKING OUT SKYMAPS
 	IModel* ff = tt->CreateModel(0.0f,1.0f,0.0f);
@@ -141,7 +141,14 @@ void GameUpdate()
 	//- player movement direction dependent on what key is hit
 	cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
 
-	cPlayer->ForwardReverseMovement(frameTime);
+	if (myEngine->KeyHeld(Key_Space))
+	{
+		cPlayer->PullHandbrake();
+	}
+	else
+	{
+		cPlayer->ForwardReverseMovement(frameTime);
+	}
 	cPlayer->RightLeftMovement(frameTime);
 }
 
