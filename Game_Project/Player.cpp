@@ -151,7 +151,7 @@ void CPlayer::RightLeftMovement(float frameTime)
 }
 
 /////////////////////////
-//--PLAYER ATIVATIONS--//
+//--PLAYER ACTIVATIONS--//
 void CPlayer::PullHandbrake()
 {
 	if (playerMovementS > 0)

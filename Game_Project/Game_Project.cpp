@@ -67,10 +67,12 @@ bool ProgramSetup()
 	
 	
 	//--MEDIA FILE DIRECTORIES--//
-	// Add default folder for meshes and other media
-	myEngine->AddMediaFolder("C:\\ProgramData\\TL-Engine\\Media");
+	//- Add folders for meshes and other media
+	//- ALL MEDIA MUST BE LOCAL TO PROJECT NOT LINKED TO TL-FOLDER ON YOUR MACHINE
 	myEngine->AddMediaFolder(".\\Media");
 	myEngine->AddMediaFolder(".\\Media\\Vechs");
+	myEngine->AddMediaFolder(".\\Media\\Skybox");
+	myEngine->AddMediaFolder(".\\Media\\InterfaceDesigns");
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Initialise ALUT and hence OpenAL. If not using ALUT, we can initialise using core OpenAL functions.
@@ -114,6 +116,7 @@ bool ProgramSetup()
 	//alListenerfv(AL_ORIENTATION, listenerOri);
 	//alListenerf(AL_GAIN, 1.0f);        // "Master" gain / volume. Controls overall loudness of all sounds
 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	return true;
 }
 
@@ -174,7 +177,7 @@ void GameSetup()
 	playerMsh = myEngine->LoadMesh(vechName);
 
 	///////////////////////////////////////////////////
-	IMesh* ss = myEngine->LoadMesh("skybox.X");
+	IMesh* ss = myEngine->LoadMesh("skybox.x");
 	IModel* jj = ss->CreateModel();
 	jj->Scale(2);
 
