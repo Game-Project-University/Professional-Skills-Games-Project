@@ -132,7 +132,7 @@ void ProgramShutdown()
 void FrontEndSetup()
 {
 	//--LOAD MESH/SPRITES--//
-	sprite = myEngine->CreateSprite("MainMenuPic.jpg"); // random image that i had, can use this for now *** CHANGE IMAGE WE NEED A NAME ***
+	sprite = myEngine->CreateSprite("FrontMenu.jpg"); // random image that i had, can use this for now *** CHANGE IMAGE WE NEED A NAME ***
 	sprite->SetZ(0);
 
 	//--LOAD FONT--///
@@ -146,10 +146,6 @@ void FrontEndSetup()
 
 void FrontEndUpdate()
 {
-	//Draw Text
-	frontFont->Draw("P to Play", 400, 400, kWhite);
-	frontFont->Draw("Q to Quit", 400, 450, kWhite);
-
 	//Any movements on Front End modles goes here
 }
 
@@ -248,7 +244,7 @@ void main()
 		FrontEndUpdate();
 
 		// Program exit
-		if (myEngine->KeyHit(Key_Q) || !myEngine->IsRunning())
+		if (myEngine->KeyHit(Key_Escape) || !myEngine->IsRunning())
 		{
 			ProgramShutdown();
 			return;
