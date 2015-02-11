@@ -16,19 +16,15 @@ CPlayer::CPlayer(IMesh* playerMsh)
 	playerReverseMaxSpeed = 30.0f;
 	
 	playerMdl = playerMsh->CreateModel(0.0f, 1.0f, 0.0f);
-	playerMdl->Scale(3);
-
-	vechArray[0] = "hmmwv.x";
-	vechArray[1] = "HoverTank01.x";
-	vechArray[2] = "4x4jeep.x";
-	vechArray[3] = "amartin.x";
-	vechArray[4] = "GMC.x";
-	vechArray[5] = "volvo_nh12.x";
 
 	//- Camera Attachment to player
 	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f); // create camera
 	myCamera->SetPosition(0.0f, 3.0f, -10.0f); // set camera position
 	myCamera->AttachToParent(playerMdl);// attach camera to the players car
+
+	//--Camera Clipping--//
+	myCamera->SetFarClip(10000.0f);
+	myCamera->SetNearClip(0.1f);
 
 	//-- Camera Variables intialisation
 	camerRotationS = 0.001; // speed of the rotation of the camera
@@ -78,19 +74,19 @@ void CPlayer::ForwardReverseMovement(float frameTime)
 {
 	if (myEngine->KeyHeld(FORWARD) && playerMovementS < playerMaxSpeed)
 	{
-		playerMdl->GetNode(3)->RotateLocalX(frameTime * 800);
+		/*playerMdl->GetNode(3)->RotateLocalX(frameTime * 800);
 		playerMdl->GetNode(4)->RotateLocalX(frameTime * 800);
 		playerMdl->GetNode(6)->RotateLocalX(frameTime * 800);
-		playerMdl->GetNode(7)->RotateLocalX(frameTime * 800);
+		playerMdl->GetNode(7)->RotateLocalX(frameTime * 800);*/
 
 			IncreaseAccelration();
 	}
 	else if (myEngine->KeyHeld(REVERSE) && playerMovementS > -playerReverseMaxSpeed)
 	{
-		playerMdl->GetNode(3)->RotateLocalX(-frameTime * 800);
+		/*playerMdl->GetNode(3)->RotateLocalX(-frameTime * 800);
 		playerMdl->GetNode(4)->RotateLocalX(-frameTime * 800);
 		playerMdl->GetNode(6)->RotateLocalX(-frameTime * 800);
-		playerMdl->GetNode(7)->RotateLocalX(-frameTime * 800);
+		playerMdl->GetNode(7)->RotateLocalX(-frameTime * 800);*/
 
 		DecreaseAccelration();
 	}
@@ -171,5 +167,4 @@ void CPlayer::PullHandbrake()
 			playerMdl->RotateLocalY(0.005);
 		}
 	}
-
 }

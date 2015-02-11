@@ -37,7 +37,6 @@ private:
 
 	//////////////////
 	//--VECH ARRAY--//
-	std::string vechArray[6];
 
 public:
 	CPlayer(IMesh* playerMsh);

@@ -141,7 +141,7 @@ void FrontEndSetup()
 	//--CREATE SCENE--//
 
 	//--CAMERA CREATION--//
-	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f);
+	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
 
 	//--SOUND--//
 	CSound* MainMenuSound = new CSound();
@@ -167,6 +167,7 @@ void FrontEndShutdown()
 	//Remove everything in the setup
 	myEngine->RemoveFont(frontFont);
 	myEngine->RemoveSprite(sprite);
+	myEngine->RemoveCamera(myCamera);
 }
 
 ///////////////////////////
@@ -174,33 +175,27 @@ void FrontEndShutdown()
 void GameSetup()
 {
 	//--LOAD MESH/SPRITES--//
-	// - hmmwv.x
-	// - HoverTank01.x
-	// - 4x4jeep.x
-	// - amartin.x
-	// - GMC.x
-	// - volvo_nh12.x
+	// - HeliScouFighter.x
+	// - HawkStarfighter.x
+	// - 
+	// - 
+	// - 
+	// - 
 
-	std::string vechName = "GMC.x";
+	std::string vechName = "HawkStarfighter.x";
 	playerMsh = myEngine->LoadMesh(vechName);
 
-	///////////////////////////////////////////////////
-	IMesh* ss = myEngine->LoadMesh("skybox.x");
-	IModel* jj = ss->CreateModel();
-	jj->Scale(2);
+	//--CREATE SCENE--//
+	cPlayer = new CPlayer(playerMsh); // interface to playerclass // constructor creates player vech // Camera creation and attachment
 
-	IMesh* tt = myEngine->LoadMesh("floor.x");		// THIS WILL BE REMOVED CHECKING OUT SKYMAPS
-	IModel* ff = tt->CreateModel(0.0f,1.0f,0.0f);
-	ff->SetSkin("ground_07.jpg");
+	///////////////////////////////////////////////////
+	IMesh* ss = myEngine->LoadMesh("Skybox.x");
+	IModel* jj = ss->CreateModel(0.0f,-1600.0f,0.0f);
+	jj->Scale(2);
 	/////////////////////////////////////////////////////
 
 	//--LOAD FONT--///
 	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
-	
-	//--CREATE SCENE--//
-	cPlayer = new CPlayer(playerMsh); // interface to playerclass // constructor creates player vech // Camera creation and attachment
-
-	//--CAMERA CREATION--//
 }
 
 void GameUpdate()
@@ -214,7 +209,7 @@ void GameUpdate()
 	//--STATS INTERFACE--//
 	stringstream interfaceText;
 	interfaceText << "FPS: " << 1 / frameTime;
-	MyFont->Draw(interfaceText.str(), FontFpsX, FontFpsY);
+	MyFont->Draw(interfaceText.str(), FontFpsX, FontFpsY, kWhite);
 	interfaceText.str("");
 
 	//--Player movement--//
@@ -238,7 +233,6 @@ void GameShutdown()
 	//Remove everything in the setup
 	//- Tl Engine related
 	myEngine->RemoveFont(MyFont);
-	myEngine->RemoveCamera(myCamera);
 	myEngine->RemoveMesh(playerMsh);
 }
 
