@@ -78,7 +78,7 @@ bool ProgramSetup()
 	// Initialise ALUT and hence OpenAL. If not using ALUT, we can initialise using core OpenAL functions.
 	// However then we would need to consider what sound devices are available, with what features, and
 	// select from those. ALUT just selects the default output device
-	alutInit(0, 0);
+	//alutInit(0, 0);
 
 
 	//****************
@@ -144,8 +144,17 @@ void FrontEndSetup()
 	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f);
 
 	//--SOUND--//
-	alSourcePlay(source);
+	CSound* MainMenuSound = new CSound();
+	//-- source properties --//
+	MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
+	MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
 
+	//-- listenerpos --//
+	MainMenuSound->SetListenerPos(0.0f, 0.0f, 0.0f);
+	MainMenuSound->SetListenerVel(0.0f, 0.0f, 0.0f);
+	MainMenuSound->SetListenerOrientation(0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
+
+	MainMenuSound->PlaySound();
 }
 
 void FrontEndUpdate()

@@ -47,6 +47,7 @@
 
 //- local
 #include "Player.h"
+#include "Sound.h"
 //- Namespaces
 using namespace tle;
 

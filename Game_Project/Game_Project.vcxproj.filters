@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="HeaderFiles">
-      <UniqueIdentifier>{5a4dd893-1a04-4c5f-9488-499bb50a56bf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{afc2e340-e49f-4aa0-9afb-cf236c5e6d9b}</UniqueIdentifier>
     </Filter>
@@ -31,6 +28,15 @@
     <Filter Include="Main\Cpp Files">
       <UniqueIdentifier>{90cc9e67-0f07-4962-bb8a-9a31b14ee063}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{7a1f59f6-3492-4eea-9183-a9963930b442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\HeaderFiles">
+      <UniqueIdentifier>{c9b8985e-10d7-4193-8450-c849c370e9d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\Cpp Files">
+      <UniqueIdentifier>{9b3e3153-f5ab-4bb0-9ea7-81fada84b65d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -42,6 +48,9 @@
     <ClCompile Include="Game_Project.cpp">
       <Filter>Main\Cpp Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Sound\Cpp Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -49,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>Global\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Sound\HeaderFiles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
