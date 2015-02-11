@@ -14,7 +14,7 @@ CPlayer::CPlayer(IMesh* playerMsh)
 	playerMaxSpeed = 60.0f;
 	//- set the max reverse player speed
 	playerReverseMaxSpeed = 30.0f;
-
+	
 	playerMdl = playerMsh->CreateModel(0.0f, 1.0f, 0.0f);
 	playerMdl->Scale(3);
 
