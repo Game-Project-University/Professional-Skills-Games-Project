@@ -1,6 +1,6 @@
 #include "Sound.h"
 
-CSound::CSound()
+CSound::CSound(int soundNumber)
 {
 	alutInit(0, 0);
 
@@ -9,7 +9,10 @@ CSound::CSound()
 
 	// Create a sound buffer by loading a sound file. Using ALUT again to simplify this process. ALUT makes
 	// its best attempt to convert different file formats into an OpenAL data format
-	buffer = alutCreateBufferFromFile(".\\media\\tada.wav");
+	if (soundNumber == 1)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\tada.wav");
+	}
 
 	//****************
 	// Sources
