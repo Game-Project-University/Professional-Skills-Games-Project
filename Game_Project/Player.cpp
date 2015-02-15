@@ -11,15 +11,19 @@ CPlayer::CPlayer(IMesh* playerMsh)
 	//- set the speed that the player accelrates
 	playerAccelrationS = 0.005;
 	//- set the max player speed
-	playerMaxSpeed = 60.0f;
+	playerMaxSpeed = 100.0f;
 	//- set the max reverse player speed
 	playerReverseMaxSpeed = 30.0f;
+	//- set the angle of the sinewave to start at 0
+	sineWaveAngle = 0;
+	sineWaveValue = 0;
 	
+	// create player model
 	playerMdl = playerMsh->CreateModel(0.0f, 1.0f, 0.0f);
-
+	
 	//- Camera Attachment to player
 	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f); // create camera
-	myCamera->SetPosition(0.0f, 3.0f, -10.0f); // set camera position
+	myCamera->SetPosition(0.0f, 3.0f, -12.0f); // set camera position
 	myCamera->AttachToParent(playerMdl);// attach camera to the players car
 
 	//--Camera Clipping--//
@@ -70,6 +74,19 @@ void CPlayer::DecreaseAccelration()
 
 //////////////////////
 //--PLAYERMOVEMENT--//
+void CPlayer::SinHoverMovement(float frameTime)
+{
+	sineWaveAngle += frameTime;
+	sineWaveValue = sin(sineWaveAngle + 1.0f);
+		
+	playerMdl->SetY(sineWaveValue + 1.0f);
+
+	if (sineWaveAngle >= 360.0f)
+	{
+		sineWaveAngle = 0.0f;
+	}
+}
+
 void CPlayer::ForwardReverseMovement(float frameTime) 
 {
 	if (myEngine->KeyHeld(FORWARD) && playerMovementS < playerMaxSpeed)

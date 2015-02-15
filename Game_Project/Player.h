@@ -27,6 +27,9 @@ private:
 	float playerAccelrationS;
 	float playerMaxSpeed;
 	float playerReverseMaxSpeed;
+
+	float sineWaveAngle;
+	float sineWaveValue;
 	
 	//////////////////////////////////
 	//--CAMERA MOVEMENTS VARIABLES--//
@@ -60,4 +63,6 @@ public:
 	void ForwardReverseMovement(float frameTime);
 	void RightLeftMovement(float frameTime);	
 	void PullHandbrake();
+
+	void SinHoverMovement(float frameTime);
 };

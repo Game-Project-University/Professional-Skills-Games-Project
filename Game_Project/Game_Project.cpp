@@ -13,7 +13,19 @@ ICamera* myCamera;
 ///////////////
 //--OBJECTS--//
 CPlayer* cPlayer;
+CVechMenu* cVMenu;
 
+//////////////////
+//-GAME STATES--//
+
+enum GAMESTATES
+{
+	VECHMENU, GAMEPLAY
+};
+
+//////////////////////////
+//--FRAMETIME VARIABLE--//
+float frameTime;
 ////////////////////
 //--LOAD MESHSES--//
 IMesh* playerMsh;
@@ -106,10 +118,8 @@ void GameSetup()
 	//--LOAD MESH/SPRITES--//
 	// - HeliScouFighter.x
 	// - HawkStarfighter.x
-	// - 
-	// - 
-	// - 
-	// - 
+	// - SciFiBattleship01.x
+	// - SciFiBattleship02.x
 
 	std::string vechName = "HawkStarfighter.x";
 	playerMsh = myEngine->LoadMesh(vechName);
@@ -129,9 +139,6 @@ void GameSetup()
 
 void GameUpdate()
 {	
-	//--FRAMETIME VARIABLE--//
-	float frameTime;
-
 	//--TIMER INTIALISING--//
 	frameTime = myEngine->Timer();
 
@@ -143,17 +150,22 @@ void GameUpdate()
 
 	//--Player movement--//
 	///////////////////////
+	cPlayer->SinHoverMovement(frameTime);
+
 	//- player movement direction dependent on what key is hit
 	cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
 
+	// if the space key is it then the players handbrake will activate
 	if (myEngine->KeyHeld(Key_Space))
 	{
 		cPlayer->PullHandbrake();
 	}
+	// else allow the player to move forwards ot backwards
 	else
 	{
 		cPlayer->ForwardReverseMovement(frameTime);
 	}
+	// the player can always move left or right
 	cPlayer->RightLeftMovement(frameTime);
 }
 
@@ -163,14 +175,18 @@ void GameShutdown()
 	//- Tl Engine related
 	myEngine->RemoveFont(MyFont);
 	myEngine->RemoveMesh(playerMsh);
+	delete(cPlayer);
 }
 
 //--MAIN FUNCTION--//
 void main()
 {
+	// set up the Tl Engine// media files
 	ProgramSetup();
+	// set up the main menu
 	FrontEndSetup();
 
+	// while the P key has not been pressed draw the scene and do any updates for the main menu 
 	while (!myEngine->KeyHit(Key_P))
 	{
 		// Draw the scene
@@ -185,9 +201,10 @@ void main()
 			return;
 		}
 	}
-
+	// shut down the main menu 
 	FrontEndShutdown();
 
+	// set up the game scene
 	GameSetup();
 
 	//--MAIN GAME LOOP--//
@@ -195,16 +212,17 @@ void main()
 	{
 		//--DRAWN SCENE--//
 		myEngine->DrawScene();
-
+		//update the game scene while the engine is running 
 		GameUpdate();
-
+		
 		//--Exit Statement--//
 		if (myEngine->KeyHit(EXIT))
 		{
 			myEngine->Stop();
 		}
 	}
-
+	// shut down the game 
 	GameShutdown();
+	// shut down the Tl-Engine
 	ProgramShutdown();
 }

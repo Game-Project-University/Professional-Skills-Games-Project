@@ -40,6 +40,7 @@
 #include <TL-Engine.h>	// TL-Engine include file and namespace
 #include <sstream>
 #include <iostream>
+#include <math.h>
 
 #include <al.h>      // Main OpenAL functions
 #include <alc.h>     // OpenAL "context" functions (also part of main OpenAL API)
@@ -48,6 +49,8 @@
 //- local
 #include "Player.h"
 #include "Sound.h"
+#include "VechMenu.h"
+
 //- Namespaces
 using namespace tle;
 
