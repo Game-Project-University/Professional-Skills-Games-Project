@@ -46,6 +46,15 @@
     <Filter Include="VechMenu\Header files">
       <UniqueIdentifier>{22ee04b1-73fd-4e49-9e1d-b144a4629ca8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Players\AI">
+      <UniqueIdentifier>{a57800c9-89fa-426c-a7b2-1b4480a2e00c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\AI\Cpp Files">
+      <UniqueIdentifier>{be0fef31-b14c-4986-94a1-78206e78e838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\AI\Header Files">
+      <UniqueIdentifier>{4280ceb9-4b9e-4b3d-bd12-99e1174f879d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -63,6 +72,9 @@
     <ClCompile Include="VechMenu.cpp">
       <Filter>VechMenu\Cpp files</Filter>
     </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Players\AI\Cpp Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -76,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="VechMenu.h">
       <Filter>VechMenu\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Players\AI\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

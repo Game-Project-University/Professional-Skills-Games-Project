@@ -9,10 +9,12 @@ IFont* frontFont;
 ISprite* sprite;
 ICamera* myCamera;
 
+IModel* waypoints[100];
 
 ///////////////
 //--OBJECTS--//
 CPlayer* cPlayer;
+CAI* cAI[4];
 CVechMenu* cVMenu;
 
 //////////////////
@@ -29,6 +31,8 @@ float frameTime;
 ////////////////////
 //--LOAD MESHSES--//
 IMesh* playerMsh;
+IMesh* aiMsh;
+IMesh* stateMsh;
 
 /*Font Variables*/
 // Positions of the FPS Text
@@ -123,9 +127,17 @@ void GameSetup()
 
 	std::string vechName = "HawkStarfighter.x";
 	playerMsh = myEngine->LoadMesh(vechName);
+	aiMsh = myEngine->LoadMesh(vechName);
 
 	//--CREATE SCENE--//
 	cPlayer = new CPlayer(playerMsh); // interface to playerclass // constructor creates player vech // Camera creation and attachment
+
+	for (int i = 0; i < 4; i++)
+	{
+		cAI[i] = new CAI(aiMsh);
+		cAI[i]->SetLocation(i, i, 1);
+		cAI[i]->SetSine(rand()%300);
+	}
 
 	///////////////////////////////////////////////////
 	IMesh* ss = myEngine->LoadMesh("Skybox.x");
@@ -167,6 +179,12 @@ void GameUpdate()
 	}
 	// the player can always move left or right
 	cPlayer->RightLeftMovement(frameTime);
+
+	//--AI--//
+	for (int i = 0; i < 4; i++)
+	{
+		cAI[i]->SinHoverMovement(frameTime);
+	}
 }
 
 void GameShutdown()
@@ -175,7 +193,13 @@ void GameShutdown()
 	//- Tl Engine related
 	myEngine->RemoveFont(MyFont);
 	myEngine->RemoveMesh(playerMsh);
+	myEngine->RemoveMesh(aiMsh);
 	delete(cPlayer);
+	for (int i = 0; i < 4; i++)
+	{
+		delete(cAI[i]);
+	}
+
 }
 
 //--MAIN FUNCTION--//
