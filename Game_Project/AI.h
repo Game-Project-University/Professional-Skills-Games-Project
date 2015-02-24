@@ -35,6 +35,7 @@ public:
 	//--SETTERS--//
 	void IncreaseAccelration();
 	void DecreaseAccelration();
+	void SetSpeed(float speed);
 	void SetSine(float sine);
 	void SetLocation(float x, float y, float z);
 

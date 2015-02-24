@@ -9,7 +9,7 @@ IFont* frontFont;
 ISprite* sprite;
 ICamera* myCamera;
 
-IModel* waypoints[100];
+IModel* waypoints[5];
 
 ///////////////
 //--OBJECTS--//
@@ -137,6 +137,7 @@ void GameSetup()
 		cAI[i] = new CAI(aiMsh);
 		cAI[i]->SetLocation(i, i, 1);
 		cAI[i]->SetSine(rand()%300);
+		cAI[i]->SetSpeed(i + 5);
 	}
 
 	///////////////////////////////////////////////////
@@ -144,6 +145,15 @@ void GameSetup()
 	IModel* jj = ss->CreateModel(0.0f,-1600.0f,0.0f);
 	jj->Scale(2);
 	/////////////////////////////////////////////////////
+
+	stateMsh = myEngine->LoadMesh("state.x");
+
+	float pos[2][5] = { { 0, -5, 5, 15, 10 }, { 0, 10, 15, 10, 0 } };
+
+	for (int i = 0; i < 5; i++)
+	{
+		waypoints[i] = stateMsh->CreateModel(pos[0][i], 0, pos[1][i]);
+	}
 
 	//--LOAD FONT--///
 	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
@@ -184,6 +194,7 @@ void GameUpdate()
 	for (int i = 0; i < 4; i++)
 	{
 		cAI[i]->SinHoverMovement(frameTime);
+		cAI[i]->MoveToWaypoint(frameTime, waypoints);
 	}
 }
 

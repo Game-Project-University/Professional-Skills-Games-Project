@@ -39,6 +39,8 @@ CAI::CAI(IMesh* aiMsh)
 	wayVectorX = 0.0f;
 	wayVectorZ = 0.0f;
 	distance = 0.0f;
+
+	aiCurrentWaypoint = 0;
 }
 
 //////////////////
@@ -83,6 +85,12 @@ void CAI::SetSine(float sine)
 }
 
 
+void CAI::SetSpeed(float speed)
+{
+	aiMovementS = speed;
+}
+
+
 //////////////////////
 //--PLAYERMOVEMENT--//
 void CAI::SinHoverMovement(float frameTime)
@@ -103,13 +111,13 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
 	GetVector(waypoints[aiCurrentWaypoint], aiMdl, wayVectorX, wayVectorZ);
 	distance = GetDistance(wayVectorX, wayVectorZ);
 
-	if (distance > 0.25)
+	if (distance > 0.5)
 	{
 		aiMdl->LookAt(waypoints[aiCurrentWaypoint]);
 	}
 	else
 	{
-		if (aiCurrentWaypoint == 100)
+		if (aiCurrentWaypoint == 4)
 		{
 			aiCurrentWaypoint = 0;
 		}
@@ -118,5 +126,5 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
 			aiCurrentWaypoint++;
 		}
 	}
-	aiMdl->MoveLocalZ(frameTime* aiMaxSpeed);
+	aiMdl->MoveLocalZ(frameTime* aiMovementS);
 }
