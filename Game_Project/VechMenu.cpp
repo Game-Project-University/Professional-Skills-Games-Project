@@ -36,6 +36,8 @@ CVechMenu::CVechMenu()
 
 	vechArray[3].vechMdl = vechArray[3].vechMsh->CreateModel(-15.0f, 0.0f, 20.0f);
 	vechArray[3].vechMdl->RotateLocalY(180);
+
+	highLighted = 0;
 }
 
 CVechMenu::~CVechMenu()

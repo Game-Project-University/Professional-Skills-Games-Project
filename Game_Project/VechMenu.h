@@ -16,7 +16,7 @@ private:
 	IMesh* DummyMsh;
 	IModel* centreDummy;
 
-	int highLighted = 0;
+	int highLighted;
 
 	sVechicle vechArray[4];
 public:
