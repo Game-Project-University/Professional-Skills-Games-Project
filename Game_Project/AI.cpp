@@ -111,9 +111,11 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
 	GetVector(waypoints[aiCurrentWaypoint], aiMdl, wayVectorX, wayVectorZ);
 	distance = GetDistance(wayVectorX, wayVectorZ);
 
+
+
 	if (distance > 0.5)
 	{
-		aiMdl->LookAt(waypoints[aiCurrentWaypoint]);
+		aiMdl->LookAt(waypoints[aiCurrentWaypoint]->GetX(), aiMdl->GetY(), waypoints[aiCurrentWaypoint]->GetZ());
 	}
 	else
 	{
