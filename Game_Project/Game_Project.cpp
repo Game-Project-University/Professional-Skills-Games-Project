@@ -115,6 +115,12 @@ bool ProgramSetup()
 	myEngine->AddMediaFolder(".\\Media\\Skybox");
 	myEngine->AddMediaFolder(".\\Media\\InterfaceDesigns");
 
+	///////////////////////////////////////////////////
+	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
+	IModel* skyBox = skyboxMsh->CreateModel(0.0f, -1600.0f, 0.0f);
+	skyBox->Scale(2);
+	/////////////////////////////////////////////////////
+
 	return true;
 }
 
@@ -165,6 +171,27 @@ void FrontEndShutdown()
 	myEngine->RemoveCamera(myCamera);
 }
 
+void VechMenuSetup()
+{
+	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 2.0f, -10.0f);
+
+	cVMenu = new CVechMenu();
+}
+
+void VechMenuUpdate()
+{
+	cVMenu->VechSinMovements(frameTime);
+
+	if (myEngine->KeyHit(Key_G))
+	{
+		cVMenu->GetDummy()->RotateY(90);
+	}
+}
+
+void VechMenuShutdown()
+{
+	delete(cVMenu);
+}
 
 //-- GAME SETUP --//
 void GameSetup()
@@ -190,12 +217,6 @@ void GameSetup()
 		cAI[i]->SetSpeed(i + 5);
 	}
 
-	///////////////////////////////////////////////////
-	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
-	IModel* skyBox = skyboxMsh->CreateModel(0.0f, -1600.0f, 0.0f);
-	skyBox->Scale(2);
-	/////////////////////////////////////////////////////
-
 	stateMsh = myEngine->LoadMesh("state.x");
 
 	float pos[2][5] = { { 0, -5, 5, 15, 10 }, { 0, 10, 15, 10, 0 } };
@@ -212,9 +233,6 @@ void GameSetup()
 //-- GAMEUPDATE --//
 void GameUpdate()
 {	
-	//--TIMER INTIALISING--//
-	frameTime = myEngine->Timer();
-
 	//--STATS INTERFACE--//
 	stringstream interfaceText;
 	interfaceText << "FPS: " << 1 / frameTime;
@@ -249,7 +267,9 @@ void GameShutdown()
 	myEngine->RemoveFont(MyFont);
 	myEngine->RemoveMesh(playerMsh);
 	myEngine->RemoveMesh(aiMsh);
+
 	delete(cPlayer);
+
 	for (int i = 0; i < 4; i++)
 	{
 		delete(cAI[i]);
@@ -264,6 +284,9 @@ void main()
 	//--MAIN GAME LOOP--//
 	while (myEngine->IsRunning())
 	{	
+		//--TIMER INTIALISING--//
+		frameTime = myEngine->Timer();
+
 		//-- THE MAIN MENU STATE --//
 		if (GAMESTATE == MAINMENU)
 		{
@@ -281,7 +304,7 @@ void main()
 			// if the key P gets pressed then change to VECH SELECTION MENU
 			if (myEngine->KeyHit(Key_P))
 			{
-				GAMESTATE = INGAME;
+				GAMESTATE = VECHMENU;
 				setup = false;
 				// shut down the main menu 
 				FrontEndShutdown();
@@ -290,8 +313,27 @@ void main()
 		//-- VECH MENU STATE --//
 		else if (GAMESTATE == VECHMENU)
 		{
-			//--DRAWN SCENE--//
+			// set up the main menu
+			if (setup == false)
+			{
+				//-- SET THE SCENE ONCE --//
+				VechMenuSetup();
+				// change the setup bool to show the scene has been set
+				setup = true;
+			}
+			//-- DRAWN SCENE --//
 			myEngine->DrawScene();
+
+			VechMenuUpdate();
+
+			// if the key P gets pressed then change to VECH SELECTION MENU
+			if (myEngine->KeyHit(Key_2))
+			{
+				GAMESTATE = INGAME;
+				setup = false;
+				// shut down the main menu 
+				VechMenuShutdown();
+			}
 		}
 		//-- IN GAME STATE --//
 		else if (GAMESTATE == INGAME)

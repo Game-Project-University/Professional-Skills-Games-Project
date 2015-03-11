@@ -2,6 +2,9 @@
 
 CVechMenu::CVechMenu()
 {
+	sineWaveAngle = 0;
+	sineWaveValue = 0;
+
 	DummyMsh = myEngine->LoadMesh("dummy.x");
 	centreDummy = DummyMsh->CreateModel(0.0f, 0.0f, 25.0f);
 
@@ -25,17 +28,21 @@ CVechMenu::CVechMenu()
 
 	vechArray[1].vechMdl = vechArray[1].vechMsh->CreateModel(15.0f, 0.0f, 20.0f);
 	vechArray[1].vechMdl->AttachToParent(centreDummy);
-	vechArray[1].vechMdl->MoveX(15.0f);
-	vechArray[1].vechMdl->MoveZ(-10.0f);
-	vechArray[1].vechMdl->RotateLocalY(180);
+	vechArray[1].vechMdl->MoveZ(-20.0f);
+	vechArray[1].vechMdl->MoveX(5.0f);
+	vechArray[1].vechMdl->RotateLocalY(90);
 
 
 	vechArray[2].vechMdl = vechArray[2].vechMsh->CreateModel(0.0f, 0.0f, 45.0f);
-	vechArray[2].vechMdl->RotateLocalY(180);
+	vechArray[2].vechMdl->AttachToParent(centreDummy);
+	vechArray[2].vechMdl->MoveZ(-25.0f);
+
 
 
 	vechArray[3].vechMdl = vechArray[3].vechMsh->CreateModel(-15.0f, 0.0f, 20.0f);
-	vechArray[3].vechMdl->RotateLocalY(180);
+	vechArray[3].vechMdl->AttachToParent(centreDummy);
+	vechArray[3].vechMdl->RotateLocalY(-90);
+	vechArray[3].vechMdl->MoveZ(-20.0f);
 
 	highLighted = 0;
 }
@@ -47,4 +54,20 @@ CVechMenu::~CVechMenu()
 		vechArray[i].vechMsh->RemoveModel(vechArray[i].vechMdl);
 	}
 
+}
+
+void CVechMenu::VechSinMovements(float frameTime)
+{
+	sineWaveAngle += frameTime;
+	sineWaveValue = sin(sineWaveAngle + 1.0f);
+
+	for (int i = 0; i < 4; i++)
+	{
+		vechArray[i].vechMdl->SetY(sineWaveValue + 1.0f);
+	}
+
+	if (sineWaveAngle >= 360.0f)
+	{
+		sineWaveAngle = 0.0f;
+	}
 }

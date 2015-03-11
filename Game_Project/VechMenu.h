@@ -17,10 +17,16 @@ private:
 	IModel* centreDummy;
 
 	int highLighted;
+	float sineWaveAngle;
+	float sineWaveValue;
 
 	sVechicle vechArray[4];
 public:
 	CVechMenu();
 	~CVechMenu();
+
+	IModel* GetDummy(){ return centreDummy; };
+
+	void VechSinMovements(float frametime);
 
 };
