@@ -62,7 +62,6 @@ public:
 	//--Movement--//
 	void ForwardReverseMovement(float frameTime);
 	void RightLeftMovement(float frameTime);	
-	void PullHandbrake();
 
 	void SinHoverMovement(float frameTime);
 };

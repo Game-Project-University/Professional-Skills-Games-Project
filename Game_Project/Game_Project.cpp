@@ -5,53 +5,53 @@
 Havok include and library files
 -----------------------------------------------------------------------------------------*/
 
-#define HK_PLATFORM_SIM // *Must* define before the includes if using the SIMD version of Havok (SIMD are advanced CPU instructions supported by all modern PCs)
+//#define HK_PLATFORM_SIM // *Must* define before the includes if using the SIMD version of Havok (SIMD are advanced CPU instructions supported by all modern PCs)
 
 // Havok has many include files - the more functions and classes you use, the more files you need to include
 // Although intially less convenient, this reduces compile times over using a single catch-all include file
-#include <Common/Base/hkBase.h>
-#include <Common/Base/Memory/System/Util/hkMemoryInitUtil.h>
-#include <Common/Base/Memory/Allocator/Malloc/hkMallocAllocator.h>
-#include <Common/Base/Fwd/hkcstdio.h>
-#include <Physics2012/Dynamics/World/hkpWorld.h>
-#include <Physics2012/Collide/Dispatch/hkpAgentRegisterUtil.h>
-#include <Physics2012/Dynamics/Entity/hkpRigidBody.h>
-#include <Physics2012/Collide/Shape/Convex/Box/hkpBoxShape.h>
-#include <Common/Base/System/Init/PlatformInit.cxx>
+//#include <Common/Base/hkBase.h>
+//#include <Common/Base/Memory/System/Util/hkMemoryInitUtil.h>
+//#include <Common/Base/Memory/Allocator/Malloc/hkMallocAllocator.h>
+//#include <Common/Base/Fwd/hkcstdio.h>
+//#include <Physics2012/Dynamics/World/hkpWorld.h>
+//#include <Physics2012/Collide/Dispatch/hkpAgentRegisterUtil.h>
+//#include <Physics2012/Dynamics/Entity/hkpRigidBody.h>
+//#include <Physics2012/Collide/Shape/Convex/Box/hkpBoxShape.h>
+//#include <Common/Base/System/Init/PlatformInit.cxx>
 
 // We "undefine" or exclude any Havok features we're not using. Havok's linking system is over-complex, these must be correct to avoid errors
-#include <Common/Base/keycode.cxx>
-#undef HK_FEATURE_PRODUCT_AI
-#undef HK_FEATURE_PRODUCT_ANIMATION
-#undef HK_FEATURE_PRODUCT_CLOTH
-#undef HK_FEATURE_PRODUCT_DESTRUCTION_2012
-#undef HK_FEATURE_PRODUCT_DESTRUCTION
-#undef HK_FEATURE_PRODUCT_BEHAVIOR
-#undef HK_FEATURE_PRODUCT_MILSIM
+//#include <Common/Base/keycode.cxx>
+//#undef HK_FEATURE_PRODUCT_AI
+//#undef HK_FEATURE_PRODUCT_ANIMATION
+//#undef HK_FEATURE_PRODUCT_CLOTH
+//#undef HK_FEATURE_PRODUCT_DESTRUCTION_2012
+//#undef HK_FEATURE_PRODUCT_DESTRUCTION
+//#undef HK_FEATURE_PRODUCT_BEHAVIOR
+//#undef HK_FEATURE_PRODUCT_MILSIM
 //#undef HK_FEATURE_PRODUCT_PHYSICS
-#define HK_EXCLUDE_FEATURE_SerializeDeprecatedPre700
-#define HK_EXCLUDE_FEATURE_RegisterVersionPatches
-#define HK_EXCLUDE_FEATURE_MemoryTracker
-#include <Common/Base/Config/hkProductFeatures.cxx>
+//#define HK_EXCLUDE_FEATURE_SerializeDeprecatedPre700
+//#define HK_EXCLUDE_FEATURE_RegisterVersionPatches
+//#define HK_EXCLUDE_FEATURE_MemoryTracker
+//#include <Common/Base/Config/hkProductFeatures.cxx>
 
 // These are the Havok libraries that are to be linked (the Havok code basically). It is more usual to put library names in the project settings so we don't
 // normally see them in the code like this - they are not needed for compiling our source, only for the link stage. However, this is a Microsoft-specific
 // pragma that allows us to add libraries in a similar way to header files. It's quite convinient and especially useful for Havok with it's complex requirements
-#pragma comment(lib, "hkBase.lib")
-#pragma comment(lib, "hkSceneData.lib")
-#pragma comment(lib, "hkVisualize.lib")
-#pragma comment(lib, "hkInternal.lib")
-#pragma comment(lib, "hkSerialize.lib")
-#pragma comment(lib, "hkGeometryUtilities.lib")
-#pragma comment(lib, "hkcdInternal.lib")
-#pragma comment(lib, "hkcdCollide.lib")
-#pragma comment(lib, "hkpCollide.lib")
-#pragma comment(lib, "hkpConstraint.lib")
-#pragma comment(lib, "hkpConstraintSolver.lib")
-#pragma comment(lib, "hkpDynamics.lib")
-#pragma comment(lib, "hkpInternal.lib")
-#pragma comment(lib, "hkpUtilities.lib")
-#pragma comment(lib, "hkpVehicle.lib")
+//#pragma comment(lib, "hkBase.lib")
+//#pragma comment(lib, "hkSceneData.lib")
+//#pragma comment(lib, "hkVisualize.lib")
+//#pragma comment(lib, "hkInternal.lib")
+//#pragma comment(lib, "hkSerialize.lib")
+//#pragma comment(lib, "hkGeometryUtilities.lib")
+//#pragma comment(lib, "hkcdInternal.lib")
+//#pragma comment(lib, "hkcdCollide.lib")
+//#pragma comment(lib, "hkpCollide.lib")
+//#pragma comment(lib, "hkpConstraint.lib")
+//#pragma comment(lib, "hkpConstraintSolver.lib")
+//#pragma comment(lib, "hkpDynamics.lib")
+//#pragma comment(lib, "hkpInternal.lib")
+//#pragma comment(lib, "hkpUtilities.lib")
+//#pragma comment(lib, "hkpVehicle.lib")
 
 //////////////////////////
 ////--GLOBAL VARIABLES--//
@@ -71,11 +71,13 @@ CVechMenu* cVMenu;
 
 //////////////////
 //-GAME STATES--//
-
 enum GAMESTATES
 {
-	VECHMENU, GAMEPLAY
+	MAINMENU, VECHMENU, INGAME
 };
+
+GAMESTATES GAMESTATE = MAINMENU;
+bool setup = false;
 
 //////////////////////////
 //--FRAMETIME VARIABLE--//
@@ -105,7 +107,6 @@ bool ProgramSetup()
 	}
 	myEngine->StartWindowed(1280, 900);
 	
-	
 	//--MEDIA FILE DIRECTORIES--//
 	//- Add folders for meshes and other media
 	//- ALL MEDIA MUST BE LOCAL TO PROJECT NOT LINKED TO TL-FOLDER ON YOUR MACHINE
@@ -124,8 +125,9 @@ void ProgramShutdown()
 	myEngine->Delete();
 }
 
-////////////////////////////////
-//--FRONT END SETUP/SHUTDOWN--//
+
+//-- FRONT END SETUP --//
+
 void FrontEndSetup()
 {
 	//--LOAD MESH/SPRITES--//
@@ -141,24 +143,20 @@ void FrontEndSetup()
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
 
 	//--SOUND--//
-	CSound* MainMenuSound = new CSound(1);
+	//CSound* MainMenuSound = new CSound(1);
 	//-- source properties --//
-	MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
-	MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
+	//MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
+	//MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
 
 	//-- listenerpos --//
-	MainMenuSound->SetListenerPos(0.0f, 0.0f, 0.0f);
-	MainMenuSound->SetListenerVel(0.0f, 0.0f, 0.0f);
-	MainMenuSound->SetListenerOrientation(0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
+	//MainMenuSound->SetListenerPos(0.0f, 0.0f, 0.0f);
+	//MainMenuSound->SetListenerVel(0.0f, 0.0f, 0.0f);
+	//MainMenuSound->SetListenerOrientation(0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
 
-	MainMenuSound->PlaySound();
+	//MainMenuSound->PlaySound();
 }
 
-void FrontEndUpdate()
-{
-	//Any movements on Front End modles goes here
-}
-
+//-- FRONTEND SHUTDOWN --//
 void FrontEndShutdown()
 {
 	//Remove everything in the setup
@@ -167,8 +165,8 @@ void FrontEndShutdown()
 	myEngine->RemoveCamera(myCamera);
 }
 
-///////////////////////////
-//--GAME SETUP/SHUTDOWN--//
+
+//-- GAME SETUP --//
 void GameSetup()
 {
 	//--LOAD MESH/SPRITES--//
@@ -193,9 +191,9 @@ void GameSetup()
 	}
 
 	///////////////////////////////////////////////////
-	IMesh* ss = myEngine->LoadMesh("Skybox.x");
-	IModel* jj = ss->CreateModel(0.0f,-1600.0f,0.0f);
-	jj->Scale(2);
+	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
+	IModel* skyBox = skyboxMsh->CreateModel(0.0f, -1600.0f, 0.0f);
+	skyBox->Scale(2);
 	/////////////////////////////////////////////////////
 
 	stateMsh = myEngine->LoadMesh("state.x");
@@ -211,6 +209,7 @@ void GameSetup()
 	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
 }
 
+//-- GAMEUPDATE --//
 void GameUpdate()
 {	
 	//--TIMER INTIALISING--//
@@ -229,27 +228,20 @@ void GameUpdate()
 	//- player movement direction dependent on what key is hit
 	cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
 
-	// if the space key is it then the players handbrake will activate
-	if (myEngine->KeyHeld(Key_Space))
-	{
-		cPlayer->PullHandbrake();
-	}
-	// else allow the player to move forwards ot backwards
-	else
-	{
-		cPlayer->ForwardReverseMovement(frameTime);
-	}
+	cPlayer->ForwardReverseMovement(frameTime);
+	
 	// the player can always move left or right
 	cPlayer->RightLeftMovement(frameTime);
 
 	//--AI--//
+	//////////
 	for (int i = 0; i < 4; i++)
 	{
 		cAI[i]->SinHoverMovement(frameTime);
 		cAI[i]->MoveToWaypoint(frameTime, waypoints);
 	}
 }
-
+//-- GAME SHUTDOWN --//
 void GameShutdown()
 {
 	//Remove everything in the setup
@@ -262,54 +254,75 @@ void GameShutdown()
 	{
 		delete(cAI[i]);
 	}
-
 }
 
 //--MAIN FUNCTION--//
 void main()
 {
-	// set up the Tl Engine// media files
+	//-- SETUP THE TL-ENGINE AND THE INCLUDE FILES --//
 	ProgramSetup();
-	// set up the main menu
-	FrontEndSetup();
-
-	// while the P key has not been pressed draw the scene and do any updates for the main menu 
-	while (!myEngine->KeyHit(Key_P))
-	{
-		// Draw the scene
-		myEngine->DrawScene();
-
-		FrontEndUpdate();
-
-		// Program exit
-		if (myEngine->KeyHit(Key_Escape) || !myEngine->IsRunning())
-		{
-			ProgramShutdown();
-			return;
-		}
-	}
-	// shut down the main menu 
-	FrontEndShutdown();
-
-	// set up the game scene
-	GameSetup();
-
 	//--MAIN GAME LOOP--//
 	while (myEngine->IsRunning())
-	{
-		//--DRAWN SCENE--//
-		myEngine->DrawScene();
-		//update the game scene while the engine is running 
-		GameUpdate();
-		
+	{	
+		//-- THE MAIN MENU STATE --//
+		if (GAMESTATE == MAINMENU)
+		{
+			// set up the main menu
+			if (setup == false)
+			{
+				//-- SET THE SCENE ONCE --//
+				FrontEndSetup();
+				// change the setup bool to show the scene has been set
+				setup = true;
+			}
+			//-- DRAWN SCENE --//
+			myEngine->DrawScene();
+
+			// if the key P gets pressed then change to VECH SELECTION MENU
+			if (myEngine->KeyHit(Key_P))
+			{
+				GAMESTATE = INGAME;
+				setup = false;
+				// shut down the main menu 
+				FrontEndShutdown();
+			}
+		}
+		//-- VECH MENU STATE --//
+		else if (GAMESTATE == VECHMENU)
+		{
+			//--DRAWN SCENE--//
+			myEngine->DrawScene();
+		}
+		//-- IN GAME STATE --//
+		else if (GAMESTATE == INGAME)
+		{
+			//-- SET THE SCENE ONCE --//
+			if (setup == false)
+			{
+				GameSetup();
+				// change the setup bool to show the scene has been set
+				setup = true;
+			}
+			//--DRAWN SCENE--//
+			myEngine->DrawScene();
+			// update the game e.g play the game
+			GameUpdate();
+			// if the key 1 is pressed go back to the main menu 
+			if (myEngine->KeyHit(Key_1))
+			{
+				GAMESTATE = MAINMENU;
+				setup = false;
+				// shut down the game 
+				GameShutdown();
+			}
+		}
+			
 		//--Exit Statement--//
 		if (myEngine->KeyHit(EXIT))
 		{
 			myEngine->Stop();
 		}
 	}
-	// shut down the game 
-	GameShutdown();
 	// shut down the Tl-Engine
 	ProgramShutdown();
 }

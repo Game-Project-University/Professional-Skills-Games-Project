@@ -9,7 +9,7 @@ CPlayer::CPlayer(IMesh* playerMsh)
 	//- set the player rotation speed
 	playerRotationS = 100.0f;
 	//- set the speed that the player accelrates
-	playerAccelrationS = 0.005;
+	playerAccelrationS = 0.05;
 	//- set the max player speed
 	playerMaxSpeed = 100.0f;
 	//- set the max reverse player speed
@@ -91,7 +91,7 @@ void CPlayer::ForwardReverseMovement(float frameTime)
 {
 	if (myEngine->KeyHeld(FORWARD) && playerMovementS < playerMaxSpeed)
 	{
-			IncreaseAccelration();
+		IncreaseAccelration();
 	}
 	else if (myEngine->KeyHeld(REVERSE) && playerMovementS > -playerReverseMaxSpeed)
 	{
@@ -148,15 +148,3 @@ void CPlayer::RightLeftMovement(float frameTime)
 
 /////////////////////////
 //--PLAYER ACTIVATIONS--//
-void CPlayer::PullHandbrake()
-{
-		if (playerMovementS > 0)
-		{
-			playerMovementS -= 0.008f;
-		}
-
-		if (playerMovementS < -1)
-		{
-			playerMovementS += 0.008f;
-		}
-}
