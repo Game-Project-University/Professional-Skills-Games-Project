@@ -53,10 +53,9 @@ Havok include and library files
 //#pragma comment(lib, "hkpUtilities.lib")
 //#pragma comment(lib, "hkpVehicle.lib")
 
-//////////////////////////
-////--GLOBAL VARIABLES--//
-//I3DEngine* myEngine;
-IFont* MyFont;
+////////////////////////
+//--GLOBAL VARIABLES--//
+IFont* ComicSans;
 IFont* frontFont;
 ISprite* sprite;
 ICamera* myCamera;
@@ -82,6 +81,7 @@ bool setup = false;
 //////////////////////////
 //--FRAMETIME VARIABLE--//
 float frameTime;
+
 ////////////////////
 //--LOAD MESHSES--//
 IMesh* playerMsh;
@@ -115,23 +115,23 @@ bool ProgramSetup()
 	myEngine->AddMediaFolder(".\\Media\\Skybox");
 	myEngine->AddMediaFolder(".\\Media\\InterfaceDesigns");
 
-	///////////////////////////////////////////////////
+	//-- CREATE A SKYBOX FOR THE WORLD --//
 	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
 	IModel* skyBox = skyboxMsh->CreateModel(0.0f, -1600.0f, 0.0f);
 	skyBox->Scale(2);
-	/////////////////////////////////////////////////////
 
 	return true;
 }
 
-// Shutdown for the whole program
+///////////////////////
+//-- MAIN SHUTDOWN --//
 void ProgramShutdown()
 {
 	//--ENGINE DELETION--//
 	myEngine->Delete();
 }
 
-
+/////////////////////////
 //-- FRONT END SETUP --//
 
 void FrontEndSetup()
@@ -142,8 +142,6 @@ void FrontEndSetup()
 
 	//--LOAD FONT--///
 	frontFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
-
-	//--CREATE SCENE--//
 
 	//--CAMERA CREATION--//
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
@@ -162,52 +160,67 @@ void FrontEndSetup()
 	//MainMenuSound->PlaySound();
 }
 
+///////////////////////////
 //-- FRONTEND SHUTDOWN --//
 void FrontEndShutdown()
 {
-	//Remove everything in the setup
+	//-- Remove everything in the setup --//
 	myEngine->RemoveFont(frontFont);
 	myEngine->RemoveSprite(sprite);
 	myEngine->RemoveCamera(myCamera);
 }
 
+/////////////////////////
+//-- VECH MENU SETUP --//
 void VechMenuSetup()
 {
-	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 2.0f, -10.0f);
-
+	myCamera = myEngine->CreateCamera(kManual, 0.0f, 2.0f, -10.0f);
+	//- create an instance of the vech menu
 	cVMenu = new CVechMenu();
 }
 
+//////////////////////////
+//-- VECH MENU UPDATE --//
 void VechMenuUpdate()
 {
+	// move all of the vechs in a wavey motion
 	cVMenu->VechSinMovements(frameTime);
 
-	if (myEngine->KeyHit(Key_G))
+	// rotate to the next selectable vechicle 
+	// and set the vechicle to being selected
+	if (myEngine->KeyHit(Key_Right))
 	{
 		cVMenu->GetDummy()->RotateY(90);
+		cVMenu->SetRightSelected();
+	}
+	if (myEngine->KeyHit(Key_Left))
+	{
+		cVMenu->GetDummy()->RotateY(-90);
+		cVMenu->SetLeftSelected();
 	}
 }
 
+////////////////////////////
+//-- VECH MENU SHUTDOWN --//
 void VechMenuShutdown()
 {
-	delete(cVMenu);
 }
 
+////////////////////
 //-- GAME SETUP --//
 void GameSetup()
 {
-	//--LOAD MESH/SPRITES--//
-	// - HeliScouFighter.x
-	// - HawkStarfighter.x
-	// - SciFiBattleship01.x
-	// - SciFiBattleship02.x
-
 	std::string vechName = "HawkStarfighter.x";
 	playerMsh = myEngine->LoadMesh(vechName);
+
 	aiMsh = myEngine->LoadMesh(vechName);
 
-	//--CREATE SCENE--//
-	cPlayer = new CPlayer(playerMsh); // interface to playerclass // constructor creates player vech // Camera creation and attachment
+	//-- CREATE SCENE --//
+	cPlayer = new CPlayer(cVMenu->GetSelected()); // interface to playerclass // constructor creates player vech // Camera creation and attachment
+
+	// -- Delete the Vmenu Object after the selected mesh has been passed to the player -- //
+	delete(cVMenu);
+	cVMenu = NULL;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -226,21 +239,21 @@ void GameSetup()
 		waypoints[i] = stateMsh->CreateModel(pos[0][i], 0, pos[1][i]);
 	}
 
-	//--LOAD FONT--///
-	MyFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
+	//-- LOAD FONT --///
+	ComicSans = myEngine->LoadFont("Comic Sans MS", 36.0f);
 }
 
+////////////////////
 //-- GAMEUPDATE --//
 void GameUpdate()
 {	
-	//--STATS INTERFACE--//
+	//-- STATS INTERFACE --//
 	stringstream interfaceText;
 	interfaceText << "FPS: " << 1 / frameTime;
-	MyFont->Draw(interfaceText.str(), FontFpsX, FontFpsY, kWhite);
+	ComicSans->Draw(interfaceText.str(), FontFpsX, FontFpsY, kWhite);
 	interfaceText.str("");
 
-	//--Player movement--//
-	///////////////////////
+	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
 	//- player movement direction dependent on what key is hit
@@ -251,24 +264,26 @@ void GameUpdate()
 	// the player can always move left or right
 	cPlayer->RightLeftMovement(frameTime);
 
-	//--AI--//
-	//////////
+	//-- AI --//
 	for (int i = 0; i < 4; i++)
 	{
 		cAI[i]->SinHoverMovement(frameTime);
 		cAI[i]->MoveToWaypoint(frameTime, waypoints);
 	}
 }
+
+///////////////////////
 //-- GAME SHUTDOWN --//
 void GameShutdown()
 {
 	//Remove everything in the setup
 	//- Tl Engine related
-	myEngine->RemoveFont(MyFont);
+	myEngine->RemoveFont(ComicSans);
 	myEngine->RemoveMesh(playerMsh);
 	myEngine->RemoveMesh(aiMsh);
 
 	delete(cPlayer);
+	cPlayer = NULL;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -276,12 +291,13 @@ void GameShutdown()
 	}
 }
 
-//--MAIN FUNCTION--//
+///////////////////////
+//-- MAIN FUNCTION --//
 void main()
 {
 	//-- SETUP THE TL-ENGINE AND THE INCLUDE FILES --//
 	ProgramSetup();
-	//--MAIN GAME LOOP--//
+	//-- MAIN GAME LOOP --//
 	while (myEngine->IsRunning())
 	{	
 		//--TIMER INTIALISING--//
@@ -327,7 +343,7 @@ void main()
 			VechMenuUpdate();
 
 			// if the key P gets pressed then change to VECH SELECTION MENU
-			if (myEngine->KeyHit(Key_2))
+			if (myEngine->KeyHit(Key_Space))
 			{
 				GAMESTATE = INGAME;
 				setup = false;

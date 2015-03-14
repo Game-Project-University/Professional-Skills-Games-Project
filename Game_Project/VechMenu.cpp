@@ -8,11 +8,6 @@ CVechMenu::CVechMenu()
 	DummyMsh = myEngine->LoadMesh("dummy.x");
 	centreDummy = DummyMsh->CreateModel(0.0f, 0.0f, 25.0f);
 
-	for (int i = 0; i < 4; i++)
-	{
-		vechArray[i].selected = false;
-	}
-
 	vechArray[0].vechMsh = myEngine->LoadMesh("HeliScouFighter.x");
 	vechArray[1].vechMsh = myEngine->LoadMesh("HawkStarfighter.x");
 	vechArray[2].vechMsh = myEngine->LoadMesh("SciFiBattleship01.x");
@@ -44,7 +39,7 @@ CVechMenu::CVechMenu()
 	vechArray[3].vechMdl->RotateLocalY(-90);
 	vechArray[3].vechMdl->MoveZ(-20.0f);
 
-	highLighted = 0;
+	selected = 0;
 }
 
 CVechMenu::~CVechMenu()
@@ -69,5 +64,29 @@ void CVechMenu::VechSinMovements(float frameTime)
 	if (sineWaveAngle >= 360.0f)
 	{
 		sineWaveAngle = 0.0f;
+	}
+}
+
+void CVechMenu::SetRightSelected()
+{
+	if (selected < 3)
+	{
+		selected++;
+	}
+	else
+	{
+		selected = 0;
+	}
+}
+
+void CVechMenu::SetLeftSelected()
+{
+	if (selected > 0)
+	{
+		selected--;
+	}
+	else
+	{
+		selected = 3;
 	}
 }
