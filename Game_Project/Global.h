@@ -40,11 +40,11 @@
 #include <TL-Engine.h>	// TL-Engine include file and namespace
 #include <sstream>
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
-#include <al.h>      // Main OpenAL functions
-#include <alc.h>     // OpenAL "context" functions (also part of main OpenAL API)
-#include <AL/alut.h> // OpenAL utility library - helper functions
+//#include <al.h>      // Main OpenAL functions
+//#include <alc.h>     // OpenAL "context" functions (also part of main OpenAL API)
+//#include <AL/alut.h> // OpenAL utility library - helper functions
 
 //- Namespaces
 using namespace tle;

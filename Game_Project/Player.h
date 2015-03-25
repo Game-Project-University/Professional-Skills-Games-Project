@@ -1,7 +1,6 @@
 #pragma once
+#include "BasePlayer.h"
 #include "Global.h"
-
-using namespace tle;
 
 ////////////////
 //--CONSTANTS-//
@@ -14,7 +13,7 @@ const EKeyCode LEFT = Key_A;
 const EKeyCode RIGHT = Key_D;
 const EKeyCode HANDBRAKE = Key_Space;
 
-class CPlayer
+class CPlayer : public CBasePlayer
 {
 private:
 	IModel* playerMdl;
@@ -22,14 +21,14 @@ private:
 
 	//////////////////////////
 	//--MOVEMENT VARIABLES--//
-	float playerMovementS;
-	float playerRotationS;
-	float playerAccelrationS;
-	float playerMaxSpeed;
-	float playerReverseMaxSpeed;
+	//float playerMovementS;
+	//float playerRotationS;
+	//float playerAccelrationS;
+	//float playerMaxSpeed;
+	//float playerReverseMaxSpeed;
 
-	float sineWaveAngle;
-	float sineWaveValue;
+	//float sineWaveAngle;
+    //float sineWaveValue;
 	
 	//////////////////////////////////
 	//--CAMERA MOVEMENTS VARIABLES--//
@@ -51,7 +50,6 @@ public:
 	IModel* GetModel(); 
 
 	float GetPlayerS();
-	float GetPlayerRotationS();
 
 	///////////////
 	//--SETTERS--//

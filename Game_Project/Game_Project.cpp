@@ -6,6 +6,7 @@
 #include "AI.h"
 #include "Sound.h"
 #include "VechMenu.h"
+#include "EntityManager.h"
 
 /*-----------------------------------------------------------------------------------------
 Havok include and library files
@@ -70,6 +71,7 @@ IModel* waypoints[5];
 
 ///////////////
 //--OBJECTS--//
+CEntityManager* cEManager;
 CPlayer* cPlayer;
 CAI* cAI[4];
 CVechMenu* cVMenu;
@@ -221,8 +223,10 @@ void GameSetup()
 
 	aiMsh = myEngine->LoadMesh(vechName);
 
+	//////////////////////
 	//-- CREATE SCENE --//
-	cPlayer = new CPlayer(cVMenu->GetSelected()); // interface to playerclass // constructor creates player vech // Camera creation and attachment
+	//Get the instance of the class from the manager class
+	cPlayer = cEManager->GetPlayerInstance();
 
 	// -- Delete the Vmenu Object after the selected mesh has been passed to the player -- //
 	delete(cVMenu);
@@ -288,7 +292,7 @@ void GameShutdown()
 	myEngine->RemoveMesh(playerMsh);
 	myEngine->RemoveMesh(aiMsh);
 
-	delete(cPlayer);
+	//delete(cPlayer);
 	cPlayer = NULL;
 
 	for (int i = 0; i < 4; i++)
@@ -353,6 +357,7 @@ void main()
 			{
 				GAMESTATE = INGAME;
 				setup = false;
+				cEManager = new CEntityManager(cVMenu->GetSelected());
 				// shut down the main menu 
 				VechMenuShutdown();
 			}
