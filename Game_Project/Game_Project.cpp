@@ -137,7 +137,7 @@ void ProgramShutdown()
 void FrontEndSetup()
 {
 	//--LOAD MESH/SPRITES--//
-	sprite = myEngine->CreateSprite("FrontMenu.jpg"); // random image that i had, can use this for now *** CHANGE IMAGE WE NEED A NAME ***
+	sprite = myEngine->CreateSprite("Main_Menu.jpg"); // random image that i had, can use this for now *** CHANGE IMAGE WE NEED A NAME ***
 	sprite->SetZ(0);
 
 	//--LOAD FONT--///
