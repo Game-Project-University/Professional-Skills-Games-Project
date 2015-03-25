@@ -1,14 +1,21 @@
-﻿Build started 25/03/2015 10:54:21.
+﻿Build started 25/03/2015 13:31:19.
      1>Project "C:\Repos\Professional-Skills-Games-Project\Game_Project\Game_Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\hk2013_1_0_r1\Source" /I"C:\ProgramData\TL-Engine\include" /I"C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\include" /I"C:\Program Files (x86)\OpenAL 1.1 SDK\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /Gy /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Game_Project.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\hk2013_1_0_r1\Source" /I"C:\ProgramData\TL-Engine\include" /I"C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\include" /I"C:\Program Files (x86)\OpenAL 1.1 SDK\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /Gy /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AI.cpp Game_Project.cpp Global.cpp Player.cpp VechMenu.cpp
          Game_Project.cpp
-     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(144): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(228): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(229): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(230): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(243): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(253): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
+     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(150): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
+     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(234): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(235): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(236): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(249): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
+     1>c:\repos\professional-skills-games-project\game_project\game_project.cpp(259): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
+         Generating Code...
+         Compiling...
+         VechMenu.cpp
+         Player.cpp
+         Global.cpp
+         AI.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Repos\Professional-Skills-Games-Project\Game_Project\Game_ProjectDebug.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\hk2013_1_0_r1\Lib\win32_vs2012_win7\debug" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win32" /LIBPATH:"C:\ProgramData\TL-Engine\lib" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib" "TL-Engine2012Debug.lib" alut.lib OpenAL32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Repos\Professional-Skills-Games-Project\Game_Project\\Game_Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /IMPLIB:"C:\Repos\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.lib" /MACHINE:X86 /SAFESEH:NO Debug\AI.obj
          Debug\Game_Project.obj
@@ -28,4 +35,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.12
+Time Elapsed 00:00:03.02

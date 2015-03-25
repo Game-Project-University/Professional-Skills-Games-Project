@@ -46,12 +46,6 @@
 #include <alc.h>     // OpenAL "context" functions (also part of main OpenAL API)
 #include <AL/alut.h> // OpenAL utility library - helper functions
 
-//- local
-#include "Player.h"
-#include "AI.h"
-#include "Sound.h"
-#include "VechMenu.h"
-
 //- Namespaces
 using namespace tle;
 

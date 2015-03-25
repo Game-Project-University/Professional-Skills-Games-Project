@@ -1,6 +1,12 @@
 ////--INCLUDES--//
 #include "Global.h"
 
+//- local
+#include "Player.h"
+#include "AI.h"
+#include "Sound.h"
+#include "VechMenu.h"
+
 /*-----------------------------------------------------------------------------------------
 Havok include and library files
 -----------------------------------------------------------------------------------------*/
