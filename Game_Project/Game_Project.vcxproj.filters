@@ -82,11 +82,35 @@
     <Filter Include="Course\Object">
       <UniqueIdentifier>{ff0ffdfc-62d4-471a-a2da-fb6dc6090d32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Course\Object\Header Files">
-      <UniqueIdentifier>{a312978d-8a52-478b-8561-9346e8d22c42}</UniqueIdentifier>
+    <Filter Include="Course\Track">
+      <UniqueIdentifier>{139d16d4-eaa5-4e86-b54f-8db2737c3468}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Course\Object\Cpp Files">
+    <Filter Include="Course\Track\Header Files">
+      <UniqueIdentifier>{6da3b1f1-4e0a-4874-a8f2-db964a2851dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Track\Cpp Files">
+      <UniqueIdentifier>{abdb1cf5-f9e0-44d4-92af-3e7f661c32c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Type of Object">
+      <UniqueIdentifier>{39ba42b5-bd61-4ec2-9b02-ca172058582d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Type of Object\SkyScraper">
+      <UniqueIdentifier>{8cdbf0ea-998e-4fb0-b540-afacd120d8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Type of Object\SkyScraper\Header File">
+      <UniqueIdentifier>{1779582c-5e0b-4eeb-8941-3e013e485bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Type of Object\SkyScraper\Cpp Files">
+      <UniqueIdentifier>{7fbdfd58-f0c3-4d47-92cc-91bb3d95e53f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Object BaseClass">
+      <UniqueIdentifier>{13e23ff9-f132-4996-80e9-fdf748af3a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Object BaseClass\Cpp Files">
       <UniqueIdentifier>{0033a60c-8d91-44e3-9392-300c42566b9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Object BaseClass\Header Files">
+      <UniqueIdentifier>{a312978d-8a52-478b-8561-9346e8d22c42}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +139,13 @@
       <Filter>Players\BasePlayer\Cpp File</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Course\Object\Cpp Files</Filter>
+      <Filter>Course\Object\Object BaseClass\Cpp Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Track.cpp">
+      <Filter>Course\Track\Cpp Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyScraper.cpp">
+      <Filter>Course\Object\Type of Object\SkyScraper\Cpp Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +171,13 @@
       <Filter>Players\BasePlayer\Header File</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Course\Object\Header Files</Filter>
+      <Filter>Course\Object\Object BaseClass\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Track.h">
+      <Filter>Course\Track\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyScraper.h">
+      <Filter>Course\Object\Type of Object\SkyScraper\Header File</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

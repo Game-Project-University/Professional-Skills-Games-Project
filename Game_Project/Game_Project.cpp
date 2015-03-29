@@ -7,6 +7,7 @@
 #include "Sound.h"
 #include "VechMenu.h"
 #include "EntityManager.h"
+#include "Track.h"
 
 /*-----------------------------------------------------------------------------------------
 Havok include and library files
@@ -71,6 +72,7 @@ IModel* waypoints[5];
 
 ///////////////
 //--OBJECTS--//
+CTrack* cTrack;
 CEntityManager* cEManager;
 CPlayer* cPlayer;
 CAI* cAI[4];
@@ -122,6 +124,7 @@ bool ProgramSetup()
 	myEngine->AddMediaFolder(".\\Media\\Vechs");
 	myEngine->AddMediaFolder(".\\Media\\Skybox");
 	myEngine->AddMediaFolder(".\\Media\\InterfaceDesigns");
+	myEngine->AddMediaFolder(".\\Media\\CourseObjects");
 
 	//-- CREATE A SKYBOX FOR THE WORLD --//
 	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
@@ -218,6 +221,10 @@ void VechMenuShutdown()
 //-- GAME SETUP --//
 void GameSetup()
 {
+	////////////////////////
+	// -- CREATE COURSE --//
+	cTrack = new CTrack();
+
 	std::string vechName = "HawkStarfighter.x";
 	playerMsh = myEngine->LoadMesh(vechName);
 
@@ -292,13 +299,14 @@ void GameShutdown()
 	myEngine->RemoveMesh(playerMsh);
 	myEngine->RemoveMesh(aiMsh);
 
-	//delete(cPlayer);
-	cPlayer = NULL;
-
 	for (int i = 0; i < 4; i++)
 	{
 		delete(cAI[i]);
 	}
+
+	// delete the track
+	delete(cTrack);
+	delete(cPlayer);
 }
 
 ///////////////////////
