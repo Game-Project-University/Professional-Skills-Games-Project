@@ -18,24 +18,12 @@ class CPlayer : public CBasePlayer
 private:
 	IModel* playerMdl;
 	ICamera* myCamera;
-
-	//////////////////////////
-	//--MOVEMENT VARIABLES--//
-	//float playerMovementS;
-	//float playerRotationS;
-	//float playerAccelrationS;
-	//float playerMaxSpeed;
-	//float playerReverseMaxSpeed;
-
-	//float sineWaveAngle;
-    //float sineWaveValue;
 	
 	//////////////////////////////////
 	//--CAMERA MOVEMENTS VARIABLES--//
 	float camerRotationS;
 	float cameraMaxX;
 	float cameraCounter;
-
 
 	//////////////////
 	//--VECH ARRAY--//

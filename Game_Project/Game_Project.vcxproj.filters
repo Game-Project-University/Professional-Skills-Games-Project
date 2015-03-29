@@ -43,37 +43,55 @@
     <Filter Include="Entity Manager\Cpp File">
       <UniqueIdentifier>{a61b6e9e-bf0e-445b-9588-3f3da2ec3409}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entity Manager\BasePlayer">
+    <Filter Include="Players">
+      <UniqueIdentifier>{809beac7-5680-4209-869b-e652a5d1c68c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\BasePlayer">
       <UniqueIdentifier>{7cf74cb6-b16d-43e9-90ae-d6d48906cde4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entity Manager\BasePlayer\AI">
-      <UniqueIdentifier>{a57800c9-89fa-426c-a7b2-1b4480a2e00c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entity Manager\BasePlayer\AI\Cpp Files">
-      <UniqueIdentifier>{be0fef31-b14c-4986-94a1-78206e78e838}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entity Manager\BasePlayer\AI\Header Files">
-      <UniqueIdentifier>{4280ceb9-4b9e-4b3d-bd12-99e1174f879d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entity Manager\BasePlayer\Human">
-      <UniqueIdentifier>{655ed2ce-1c65-49e0-819d-35f8a5475aaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entity Manager\BasePlayer\Human\Cpp Files">
-      <UniqueIdentifier>{e0721d69-d551-40c6-b8ab-fa89d40b34ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entity Manager\BasePlayer\Human\Header Files">
-      <UniqueIdentifier>{f015d02a-090f-455d-a903-e34460e67984}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entity Manager\BasePlayer\Header File">
+    <Filter Include="Players\BasePlayer\Header File">
       <UniqueIdentifier>{63ebd207-2a03-428a-bb09-bbb189068814}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entity Manager\BasePlayer\Cpp File">
+    <Filter Include="Players\BasePlayer\Cpp File">
       <UniqueIdentifier>{d4428e33-4daf-4de9-90c0-7b5567f31110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Player Type">
+      <UniqueIdentifier>{fd98142b-a178-4624-8811-d5e32908fafc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Player Type\Human">
+      <UniqueIdentifier>{655ed2ce-1c65-49e0-819d-35f8a5475aaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Player Type\Human\Cpp Files">
+      <UniqueIdentifier>{e0721d69-d551-40c6-b8ab-fa89d40b34ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Player Type\Human\Header Files">
+      <UniqueIdentifier>{f015d02a-090f-455d-a903-e34460e67984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Player Type\AI">
+      <UniqueIdentifier>{a57800c9-89fa-426c-a7b2-1b4480a2e00c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Player Type\AI\Cpp Files">
+      <UniqueIdentifier>{be0fef31-b14c-4986-94a1-78206e78e838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Players\Player Type\AI\Header Files">
+      <UniqueIdentifier>{4280ceb9-4b9e-4b3d-bd12-99e1174f879d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course">
+      <UniqueIdentifier>{b6b6997b-03f8-41e7-a52e-21bb0fa87190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object">
+      <UniqueIdentifier>{ff0ffdfc-62d4-471a-a2da-fb6dc6090d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Header Files">
+      <UniqueIdentifier>{a312978d-8a52-478b-8561-9346e8d22c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Cpp Files">
+      <UniqueIdentifier>{0033a60c-8d91-44e3-9392-300c42566b9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
-      <Filter>Entity Manager\BasePlayer\Human\Cpp Files</Filter>
+      <Filter>Players\Player Type\Human\Cpp Files</Filter>
     </ClCompile>
     <ClCompile Include="Global.cpp">
       <Filter>Global\Cpp Files</Filter>
@@ -88,18 +106,21 @@
       <Filter>VechMenu\Cpp files</Filter>
     </ClCompile>
     <ClCompile Include="AI.cpp">
-      <Filter>Entity Manager\BasePlayer\AI\Cpp Files</Filter>
+      <Filter>Players\Player Type\AI\Cpp Files</Filter>
     </ClCompile>
     <ClCompile Include="EntityManagers.cpp">
       <Filter>Entity Manager\Cpp File</Filter>
     </ClCompile>
     <ClCompile Include="BasePlayer.cpp">
-      <Filter>Entity Manager\BasePlayer\Cpp File</Filter>
+      <Filter>Players\BasePlayer\Cpp File</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Course\Object\Cpp Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
-      <Filter>Entity Manager\BasePlayer\Human\Header Files</Filter>
+      <Filter>Players\Player Type\Human\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>Global\Header Files</Filter>
@@ -111,13 +132,16 @@
       <Filter>VechMenu\Header files</Filter>
     </ClInclude>
     <ClInclude Include="AI.h">
-      <Filter>Entity Manager\BasePlayer\AI\Header Files</Filter>
+      <Filter>Players\Player Type\AI\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
       <Filter>Entity Manager\HeaderFile</Filter>
     </ClInclude>
     <ClInclude Include="BasePlayer.h">
-      <Filter>Entity Manager\BasePlayer\Header File</Filter>
+      <Filter>Players\BasePlayer\Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Course\Object\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

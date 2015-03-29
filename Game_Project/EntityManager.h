@@ -17,5 +17,6 @@ public:
 private:
 	// pointer to the place class
 	CPlayer* mPlayer;
+	
 
 };
