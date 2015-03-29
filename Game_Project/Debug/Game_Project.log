@@ -1,22 +1,19 @@
-﻿  LINK : C:\Space Racer\Professional-Skills-Games-Project\Game_Project\Game_ProjectDebug.exe not found or not built by the last incremental link; performing full link
-TL-Engine2012Debug.lib(TL-Engine.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TL-Engine.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(Errors.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(Errors.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXSprite.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXSprite.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXSceneNode.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXSceneNode.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXModelNode.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXModelNode.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXModel.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXModel.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXMesh.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXMesh.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXLight.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXLight.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXFont.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXFont.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXEngine.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXEngine.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(TLXCamera.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXCamera.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtSceneNode.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtSceneNode.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtModel.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtModel.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtMesh.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtMesh.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtLight.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtLight.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtInput.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtInput.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtFont.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtFont.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtEngine.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtEngine.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
-TL-Engine2012Debug.lib(IrrlichtCamera.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtCamera.obj)' or at 'C:\Space Racer\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+﻿  Track.cpp
+  Object.cpp
+c:\space racer\professional-skills-games-project\game_project\object.cpp(13): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\object.cpp(14): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\object.cpp(16): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\object.cpp(17): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  SkyScraper.cpp
+  Game_Project.cpp
+c:\space racer\professional-skills-games-project\game_project\game_project.cpp(155): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\game_project.cpp(245): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\game_project.cpp(246): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\game_project.cpp(247): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\game_project.cpp(260): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
+c:\space racer\professional-skills-games-project\game_project\game_project.cpp(270): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
+  Generating Code...
   Game_Project.vcxproj -> C:\Space Racer\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.exe
           1 file(s) copied.

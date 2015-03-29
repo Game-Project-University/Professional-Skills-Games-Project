@@ -6,7 +6,7 @@ CPlayer::CPlayer(IMesh* playerMsh) : CBasePlayer()
 {
 
 	// create player model
-	playerMdl = playerMsh->CreateModel(0.0f, 5.0f, 0.0f);
+	playerMdl = playerMsh->CreateModel(30.0f, 5.0f, 15.0f);
 	
 	//- Camera Attachment to player
 	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f); // create camera
@@ -31,18 +31,6 @@ CPlayer::~CPlayer()
 }
 
 ///////////////
-//--GETTERS--//
-IModel* CPlayer::GetModel()
-{
-	return playerMdl;
-}
-
-float CPlayer::GetPlayerS()
-{
-	return playerMovementS;
-}
-
-///////////////
 //--SETTERS--//
 void CPlayer::IncreaseAccelration()
 {
@@ -52,6 +40,13 @@ void CPlayer::IncreaseAccelration()
 void CPlayer::DecreaseAccelration()
 {
 	playerMovementS -= playerAccelrationS*2;
+}
+
+void CPlayer::UpdatePlayerPos()
+{
+	playerPos.posX = playerMdl->GetX();
+	playerPos.posY = playerMdl->GetY();
+	playerPos.posZ = playerMdl->GetZ();
 }
 
 //////////////////////

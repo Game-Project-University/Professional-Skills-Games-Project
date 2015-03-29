@@ -5,15 +5,9 @@
 class CObject
 {
 public:
-	CObject(float x, float y, float z);
-	~CObject();
-
-	void scaleModel(float value);
-
-private:
 	//**** STRUCT TO STORE THE POS OF THE OBJECT  ****//
 	//-------------------------------------------------- 
-	struct objectPos 
+	struct objectPos
 	{
 		float x;
 		float y;
@@ -22,12 +16,32 @@ private:
 
 	//**** STRUCT TO STORE THE AABB OF THE OBJECT ****//
 	//--------------------------------------------------
+	struct AABB
+	{
+		int minX;
+		int maxX;
+		int minZ;
+		int maxZ;
+	};
+
+	//-- the constructor sets the positions and the AABB for object being created
+	CObject(float posX, float posY, float posZ, float width, float length);
+	~CObject();
+
+	//-- used to scale the model
+	void scaleModel(float value);
+	// returns the boundaries of the object
+	inline AABB GetBoundaries(){ return objectBoundaries; };
+private:
+	
 
 protected:
 	// model for each object 
 	IModel* objectMdl;
-	// accessor for the struct
+	// accessor for the poss struct
 	objectPos objectPosition;
+	// accessor for the AABB struct
+	AABB objectBoundaries;
 	
 	
 

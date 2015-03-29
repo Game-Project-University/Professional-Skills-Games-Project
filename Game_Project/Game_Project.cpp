@@ -278,8 +278,14 @@ void GameUpdate()
 
 	cPlayer->ForwardReverseMovement(frameTime);
 	
-	// the player can always move left or right
+	//- the player can always move left or right
 	cPlayer->RightLeftMovement(frameTime);
+
+	//- update the players position
+	cPlayer->UpdatePlayerPos();
+	
+	//- Check for collision
+	cTrack->Collision(cPlayer);
 
 	//-- AI --//
 	for (int i = 0; i < 4; i++)

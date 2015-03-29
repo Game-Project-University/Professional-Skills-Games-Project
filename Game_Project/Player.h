@@ -13,6 +13,13 @@ const EKeyCode LEFT = Key_A;
 const EKeyCode RIGHT = Key_D;
 const EKeyCode HANDBRAKE = Key_Space;
 
+struct SPlayerPos
+{
+	float posX;
+	float posY;
+	float posZ;
+};
+
 class CPlayer : public CBasePlayer
 {
 private:
@@ -25,8 +32,8 @@ private:
 	float cameraMaxX;
 	float cameraCounter;
 
-	//////////////////
-	//--VECH ARRAY--//
+	//-- player pos accessor --//
+	SPlayerPos playerPos;
 
 public:
 	CPlayer(IMesh* playerMsh);
@@ -35,14 +42,16 @@ public:
 	///////////////
 	//--GETTERS--//
 	// returns the players model
-	IModel* GetModel(); 
+	inline IModel* GetModel(){ return playerMdl; };
+	inline float GetPlayerS(){ return playerMovementS; };
 
-	float GetPlayerS();
+	inline SPlayerPos GetPlayerPos(){ return playerPos; };
 
 	///////////////
 	//--SETTERS--//
 	void IncreaseAccelration();
 	void DecreaseAccelration();
+	void UpdatePlayerPos();
 
 	////////////////
 	//--Movement--//
