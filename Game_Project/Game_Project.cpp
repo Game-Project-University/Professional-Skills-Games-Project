@@ -241,10 +241,7 @@ void GameSetup()
 
 	for (int i = 0; i < 4; i++)
 	{
-		cAI[i] = new CAI(aiMsh);
-		cAI[i]->SetLocation(i, i, 1);
-		cAI[i]->SetSine(rand()%300);
-		cAI[i]->SetSpeed(i + 5);
+		cAI[i] = new CAI(aiMsh, i + 5, rand() % 300, i, i, 1);
 	}
 
 	stateMsh = myEngine->LoadMesh("state.x");

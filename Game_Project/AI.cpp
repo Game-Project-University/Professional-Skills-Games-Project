@@ -21,20 +21,20 @@ float GetDistance(float X, float Z)
 
 ///////////////////
 //--CONTRUCTORS--//
-CAI::CAI(IMesh* aiMsh)
+CAI::CAI(IMesh* aiMsh, float speed, float sine, float x, float y, float z)
 {
 	//- set the ai movement speed
-	aiMovementS = 0.0f;
+	playerMovementS = speed;
 	//- set the speed that the ai accelrates
-	aiAccelrationS = 0.005;
+	playerAccelrationS = 0.005;
 	//- set the max ai speed
-	aiMaxSpeed = 100.0f;
+	playerMaxSpeed = 100.0f;
 	//- set the angle of the sinewave to start at 0
-	sineWaveAngle = 0;
+	sineWaveAngle = sine;
 	sineWaveValue = 0;
 
 	// create AI model
-	aiMdl = aiMsh->CreateModel(0.0f, 1.0f, 0.0f);
+	playerMdl = aiMsh->CreateModel(x, y, z);
 
 	wayVectorX = 0.0f;
 	wayVectorZ = 0.0f;
@@ -50,72 +50,20 @@ CAI::~CAI()
 
 }
 
-///////////////
-//--GETTERS--//
-IModel* CAI::GetModel()
-{
-	return aiMdl;
-}
-
-float CAI::GetAIS()
-{
-	return aiMovementS;
-}
-
-///////////////
-//--SETTERS--//
-void CAI::IncreaseAccelration()
-{
-	aiMovementS += aiAccelrationS;
-}
-
-void CAI::DecreaseAccelration()
-{
-	aiMovementS -= aiAccelrationS * 2;
-}
-
-void CAI::SetLocation(float x, float y, float z)
-{
-	aiMdl->SetPosition(x, y, z);
-}
-
-void CAI::SetSine(float sine)
-{
-	sineWaveAngle = sine;
-}
-
-
-void CAI::SetSpeed(float speed)
-{
-	aiMovementS = speed;
-}
-
 
 //////////////////////
 //--PLAYERMOVEMENT--//
-void CAI::SinHoverMovement(float frameTime)
-{
-	sineWaveAngle += frameTime;
-	sineWaveValue = sin(sineWaveAngle + 1.0f);
-
-	aiMdl->SetY(sineWaveValue + 1.0f);
-
-	if (sineWaveAngle >= 360.0f)
-	{
-		sineWaveAngle = 0.0f;
-	}
-}
 
 void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
 {
-	GetVector(waypoints[aiCurrentWaypoint], aiMdl, wayVectorX, wayVectorZ);
+	GetVector(waypoints[aiCurrentWaypoint], playerMdl, wayVectorX, wayVectorZ);
 	distance = GetDistance(wayVectorX, wayVectorZ);
 
 
 
 	if (distance > 0.5)
 	{
-		aiMdl->LookAt(waypoints[aiCurrentWaypoint]->GetX(), aiMdl->GetY(), waypoints[aiCurrentWaypoint]->GetZ());
+		playerMdl->LookAt(waypoints[aiCurrentWaypoint]->GetX(), playerMdl->GetY(), waypoints[aiCurrentWaypoint]->GetZ());
 	}
 	else
 	{
@@ -128,5 +76,5 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
 			aiCurrentWaypoint++;
 		}
 	}
-	aiMdl->MoveLocalZ(frameTime* aiMovementS);
+	playerMdl->MoveLocalZ(frameTime* playerMovementS);
 }

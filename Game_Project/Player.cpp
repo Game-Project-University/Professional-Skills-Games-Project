@@ -30,17 +30,6 @@ CPlayer::~CPlayer()
 
 }
 
-///////////////
-//--SETTERS--//
-void CPlayer::IncreaseAccelration()
-{
-	playerMovementS+= playerAccelrationS;
-}
-
-void CPlayer::DecreaseAccelration()
-{
-	playerMovementS -= playerAccelrationS*2;
-}
 
 void CPlayer::UpdatePlayerPos()
 {
@@ -51,18 +40,6 @@ void CPlayer::UpdatePlayerPos()
 
 //////////////////////
 //--PLAYERMOVEMENT--//
-void CPlayer::SinHoverMovement(float frameTime)
-{
-	sineWaveAngle += frameTime;
-	sineWaveValue = sin(sineWaveAngle + 1.0f);
-		
-	playerMdl->SetY(sineWaveValue + 1.0f);
-
-	if (sineWaveAngle >= 360.0f)
-	{
-		sineWaveAngle = 0.0f;
-	}
-}
 
 void CPlayer::ForwardReverseMovement(float frameTime) 
 {

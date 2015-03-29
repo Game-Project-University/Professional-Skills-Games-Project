@@ -20,3 +20,30 @@ CBasePlayer::CBasePlayer()
 CBasePlayer::~CBasePlayer()
 {
 }
+
+///////////////
+//--SETTERS--//
+void CBasePlayer::IncreaseAccelration()
+{
+	playerMovementS += playerAccelrationS;
+}
+
+void CBasePlayer::DecreaseAccelration()
+{
+	playerMovementS -= playerAccelrationS * 2;
+}
+
+//////////////////////
+//--PLAYERMOVEMENT--//
+void CBasePlayer::SinHoverMovement(float frameTime)
+{
+	sineWaveAngle += frameTime;
+	sineWaveValue = sin(sineWaveAngle + 1.0f);
+
+	playerMdl->SetY(sineWaveValue + 1.0f);
+
+	if (sineWaveAngle >= 360.0f)
+	{
+		sineWaveAngle = 0.0f;
+	}
+}

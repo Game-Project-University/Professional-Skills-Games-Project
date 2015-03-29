@@ -3,13 +3,8 @@
 
 class CBasePlayer
 {
-public:
-	CBasePlayer();
-	~CBasePlayer();
-
-private:
-
 protected:
+	IModel* playerMdl;
 	//- set the player movement speed
 	float playerMovementS;
 	//- set the player rotation speed
@@ -24,4 +19,18 @@ protected:
 	float sineWaveAngle;
 	float sineWaveValue;
 
+public:
+	CBasePlayer();
+	~CBasePlayer();
+
+	///////////////
+	//--GETTERS--//
+	inline IModel* GetModel(){ return playerMdl; };
+	inline float GetPlayerS(){ return playerMovementS; };
+
+	////////////////
+	//--MOVEMENT--//
+	void IncreaseAccelration();
+	void DecreaseAccelration();
+	void SinHoverMovement(float frameTime);
 };

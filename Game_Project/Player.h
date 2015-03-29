@@ -23,7 +23,6 @@ struct SPlayerPos
 class CPlayer : public CBasePlayer
 {
 private:
-	IModel* playerMdl;
 	ICamera* myCamera;
 	
 	//////////////////////////////////
@@ -39,24 +38,14 @@ public:
 	CPlayer(IMesh* playerMsh);
 	~CPlayer();
 
-	///////////////
-	//--GETTERS--//
-	// returns the players model
-	inline IModel* GetModel(){ return playerMdl; };
-	inline float GetPlayerS(){ return playerMovementS; };
-
 	inline SPlayerPos GetPlayerPos(){ return playerPos; };
 
 	///////////////
 	//--SETTERS--//
-	void IncreaseAccelration();
-	void DecreaseAccelration();
 	void UpdatePlayerPos();
 
 	////////////////
 	//--Movement--//
 	void ForwardReverseMovement(float frameTime);
 	void RightLeftMovement(float frameTime);	
-
-	void SinHoverMovement(float frameTime);
 };
