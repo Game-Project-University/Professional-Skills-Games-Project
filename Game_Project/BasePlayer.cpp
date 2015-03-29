@@ -9,7 +9,7 @@ CBasePlayer::CBasePlayer()
 	//- set the speed that the player accelrates
 	playerAccelrationS = 0.05;
 	//- set the max player speed
-	playerMaxSpeed = 100.0f;
+	playerMaxSpeed = 70.0f;
 	//- set the max reverse player speed
 	playerReverseMaxSpeed = 30.0f;
 	//- set the angle of the sinewave to start at 0

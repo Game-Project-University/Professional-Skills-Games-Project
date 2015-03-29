@@ -16,15 +16,6 @@
     <Filter Include="Main\Cpp Files">
       <UniqueIdentifier>{90cc9e67-0f07-4962-bb8a-9a31b14ee063}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sound">
-      <UniqueIdentifier>{7a1f59f6-3492-4eea-9183-a9963930b442}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sound\HeaderFiles">
-      <UniqueIdentifier>{c9b8985e-10d7-4193-8450-c849c370e9d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sound\Cpp Files">
-      <UniqueIdentifier>{9b3e3153-f5ab-4bb0-9ea7-81fada84b65d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="VechMenu">
       <UniqueIdentifier>{5e1044db-c935-4885-94cf-cde1fdf15620}</UniqueIdentifier>
     </Filter>
@@ -111,6 +102,15 @@
     </Filter>
     <Filter Include="Course\Object\Object BaseClass\Header Files">
       <UniqueIdentifier>{a312978d-8a52-478b-8561-9346e8d22c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{7a1f59f6-3492-4eea-9183-a9963930b442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\HeaderFiles">
+      <UniqueIdentifier>{c9b8985e-10d7-4193-8450-c849c370e9d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\Cpp Files">
+      <UniqueIdentifier>{9b3e3153-f5ab-4bb0-9ea7-81fada84b65d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

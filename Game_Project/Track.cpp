@@ -4,10 +4,10 @@ CTrack::CTrack()
 {
 	//-- creation of objects (x, y, z, width, height)
 	//-- i will make this read in from a file eventually
-	courseObjects[0] = new CSkyScraper(-40.0f,0.0f,60.0f, 48.0f, 46.0f);
-	courseObjects[1] = new CSkyScraper(40.0f, 0.0f, 60.0f, 48.0f, 46.0f);
-	courseObjects[2] = new CSkyScraper(-40.0f, 0.0f, 0.0f, 48.0f, 46.0f);
-	courseObjects[3] = new CSkyScraper(40.0f, 0.0f, 0.0f, 48.0f, 46.0f);
+	courseObjects[0] = new CSkyScraper(-40.0f,0.0f,60.0f, 52.0f, 54.0f);
+	courseObjects[1] = new CSkyScraper(40.0f, 0.0f, 60.0f, 52.0f, 54.0f);
+	courseObjects[2] = new CSkyScraper(-40.0f, 0.0f, 0.0f, 52.0f, 54.0f);
+	courseObjects[3] = new CSkyScraper(40.0f, 0.0f, 0.0f, 52.0f, 54.0f);
 }
 
 CTrack::~CTrack()
