@@ -189,6 +189,8 @@ void VechMenuSetup()
 	myCamera = myEngine->CreateCamera(kManual, 0.0f, 2.0f, -10.0f);
 	//- create an instance of the vech menu
 	cVMenu = new CVechMenu();
+
+	sprite = myEngine->CreateSprite("vehicle select.png");
 }
 
 //////////////////////////
@@ -217,6 +219,7 @@ void VechMenuUpdate()
 //-- VECH MENU SHUTDOWN --//
 void VechMenuShutdown()
 {
+	delete(sprite);
 	MainMenuSound->StopSound();
 	delete(MainMenuSound);
 }
