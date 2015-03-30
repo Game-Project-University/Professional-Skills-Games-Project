@@ -198,6 +198,7 @@ void VechMenuUpdate()
 	// move all of the vechs in a wavey motion
 	cVMenu->VechSinMovements(frameTime);
 
+	cVMenu->RotateSelected(frameTime);
 	// rotate to the next selectable vechicle 
 	// and set the vechicle to being selected
 	if (myEngine->KeyHit(Key_Right))

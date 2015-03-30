@@ -19,6 +19,8 @@ private:
 	float sineWaveAngle;
 	float sineWaveValue;
 
+	float amountRotated;
+
 	sVechicle vechArray[4];
 public:
 	CVechMenu();
@@ -32,4 +34,6 @@ public:
 	void VechSinMovements(float frametime);
 	void SetRightSelected();
 	void SetLeftSelected();
+
+	void RotateSelected(float frameTime);
 };

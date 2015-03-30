@@ -69,6 +69,7 @@ void CVechMenu::VechSinMovements(float frameTime)
 
 void CVechMenu::SetRightSelected()
 {
+
 	if (selected < 3)
 	{
 		selected++;
@@ -89,4 +90,10 @@ void CVechMenu::SetLeftSelected()
 	{
 		selected = 3;
 	}
+}
+
+void CVechMenu::RotateSelected(float frameTime)
+{
+	amountRotated = 80 * frameTime;
+	vechArray[selected].vechMdl->RotateY(amountRotated);
 }
