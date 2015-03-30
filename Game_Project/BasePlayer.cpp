@@ -33,6 +33,10 @@ void CBasePlayer::DecreaseAccelration()
 	playerMovementS -= playerAccelrationS * 2;
 }
 
+void CBasePlayer::SetMovementSpeed(float value)
+{
+	playerMovementS = value;
+}
 //////////////////////
 //--PLAYERMOVEMENT--//
 void CBasePlayer::SinHoverMovement(float frameTime)

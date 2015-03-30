@@ -8,6 +8,8 @@ CTrack::CTrack()
 	courseObjects[1] = new CSkyScraper(40.0f, 0.0f, 60.0f, 52.0f, 54.0f);
 	courseObjects[2] = new CSkyScraper(-40.0f, 0.0f, 0.0f, 52.0f, 54.0f);
 	courseObjects[3] = new CSkyScraper(40.0f, 0.0f, 0.0f, 52.0f, 54.0f);
+	courseObjects[4] = new CSkyScraper(-40.0f, 0.0f, 120.0f, 52.0f, 54.0f);
+	courseObjects[5] = new CSkyScraper(40.0f, 0.0f, 120.0f, 52.0f, 54.0f);
 }
 
 CTrack::~CTrack()
@@ -28,7 +30,8 @@ void CTrack::Collision(CPlayer* cPlayer)
 	{
 		if (cPlayer->GetPlayerPos().posX > courseObjects[i]->GetBoundaries().minX && cPlayer->GetPlayerPos().posX < courseObjects[i]->GetBoundaries().maxX &&cPlayer->GetPlayerPos().posZ > courseObjects[i]->GetBoundaries().minZ && cPlayer->GetPlayerPos().posZ < courseObjects[i]->GetBoundaries().maxZ)
 		{
-			cout << "IN THE BOX" << endl;
+			cPlayer->SetMovementSpeed(0);
+			cPlayer->MoveBeforeCollision();
 		}
 	}
 }

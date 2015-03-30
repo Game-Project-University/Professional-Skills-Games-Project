@@ -158,17 +158,17 @@ void FrontEndSetup()
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
 
 	//--SOUND--//
-	//CSound* MainMenuSound = new CSound(1);
+	CSound* MainMenuSound = new CSound(1);
 	//-- source properties --//
-	//MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
-	//MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
+	MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
+	MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
 
 	//-- listenerpos --//
-	//MainMenuSound->SetListenerPos(0.0f, 0.0f, 0.0f);
-	//MainMenuSound->SetListenerVel(0.0f, 0.0f, 0.0f);
-	//MainMenuSound->SetListenerOrientation(0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
+	MainMenuSound->SetListenerPos(0.0f, 0.0f, 0.0f);
+	MainMenuSound->SetListenerVel(0.0f, 0.0f, 0.0f);
+	MainMenuSound->SetListenerOrientation(0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
 
-	//MainMenuSound->PlaySound();
+	MainMenuSound->PlaySound();
 }
 
 ///////////////////////////
@@ -290,6 +290,8 @@ void GameUpdate()
 		cAI[i]->SinHoverMovement(frameTime);
 		cAI[i]->MoveToWaypoint(frameTime, waypoints);
 	}
+
+	cPlayer->UpdatePreviousPos();
 }
 
 ///////////////////////

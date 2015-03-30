@@ -28,6 +28,10 @@ public:
 	inline IModel* GetModel(){ return playerMdl; };
 	inline float GetPlayerS(){ return playerMovementS; };
 
+	//////////////
+	//--SETTERS--//
+	void SetMovementSpeed(float value);
+
 	////////////////
 	//--MOVEMENT--//
 	void IncreaseAccelration();
