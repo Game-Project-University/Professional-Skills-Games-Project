@@ -77,6 +77,7 @@ CEntityManager* cEManager;
 CPlayer* cPlayer;
 CAI* cAI[4];
 CVechMenu* cVMenu;
+CSound* MainMenuSound;
 
 //////////////////
 //-GAME STATES--//
@@ -158,7 +159,7 @@ void FrontEndSetup()
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
 
 	//--SOUND--//
-	CSound* MainMenuSound = new CSound(1);
+	MainMenuSound = new CSound(1);
 	//-- source properties --//
 	MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
 	MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
@@ -215,6 +216,8 @@ void VechMenuUpdate()
 //-- VECH MENU SHUTDOWN --//
 void VechMenuShutdown()
 {
+	MainMenuSound->StopSound();
+	delete(MainMenuSound);
 }
 
 ////////////////////

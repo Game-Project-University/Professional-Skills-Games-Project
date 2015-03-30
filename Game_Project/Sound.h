@@ -39,6 +39,9 @@ public:
 	//-Play Sounds-//
 	void PlaySound();
 
+	//-stop sounds-//
+	void StopSound();
+
 	//-Change sound settings
 	void SetSourcePos(float x, float y, float z);
 	void SetSourceVel(float x, float y, float z);

@@ -11,7 +11,7 @@ CSound::CSound(int soundNumber)
 	// its best attempt to convert different file formats into an OpenAL data format
 	if (soundNumber == 1)
 	{
-		buffer = alutCreateBufferFromFile(".\\media\\tada.wav");
+		buffer = alutCreateBufferFromFile(".\\media\\Battle of the Void.wav");
 	}
 
 	//****************
@@ -25,7 +25,7 @@ CSound::CSound(int soundNumber)
 	alSourcei(source, AL_BUFFER, buffer); // Attach a buffer to the source (identify which sound to play)
 	alSourcef(source, AL_PITCH, 1.0f);   // Pitch multiplier, doubling the pitch shifts the sound up 1 octave, halving
 	// the pitch shifts it down 1 octave. Will also shorten/lengthen the sound
-	alSourcef(source, AL_GAIN, 1.0f);   // Effectively the volume of the sound - 0.0 = silent, 1.0 = as recorded. May
+	alSourcef(source, AL_GAIN, 0.06f);   // Effectively the volume of the sound - 0.0 = silent, 1.0 = as recorded. May
 	// be able to increase volume over 1, but depends on sound
 	alSourcefv(source, AL_POSITION, sourcePos); // Position of sound relative to listener affects how it is reproduced through speakers
 	alSourcefv(source, AL_VELOCITY, sourceVel); // Velocity of sound relative to listener can cause Doppler effect
@@ -52,6 +52,12 @@ CSound::~CSound()
 void CSound::PlaySound()
 {
 	alSourcePlay(source);
+}
+/////////////////
+//--STOP SOUND--//
+void CSound::StopSound()
+{
+	alSourceStop(source);
 }
 
 ////////////////////////////
