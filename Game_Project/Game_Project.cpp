@@ -230,8 +230,6 @@ void VechMenuShutdown()
 //-- GAME SETUP --//
 void GameSetup()
 {
-	playerMsh = myEngine->LoadMesh("Torus.x");
-	ll = playerMsh->CreateModel(0, 0, 0);
 
 	////////////////////////
 	// -- CREATE COURSE --//
