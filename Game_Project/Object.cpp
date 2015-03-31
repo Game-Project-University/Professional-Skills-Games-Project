@@ -15,7 +15,6 @@ CObject::CObject(float posX, float posY, float posZ, float width, float length)
 
 	objectBoundaries.minZ = objectPosition.z - objectLength;
 	objectBoundaries.maxZ = objectPosition.z + objectLength;
-
 }
 
 CObject::~CObject()

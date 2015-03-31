@@ -112,6 +112,15 @@
     <Filter Include="Sound\Cpp Files">
       <UniqueIdentifier>{9b3e3153-f5ab-4bb0-9ea7-81fada84b65d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Course\Object\Type of Object\BlockBuilding">
+      <UniqueIdentifier>{bce21c58-ccd3-472f-aedb-eb64456e3399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Type of Object\BlockBuilding\Header files">
+      <UniqueIdentifier>{2c926b29-477e-4503-acdd-47a0e7780b81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Object\Type of Object\BlockBuilding\Cpp Files">
+      <UniqueIdentifier>{350c9bcd-709f-409a-b738-128a2033ad63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -147,6 +156,9 @@
     <ClCompile Include="SkyScraper.cpp">
       <Filter>Course\Object\Type of Object\SkyScraper\Cpp Files</Filter>
     </ClCompile>
+    <ClCompile Include="BlockBuilding.cpp">
+      <Filter>Course\Object\Type of Object\BlockBuilding\Cpp Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -178,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="SkyScraper.h">
       <Filter>Course\Object\Type of Object\SkyScraper\Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockBuilding.h">
+      <Filter>Course\Object\Type of Object\BlockBuilding\Header files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

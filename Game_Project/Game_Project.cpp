@@ -99,6 +99,8 @@ IMesh* playerMsh;
 IMesh* aiMsh;
 IMesh* stateMsh;
 
+IModel* ll;
+
 /*Font Variables*/
 // Positions of the FPS Text
 const float FontFpsX = 40.0f;
@@ -228,13 +230,14 @@ void VechMenuShutdown()
 //-- GAME SETUP --//
 void GameSetup()
 {
+	playerMsh = myEngine->LoadMesh("Torus.x");
+	ll = playerMsh->CreateModel(0, 0, 0);
+
 	////////////////////////
 	// -- CREATE COURSE --//
 	cTrack = new CTrack();
 
 	std::string vechName = "HawkStarfighter.x";
-	playerMsh = myEngine->LoadMesh(vechName);
-
 	aiMsh = myEngine->LoadMesh(vechName);
 
 	//////////////////////

@@ -1,10 +1,11 @@
 #pragma once
 #include "Object.h"
 #include "SkyScraper.h"
+#include "BlockBuilding.h"
 #include "Player.h"
 #include "Global.h"
 
-const int NUMBER_OF_OBJECTS = 6;
+const int NUMBER_OF_OBJECTS = 9;
 class CTrack
 {
 public:
