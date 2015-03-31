@@ -99,8 +99,6 @@ IMesh* playerMsh;
 IMesh* aiMsh;
 IMesh* stateMsh;
 
-IModel* ll;
-
 /*Font Variables*/
 // Positions of the FPS Text
 const float FontFpsX = 40.0f;
@@ -222,15 +220,12 @@ void VechMenuUpdate()
 void VechMenuShutdown()
 {
 	delete(sprite);
-	MainMenuSound->StopSound();
-	delete(MainMenuSound);
 }
 
 ////////////////////
 //-- GAME SETUP --//
 void GameSetup()
 {
-
 	////////////////////////
 	// -- CREATE COURSE --//
 	cTrack = new CTrack();

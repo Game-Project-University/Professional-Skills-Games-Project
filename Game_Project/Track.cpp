@@ -10,9 +10,11 @@ CTrack::CTrack()
 	courseObjects[3] = new CSkyScraper(40.0f, 0.0f, 0.0f, 52.0f, 54.0f);
 	courseObjects[4] = new CSkyScraper(-40.0f, 0.0f, 120.0f, 52.0f, 54.0f);
 	courseObjects[5] = new CSkyScraper(40.0f, 0.0f, 120.0f, 52.0f, 54.0f);
-	courseObjects[6] = new CBlockBuilding(30.0f, 0.0f, 190.0f, 40.0f, 54.0f);
+	courseObjects[6] = new CBlockBuilding(36.0f, 0.0f, 170.0f, 40.0f, 54.0f);
 	courseObjects[7] = new CBlockBuilding(0.0f, 0.0f, 210.0f, 40.0f, 54.0f);
 	courseObjects[8] = new CBlockBuilding(-30.0f, 0.0f, 210.0f, 40.0f, 54.0f);
+	courseObjects[9] = new CBlockBuilding(-85.0f, 0.0f, 120.0f, 40.0f, 54.0f);
+	courseObjects[10] = new CBattleShip(-130.0f, 15.0f, 200.0f, 20.0f, 170.0f);
 }
 
 CTrack::~CTrack()

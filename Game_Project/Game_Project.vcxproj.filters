@@ -70,9 +70,6 @@
     <Filter Include="Course">
       <UniqueIdentifier>{b6b6997b-03f8-41e7-a52e-21bb0fa87190}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Course\Object">
-      <UniqueIdentifier>{ff0ffdfc-62d4-471a-a2da-fb6dc6090d32}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Course\Track">
       <UniqueIdentifier>{139d16d4-eaa5-4e86-b54f-8db2737c3468}</UniqueIdentifier>
     </Filter>
@@ -81,27 +78,6 @@
     </Filter>
     <Filter Include="Course\Track\Cpp Files">
       <UniqueIdentifier>{abdb1cf5-f9e0-44d4-92af-3e7f661c32c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\Object\Type of Object">
-      <UniqueIdentifier>{39ba42b5-bd61-4ec2-9b02-ca172058582d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\Object\Type of Object\SkyScraper">
-      <UniqueIdentifier>{8cdbf0ea-998e-4fb0-b540-afacd120d8d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\Object\Type of Object\SkyScraper\Header File">
-      <UniqueIdentifier>{1779582c-5e0b-4eeb-8941-3e013e485bf2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\Object\Type of Object\SkyScraper\Cpp Files">
-      <UniqueIdentifier>{7fbdfd58-f0c3-4d47-92cc-91bb3d95e53f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\Object\Object BaseClass">
-      <UniqueIdentifier>{13e23ff9-f132-4996-80e9-fdf748af3a2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\Object\Object BaseClass\Cpp Files">
-      <UniqueIdentifier>{0033a60c-8d91-44e3-9392-300c42566b9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\Object\Object BaseClass\Header Files">
-      <UniqueIdentifier>{a312978d-8a52-478b-8561-9346e8d22c42}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sound">
       <UniqueIdentifier>{7a1f59f6-3492-4eea-9183-a9963930b442}</UniqueIdentifier>
@@ -112,14 +88,56 @@
     <Filter Include="Sound\Cpp Files">
       <UniqueIdentifier>{9b3e3153-f5ab-4bb0-9ea7-81fada84b65d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Course\Object\Type of Object\BlockBuilding">
+    <Filter Include="Course\Course Objects">
+      <UniqueIdentifier>{ff0ffdfc-62d4-471a-a2da-fb6dc6090d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object">
+      <UniqueIdentifier>{39ba42b5-bd61-4ec2-9b02-ca172058582d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\SkyScraper">
+      <UniqueIdentifier>{8cdbf0ea-998e-4fb0-b540-afacd120d8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\SkyScraper\Header File">
+      <UniqueIdentifier>{1779582c-5e0b-4eeb-8941-3e013e485bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\SkyScraper\Cpp Files">
+      <UniqueIdentifier>{7fbdfd58-f0c3-4d47-92cc-91bb3d95e53f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\BlockBuilding">
       <UniqueIdentifier>{bce21c58-ccd3-472f-aedb-eb64456e3399}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Course\Object\Type of Object\BlockBuilding\Header files">
+    <Filter Include="Course\Course Objects\Type of Object\BlockBuilding\Header files">
       <UniqueIdentifier>{2c926b29-477e-4503-acdd-47a0e7780b81}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Course\Object\Type of Object\BlockBuilding\Cpp Files">
+    <Filter Include="Course\Course Objects\Type of Object\BlockBuilding\Cpp Files">
       <UniqueIdentifier>{350c9bcd-709f-409a-b738-128a2033ad63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\BattleShip">
+      <UniqueIdentifier>{ac43cb94-ea8d-43a2-a1ef-e9e92ebaa410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\BattleShip\Header Files">
+      <UniqueIdentifier>{879b3100-92e8-4058-baaa-12a1879f46b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\BattleShip\Cpp Files">
+      <UniqueIdentifier>{0752a8f7-4a16-4633-93da-f891fddd945f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Object BaseClass">
+      <UniqueIdentifier>{13e23ff9-f132-4996-80e9-fdf748af3a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Object BaseClass\Cpp Files">
+      <UniqueIdentifier>{0033a60c-8d91-44e3-9392-300c42566b9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Object BaseClass\Header Files">
+      <UniqueIdentifier>{a312978d-8a52-478b-8561-9346e8d22c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\CheckPoints">
+      <UniqueIdentifier>{c18bcf35-64bb-4741-ba2b-c931e8a01990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\CheckPoints\Header Files">
+      <UniqueIdentifier>{31261c0e-8c70-4699-9e28-82a845a05766}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\CheckPoints\Cpp Files">
+      <UniqueIdentifier>{771e2885-66e4-403d-97cc-8cc80b8f84da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,16 +166,22 @@
       <Filter>Players\BasePlayer\Cpp File</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Course\Object\Object BaseClass\Cpp Files</Filter>
+      <Filter>Course\Course Objects\Object BaseClass\Cpp Files</Filter>
     </ClCompile>
     <ClCompile Include="Track.cpp">
       <Filter>Course\Track\Cpp Files</Filter>
     </ClCompile>
     <ClCompile Include="SkyScraper.cpp">
-      <Filter>Course\Object\Type of Object\SkyScraper\Cpp Files</Filter>
+      <Filter>Course\Course Objects\Type of Object\SkyScraper\Cpp Files</Filter>
     </ClCompile>
     <ClCompile Include="BlockBuilding.cpp">
-      <Filter>Course\Object\Type of Object\BlockBuilding\Cpp Files</Filter>
+      <Filter>Course\Course Objects\Type of Object\BlockBuilding\Cpp Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Battleship.cpp">
+      <Filter>Course\Course Objects\Type of Object\BattleShip\Cpp Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Checkpoint.cpp">
+      <Filter>Course\CheckPoints\Cpp Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -183,16 +207,22 @@
       <Filter>Players\BasePlayer\Header File</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Course\Object\Object BaseClass\Header Files</Filter>
+      <Filter>Course\Course Objects\Object BaseClass\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Track.h">
       <Filter>Course\Track\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SkyScraper.h">
-      <Filter>Course\Object\Type of Object\SkyScraper\Header File</Filter>
+      <Filter>Course\Course Objects\Type of Object\SkyScraper\Header File</Filter>
     </ClInclude>
     <ClInclude Include="BlockBuilding.h">
-      <Filter>Course\Object\Type of Object\BlockBuilding\Header files</Filter>
+      <Filter>Course\Course Objects\Type of Object\BlockBuilding\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Battleship.h">
+      <Filter>Course\Course Objects\Type of Object\BattleShip\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Checkpoint.h">
+      <Filter>Course\CheckPoints\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

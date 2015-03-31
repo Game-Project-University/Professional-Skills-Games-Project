@@ -121,7 +121,9 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="BasePlayer.cpp" />
+    <ClCompile Include="Battleship.cpp" />
     <ClCompile Include="BlockBuilding.cpp" />
+    <ClCompile Include="Checkpoint.cpp" />
     <ClCompile Include="EntityManagers.cpp" />
     <ClCompile Include="Game_Project.cpp" />
     <ClCompile Include="Global.cpp" />
@@ -135,7 +137,9 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="BasePlayer.h" />
+    <ClInclude Include="Battleship.h" />
     <ClInclude Include="BlockBuilding.h" />
+    <ClInclude Include="Checkpoint.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Object.h" />

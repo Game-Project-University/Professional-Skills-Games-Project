@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Object.h"
-#include "Global.h"
 
 class CBlockBuilding : public CObject
 {

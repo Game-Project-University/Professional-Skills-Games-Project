@@ -6,8 +6,7 @@ CPlayer::CPlayer(IMesh* playerMsh) : CBasePlayer()
 {
 
 	// create player model
-	playerMdl = playerMsh->CreateModel(0.0f, 5.0f, 0.0f);
-	
+	playerMdl = playerMsh->CreateModel(0.0f, 0.0f, 0.0f);
 	//- Camera Attachment to player
 	myCamera = myEngine->CreateCamera(kManual, 0.0f, 0.0f, 0.0f); // create camera
 	myCamera->SetPosition(0.0f, 3.0f, -12.0f); // set camera position
