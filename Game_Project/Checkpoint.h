@@ -4,9 +4,26 @@
 class CCheckpoint 
 {
 public:
-	CCheckpoint();
+	CCheckpoint(float x, float y, float z, bool rotated);
 	~CCheckpoint();
 
-private:
+	struct AABB
+	{
+		float minX;
+		float maxX;
+		float minZ;
+		float maxZ;
+	};
+	
+	inline AABB GetLBoundarie(){ return leftPillar; };
+	inline AABB GetRBoundarie(){ return rightPillar; };
 
+private:
+	IModel* checkpointMdl;
+	IMesh* checkpointMsh;
+
+	
+
+	AABB leftPillar;
+	AABB rightPillar;
 };

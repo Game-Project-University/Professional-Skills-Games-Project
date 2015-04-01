@@ -1,6 +1,5 @@
 #pragma once
 #include "BasePlayer.h"
-#include "Global.h"
 
 ////////////////
 //--CONSTANTS-//

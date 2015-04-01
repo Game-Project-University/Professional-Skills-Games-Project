@@ -15,6 +15,10 @@ CTrack::CTrack()
 	courseObjects[8] = new CBlockBuilding(-30.0f, 0.0f, 210.0f, 40.0f, 54.0f);
 	courseObjects[9] = new CBlockBuilding(-85.0f, 0.0f, 120.0f, 40.0f, 54.0f);
 	courseObjects[10] = new CBattleShip(-130.0f, 15.0f, 200.0f, 20.0f, 170.0f);
+
+	courseCheckpoints[0] = new CCheckpoint(0, 0, 30, false);
+	courseCheckpoints[1] = new CCheckpoint(0, 0, 120, true);
+
 }
 
 CTrack::~CTrack()
@@ -33,7 +37,27 @@ void CTrack::Collision(CPlayer* cPlayer)
 	// count through and array of objects
 	for (int i = 0; i < NUMBER_OF_OBJECTS; i++)
 	{
-		if (cPlayer->GetPlayerPos().posX > courseObjects[i]->GetBoundaries().minX && cPlayer->GetPlayerPos().posX < courseObjects[i]->GetBoundaries().maxX &&cPlayer->GetPlayerPos().posZ > courseObjects[i]->GetBoundaries().minZ && cPlayer->GetPlayerPos().posZ < courseObjects[i]->GetBoundaries().maxZ)
+		if (cPlayer->GetPlayerPos().posX > courseObjects[i]->GetBoundaries().minX && cPlayer->GetPlayerPos().posX < courseObjects[i]->GetBoundaries().maxX &&
+			cPlayer->GetPlayerPos().posZ > courseObjects[i]->GetBoundaries().minZ && cPlayer->GetPlayerPos().posZ < courseObjects[i]->GetBoundaries().maxZ)
+		{
+			cPlayer->SetMovementSpeed(0);
+			cPlayer->MoveBeforeCollision();
+		}
+	}
+
+	for (int i = 0; i < NUMBER_OF_CHECKPOINTS; i++)
+	{
+		//-- check for collision with the left boundarie of the checkpoints
+		if (cPlayer->GetPlayerPos().posX > courseCheckpoints[i]->GetLBoundarie().minX && cPlayer->GetPlayerPos().posX < courseCheckpoints[i]->GetLBoundarie().maxX &&
+			cPlayer->GetPlayerPos().posZ > courseCheckpoints[i]->GetLBoundarie().minZ && cPlayer->GetPlayerPos().posZ < courseCheckpoints[i]->GetLBoundarie().maxZ)
+		{
+			cPlayer->SetMovementSpeed(0);
+			cPlayer->MoveBeforeCollision();
+		}
+
+		//-- check for collision with the right boundarie of the checkpoints
+		if (cPlayer->GetPlayerPos().posX > courseCheckpoints[i]->GetRBoundarie().minX && cPlayer->GetPlayerPos().posX < courseCheckpoints[i]->GetRBoundarie().maxX &&
+			cPlayer->GetPlayerPos().posZ > courseCheckpoints[i]->GetRBoundarie().minZ && cPlayer->GetPlayerPos().posZ < courseCheckpoints[i]->GetRBoundarie().maxZ)
 		{
 			cPlayer->SetMovementSpeed(0);
 			cPlayer->MoveBeforeCollision();

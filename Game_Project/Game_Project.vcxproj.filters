@@ -88,6 +88,15 @@
     <Filter Include="Sound\Cpp Files">
       <UniqueIdentifier>{9b3e3153-f5ab-4bb0-9ea7-81fada84b65d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Course\CheckPoints">
+      <UniqueIdentifier>{c18bcf35-64bb-4741-ba2b-c931e8a01990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\CheckPoints\Header Files">
+      <UniqueIdentifier>{31261c0e-8c70-4699-9e28-82a845a05766}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\CheckPoints\Cpp Files">
+      <UniqueIdentifier>{771e2885-66e4-403d-97cc-8cc80b8f84da}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Course\Course Objects">
       <UniqueIdentifier>{ff0ffdfc-62d4-471a-a2da-fb6dc6090d32}</UniqueIdentifier>
     </Filter>
@@ -129,15 +138,6 @@
     </Filter>
     <Filter Include="Course\Course Objects\Object BaseClass\Header Files">
       <UniqueIdentifier>{a312978d-8a52-478b-8561-9346e8d22c42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\CheckPoints">
-      <UniqueIdentifier>{c18bcf35-64bb-4741-ba2b-c931e8a01990}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\CheckPoints\Header Files">
-      <UniqueIdentifier>{31261c0e-8c70-4699-9e28-82a845a05766}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Course\CheckPoints\Cpp Files">
-      <UniqueIdentifier>{771e2885-66e4-403d-97cc-8cc80b8f84da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
