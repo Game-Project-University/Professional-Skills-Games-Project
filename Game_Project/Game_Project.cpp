@@ -79,6 +79,10 @@ CAI* cAI[4];
 CVechMenu* cVMenu;
 CSound* MainMenuSound;
 
+///////////////
+//--INTERFACE--//
+stringstream interfaceText;
+
 //////////////////
 //-GAME STATES--//
 enum GAMESTATES
@@ -269,9 +273,19 @@ void GameSetup()
 void GameUpdate()
 {	
 	//-- STATS INTERFACE --//
-	stringstream interfaceText;
+	// frametime
 	interfaceText << "FPS: " << 1 / frameTime;
 	ComicSans->Draw(interfaceText.str(), FontFpsX, FontFpsY, kWhite);
+	interfaceText.str("");
+	
+	// current checkpoint
+	interfaceText << cTrack->GetCheckpoint();
+	ComicSans->Draw(interfaceText.str(), 1000, 650, kWhite);
+	interfaceText.str("");
+
+	// current lap
+	interfaceText << cTrack->GetLap();
+	ComicSans->Draw(interfaceText.str(), 1000, 700, kWhite);
 	interfaceText.str("");
 
 	//-- Player movement --//

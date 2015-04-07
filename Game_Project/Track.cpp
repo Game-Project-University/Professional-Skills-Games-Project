@@ -22,7 +22,9 @@ CTrack::CTrack()
 
 	//-- checkpoint creation (x, y, y, wether the checkpoint is to be rotated or not)
 	courseCheckpoints[0] = new CCheckpoint(0, 0, 30, false);
-	courseCheckpoints[1] = new CCheckpoint(0, 0, 120, true);
+	courseCheckpoints[1] = new CCheckpoint(0, 0, 120, false);
+	courseCheckpoints[2] = new CCheckpoint(0, 0, 260, true);
+	courseCheckpoints[3] = new CCheckpoint(70, 0, 260, true);
 
 }
 
@@ -77,7 +79,16 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 	{
 		if (SphereToSphereCollision(cPlayer, courseCheckpoints[i], 10.0f, 60.0f))
 		{
-			cout << "BINGO";
+			if (checkPoint == i)
+			{
+				checkPoint++;
+			}
+
+			if (checkPoint == NUMBER_OF_CHECKPOINTS)
+			{
+				checkPoint = 0;
+				lap++;
+			}
 		}
 	}
 }
