@@ -18,6 +18,8 @@ protected:
 	//- set the angle of the sinewave to start at 0
 	float sineWaveAngle;
 	float sineWaveValue;
+	
+	int health;
 
 public:
 	CBasePlayer();
@@ -27,10 +29,13 @@ public:
 	//--GETTERS--//
 	inline IModel* GetModel(){ return playerMdl; };
 	inline float GetPlayerS(){ return playerMovementS; };
+	inline int GetPlayerHealth(){ return health; };
 
 	//////////////
 	//--SETTERS--//
 	void SetMovementSpeed(float value);
+	void IncreaseHealth(int value);
+	void DecreaseHealth(int value);
 
 	////////////////
 	//--MOVEMENT--//

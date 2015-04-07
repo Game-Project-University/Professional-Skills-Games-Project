@@ -48,8 +48,9 @@ void CTrack::ObjectCollision(CPlayer* cPlayer)
 		if (cPlayer->GetPlayerPos().posX > courseObjects[i]->GetBoundaries().minX && cPlayer->GetPlayerPos().posX < courseObjects[i]->GetBoundaries().maxX &&
 			cPlayer->GetPlayerPos().posZ > courseObjects[i]->GetBoundaries().minZ && cPlayer->GetPlayerPos().posZ < courseObjects[i]->GetBoundaries().maxZ)
 		{
-			cPlayer->SetMovementSpeed(0);
+			cPlayer->SetMovementSpeed(-20);
 			cPlayer->MoveBeforeCollision();
+			cPlayer->DecreaseHealth(20);
 		}
 	}
 

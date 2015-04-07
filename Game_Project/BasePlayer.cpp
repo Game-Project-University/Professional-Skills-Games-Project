@@ -2,6 +2,7 @@
 
 CBasePlayer::CBasePlayer()
 {
+	health = 100;
 	//- set the player movement speed
 	playerMovementS = 0.0f;
 	//- set the player rotation speed
@@ -36,6 +37,31 @@ void CBasePlayer::DecreaseAccelration()
 void CBasePlayer::SetMovementSpeed(float value)
 {
 	playerMovementS = value;
+}
+
+void CBasePlayer::IncreaseHealth(int value)
+{
+	if (health < 100)
+	{
+		health += value;
+
+		if (health > 100)
+		{
+			health = 100;
+		}
+	}
+}
+
+void CBasePlayer::DecreaseHealth(int value)
+{
+	if (health > 0)
+	{
+		health -= value;
+		if (health < 0)
+		{
+			health = 0;
+		}
+	}
 }
 //////////////////////
 //--PLAYERMOVEMENT--//

@@ -288,6 +288,11 @@ void GameUpdate()
 	ComicSans->Draw(interfaceText.str(), 1000, 700, kWhite);
 	interfaceText.str("");
 
+	// players health
+	interfaceText << cPlayer->GetPlayerHealth();
+	ComicSans->Draw(interfaceText.str(), 120, 750, kWhite);
+	interfaceText.str("");
+
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
