@@ -63,6 +63,11 @@ void CBasePlayer::DecreaseHealth(int value)
 		}
 	}
 }
+
+void CBasePlayer::ResetPlayerHealth()
+{
+	health = 100;
+}
 //////////////////////
 //--PLAYERMOVEMENT--//
 void CBasePlayer::SinHoverMovement(float frameTime)

@@ -77,7 +77,11 @@ CEntityManager* cEManager;
 CPlayer* cPlayer;
 CAI* cAI[4];
 CVechMenu* cVMenu;
+
+//--SOUNDS--//
 CSound* MainMenuSound;
+CSound* SmashingSound;
+CSound* ExplostionSound;
 
 ///////////////
 //--INTERFACE--//
@@ -90,7 +94,18 @@ enum GAMESTATES
 	MAINMENU, VECHMENU, INGAME
 };
 
+enum PLAYERSTATES
+{
+	ALIVE, DEAD
+};
+
+////////////////////
+//--DEAD COUNTER--//
+float deadCounter = 0;
+
 GAMESTATES GAMESTATE = MAINMENU;
+PLAYERSTATES PLAYERSTATE = ALIVE;
+
 bool setup = false;
 
 //////////////////////////
@@ -163,7 +178,7 @@ void FrontEndSetup()
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
 
 	//--SOUND--//
-	MainMenuSound = new CSound(1);
+	MainMenuSound = new CSound(1,0.02f);
 	//-- source properties --//
 	MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
 	MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
@@ -263,6 +278,10 @@ void GameSetup()
 	{
 		waypoints[i] = stateMsh->CreateModel(pos[0][i], 0, pos[1][i]);
 	}
+	/////////////////
+	//-- SOOUNDS --//
+	SmashingSound = new CSound(2, 0.07f);
+	ExplostionSound = new CSound(3, 1.0f);
 
 	//-- LOAD FONT --///
 	ComicSans = myEngine->LoadFont("Comic Sans MS", 36.0f);
@@ -272,6 +291,11 @@ void GameSetup()
 //-- GAMEUPDATE --//
 void GameUpdate()
 {	
+	if (cPlayer->GetPlayerHealth() == 0)
+	{
+		PLAYERSTATE = DEAD;
+	}
+
 	//-- STATS INTERFACE --//
 	// frametime
 	interfaceText << "FPS: " << 1 / frameTime;
@@ -293,25 +317,44 @@ void GameUpdate()
 	ComicSans->Draw(interfaceText.str(), 120, 750, kWhite);
 	interfaceText.str("");
 
-	//-- Player movement --//
-	cPlayer->SinHoverMovement(frameTime);
+	if (PLAYERSTATE == ALIVE)
+	{
+		//-- Player movement --//
+		cPlayer->SinHoverMovement(frameTime);
 
-	//- player movement direction dependent on what key is hit
-	cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
+		//- player movement direction dependent on what key is hit
+		cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
 
-	cPlayer->ForwardReverseMovement(frameTime);
-	
-	//- the player can always move left or right
-	cPlayer->RightLeftMovement(frameTime);
+		cPlayer->ForwardReverseMovement(frameTime);
 
-	//- update the players position
-	cPlayer->UpdatePlayerPos();
-	
-	//- Check for collision
-	cTrack->ObjectCollision(cPlayer);
+		//- the player can always move left or right
+		cPlayer->RightLeftMovement(frameTime);
 
-	//- Chec for checkpoint collision
-	cTrack->CheckPointCollision(cPlayer);
+		//- update the players position
+		cPlayer->UpdatePlayerPos();
+
+		//- Check for collision
+		cTrack->ObjectCollision(cPlayer, SmashingSound, ExplostionSound);
+
+		//- Chec for checkpoint collision
+		cTrack->CheckPointCollision(cPlayer);
+	}
+
+	if (PLAYERSTATE == DEAD)
+	{
+
+		if (deadCounter >= 1.5)
+		{
+			PLAYERSTATE = ALIVE;
+			deadCounter = 0;
+			cPlayer->ResetPlayerHealth();
+			cTrack->ResetPlayerPosition(cPlayer);
+		}
+		else
+		{
+			deadCounter += frameTime * 0.8;
+		}
+	}
 
 	//-- AI --//
 	for (int i = 0; i < 4; i++)

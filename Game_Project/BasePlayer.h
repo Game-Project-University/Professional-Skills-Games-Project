@@ -1,5 +1,6 @@
 #pragma once
 #include "Global.h"
+//#include "Track.h"
 
 class CBasePlayer
 {
@@ -36,6 +37,7 @@ public:
 	void SetMovementSpeed(float value);
 	void IncreaseHealth(int value);
 	void DecreaseHealth(int value);
+	void ResetPlayerHealth();
 
 	////////////////
 	//--MOVEMENT--//

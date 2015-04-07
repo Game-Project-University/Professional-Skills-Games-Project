@@ -33,7 +33,7 @@ private:
 	// left-handed system  we have used, we must negate all Z values (facing direction has -ve Z below)
 	ALfloat listenerOri[6];
 public:
-	CSound(int soundNumber);
+	CSound(int soundNumber, float volume);
 	~CSound();
 
 	//-Play Sounds-//

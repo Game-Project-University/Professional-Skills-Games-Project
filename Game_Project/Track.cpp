@@ -21,7 +21,7 @@ CTrack::CTrack()
 	courseObjects[10] = new CBattleShip(-130.0f, 15.0f, 200.0f, 20.0f, 170.0f);
 
 	//-- checkpoint creation (x, y, y, wether the checkpoint is to be rotated or not)
-	courseCheckpoints[0] = new CCheckpoint(0, 0, 30, false);
+	courseCheckpoints[0] = new CCheckpoint(0, 0, 0, false);
 	courseCheckpoints[1] = new CCheckpoint(0, 0, 120, false);
 	courseCheckpoints[2] = new CCheckpoint(0, 0, 260, true);
 	courseCheckpoints[3] = new CCheckpoint(70, 0, 260, true);
@@ -39,7 +39,7 @@ CTrack::~CTrack()
 }
 
 //-- AABB COLLISION
-void CTrack::ObjectCollision(CPlayer* cPlayer)
+void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion)
 {
 	// check for collision using AABB
 	// count through and array of objects
@@ -51,6 +51,15 @@ void CTrack::ObjectCollision(CPlayer* cPlayer)
 			cPlayer->SetMovementSpeed(-20);
 			cPlayer->MoveBeforeCollision();
 			cPlayer->DecreaseHealth(20);
+
+			if (cPlayer->GetPlayerHealth() > 0)
+			{
+				sound->PlaySound();
+			}
+			else
+			{
+				explostion->PlaySound();
+			}
 		}
 	}
 
@@ -73,11 +82,27 @@ void CTrack::ObjectCollision(CPlayer* cPlayer)
 		}
 	}
 }
+
+//-- Reset the players position to the last checkpoint when player dies
+
+void CTrack::ResetPlayerPosition(CPlayer* cPlayer)
+{
+	if (checkPoint == 0)
+	{
+		cPlayer->GetModel()->SetPosition(courseCheckpoints[0]->GetCheckPointX(), 0.0f, courseCheckpoints[0]->GetCheckPointZ());
+	}
+	else
+	{
+		cPlayer->GetModel()->SetPosition(courseCheckpoints[checkPoint - 1]->GetCheckPointX(), 0.0f, courseCheckpoints[checkPoint - 1]->GetCheckPointZ());
+	}
+}
+
 //-- CHECKPOINT COLLISION --//
 void CTrack::CheckPointCollision(CPlayer* cPlayer)
 {
 	for (int i = 0; i < NUMBER_OF_CHECKPOINTS; i++)
 	{
+		// (playerpos, checkpoint position, radious of player, radious of checkpoint)
 		if (SphereToSphereCollision(cPlayer, courseCheckpoints[i], 10.0f, 60.0f))
 		{
 			if (checkPoint == i)
@@ -85,7 +110,7 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 				checkPoint++;
 			}
 
-			if (checkPoint == NUMBER_OF_CHECKPOINTS)
+			if (checkPoint == NUMBER_OF_CHECKPOINTS && SphereToSphereCollision(cPlayer, courseCheckpoints[0], 10.0f, 60.0f))
 			{
 				checkPoint = 0;
 				lap++;
