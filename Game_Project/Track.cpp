@@ -87,10 +87,12 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion
 
 void CTrack::ResetPlayerPosition(CPlayer* cPlayer)
 {
+	// if the checkpoint is = to 0 eg the starting checkpoint then when the car blows up reset the cars position to this checkpoint 
 	if (checkPoint == 0)
 	{
 		cPlayer->GetModel()->SetPosition(courseCheckpoints[0]->GetCheckPointX(), 0.0f, courseCheckpoints[0]->GetCheckPointZ());
 	}
+	// set the cars position to the last checkpoint that the player drove through 
 	else
 	{
 		cPlayer->GetModel()->SetPosition(courseCheckpoints[checkPoint - 1]->GetCheckPointX(), 0.0f, courseCheckpoints[checkPoint - 1]->GetCheckPointZ());
@@ -109,7 +111,7 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 			{
 				checkPoint++;
 			}
-
+			// if the checkpoint is equal to the number of checkpoints (so the lap is nearly complete) then when the collision happens with the starting checkpoint increment the lap variable
 			if (checkPoint == NUMBER_OF_CHECKPOINTS && SphereToSphereCollision(cPlayer, courseCheckpoints[0], 10.0f, 60.0f))
 			{
 				checkPoint = 0;
