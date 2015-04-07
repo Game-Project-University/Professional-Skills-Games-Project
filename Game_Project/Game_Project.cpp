@@ -226,6 +226,10 @@ void VechMenuShutdown()
 //-- GAME SETUP --//
 void GameSetup()
 {
+	//////////////////////////
+	//-- INGAME INTERFACE --//
+	sprite = myEngine->CreateSprite("mainUI layout.png");
+
 	////////////////////////
 	// -- CREATE COURSE --//
 	cTrack = new CTrack();
@@ -285,7 +289,10 @@ void GameUpdate()
 	cPlayer->UpdatePlayerPos();
 	
 	//- Check for collision
-	cTrack->Collision(cPlayer);
+	cTrack->ObjectCollision(cPlayer);
+
+	//- Chec for checkpoint collision
+	cTrack->CheckPointCollision(cPlayer);
 
 	//-- AI --//
 	for (int i = 0; i < 4; i++)

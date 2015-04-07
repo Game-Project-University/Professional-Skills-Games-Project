@@ -2,6 +2,10 @@
 
 CTrack::CTrack()
 {
+	//-- checkpoints and laps variables to show on interface and track players progress
+	checkPoint = 0;
+	lap = 0;
+
 	//-- creation of objects (x, y, z, width, height)
 	//-- i will make this read in from a file eventually
 	courseObjects[0] = new CSkyScraper(-40.0f,0.0f,60.0f, 52.0f, 54.0f);
@@ -16,6 +20,7 @@ CTrack::CTrack()
 	courseObjects[9] = new CBlockBuilding(-85.0f, 0.0f, 120.0f, 40.0f, 54.0f);
 	courseObjects[10] = new CBattleShip(-130.0f, 15.0f, 200.0f, 20.0f, 170.0f);
 
+	//-- checkpoint creation (x, y, y, wether the checkpoint is to be rotated or not)
 	courseCheckpoints[0] = new CCheckpoint(0, 0, 30, false);
 	courseCheckpoints[1] = new CCheckpoint(0, 0, 120, true);
 
@@ -31,7 +36,8 @@ CTrack::~CTrack()
 	
 }
 
-void CTrack::Collision(CPlayer* cPlayer)
+//-- AABB COLLISION
+void CTrack::ObjectCollision(CPlayer* cPlayer)
 {
 	// check for collision using AABB
 	// count through and array of objects
@@ -63,4 +69,24 @@ void CTrack::Collision(CPlayer* cPlayer)
 			cPlayer->MoveBeforeCollision();
 		}
 	}
+}
+//-- CHECKPOINT COLLISION --//
+void CTrack::CheckPointCollision(CPlayer* cPlayer)
+{
+	for (int i = 0; i < NUMBER_OF_CHECKPOINTS; i++)
+	{
+		if (SphereToSphereCollision(cPlayer, courseCheckpoints[i], 10.0f, 60.0f))
+		{
+			cout << "BINGO";
+		}
+	}
+}
+
+//-- SPHERE TO SPHERE COLLISION --//
+template <class T, class S> bool CTrack::SphereToSphereCollision(T* cPLayer, S* cCheckPoints, float radius1, float radius2)
+{
+	float distX = cPLayer->GetPlayerX() - cCheckPoints->GetCheckPointX();
+	float distZ = cPLayer->GetPlayerZ() - cCheckPoints->GetCheckPointZ();
+	
+	return distX*distX + distZ*distZ <= radius1*2 + radius2*2;
 }

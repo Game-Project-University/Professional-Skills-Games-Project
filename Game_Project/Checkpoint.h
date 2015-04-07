@@ -18,11 +18,12 @@ public:
 	inline AABB GetLBoundarie(){ return leftPillar; };
 	inline AABB GetRBoundarie(){ return rightPillar; };
 
+	inline float GetCheckPointX(){ return checkpointMdl->GetX(); };
+	inline float GetCheckPointZ(){ return checkpointMdl->GetZ(); };
+
 private:
 	IModel* checkpointMdl;
 	IMesh* checkpointMsh;
-
-	
 
 	AABB leftPillar;
 	AABB rightPillar;

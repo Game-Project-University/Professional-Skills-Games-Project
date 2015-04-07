@@ -46,9 +46,13 @@ public:
 	void UpdatePlayerPos();
 	// update to contain the position the player in the previous frame
 	void UpdatePreviousPos();
-
 	// set the position of the vech just before the collision so the player doesnt get stuck in the AABB
 	void MoveBeforeCollision();
+
+	/////////////////
+	//-- GETTERS --//
+	inline float GetPlayerX(){ return playerPos.posX; };
+	inline float GetPlayerZ(){ return playerPos.posZ; };
 
 	////////////////
 	//--Movement--//
