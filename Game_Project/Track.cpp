@@ -129,7 +129,7 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 }
 
 //-- ITEM COLLISION --//
-void CTrack::ItemCollision(CPlayer* cPlayer)
+void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
@@ -137,6 +137,7 @@ void CTrack::ItemCollision(CPlayer* cPlayer)
 		{
 			if (SphereToSphereCollision(cPlayer, courseItems[i], 5.0f, 5.0f))
 			{
+				sound->PlaySound();
 				courseItems[i]->Collide();
 			}
 		}

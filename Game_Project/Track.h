@@ -20,7 +20,7 @@ public:
 
 	void ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explosion);
 	void CheckPointCollision(CPlayer* cPlayer);
-	void ItemCollision(CPlayer* cPlayer);
+	void ItemCollision(CPlayer* cPlayer, CSound* sound);
 
 	// template class for spheretospherecollision so that this function can be used on any objects
 	template <class T,class S> bool SphereToSphereCollision(T* cPLayer, S* cCheckPoints, float radius1, float radius2);

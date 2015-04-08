@@ -83,6 +83,7 @@ CVechMenu* cVMenu;
 CSound* MainMenuSound;
 CSound* SmashingSound;
 CSound* ExplostionSound;
+CSound* PickupSound;
 
 ///////////////
 //--INTERFACE--//
@@ -284,6 +285,7 @@ void GameSetup()
 	//-- SOOUNDS --//
 	SmashingSound = new CSound(2, 0.07f);
 	ExplostionSound = new CSound(3, 1.0f);
+	PickupSound = new CSound(4, 0.07f);
 
 	//-- LOAD FONT --///
 	ComicSans = myEngine->LoadFont("Comic Sans MS", 36.0f);
@@ -342,7 +344,7 @@ void GameUpdate()
 		cTrack->CheckPointCollision(cPlayer);
 
 		//- Chec for item collision
-		cTrack->ItemCollision(cPlayer);
+		cTrack->ItemCollision(cPlayer, PickupSound);
 	}
 
 	if (PLAYERSTATE == DEAD)

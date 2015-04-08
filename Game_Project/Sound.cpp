@@ -24,6 +24,11 @@ CSound::CSound(int soundNumber, float volume)
 		buffer = alutCreateBufferFromFile(".\\media\\Explosion.wav");
 	}
 
+	if (soundNumber == 4)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\SilentHill2Pickup.wav");
+	}
+
 
 	//****************
 	// Sources
