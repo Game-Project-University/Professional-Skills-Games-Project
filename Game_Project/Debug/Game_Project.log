@@ -1,9 +1,50 @@
-﻿  Sound.cpp
-  Game_Project.cpp
-c:\space racer\professional-skills-games-project\game_project\game_project.cpp(156): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-c:\space racer\professional-skills-games-project\game_project\game_project.cpp(247): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\space racer\professional-skills-games-project\game_project\game_project.cpp(260): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-c:\space racer\professional-skills-games-project\game_project\game_project.cpp(270): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
-  Generating Code...
-  Game_Project.vcxproj -> C:\Space Racer\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.exe
-          1 file(s) copied.
+﻿Build started 08/04/2015 14:12:00.
+     1>Project "C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\Game_Project.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\Game_ProjectDebug.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\hk2013_1_0_r1\Lib\win32_vs2012_win7\debug" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win32" /LIBPATH:"C:\ProgramData\TL-Engine\lib" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib" "TL-Engine2012Debug.lib" alut.lib OpenAL32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\\Game_Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /IMPLIB:"C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.lib" /MACHINE:X86 /SAFESEH:NO Debug\AI.obj
+         Debug\BaseItem.obj
+         Debug\BasePlayer.obj
+         Debug\Battleship.obj
+         Debug\BlockBuilding.obj
+         Debug\Checkpoint.obj
+         Debug\EntityManagers.obj
+         Debug\Game_Project.obj
+         Debug\Global.obj
+         Debug\Object.obj
+         Debug\SkyScraper.obj
+         Debug\Track.obj
+         Debug\Player.obj
+         Debug\Sound.obj
+         Debug\VechMenu.obj
+     1>TL-Engine2012Debug.lib(TL-Engine.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TL-Engine.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(Errors.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(Errors.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXSprite.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXSprite.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXSceneNode.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXSceneNode.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXModelNode.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXModelNode.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXModel.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXModel.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXMesh.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXMesh.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXLight.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXLight.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXFont.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXFont.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXEngine.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXEngine.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(TLXCamera.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(TLXCamera.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtSceneNode.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtSceneNode.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtModel.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtModel.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtMesh.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtMesh.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtLight.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtLight.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtInput.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtInput.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtFont.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtFont.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtEngine.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtEngine.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+     1>TL-Engine2012Debug.lib(IrrlichtCamera.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'TL-Engine2012Debug.lib(IrrlichtCamera.obj)' or at 'C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\vc110.pdb'; linking object as if no debug info
+         Game_Project.vcxproj -> C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.exe
+       PostBuildEvent:
+         copy "C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib\alut.dll"
+         copy "C:\ProgramData\TL-Engine\3rd Party\Irrlicht-0.7\bin\VisualStudio\IrrlichtDebug.dll" "C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\\" > NUL
+         copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\\" > NUL
+         
+         :VCEnd
+                 1 file(s) copied.
+     1>Done Building Project "C:\Users\Matthew Cross\Work\Professional-Skills-Games-Project\Game_Project\Game_Project.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.00

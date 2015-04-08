@@ -6,9 +6,11 @@
 #include "Player.h"
 #include "Checkpoint.h"
 #include "Sound.h"
+#include "BaseItem.h"
 
 const int NUMBER_OF_OBJECTS = 11;
 const int NUMBER_OF_CHECKPOINTS = 4;
+const int NUMBER_OF_ITEMS = 1;
 
 class CTrack
 {
@@ -18,6 +20,7 @@ public:
 
 	void ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explosion);
 	void CheckPointCollision(CPlayer* cPlayer);
+	void ItemCollision(CPlayer* cPlayer);
 
 	// template class for spheretospherecollision so that this function can be used on any objects
 	template <class T,class S> bool SphereToSphereCollision(T* cPLayer, S* cCheckPoints, float radius1, float radius2);
@@ -29,12 +32,13 @@ public:
 	inline int GetLap(){ return lap; };
 
 	void ResetPlayerPosition(CPlayer* cPlayer);
-
+	void TrackUpdate(float frameTime);
 
 
 private:
 	CObject* courseObjects[NUMBER_OF_OBJECTS];
 	CCheckpoint* courseCheckpoints[NUMBER_OF_CHECKPOINTS];
+	CBaseItem* courseItems[NUMBER_OF_ITEMS];
 
 	int checkPoint;
 	int lap;

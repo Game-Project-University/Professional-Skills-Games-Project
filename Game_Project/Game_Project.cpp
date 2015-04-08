@@ -8,6 +8,7 @@
 #include "VechMenu.h"
 #include "EntityManager.h"
 #include "Track.h"
+#include "BaseItem.h"
 
 /*-----------------------------------------------------------------------------------------
 Havok include and library files
@@ -145,6 +146,7 @@ bool ProgramSetup()
 	myEngine->AddMediaFolder(".\\Media\\Skybox");
 	myEngine->AddMediaFolder(".\\Media\\InterfaceDesigns");
 	myEngine->AddMediaFolder(".\\Media\\CourseObjects");
+	myEngine->AddMediaFolder(".\\Media\\Items");
 
 	//-- CREATE A SKYBOX FOR THE WORLD --//
 	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
@@ -338,6 +340,9 @@ void GameUpdate()
 
 		//- Chec for checkpoint collision
 		cTrack->CheckPointCollision(cPlayer);
+
+		//- Chec for item collision
+		cTrack->ItemCollision(cPlayer);
 	}
 
 	if (PLAYERSTATE == DEAD)
@@ -364,6 +369,9 @@ void GameUpdate()
 	}
 
 	cPlayer->UpdatePreviousPos();
+
+	//-- Item --//
+	cTrack->TrackUpdate(frameTime);
 }
 
 ///////////////////////

@@ -26,6 +26,9 @@ CTrack::CTrack()
 	courseCheckpoints[2] = new CCheckpoint(0, 0, 260, true);
 	courseCheckpoints[3] = new CCheckpoint(70, 0, 260, true);
 
+	//-- Items
+	IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
+	courseItems[0] = new CBaseItem(itemMsh, 90, 0, 0, 0);
 }
 
 CTrack::~CTrack()
@@ -35,7 +38,11 @@ CTrack::~CTrack()
 	{
 		delete(courseObjects[i]);
 	}
-	
+}
+
+void CTrack::TrackUpdate(float frameTime)
+{
+	courseItems[0]->SinHoverMovement(frameTime);
 }
 
 //-- AABB COLLISION
@@ -90,12 +97,12 @@ void CTrack::ResetPlayerPosition(CPlayer* cPlayer)
 	// if the checkpoint is = to 0 eg the starting checkpoint then when the car blows up reset the cars position to this checkpoint 
 	if (checkPoint == 0)
 	{
-		cPlayer->GetModel()->SetPosition(courseCheckpoints[0]->GetCheckPointX(), 0.0f, courseCheckpoints[0]->GetCheckPointZ());
+		cPlayer->GetModel()->SetPosition(courseCheckpoints[0]->GetX(), 0.0f, courseCheckpoints[0]->GetZ());
 	}
 	// set the cars position to the last checkpoint that the player drove through 
 	else
 	{
-		cPlayer->GetModel()->SetPosition(courseCheckpoints[checkPoint - 1]->GetCheckPointX(), 0.0f, courseCheckpoints[checkPoint - 1]->GetCheckPointZ());
+		cPlayer->GetModel()->SetPosition(courseCheckpoints[checkPoint - 1]->GetX(), 0.0f, courseCheckpoints[checkPoint - 1]->GetZ());
 	}
 }
 
@@ -121,11 +128,26 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 	}
 }
 
+//-- ITEM COLLISION --//
+void CTrack::ItemCollision(CPlayer* cPlayer)
+{
+	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
+	{
+		if(courseItems[i]->GetState() == false)
+		{
+			if (SphereToSphereCollision(cPlayer, courseItems[i], 5.0f, 5.0f))
+			{
+				courseItems[i]->Collide();
+			}
+		}
+	}
+}
+
 //-- SPHERE TO SPHERE COLLISION --//
 template <class T, class S> bool CTrack::SphereToSphereCollision(T* cPLayer, S* cCheckPoints, float radius1, float radius2)
 {
-	float distX = cPLayer->GetPlayerX() - cCheckPoints->GetCheckPointX();
-	float distZ = cPLayer->GetPlayerZ() - cCheckPoints->GetCheckPointZ();
+	float distX = cPLayer->GetPlayerX() - cCheckPoints->GetX();
+	float distZ = cPLayer->GetPlayerZ() - cCheckPoints->GetZ();
 	
 	return distX*distX + distZ*distZ <= radius1*2 + radius2*2;
 }
