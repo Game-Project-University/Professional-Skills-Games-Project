@@ -7,8 +7,9 @@
 #include "Checkpoint.h"
 #include "Sound.h"
 #include "BaseItem.h"
+#include "PadBuilding.h"
 
-const int NUMBER_OF_OBJECTS = 11;
+const int NUMBER_OF_OBJECTS = 12;
 const int NUMBER_OF_CHECKPOINTS = 4;
 const int NUMBER_OF_ITEMS = 1;
 

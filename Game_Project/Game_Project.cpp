@@ -70,6 +70,8 @@ ISprite* sprite;
 ICamera* myCamera;
 
 IModel* waypoints[5];
+IModel* testMdl;
+IMesh* testMsh;
 
 ///////////////
 //--OBJECTS--//
@@ -248,6 +250,11 @@ void VechMenuShutdown()
 //-- GAME SETUP --//
 void GameSetup()
 {
+	/////////////////////////////
+	//--TEST THAT MODELS WORK--//
+	//testMsh = myEngine->LoadMesh(""); 
+	//testMdl = testMsh->CreateModel(0,0,0);
+
 	//////////////////////////
 	//-- INGAME INTERFACE --//
 	sprite = myEngine->CreateSprite("mainUI layout.png");
