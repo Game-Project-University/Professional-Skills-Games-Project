@@ -8,10 +8,12 @@
 #include "Sound.h"
 #include "BaseItem.h"
 #include "PadBuilding.h"
+#include "Vortex.h"
 
-const int NUMBER_OF_OBJECTS = 12;
+const int NUMBER_OF_OBJECTS = 15;
 const int NUMBER_OF_CHECKPOINTS = 4;
 const int NUMBER_OF_ITEMS = 1;
+const int NUMBER_OF_VORTEX = 2;
 
 class CTrack
 {
@@ -40,6 +42,7 @@ private:
 	CObject* courseObjects[NUMBER_OF_OBJECTS];
 	CCheckpoint* courseCheckpoints[NUMBER_OF_CHECKPOINTS];
 	CBaseItem* courseItems[NUMBER_OF_ITEMS];
+	CVortex* vortexObjects[NUMBER_OF_VORTEX];
 
 	int checkPoint;
 	int lap;

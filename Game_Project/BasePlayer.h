@@ -38,6 +38,7 @@ public:
 	void IncreaseHealth(int value);
 	void DecreaseHealth(int value);
 	void ResetPlayerHealth();
+	void SetPlayerPos(float x, float y, float z);
 
 	////////////////
 	//--MOVEMENT--//

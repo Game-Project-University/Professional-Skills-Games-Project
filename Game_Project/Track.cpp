@@ -18,8 +18,15 @@ CTrack::CTrack()
 	courseObjects[7]  = new CBlockBuilding(0.0f, 0.0f, 210.0f, 40.0f, 54.0f);
 	courseObjects[8]  = new CBlockBuilding(-30.0f, 0.0f, 210.0f, 40.0f, 54.0f);
 	courseObjects[9]  = new CBlockBuilding(-85.0f, 0.0f, 120.0f, 40.0f, 54.0f);
-	courseObjects[10] = new CBattleShip(-130.0f, 15.0f, 200.0f, 20.0f, 170.0f);
+	courseObjects[10] = new CBattleShip(-130.0f, 20.0f, 200.0f, 20.0f, 170.0f);
 	courseObjects[11] = new CPadBuilding(-100.0f, -5.0f, 310.0f, 90.0f, 60.0f);
+	courseObjects[12] = new CBlockBuilding(-30.0f, 0.0f, 310.0f, 40.0f, 54.0f);
+	courseObjects[13] = new CBlockBuilding(10.0f, 0.0f, 310.0f, 40.0f, 54.0f);
+	courseObjects[14] = new CBlockBuilding(50.0f, 0.0f, 310.0f, 40.0f, 54.0f);
+
+	//-- vortex 
+	vortexObjects[0] = new CVortex(90.0f, 10.0f, 260.0f);
+	vortexObjects[1] = new CVortex(300.0f, 10.0f, 260.0f);
 
 	//-- checkpoint creation (x, y, y, wether the checkpoint is to be rotated or not)
 	courseCheckpoints[0] = new CCheckpoint(0, 0, 0, false);
@@ -44,6 +51,12 @@ CTrack::~CTrack()
 void CTrack::TrackUpdate(float frameTime)
 {
 	courseItems[0]->SinHoverMovement(frameTime);
+
+	// rotate vortex
+	for (int i = 0; i < NUMBER_OF_VORTEX; i++)
+	{
+		vortexObjects[i]->RotateVortex(frameTime);
+	}
 }
 
 //-- AABB COLLISION
@@ -88,6 +101,11 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion
 			cPlayer->SetMovementSpeed(0);
 			cPlayer->MoveBeforeCollision();
 		}
+	}
+	
+	if (SphereToSphereCollision(cPlayer, vortexObjects[0], 10, 30))
+	{
+		cPlayer->SetPlayerPos(vortexObjects[1]->GetX(), vortexObjects[1]->GetY(), vortexObjects[1]->GetZ());
 	}
 }
 

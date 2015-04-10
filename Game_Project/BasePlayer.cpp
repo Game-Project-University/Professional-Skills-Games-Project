@@ -68,6 +68,11 @@ void CBasePlayer::ResetPlayerHealth()
 {
 	health = 100;
 }
+
+void CBasePlayer::SetPlayerPos(float x, float y, float z)
+{
+	playerMdl->SetPosition(x, y, z);
+}
 //////////////////////
 //--PLAYERMOVEMENT--//
 void CBasePlayer::SinHoverMovement(float frameTime)

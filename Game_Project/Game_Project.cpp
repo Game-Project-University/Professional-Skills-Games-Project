@@ -252,8 +252,9 @@ void GameSetup()
 {
 	/////////////////////////////
 	//--TEST THAT MODELS WORK--//
-	//testMsh = myEngine->LoadMesh(""); 
-	//testMdl = testMsh->CreateModel(0,0,0);
+	testMsh = myEngine->LoadMesh("floor.x"); 
+	testMdl = testMsh->CreateModel(0,-5,0);
+	testMdl->SetSkin("Fire2_tlxadd.jpg");
 
 	//////////////////////////
 	//-- INGAME INTERFACE --//
