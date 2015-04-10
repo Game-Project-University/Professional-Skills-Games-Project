@@ -129,11 +129,13 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClCompile Include="Game_Project.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PadBuilding.cpp" />
     <ClCompile Include="SkyScraper.cpp" />
     <ClCompile Include="Track.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="VechMenu.cpp" />
+    <ClCompile Include="Vortex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -145,11 +147,13 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="PadBuilding.h" />
     <ClInclude Include="SkyScraper.h" />
     <ClInclude Include="Track.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="VechMenu.h" />
+    <ClInclude Include="Vortex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

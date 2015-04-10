@@ -142,6 +142,12 @@
     <Filter Include="Items">
       <UniqueIdentifier>{54d3f71f-2f9e-4d8e-be9a-141a4f74ff7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\Vortex">
+      <UniqueIdentifier>{65c5168b-f9c3-4c6f-85ec-5d32e73c7196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\PadBuilding">
+      <UniqueIdentifier>{9624cd56-e68d-4772-b2c6-78c3f8ea9505}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -189,6 +195,12 @@
     <ClCompile Include="BaseItem.cpp">
       <Filter>Items</Filter>
     </ClCompile>
+    <ClCompile Include="Vortex.cpp">
+      <Filter>Course\Course Objects\Type of Object\Vortex</Filter>
+    </ClCompile>
+    <ClCompile Include="PadBuilding.cpp">
+      <Filter>Course\Course Objects\Type of Object\PadBuilding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -232,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="BaseItem.h">
       <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Vortex.h">
+      <Filter>Course\Course Objects\Type of Object\Vortex</Filter>
+    </ClInclude>
+    <ClInclude Include="PadBuilding.h">
+      <Filter>Course\Course Objects\Type of Object\PadBuilding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
