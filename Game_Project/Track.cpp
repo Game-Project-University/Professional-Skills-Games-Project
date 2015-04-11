@@ -22,7 +22,8 @@ CTrack::CTrack()
 	courseObjects[11] = new CPadBuilding(-100.0f, -5.0f, 310.0f, 90.0f, 60.0f);
 	courseObjects[12] = new CBlockBuilding(-30.0f, 0.0f, 310.0f, 40.0f, 54.0f);
 	courseObjects[13] = new CBlockBuilding(10.0f, 0.0f, 310.0f, 40.0f, 54.0f);
-	courseObjects[14] = new CBlockBuilding(50.0f, 0.0f, 310.0f, 40.0f, 54.0f);
+	courseObjects[14] = new CBlockBuilding(50.0f, 0.0f, 210.0f, 40.0f, 54.0f);
+	courseObjects[15] = new CBlockBuilding(50.0f, 0.0f, 310.0f, 40.0f, 54.0f);
 
 	//-- vortex 
 	vortexObjects[0] = new CVortex(90.0f, 10.0f, 260.0f);
@@ -90,16 +91,36 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion
 		if (cPlayer->GetPlayerPos().posX > courseCheckpoints[i]->GetLBoundarie().minX && cPlayer->GetPlayerPos().posX < courseCheckpoints[i]->GetLBoundarie().maxX &&
 			cPlayer->GetPlayerPos().posZ > courseCheckpoints[i]->GetLBoundarie().minZ && cPlayer->GetPlayerPos().posZ < courseCheckpoints[i]->GetLBoundarie().maxZ)
 		{
-			cPlayer->SetMovementSpeed(0);
+			cPlayer->SetMovementSpeed(-20);
 			cPlayer->MoveBeforeCollision();
+			cPlayer->DecreaseHealth(20);
+
+			if (cPlayer->GetPlayerHealth() > 0)
+			{
+				sound->PlaySound();
+			}
+			else
+			{
+				explostion->PlaySound();
+			}
 		}
 
 		//-- check for collision with the right boundarie of the checkpoints
 		if (cPlayer->GetPlayerPos().posX > courseCheckpoints[i]->GetRBoundarie().minX && cPlayer->GetPlayerPos().posX < courseCheckpoints[i]->GetRBoundarie().maxX &&
 			cPlayer->GetPlayerPos().posZ > courseCheckpoints[i]->GetRBoundarie().minZ && cPlayer->GetPlayerPos().posZ < courseCheckpoints[i]->GetRBoundarie().maxZ)
 		{
-			cPlayer->SetMovementSpeed(0);
+			cPlayer->SetMovementSpeed(-20);
 			cPlayer->MoveBeforeCollision();
+			cPlayer->DecreaseHealth(20);
+
+			if (cPlayer->GetPlayerHealth() > 0)
+			{
+				sound->PlaySound();
+			}
+			else
+			{
+				explostion->PlaySound();
+			}
 		}
 	}
 	

@@ -66,6 +66,7 @@ Havok include and library files
 //--GLOBAL VARIABLES--//
 IFont* ComicSans;
 IFont* frontFont;
+IFont* RaceStartFont;
 ISprite* sprite;
 ICamera* myCamera;
 
@@ -90,6 +91,7 @@ CSound* PickupSound;
 ///////////////
 //--INTERFACE--//
 stringstream interfaceText;
+float startingCounter = 0;
 
 //////////////////
 //-GAME STATES--//
@@ -100,7 +102,7 @@ enum GAMESTATES
 
 enum PLAYERSTATES
 {
-	ALIVE, DEAD
+	STARTRACE, ALIVE, DEAD, ENDRACE
 };
 
 ////////////////////
@@ -108,7 +110,7 @@ enum PLAYERSTATES
 float deadCounter = 0;
 
 GAMESTATES GAMESTATE = MAINMENU;
-PLAYERSTATES PLAYERSTATE = ALIVE;
+PLAYERSTATES PLAYERSTATE = STARTRACE;
 
 bool setup = false;
 
@@ -126,6 +128,8 @@ IMesh* stateMsh;
 // Positions of the FPS Text
 const float FontFpsX = 40.0f;
 const float FontFpsY = 0.0f;
+float FontStartRaceX = 580;
+float FontStartRaceY = 200;
 
 //////////////////////////////
 //--PROGRAM SETUP/SHUTDOWN--//
@@ -178,6 +182,7 @@ void FrontEndSetup()
 
 	//--LOAD FONT--///
 	frontFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
+	RaceStartFont = myEngine->LoadFont("Comic Sans MS", 300.0f);
 
 	//--CAMERA CREATION--//
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
@@ -252,9 +257,10 @@ void GameSetup()
 {
 	/////////////////////////////
 	//--TEST THAT MODELS WORK--//
-	testMsh = myEngine->LoadMesh("floor.x"); 
+	testMsh = myEngine->LoadMesh("Tile.x"); 
 	testMdl = testMsh->CreateModel(0,-5,0);
 	testMdl->SetSkin("Fire2_tlxadd.jpg");
+	testMdl->Scale(200);
 
 	//////////////////////////
 	//-- INGAME INTERFACE --//
@@ -329,10 +335,41 @@ void GameUpdate()
 	ComicSans->Draw(interfaceText.str(), 120, 750, kWhite);
 	interfaceText.str("");
 
+	//-- Player movement --//
+	cPlayer->SinHoverMovement(frameTime);
+
+	if (PLAYERSTATE == STARTRACE)
+	{
+		if (startingCounter >= 2 && startingCounter < 4)
+		{
+			interfaceText << "3";		
+		}
+		else if (startingCounter >= 4 && startingCounter < 6)
+		{
+			interfaceText << "2";
+		}
+		else if (startingCounter >= 6 && startingCounter < 7)
+		{
+			interfaceText << "1";
+		}
+		else if (startingCounter > 7 && startingCounter < 8)
+		{
+			FontStartRaceX = 490;
+			interfaceText << "GO";
+		}
+		else if (startingCounter > 8)
+		{
+			PLAYERSTATE = ALIVE;
+		}
+
+		RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
+		interfaceText.str("");
+
+		startingCounter += frameTime;
+	}
+
 	if (PLAYERSTATE == ALIVE)
 	{
-		//-- Player movement --//
-		cPlayer->SinHoverMovement(frameTime);
 
 		//- player movement direction dependent on what key is hit
 		cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());

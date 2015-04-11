@@ -10,7 +10,7 @@
 #include "PadBuilding.h"
 #include "Vortex.h"
 
-const int NUMBER_OF_OBJECTS = 15;
+const int NUMBER_OF_OBJECTS = 16;
 const int NUMBER_OF_CHECKPOINTS = 4;
 const int NUMBER_OF_ITEMS = 1;
 const int NUMBER_OF_VORTEX = 2;
