@@ -69,6 +69,7 @@ IFont* frontFont;
 IFont* RaceStartFont;
 ISprite* sprite;
 ICamera* myCamera;
+ISprite* speedSprites[10];
 
 IModel* waypoints[5];
 IModel* testMdl;
@@ -265,6 +266,16 @@ void GameSetup()
 	//////////////////////////
 	//-- INGAME INTERFACE --//
 	sprite = myEngine->CreateSprite("mainUI layout.png");
+	speedSprites[0] = myEngine->CreateSprite("-30.png");
+	speedSprites[1] = myEngine->CreateSprite("-20.png");
+	speedSprites[2] = myEngine->CreateSprite("-10.png");
+	speedSprites[3] = myEngine->CreateSprite("10.png");
+	speedSprites[4] = myEngine->CreateSprite("20.png");
+	speedSprites[5] = myEngine->CreateSprite("30.png");
+	speedSprites[6] = myEngine->CreateSprite("40.png");
+	speedSprites[7] = myEngine->CreateSprite("50.png");
+	speedSprites[8] = myEngine->CreateSprite("60.png");
+	speedSprites[9] = myEngine->CreateSprite("70.png");
 
 	////////////////////////
 	// -- CREATE COURSE --//
@@ -334,6 +345,62 @@ void GameUpdate()
 	interfaceText << cPlayer->GetPlayerHealth();
 	ComicSans->Draw(interfaceText.str(), 120, 750, kWhite);
 	interfaceText.str("");
+
+	//Player Speed
+	interfaceText << cPlayer->GetPlayerS();
+	ComicSans->Draw(interfaceText.str(), 1050, 500, kWhite);
+	interfaceText.str("");
+
+	//Player Speed Representation
+	if (cPlayer->GetPlayerS() <= -30.0f)
+		speedSprites[0]->SetPosition(1200, 580);
+	else
+		speedSprites[0]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() <= -20.0f)
+		speedSprites[1]->SetPosition(1200, 560);
+	else
+		speedSprites[1]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() <= -10.0f)
+		speedSprites[2]->SetPosition(1200, 540);
+	else
+		speedSprites[2]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 10.0f)
+		speedSprites[3]->SetPosition(1200, 520);
+	else
+		speedSprites[3]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 20.0f)
+		speedSprites[4]->SetPosition(1200, 500);
+	else
+		speedSprites[4]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 30.0f)
+		speedSprites[5]->SetPosition(1200, 480);
+	else
+		speedSprites[5]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 40.0f)
+		speedSprites[6]->SetPosition(1200, 460);
+	else
+		speedSprites[6]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 50.0f)
+		speedSprites[7]->SetPosition(1200, 440);
+	else
+		speedSprites[7]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 60.0f)
+		speedSprites[8]->SetPosition(1200, 420);
+	else
+		speedSprites[8]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 70.0f)
+		speedSprites[9]->SetPosition(1200, 400);
+	else
+		speedSprites[9]->SetPosition(-250.0f, -250.0f);
 
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
