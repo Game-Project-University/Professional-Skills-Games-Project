@@ -1,7 +1,7 @@
 #pragma once
 #include "Global.h"
 
-class CCheckpoint 
+class CCheckpoint
 {
 public:
 	CCheckpoint(float x, float y, float z, bool rotated);
@@ -14,12 +14,16 @@ public:
 		float minZ;
 		float maxZ;
 	};
-	
+
+	IModel* GetModel(){ return checkpointMdl; };
+
 	inline AABB GetLBoundarie(){ return leftPillar; };
 	inline AABB GetRBoundarie(){ return rightPillar; };
 
 	inline float GetX(){ return checkpointMdl->GetX(); };
 	inline float GetZ(){ return checkpointMdl->GetZ(); };
+
+	bool IsRotated(){ return rotatedCheckpoint; };
 
 private:
 	IModel* checkpointMdl;
@@ -27,4 +31,6 @@ private:
 
 	AABB leftPillar;
 	AABB rightPillar;
+
+	bool rotatedCheckpoint;
 };

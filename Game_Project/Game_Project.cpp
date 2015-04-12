@@ -69,7 +69,7 @@ IFont* frontFont;
 IFont* RaceStartFont;
 ISprite* sprite;
 ICamera* myCamera;
-ISprite* speedSprites[10];
+//ISprite* speedSprites[10];
 
 IModel* waypoints[5];
 IModel* testMdl;
@@ -93,6 +93,7 @@ CSound* PickupSound;
 //--INTERFACE--//
 stringstream interfaceText;
 float startingCounter = 0;
+float DelayCounter = 0;
 
 //////////////////
 //-GAME STATES--//
@@ -266,16 +267,16 @@ void GameSetup()
 	//////////////////////////
 	//-- INGAME INTERFACE --//
 	sprite = myEngine->CreateSprite("mainUI layout.png");
-	speedSprites[0] = myEngine->CreateSprite("-30.png");
-	speedSprites[1] = myEngine->CreateSprite("-20.png");
-	speedSprites[2] = myEngine->CreateSprite("-10.png");
-	speedSprites[3] = myEngine->CreateSprite("10.png");
-	speedSprites[4] = myEngine->CreateSprite("20.png");
-	speedSprites[5] = myEngine->CreateSprite("30.png");
-	speedSprites[6] = myEngine->CreateSprite("40.png");
-	speedSprites[7] = myEngine->CreateSprite("50.png");
-	speedSprites[8] = myEngine->CreateSprite("60.png");
-	speedSprites[9] = myEngine->CreateSprite("70.png");
+	//speedSprites[0] = myEngine->CreateSprite("-30.png");
+	//speedSprites[1] = myEngine->CreateSprite("-20.png");
+	//speedSprites[2] = myEngine->CreateSprite("-10.png");
+	//speedSprites[3] = myEngine->CreateSprite("10.png");
+	//speedSprites[4] = myEngine->CreateSprite("20.png");
+	//speedSprites[5] = myEngine->CreateSprite("30.png");
+	//speedSprites[6] = myEngine->CreateSprite("40.png");
+	//speedSprites[7] = myEngine->CreateSprite("50.png");
+	//speedSprites[8] = myEngine->CreateSprite("60.png");
+	//speedSprites[9] = myEngine->CreateSprite("70.png");
 
 	////////////////////////
 	// -- CREATE COURSE --//
@@ -352,7 +353,7 @@ void GameUpdate()
 	interfaceText.str("");
 
 	//Player Speed Representation
-	if (cPlayer->GetPlayerS() <= -30.0f)
+	/*if (cPlayer->GetPlayerS() <= -30.0f)
 		speedSprites[0]->SetPosition(1200, 580);
 	else
 		speedSprites[0]->SetPosition(-250.0f, -250.0f);
@@ -400,40 +401,44 @@ void GameUpdate()
 	if (cPlayer->GetPlayerS() >= 70.0f)
 		speedSprites[9]->SetPosition(1200, 400);
 	else
-		speedSprites[9]->SetPosition(-250.0f, -250.0f);
+		speedSprites[9]->SetPosition(-250.0f, -250.0f);*/
 
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	if (PLAYERSTATE == STARTRACE)
+	if (DelayCounter > 2)
 	{
-		if (startingCounter >= 2 && startingCounter < 4)
+		if (PLAYERSTATE == STARTRACE)
 		{
-			interfaceText << "3";		
-		}
-		else if (startingCounter >= 4 && startingCounter < 6)
-		{
-			interfaceText << "2";
-		}
-		else if (startingCounter >= 6 && startingCounter < 7)
-		{
-			interfaceText << "1";
-		}
-		else if (startingCounter > 7 && startingCounter < 8)
-		{
-			FontStartRaceX = 490;
-			interfaceText << "GO";
-		}
-		else if (startingCounter > 8)
-		{
-			PLAYERSTATE = ALIVE;
-		}
+			if (startingCounter >= 4 && startingCounter < 6)
+			{
+				interfaceText << "3";
+			}
+			else if (startingCounter > 6 && startingCounter < 8)
+			{
+				interfaceText << "2";
+			}
+			else if (startingCounter > 8 && startingCounter < 10)
+			{
+				interfaceText << "1";
+			}
+			else if (startingCounter > 10 && startingCounter < 12)
+			{
+				FontStartRaceX = 490;
+				interfaceText << "GO";
+			}
+			else if (startingCounter >= 12)
+			{
+				PLAYERSTATE = ALIVE;
+			}
 
-		RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
-		interfaceText.str("");
+			RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
+			interfaceText.str("");
 
-		startingCounter += frameTime;
+			startingCounter += frameTime * 1.1;
+		}
 	}
+	DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{
@@ -444,6 +449,7 @@ void GameUpdate()
 		cPlayer->ForwardReverseMovement(frameTime);
 
 		//- the player can always move left or right
+
 		cPlayer->RightLeftMovement(frameTime);
 
 		//- update the players position
@@ -473,6 +479,11 @@ void GameUpdate()
 		{
 			deadCounter += frameTime * 0.8;
 		}
+	}
+
+	if (cTrack->GetLap() == 1)
+	{
+	PLAYERSTATE = ENDRACE;
 	}
 
 	//-- AI --//

@@ -32,6 +32,11 @@ public:
 	void scaleModel(float value);
 	// returns the boundaries of the object
 	inline AABB GetBoundaries(){ return objectBoundaries; };
+
+	void ScaleX(float value){ objectMdl->ScaleX(value); };
+	void ScaleZ(float value){ objectMdl->ScaleZ(value); };
+	void ScaleY(float value){ objectMdl->ScaleY(value); };
+
 private:
 	
 

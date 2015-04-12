@@ -6,6 +6,8 @@ CCheckpoint::CCheckpoint(float x, float y, float z, bool rotated)
 	checkpointMdl = checkpointMsh->CreateModel(x,y,z);
 	checkpointMdl->Scale(2);
 
+	rotatedCheckpoint = rotated;
+
 	if (rotated)
 	{
 		// rotate the checkpoint and give it AABB boundaries

@@ -4,7 +4,7 @@
 class CVortex
 {
 public:
-	CVortex(float x, float y, float z);
+	CVortex(float x, float y, float z, bool rotated);
 	~CVortex();
 
 	//-- GETTER FUNCTIONS
@@ -13,6 +13,7 @@ public:
 	float GetZ(){ return vortexMdl->GetZ(); };
 
 	void RotateVortex(float frametime);
+	void Scale(float value){ vortexMdl->Scale(value); };
 
 private:
 	IMesh* vortexMsh;

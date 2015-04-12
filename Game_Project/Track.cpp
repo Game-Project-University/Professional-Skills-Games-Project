@@ -24,10 +24,39 @@ CTrack::CTrack()
 	courseObjects[13] = new CBlockBuilding(10.0f, 0.0f, 310.0f, 40.0f, 54.0f);
 	courseObjects[14] = new CBlockBuilding(50.0f, 0.0f, 210.0f, 40.0f, 54.0f);
 	courseObjects[15] = new CBlockBuilding(50.0f, 0.0f, 310.0f, 40.0f, 54.0f);
+	courseObjects[16] = new CWall(320.0f, 0.0f, 280.0f, 18.0f, 10.0f, true);
+	courseObjects[17] = new CWall(320.0f, 0.0f, 240.0f, 18.0f, 10.0f, true);
+	courseObjects[18] = new CWall(340.0f, 0.0f, 280.0f, 18.0f, 10.0f, true);
+	courseObjects[19] = new CWall(340.0f, 0.0f, 240.0f, 18.0f, 10.0f, true);
+	courseObjects[20] = new CWall(360.0f, 0.0f, 280.0f, 18.0f, 10.0f, true);
+	courseObjects[21] = new CWall(360.0f, 0.0f, 240.0f, 18.0f, 10.0f, true);
+	courseObjects[22] = new CWall(380.0f, 0.0f, 280.0f, 18.0f, 10.0f, true);
+	courseObjects[23] = new CWall(380.0f, 0.0f, 240.0f, 18.0f, 10.0f, true);
+	courseObjects[24] = new CWall(400.0f, 0.0f, 280.0f, 18.0f, 10.0f, true);
+	courseObjects[25] = new CWall(420.0f, 0.0f, 280.0f, 18.0f, 10.0f, true);
+	courseObjects[26] = new CWall(440.0f, 0.0f, 280.0f, 18.0f, 10.0f, true);
+	courseObjects[27] = new CWall(450.0f, 0.0f, 280.0f, 10.0f, 18.0f, false);
+	courseObjects[28] = new CWall(450.0f, 0.0f, 260.0f, 10.0f, 18.0f, false);
+	courseObjects[29] = new CWall(450.0f, 0.0f, 240.0f, 10.0f, 18.0f, false);
+	courseObjects[30] = new CWall(450.0f, 0.0f, 220.0f, 10.0f, 18.0f, false);
+	courseObjects[31] = new CWall(390.0f, 0.0f, 230.0f, 10.0f, 18.0f, false);
+	courseObjects[32] = new CWall(390.0f, 0.0f, 210.0f, 10.0f, 18.0f, false);
+	courseObjects[33] = new CSkyScraper(360.0f, 0.0f, 200.0f, 52.0f, 54.0f);
+	courseObjects[34] = new CSkyScraper(480.0f, 0.0f, 200.0f, 52.0f, 54.0f);
+	courseObjects[35] = new CBlockBuilding(500.0f, 0.0f, -250.0f, 40.0f, 840.0f);
+	courseObjects[35]->ScaleZ(15);
+	courseObjects[35]->ScaleY(6);
+	courseObjects[36] = new CBlockBuilding(350.0f, 0.0f, -250.0f, 40.0f, 840.0f);
+	courseObjects[36]->ScaleZ(15);
+	courseObjects[36]->ScaleY(6);
+	//-- vortex 1
+	vortexObjects[0] = new CVortex(90.0f, 10.0f, 260.0f, false);
+	vortexObjects[1] = new CVortex(300.0f, 10.0f, 260.0f, false);
 
-	//-- vortex 
-	vortexObjects[0] = new CVortex(90.0f, 10.0f, 260.0f);
-	vortexObjects[1] = new CVortex(300.0f, 10.0f, 260.0f);
+	// vortex2
+	vortexObjects[2] = new CVortex(425.0f, 50.0f, -700.0f, true);
+	vortexObjects[2]->Scale(5);
+	vortexObjects[3] = new CVortex(0.0f, 5.0f, -300.0f, true);
 
 	//-- checkpoint creation (x, y, y, wether the checkpoint is to be rotated or not)
 	courseCheckpoints[0] = new CCheckpoint(0, 0, 0, false);
@@ -127,6 +156,12 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion
 	if (SphereToSphereCollision(cPlayer, vortexObjects[0], 10, 30))
 	{
 		cPlayer->SetPlayerPos(vortexObjects[1]->GetX(), vortexObjects[1]->GetY(), vortexObjects[1]->GetZ());
+	}
+
+	if (SphereToSphereCollision(cPlayer, vortexObjects[2], 10,3000))
+	{
+		cPlayer->SetPlayerPos(vortexObjects[3]->GetX(), vortexObjects[3]->GetY(), vortexObjects[3]->GetZ());
+		cPlayer->GetModel()->LookAt(courseCheckpoints[0]->GetModel());
 	}
 }
 
