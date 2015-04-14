@@ -13,7 +13,7 @@
 /*-----------------------------------------------------------------------------------------
 Havok include and library files
 -----------------------------------------------------------------------------------------*/
-
+//
 //#define HK_PLATFORM_SIM // *Must* define before the includes if using the SIMD version of Havok (SIMD are advanced CPU instructions supported by all modern PCs)
 
 // Havok has many include files - the more functions and classes you use, the more files you need to include

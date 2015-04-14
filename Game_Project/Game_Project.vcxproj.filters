@@ -201,6 +201,9 @@
     <ClCompile Include="PadBuilding.cpp">
       <Filter>Course\Course Objects\Type of Object\PadBuilding</Filter>
     </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Course\Course Objects\Type of Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="PadBuilding.h">
       <Filter>Course\Course Objects\Type of Object\PadBuilding</Filter>
+    </ClInclude>
+    <ClInclude Include="Wallh.h">
+      <Filter>Course\Course Objects\Type of Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
