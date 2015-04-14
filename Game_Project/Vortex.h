@@ -15,7 +15,9 @@ public:
 	void RotateVortex(float frametime);
 	void Scale(float value){ vortexMdl->Scale(value); };
 
+	static IMesh* vortexMsh;
+
 private:
-	IMesh* vortexMsh;
+	
 	IModel* vortexMdl;
 };

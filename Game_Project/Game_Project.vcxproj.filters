@@ -148,6 +148,9 @@
     <Filter Include="Course\Course Objects\Type of Object\PadBuilding">
       <UniqueIdentifier>{9624cd56-e68d-4772-b2c6-78c3f8ea9505}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\wall">
+      <UniqueIdentifier>{ec63d538-b158-4b97-a3e3-03e12e9ead70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -202,7 +205,7 @@
       <Filter>Course\Course Objects\Type of Object\PadBuilding</Filter>
     </ClCompile>
     <ClCompile Include="Wall.cpp">
-      <Filter>Course\Course Objects\Type of Object</Filter>
+      <Filter>Course\Course Objects\Type of Object\wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -255,7 +258,7 @@
       <Filter>Course\Course Objects\Type of Object\PadBuilding</Filter>
     </ClInclude>
     <ClInclude Include="Wallh.h">
-      <Filter>Course\Course Objects\Type of Object</Filter>
+      <Filter>Course\Course Objects\Type of Object\wall</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

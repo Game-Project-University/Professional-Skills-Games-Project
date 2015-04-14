@@ -8,6 +8,7 @@ public:
 	CPadBuilding(float x, float y, float z, float width, float length);
 	~CPadBuilding();
 
+	static IMesh* padBuildingMsh;
 private:
-	IMesh* padBuildingMsh;
+	
 };

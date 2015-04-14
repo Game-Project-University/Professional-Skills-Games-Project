@@ -8,6 +8,7 @@ public:
 	CBlockBuilding(float x, float y, float z, float width, float length);
 	~CBlockBuilding();
 
+	static IMesh* blockBuildingMsh;
+
 private:
-	IMesh* blockBuildingMsh;
 };

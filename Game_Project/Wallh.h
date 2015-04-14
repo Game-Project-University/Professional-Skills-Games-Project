@@ -8,9 +8,10 @@ public:
 	CWall(float x, float y, float z, float width, float length, bool rotated);
 	~CWall();
 
+	static IMesh* wallMsh;
+	static IMesh* wallIsle;
+
 private: 
-	IMesh* wallMsh;
-	IMesh* wallIsle;
 
 	IModel* wallside1;
 	IModel* wallside2;

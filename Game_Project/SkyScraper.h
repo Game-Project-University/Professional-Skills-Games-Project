@@ -11,6 +11,7 @@ public:
 	CSkyScraper(float x, float y, float z, float width, float length);
 	~CSkyScraper();
 
+	static IMesh* skyScraperMsh;
 private:
-	IMesh* skyScraperMsh;
+	
 };

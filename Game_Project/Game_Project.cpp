@@ -157,6 +157,15 @@ bool ProgramSetup()
 	myEngine->AddMediaFolder(".\\Media\\CourseObjects");
 	myEngine->AddMediaFolder(".\\Media\\Items");
 
+	// LOAD MESHES
+	CPadBuilding::padBuildingMsh = myEngine->LoadMesh("Building08.x");
+	CSkyScraper::skyScraperMsh = myEngine->LoadMesh("Building03.x");
+	CVortex::vortexMsh = myEngine->LoadMesh("sphere.x");
+	CWall::wallMsh = myEngine->LoadMesh("Wall.x");
+	CWall::wallIsle = myEngine->LoadMesh("IsleStraight.x");
+	CBlockBuilding::blockBuildingMsh = myEngine->LoadMesh("Building07.x");
+	CBattleShip::battleShipMsh = myEngine->LoadMesh("Spaceship01Battlecruiser.x");
+
 	//-- CREATE A SKYBOX FOR THE WORLD --//
 	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
 	IModel* skyBox = skyboxMsh->CreateModel(0.0f, -1600.0f, 0.0f);
@@ -406,39 +415,40 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	if (DelayCounter > 2)
-	{
-		if (PLAYERSTATE == STARTRACE)
-		{
-			if (startingCounter >= 4 && startingCounter < 6)
-			{
-				interfaceText << "3";
-			}
-			else if (startingCounter > 6 && startingCounter < 8)
-			{
-				interfaceText << "2";
-			}
-			else if (startingCounter > 8 && startingCounter < 10)
-			{
-				interfaceText << "1";
-			}
-			else if (startingCounter > 10 && startingCounter < 12)
-			{
-				FontStartRaceX = 490;
-				interfaceText << "GO";
-			}
-			else if (startingCounter >= 12)
-			{
-				PLAYERSTATE = ALIVE;
-			}
+	PLAYERSTATE = ALIVE;
+	//if (DelayCounter > 2)
+	//{
+	//	if (PLAYERSTATE == STARTRACE)
+	//	{
+	//		if (startingCounter >= 4 && startingCounter < 6)
+	//		{
+	//			interfaceText << "3";
+	//		}
+	//		else if (startingCounter > 6 && startingCounter < 8)
+	//		{
+	//			interfaceText << "2";
+	//		}
+	//		else if (startingCounter > 8 && startingCounter < 10)
+	//		{
+	//			interfaceText << "1";
+	//		}
+	//		else if (startingCounter > 10 && startingCounter < 12)
+	//		{
+	//			FontStartRaceX = 490;
+	//			interfaceText << "GO";
+	//		}
+	//		else if (startingCounter >= 12)
+	//		{
+	//			PLAYERSTATE = ALIVE;
+	//		}
 
-			RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
-			interfaceText.str("");
+	//		RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
+	//		interfaceText.str("");
 
-			startingCounter += frameTime * 1.1;
-		}
-	}
-	DelayCounter += frameTime;
+	//		startingCounter += frameTime * 1.1;
+	//	}
+	//}
+	//DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{

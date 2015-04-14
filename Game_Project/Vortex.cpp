@@ -1,10 +1,9 @@
 #include "Vortex.h"
 
+IMesh* CVortex::vortexMsh = nullptr;
 
 CVortex::CVortex(float x, float y, float z, bool rotated)
 {
-	vortexMsh = myEngine->LoadMesh("sphere.x");
-
 	vortexMdl = vortexMsh->CreateModel(x, y, z);
 	vortexMdl->SetSkin("blockhole.jpg");
 	vortexMdl->Scale(2);

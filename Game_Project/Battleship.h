@@ -8,7 +8,8 @@ public:
 	CBattleShip(float x, float y, float z, float width, float length);
 	~CBattleShip();
 
+	static IMesh* battleShipMsh;
+
 private:
-	IMesh* battleShipMsh;
 
 };

@@ -1,10 +1,10 @@
 #include "Wallh.h"
 
+IMesh* CWall::wallIsle = nullptr;
+IMesh* CWall::wallMsh  = nullptr;
+
 CWall::CWall(float x, float y, float z, float width, float length, bool rotated) : CObject(x, y, z, width, length)
 {
-	wallMsh = myEngine->LoadMesh("Wall.x");
-	wallIsle = myEngine->LoadMesh("IsleStraight.x");
-
 	objectMdl = wallMsh->CreateModel(x, y, z);
 
 	if (rotated)
