@@ -9,6 +9,8 @@
 #include "EntityManager.h"
 #include "Track.h"
 #include "BaseItem.h"
+#include "SmokeSystem.h"
+
 //gj
 /*-----------------------------------------------------------------------------------------
 Havok include and library files
@@ -89,6 +91,11 @@ CSound* SmashingSound;
 CSound* ExplostionSound;
 CSound* PickupSound;
 
+//-- PARTICLES --//
+CSmokeSystem* cSmoke;
+
+bool smokeActivated = false;
+bool createSmoke = false;
 ///////////////
 //--INTERFACE--//
 stringstream interfaceText;
@@ -166,6 +173,10 @@ bool ProgramSetup()
 	CBlockBuilding::blockBuildingMsh = myEngine->LoadMesh("Building07.x");
 	CBattleShip::battleShipMsh = myEngine->LoadMesh("Spaceship01Battlecruiser.x");
 
+	//
+
+	CSmokeSystem::particleMsh = myEngine->LoadMesh("Smoke.x");
+	
 	//-- CREATE A SKYBOX FOR THE WORLD --//
 	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
 	IModel* skyBox = skyboxMsh->CreateModel(0.0f, -1600.0f, 0.0f);
@@ -415,40 +426,40 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	PLAYERSTATE = ALIVE;
-	//if (DelayCounter > 2)
-	//{
-	//	if (PLAYERSTATE == STARTRACE)
-	//	{
-	//		if (startingCounter >= 4 && startingCounter < 6)
-	//		{
-	//			interfaceText << "3";
-	//		}
-	//		else if (startingCounter > 6 && startingCounter < 8)
-	//		{
-	//			interfaceText << "2";
-	//		}
-	//		else if (startingCounter > 8 && startingCounter < 10)
-	//		{
-	//			interfaceText << "1";
-	//		}
-	//		else if (startingCounter > 10 && startingCounter < 12)
-	//		{
-	//			FontStartRaceX = 490;
-	//			interfaceText << "GO";
-	//		}
-	//		else if (startingCounter >= 12)
-	//		{
-	//			PLAYERSTATE = ALIVE;
-	//		}
+	//PLAYERSTATE = ALIVE;
+	if (DelayCounter > 2)
+	{
+		if (PLAYERSTATE == STARTRACE)
+		{
+			if (startingCounter >= 4 && startingCounter < 6)
+			{
+				interfaceText << "3";
+			}
+			else if (startingCounter > 6 && startingCounter < 8)
+			{
+				interfaceText << "2";
+			}
+			else if (startingCounter > 8 && startingCounter < 10)
+			{
+				interfaceText << "1";
+			}
+			else if (startingCounter > 10 && startingCounter < 12)
+			{
+				FontStartRaceX = 490;
+				interfaceText << "GO";
+			}
+			else if (startingCounter >= 12)
+			{
+				PLAYERSTATE = ALIVE;
+			}
 
-	//		RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
-	//		interfaceText.str("");
+			RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
+			interfaceText.str("");
 
-	//		startingCounter += frameTime * 1.1;
-	//	}
-	//}
-	//DelayCounter += frameTime;
+			startingCounter += frameTime * 1.1;
+		}
+	}
+	DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{
@@ -473,6 +484,24 @@ void GameUpdate()
 
 		//- Chec for item collision
 		cTrack->ItemCollision(cPlayer, PickupSound);
+
+		if (cPlayer->GetPlayerHealth() < 50)
+		{
+			smokeActivated = true;
+		}
+
+		// if the smoke should appear because the player has below 50 health
+		if (smokeActivated)
+		{
+			// if there isnt an instance of smoke class create one and set it to true
+			if (!createSmoke)
+			{
+				cSmoke = new CSmokeSystem();
+				createSmoke = true;
+			}
+
+			cSmoke->update(frameTime, cPlayer);
+		}
 	}
 
 	if (PLAYERSTATE == DEAD)
@@ -481,6 +510,11 @@ void GameUpdate()
 		if (deadCounter >= 1.5)
 		{
 			PLAYERSTATE = ALIVE;
+
+			smokeActivated = false;
+			createSmoke = false;
+			delete(cSmoke);
+
 			deadCounter = 0;
 			cPlayer->ResetPlayerHealth();
 			cTrack->ResetPlayerPosition(cPlayer);

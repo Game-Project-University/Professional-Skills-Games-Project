@@ -121,6 +121,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="BaseItem.cpp" />
+    <ClCompile Include="BaseParticle.cpp" />
     <ClCompile Include="BasePlayer.cpp" />
     <ClCompile Include="Battleship.cpp" />
     <ClCompile Include="BlockBuilding.cpp" />
@@ -131,6 +132,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PadBuilding.cpp" />
     <ClCompile Include="SkyScraper.cpp" />
+    <ClCompile Include="SmokeSystem.cpp" />
     <ClCompile Include="Track.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -141,6 +143,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="BaseItem.h" />
+    <ClInclude Include="BaseParticle.h" />
     <ClInclude Include="BasePlayer.h" />
     <ClInclude Include="Battleship.h" />
     <ClInclude Include="BlockBuilding.h" />
@@ -150,6 +153,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClInclude Include="Object.h" />
     <ClInclude Include="PadBuilding.h" />
     <ClInclude Include="SkyScraper.h" />
+    <ClInclude Include="SmokeSystem.h" />
     <ClInclude Include="Track.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Sound.h" />

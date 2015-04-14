@@ -23,7 +23,7 @@ class CPlayer : public CBasePlayer
 {
 private:
 	ICamera* myCamera;
-	
+
 	//////////////////////////////////
 	//--CAMERA MOVEMENTS VARIABLES--//
 	float camerRotationS;
@@ -52,7 +52,10 @@ public:
 	/////////////////
 	//-- GETTERS --//
 	inline float GetPlayerX(){ return playerPos.posX; };
+	inline float GetPlayerY(){ return playerPos.posY; };
 	inline float GetPlayerZ(){ return playerPos.posZ; };
+
+	inline ICamera* GetCamera(){ return myCamera; };
 
 	////////////////
 	//--Movement--//

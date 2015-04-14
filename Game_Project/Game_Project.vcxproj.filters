@@ -151,6 +151,21 @@
     <Filter Include="Course\Course Objects\Type of Object\wall">
       <UniqueIdentifier>{ec63d538-b158-4b97-a3e3-03e12e9ead70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Particle Systems">
+      <UniqueIdentifier>{631c9d5a-934f-4068-9d3e-5d463a37f94c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle Systems\BaseParticle">
+      <UniqueIdentifier>{26a5dc78-7b4e-4d9b-bc50-9fa2b04b3500}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle Systems\BaseParticle\HeaderFile">
+      <UniqueIdentifier>{e390d201-fdf1-4d61-b4a6-9dbbdcf46f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle Systems\BaseParticle\Cpp File">
+      <UniqueIdentifier>{697b68bc-bff9-4266-b67d-715aee21437c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle Systems\Smoke">
+      <UniqueIdentifier>{6a0bb6a1-76d9-47ba-b2df-ee26bef8d2d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -207,6 +222,12 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Course\Course Objects\Type of Object\wall</Filter>
     </ClCompile>
+    <ClCompile Include="BaseParticle.cpp">
+      <Filter>Particle Systems\BaseParticle\Cpp File</Filter>
+    </ClCompile>
+    <ClCompile Include="SmokeSystem.cpp">
+      <Filter>Particle Systems\Smoke</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -259,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="Wallh.h">
       <Filter>Course\Course Objects\Type of Object\wall</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseParticle.h">
+      <Filter>Particle Systems\BaseParticle\HeaderFile</Filter>
+    </ClInclude>
+    <ClInclude Include="SmokeSystem.h">
+      <Filter>Particle Systems\Smoke</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
