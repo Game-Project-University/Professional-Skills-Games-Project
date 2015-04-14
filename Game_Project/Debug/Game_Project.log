@@ -1,5 +1,5 @@
-﻿Build started 12/04/2015 22:43:17.
-     1>Project "C:\Users\John Da Baptist\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_Project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 14/04/2015 10:14:25.
+     1>Project "C:\Users\MJEbyrne\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\hk2013_1_0_r1\Source" /I"C:\ProgramData\TL-Engine\include" /I"C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\include" /I"C:\Program Files (x86)\OpenAL 1.1 SDK\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /Gy /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AI.cpp BaseItem.cpp BasePlayer.cpp Battleship.cpp BlockBuilding.cpp Checkpoint.cpp EntityManagers.cpp Game_Project.cpp Global.cpp Object.cpp PadBuilding.cpp SkyScraper.cpp Track.cpp Player.cpp Sound.cpp VechMenu.cpp Vortex.cpp
          Vortex.cpp
@@ -10,20 +10,20 @@
          SkyScraper.cpp
          PadBuilding.cpp
          Object.cpp
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\object.cpp(13): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\object.cpp(14): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\object.cpp(16): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\object.cpp(17): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\object.cpp(13): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\object.cpp(14): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\object.cpp(16): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\object.cpp(17): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
          Global.cpp
          Game_Project.cpp
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(186): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(187): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(299): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(317): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(332): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(435): warning C4244: 'argument' : conversion from 'float' to 'const int', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(438): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\john da baptist\source\repos\professional-skills-games-project\game_project\game_project.cpp(480): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(186): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(187): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(299): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(317): warning C4244: 'argument' : conversion from 'float' to 'const unsigned int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(332): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(435): warning C4244: 'argument' : conversion from 'float' to 'const int', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(438): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\mjebyrne\source\repos\professional-skills-games-project\game_project\game_project.cpp(480): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
          EntityManagers.cpp
          Checkpoint.cpp
          BlockBuilding.cpp
@@ -33,7 +33,7 @@
          AI.cpp
          Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\John Da Baptist\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_ProjectDebug.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\hk2013_1_0_r1\Lib\win32_vs2012_win7\debug" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win32" /LIBPATH:"C:\ProgramData\TL-Engine\lib" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib" "TL-Engine2012Debug.lib" alut.lib OpenAL32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\John Da Baptist\Source\Repos\Professional-Skills-Games-Project\Game_Project\\Game_Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /IMPLIB:"C:\Users\John Da Baptist\Source\Repos\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.lib" /MACHINE:X86 /SAFESEH:NO Debug\AI.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\MJEbyrne\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_ProjectDebug.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\hk2013_1_0_r1\Lib\win32_vs2012_win7\debug" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win32" /LIBPATH:"C:\ProgramData\TL-Engine\lib" /LIBPATH:"C:\Program Files (x86)\OpenAL 1.1 SDK\freealut-1.1.0-bin\lib" "TL-Engine2012Debug.lib" alut.lib OpenAL32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\MJEbyrne\Source\Repos\Professional-Skills-Games-Project\Game_Project\\Game_Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /IMPLIB:"C:\Users\MJEbyrne\Source\Repos\Professional-Skills-Games-Project\Game_Project\\Game_ProjectDebug.lib" /MACHINE:X86 /SAFESEH:NO Debug\AI.obj
          Debug\BaseItem.obj
          Debug\BasePlayer.obj
          Debug\Battleship.obj
@@ -51,9 +51,9 @@
          Debug\VechMenu.obj
          Debug\Vortex.obj
      1>Track.obj : error LNK2019: unresolved external symbol "public: __thiscall CWall::CWall(float,float,float,float,float,bool)" (??0CWall@@QAE@MMMMM_N@Z) referenced in function "public: __thiscall CTrack::CTrack(void)" (??0CTrack@@QAE@XZ)
-     1>C:\Users\John Da Baptist\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_ProjectDebug.exe : fatal error LNK1120: 1 unresolved externals
-     1>Done Building Project "C:\Users\John Da Baptist\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_Project.vcxproj" (Build target(s)) -- FAILED.
+     1>C:\Users\MJEbyrne\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_ProjectDebug.exe : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "C:\Users\MJEbyrne\Source\Repos\Professional-Skills-Games-Project\Game_Project\Game_Project.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:14.80
+Time Elapsed 00:00:12.94
