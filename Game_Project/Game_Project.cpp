@@ -73,7 +73,7 @@ ISprite* sprite;
 ICamera* myCamera;
 ISprite* speedSprites[10];
 
-IModel* waypoints[5];
+IModel* waypoints[20];
 IModel* testMdl;
 IMesh* testMsh;
 
@@ -314,16 +314,24 @@ void GameSetup()
 	delete(cVMenu);
 	cVMenu = NULL;
 
-	for (int i = 0; i < 4; i++)
+	/*for (int i = 0; i < 4; i++)
 	{
-		cAI[i] = new CAI(aiMsh, i + 5, rand() % 300, i, i, 1);
-	}
+		cAI[i] = new CAI(aiMsh, i + 0, rand() % 300, 0, 1, -20 );
+	}*/
+
+	cAI[0] = new CAI(aiMsh, 20, rand() % 300, -10, 1, -20);
+	cAI[1] = new CAI(aiMsh, 30, rand() % 300,   0, 1, -30);
+	cAI[2] = new CAI(aiMsh, 25, rand() % 300, -10, 1, -40);
+	cAI[3] = new CAI(aiMsh, 35, rand() % 300,   0, 1, -50);
 
 	stateMsh = myEngine->LoadMesh("state.x");
+	//stateMsh = myEngine->LoadMesh("dummy.x");
 
-	float pos[2][5] = { { 0, -5, 5, 15, 10 }, { 0, 10, 15, 10, 0 } };
+	// This will read in from file eventually
+	float pos[2][7] = { { 0, 0,	  -40, -90, -90, -60, 80 },
+						{ 0, 160, 160, 180, 230, 250, 260 } };
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		waypoints[i] = stateMsh->CreateModel(pos[0][i], 0, pos[1][i]);
 	}
@@ -370,6 +378,11 @@ void GameUpdate()
 	//Player Speed
 	interfaceText << cPlayer->GetPlayerS();
 	ComicSans->Draw(interfaceText.str(), 1050, 500, kWhite);
+	interfaceText.str("");
+
+	//Player Speed
+	interfaceText << "X: " << cPlayer->GetPlayerX() << "           Z: " <<  cPlayer->GetPlayerZ();
+	ComicSans->Draw(interfaceText.str(), 50, 50, kWhite);
 	interfaceText.str("");
 
 	//Player Speed Representation

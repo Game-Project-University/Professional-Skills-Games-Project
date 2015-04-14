@@ -67,7 +67,7 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
 	}
 	else
 	{
-		if (aiCurrentWaypoint == 4)
+		if (aiCurrentWaypoint == 6)
 		{
 			aiCurrentWaypoint = 0;
 		}
