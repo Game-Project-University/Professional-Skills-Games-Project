@@ -50,7 +50,8 @@ CTrack::CTrack()
 	courseObjects[36]->ScaleZ(15);
 	courseObjects[36]->ScaleY(6);
 	//-- vortex 1
-	vortexObjects[0] = new CVortex(90.0f, 10.0f, 260.0f, false);
+	vortexObjects[0] = new CVortex(110.0f, 10.0f, 260.0f, false);
+	vortexObjects[0]->Scale(2);
 	vortexObjects[1] = new CVortex(300.0f, 10.0f, 260.0f, false);
 
 	// vortex2
@@ -61,8 +62,9 @@ CTrack::CTrack()
 	//-- checkpoint creation (x, y, y, wether the checkpoint is to be rotated or not)
 	courseCheckpoints[0] = new CCheckpoint(0, 0, 0, false);
 	courseCheckpoints[1] = new CCheckpoint(0, 0, 120, false);
-	courseCheckpoints[2] = new CCheckpoint(0, 0, 260, true);
+	courseCheckpoints[2] = new CCheckpoint(-20, 0, 260, true);
 	courseCheckpoints[3] = new CCheckpoint(70, 0, 260, true);
+	courseCheckpoints[4] = new CCheckpoint(420, 0, 200, false);
 
 	//-- Items
 	IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
@@ -153,7 +155,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion
 		}
 	}
 	
-	if (SphereToSphereCollision(cPlayer, vortexObjects[0], 10, 30))
+	if (SphereToSphereCollision(cPlayer, vortexObjects[0], 10, 700))
 	{
 		cPlayer->SetPlayerPos(vortexObjects[1]->GetX(), vortexObjects[1]->GetY(), vortexObjects[1]->GetZ());
 	}

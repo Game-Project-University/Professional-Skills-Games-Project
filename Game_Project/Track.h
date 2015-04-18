@@ -12,7 +12,7 @@
 #include "Wallh.h"
 
 const int NUMBER_OF_OBJECTS = 37;
-const int NUMBER_OF_CHECKPOINTS = 4;
+const int NUMBER_OF_CHECKPOINTS = 5;
 const int NUMBER_OF_ITEMS = 1;
 const int NUMBER_OF_VORTEX = 4;
 
