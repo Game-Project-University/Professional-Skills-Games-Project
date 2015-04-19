@@ -59,22 +59,25 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
 	GetVector(waypoints[aiCurrentWaypoint], playerMdl, wayVectorX, wayVectorZ);
 	distance = GetDistance(wayVectorX, wayVectorZ);
 
-
-
 	if (distance > 0.5)
 	{
 		playerMdl->LookAt(waypoints[aiCurrentWaypoint]->GetX(), playerMdl->GetY(), waypoints[aiCurrentWaypoint]->GetZ());
 	}
 	else
 	{
-		if (aiCurrentWaypoint == 6)
-		{
-			aiCurrentWaypoint = 0;
-		}
-		else
-		{
-			aiCurrentWaypoint++;
-		}
+		IncreaseWaypoint();
 	}
 	playerMdl->MoveLocalZ(frameTime* playerMovementS);
+}
+
+void CAI::IncreaseWaypoint()
+{
+	if (aiCurrentWaypoint == MAX_WAYPOINTS - 1)
+	{
+		aiCurrentWaypoint = 0;
+	}
+	else
+	{
+		aiCurrentWaypoint++;
+	}
 }

@@ -20,4 +20,5 @@ public:
 	////////////////
 	//--Movement--//
 	void MoveToWaypoint(float frameTime, IModel* waypoints[]);
+	void IncreaseWaypoint();
 };

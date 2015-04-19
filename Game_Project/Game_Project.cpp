@@ -73,7 +73,7 @@ ISprite* sprite;
 ICamera* myCamera;
 ISprite* speedSprites[10];
 
-IModel* waypoints[20];
+IModel* waypoints[MAX_WAYPOINTS];
 IModel* testMdl;
 IMesh* testMsh;
 
@@ -328,10 +328,10 @@ void GameSetup()
 	//stateMsh = myEngine->LoadMesh("dummy.x");
 
 	// This will read in from file eventually
-	float pos[2][7] = { { 0, 0,	  -40, -90, -90, -60, 80 },
-						{ 0, 160, 160, 180, 230, 250, 260 } };
+	float pos[2][MAX_WAYPOINTS] = { { 0, 0, 0, 0, 0, -10, -40, -65, -80, -80, -80, -80, -70, -60, -40, -20, 0, 40, 80, 300, 340, 380, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 0, 0, 0, 0, 0, 0, 0, 0, },
+	{ 0, 40, 80, 120, 160, 165, 165, 170, 180, 190, 205, 220, 235, 250, 260, 260, 260, 260, 260, 260, 260, 260, 260, 220, 180, 140, 100, 60, 20, -20, -60, -100, -140, -180, -220, -260, -300, -340, -380, -420, -460, -500, -540, -580, -625, -300, -260, -220, -180, -140, -100, -60, -40 } };
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < MAX_WAYPOINTS; i++)
 	{
 		waypoints[i] = stateMsh->CreateModel(pos[0][i], 0, pos[1][i]);
 	}
