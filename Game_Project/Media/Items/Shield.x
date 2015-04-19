@@ -8055,7 +8055,7 @@ Frame {
     0.000000;0.000000;0.000000;;
 
     TextureFilename {
-     "stone1_tlxmul2.jpg";
+     "stone1_tlxadd.jpg";
     }
    }
   }
