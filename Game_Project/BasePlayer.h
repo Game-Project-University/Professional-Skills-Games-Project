@@ -1,11 +1,12 @@
 #pragma once
 #include "Global.h"
-//#include "Track.h"
+//#include "BaseItem.h"
 
 class CBasePlayer
 {
 protected:
 	IModel* playerMdl;
+	//CBaseItem* currentItem;
 	//- set the player movement speed
 	float playerMovementS;
 	//- set the player rotation speed
@@ -19,8 +20,8 @@ protected:
 	//- set the angle of the sinewave to start at 0
 	float sineWaveAngle;
 	float sineWaveValue;
-	
 	int health;
+	int shield;
 
 public:
 	CBasePlayer();
@@ -45,4 +46,6 @@ public:
 	void IncreaseAccelration();
 	void DecreaseAccelration();
 	void SinHoverMovement(float frameTime);
+
+	void ActivateItem();
 };

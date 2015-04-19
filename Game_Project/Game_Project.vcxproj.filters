@@ -228,6 +228,9 @@
     <ClCompile Include="SmokeSystem.cpp">
       <Filter>Particle Systems\Smoke</Filter>
     </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -286,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="SmokeSystem.h">
       <Filter>Particle Systems\Smoke</Filter>
+    </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 CBasePlayer::CBasePlayer()
 {
 	health = 100;
+	shield = 0;
 	//- set the player movement speed
 	playerMovementS = 0.0f;
 	//- set the player rotation speed
@@ -16,6 +17,7 @@ CBasePlayer::CBasePlayer()
 	//- set the angle of the sinewave to start at 0
 	sineWaveAngle = 0;
 	sineWaveValue = 0;
+	//currentItem = NULL;
 }
 
 CBasePlayer::~CBasePlayer()
@@ -86,4 +88,9 @@ void CBasePlayer::SinHoverMovement(float frameTime)
 	{
 		sineWaveAngle = 0.0f;
 	}
+}
+
+void CBasePlayer::ActivateItem()
+{
+	//currentItem->Activate();
 }

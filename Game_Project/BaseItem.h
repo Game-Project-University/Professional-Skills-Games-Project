@@ -1,5 +1,6 @@
 #pragma once
 #include "Global.h"
+#include "BasePlayer.h"
 
 struct SItemPos
 {
@@ -19,10 +20,11 @@ protected:
 
 public:
 	CBaseItem(IMesh* itemMsh, float sine, float x, float y, float z);
+	CBaseItem();
 	virtual ~CBaseItem();
 
 	// Activates item
-	//virtual void ActivateItem() = 0;
+	virtual void Activate(CBasePlayer* currentPlayer) = 0;
 
 	///////////////
 	//--GETTERS--//

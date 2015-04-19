@@ -13,14 +13,19 @@ CBaseItem::CBaseItem(IMesh* itemMsh, float sine, float x, float y, float z)
 	sineWaveValue = 0;
 }
 
+CBaseItem::CBaseItem()
+{
+
+}
+
 CBaseItem::~CBaseItem()
 {
 }
 
-//void CBaseItem::ActivateItem()
-//{
+void CBaseItem::Activate(CBasePlayer* currentPlayer)
+{
 
-//}
+}
 
 ////////////////
 //--MOVEMENT--//

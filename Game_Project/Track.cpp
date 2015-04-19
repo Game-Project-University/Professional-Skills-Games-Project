@@ -1,5 +1,5 @@
 #include "Track.h"
-
+#include "Health.h"
 CTrack::CTrack()
 {
 	//-- checkpoints and laps variables to show on interface and track players progress
@@ -68,7 +68,9 @@ CTrack::CTrack()
 
 	//-- Items
 	IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
-	courseItems[0] = new CBaseItem(itemMsh, 90, 0, 0, 0);
+	CHealth* item = new CHealth(itemMsh, 90, 0, 0, 0);
+
+	courseItems[0] = item;
 }
 
 CTrack::~CTrack()
