@@ -516,8 +516,14 @@ void GameUpdate()
 				cSmoke = new CSmokeSystem();
 				createSmoke = true;
 			}
-
 			cSmoke->update(frameTime, cPlayer);
+
+			if (cPlayer->GetPlayerHealth() > 50)
+			{
+				smokeActivated = false;
+				createSmoke = false;
+				delete(cSmoke);
+			}
 		}
 	}
 
