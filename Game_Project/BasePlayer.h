@@ -72,6 +72,4 @@ public:
 	void IncreaseAccelration();
 	void DecreaseAccelration();
 	void SinHoverMovement(float frameTime);
-
-	void ActivateItem();
 };

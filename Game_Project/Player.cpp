@@ -96,9 +96,8 @@ void CPlayer::RightLeftMovement(float frameTime)
 
 void CPlayer::ActivateItem(CBaseItem* itemOwned)
 {
-    if (myEngine->KeyHit(ACTIVATE) && itemOwned->GetUsed() == false)
+    if (myEngine->KeyHit(ACTIVATE) && itemOwned->GetUsed() == false && GetPlayerHealth() != 100)
 	{
 			itemOwned->Activate();
-			//itemOwned->ItemUsed();
 	}
 }

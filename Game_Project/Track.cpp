@@ -1,5 +1,7 @@
 #include "Track.h"
 #include "Health.h"
+
+IMesh* CTrack::itemMsh = nullptr;
 CTrack::CTrack()
 {
 	//-- checkpoints and laps variables to show on interface and track players progress
@@ -67,7 +69,7 @@ CTrack::CTrack()
 	courseCheckpoints[4] = new CCheckpoint(420, 0, 200, false);
 
 	//-- Items
-	IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
+	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
 	CBaseItem* item = new CHealth(itemMsh, 90, 0, 0, 0);
 
 	courseItems[0] = item;
@@ -84,7 +86,10 @@ CTrack::~CTrack()
 
 void CTrack::TrackUpdate(float frameTime)
 {
-	courseItems[0]->SinHoverMovement(frameTime);
+	if (courseItems[0] != nullptr)
+	{
+		courseItems[0]->SinHoverMovement(frameTime);
+	}
 
 	// rotate vortex
 	for (int i = 0; i < NUMBER_OF_VORTEX; i++)
@@ -219,6 +224,11 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 			{
 				checkPoint = 0;
 				lap++;
+				// item recreation
+				if (courseItems[0] == nullptr)
+				{
+					courseItems[i] = new CHealth(itemMsh, 90, 0, 0, 0);
+				}
 			}
 		}
 	}
@@ -229,13 +239,16 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
-		if(courseItems[i]->GetState() == false)
+		if (courseItems[0] != nullptr)
 		{
-			if (SphereToSphereCollision(cPlayer, courseItems[i], 5.0f, 5.0f))
+			if (courseItems[i]->GetState() == false)
 			{
-				sound->PlaySound();
-				courseItems[i]->Collide();
-				courseItems[i]->SetOwner(cPlayer);
+				if (SphereToSphereCollision(cPlayer, courseItems[i], 5.0f, 5.0f))
+				{
+					sound->PlaySound();
+					courseItems[i]->Collide();
+					courseItems[i]->SetOwner(cPlayer);
+				}
 			}
 		}
 	}
@@ -255,9 +268,18 @@ void CTrack::OwnedItems(CPlayer* cPlayer)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
-		if (courseItems[i]->GetOwner() == cPlayer)
+		if (courseItems[0] != nullptr)
 		{
-			cPlayer->ActivateItem(courseItems[i]);
+			if (courseItems[i]->GetOwner() == cPlayer)
+			{
+				cPlayer->ActivateItem(courseItems[i]);
+
+				if (courseItems[i]->GetUsed())
+				{
+					delete(courseItems[i]);
+					courseItems[i] = nullptr;
+				}
+			}
 		}
 	}
 }

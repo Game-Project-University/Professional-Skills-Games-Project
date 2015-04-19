@@ -32,7 +32,6 @@ public:
 	void SetOwner(CBasePlayer* owner){ mOwner = owner; };
 	CBasePlayer* GetOwner(){ return mOwner; };
 
-	//void ItemUsed(){ delete(mOwner); mOwner = nullptr; };
 	virtual void Activate() = 0;
 
 	///////////////

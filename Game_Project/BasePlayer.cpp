@@ -109,8 +109,3 @@ void CBasePlayer::SinHoverMovement(float frameTime)
 		sineWaveAngle = 0.0f;
 	}
 }
-
-void CBasePlayer::ActivateItem()
-{
-	//currentItem->Activate();
-}

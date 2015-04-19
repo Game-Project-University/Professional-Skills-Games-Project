@@ -23,6 +23,8 @@ public:
 	CTrack();
 	~CTrack();
 
+	static IMesh* itemMsh;
+
 	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion);
 	void CheckPointCollision(CPlayer* cPlayer);
 	void ItemCollision(CPlayer* cPlayer, CSound* sound);
@@ -49,4 +51,6 @@ private:
 
 	int checkPoint;
 	int lap;
+
+	
 };

@@ -3,7 +3,7 @@
 #include "BaseParticle.h"
 #include "Player.h"
 
-const int AMOUNT_OF_PARTICLES = 200;
+const int AMOUNT_OF_PARTICLES = 100;
 class CSmokeSystem : CBaseParticle
 {
 public:

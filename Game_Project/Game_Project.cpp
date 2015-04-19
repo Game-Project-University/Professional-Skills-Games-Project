@@ -174,8 +174,10 @@ bool ProgramSetup()
 	CBattleShip::battleShipMsh = myEngine->LoadMesh("Spaceship01Battlecruiser.x");
 
 	//
-
 	CSmokeSystem::particleMsh = myEngine->LoadMesh("Smoke.x");
+	//
+	CTrack::itemMsh = myEngine->LoadMesh("sphere.x");
+
 	
 	//-- CREATE A SKYBOX FOR THE WORLD --//
 	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
@@ -548,7 +550,7 @@ void GameUpdate()
 		}
 	}
 
-	if (cTrack->GetLap() == 1)
+	if (cTrack->GetLap() == 3)
 	{
 	PLAYERSTATE = ENDRACE;
 	}
