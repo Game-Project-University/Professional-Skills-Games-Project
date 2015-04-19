@@ -55,6 +55,7 @@ public:
 	inline IModel* GetModel(){ return playerMdl; };
 	inline float GetPlayerS(){ return playerMovementS; };
 	inline int GetPlayerHealth(){ return health; };
+	inline int GetPlayerShield(){ return shield; };
 	inline float GetPlayerX(){ return playerPos.posX; };
 	inline float GetPlayerY(){ return playerPos.posY; };
 	inline float GetPlayerZ(){ return playerPos.posZ; };
@@ -63,6 +64,7 @@ public:
 	//--SETTERS--//
 	void SetMovementSpeed(float value);
 	void IncreaseHealth(int value);
+	void IncreaseShield(int value);
 	void DecreaseHealth(int value);
 	void ResetPlayerHealth();
 	void SetPlayerPos(float x, float y, float z);

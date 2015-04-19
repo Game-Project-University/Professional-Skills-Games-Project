@@ -132,6 +132,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PadBuilding.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="SkyScraper.cpp" />
     <ClCompile Include="SmokeSystem.cpp" />
     <ClCompile Include="Track.cpp" />
@@ -154,6 +155,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClInclude Include="Health.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PadBuilding.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="SkyScraper.h" />
     <ClInclude Include="SmokeSystem.h" />
     <ClInclude Include="Track.h" />

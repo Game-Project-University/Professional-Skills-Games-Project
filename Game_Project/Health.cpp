@@ -10,6 +10,7 @@ CHealth::CHealth(IMesh* itemMsh, float sine, float x, float y, float z)
 	itemPos.posX = z;
 	pickedUp = false;
 	used = false;
+	usable = false;
 	sineWaveAngle = sine;
 	sineWaveValue = 0;
 }
@@ -20,6 +21,6 @@ CHealth::~CHealth()
 
 void CHealth::Activate()
 {
-	mOwner->IncreaseHealth(20);
+	mOwner->IncreaseHealth(50);
 	used = true;
 }

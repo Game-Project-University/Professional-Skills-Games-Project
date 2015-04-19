@@ -21,9 +21,9 @@ protected:
 	float sineWaveValue;
 	bool pickedUp;
 	bool used;
+	bool usable;
 
 public:
-	CBaseItem(IMesh* itemMsh, float sine, float x, float y, float z);
 	CBaseItem();
 	virtual ~CBaseItem();
 
@@ -39,6 +39,7 @@ public:
 	inline IModel* GetModel(){ return itemMdl; };
 	inline bool GetState(){ return pickedUp; };
 	inline bool GetUsed(){ return used; };
+	inline bool GetUsable(){ return usable; };
 
 	////////////////
 	//--MOVEMENT--//

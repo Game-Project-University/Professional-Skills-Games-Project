@@ -1,23 +1,8 @@
 #include "BaseItem.h"
 
-CBaseItem::CBaseItem(IMesh* itemMsh, float sine, float x, float y, float z)
-{
-	mOwner = nullptr;
-
-	itemMdl = itemMsh->CreateModel(x, y, z);
-	itemMdl->Scale(0.2);
-	itemPos.posX = x;
-	itemPos.posX = y;
-	itemPos.posX = z;
-	pickedUp = false;
-	used = false;
-	sineWaveAngle = sine;
-	sineWaveValue = 0;
-}
-
 CBaseItem::CBaseItem()
 {
-
+	mOwner = nullptr;
 }
 
 CBaseItem::~CBaseItem()

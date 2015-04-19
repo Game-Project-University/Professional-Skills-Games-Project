@@ -54,9 +54,37 @@ void CBasePlayer::IncreaseHealth(int value)
 	}
 }
 
+void CBasePlayer::IncreaseShield(int value)
+{
+	if (shield < 200)
+	{
+		shield += value;
+
+		if (shield > 200)
+		{
+			shield = 200;
+		}
+	}
+}
+
 void CBasePlayer::DecreaseHealth(int value)
 {
-	if (health > 0)
+	if (shield > 0)
+	{
+		shield -= value;
+
+		if (shield < 0)
+		{
+			health -= shield;
+			shield = 0;
+
+			if (health < 0)
+			{
+				health = 0;
+			}
+		}
+	}
+	else if (health > 0)
 	{
 		health -= value;
 		if (health < 0)

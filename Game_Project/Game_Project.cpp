@@ -364,22 +364,27 @@ void GameUpdate()
 	interfaceText.str("");
 	
 	// current checkpoint
-	interfaceText << cTrack->GetCheckpoint();
+	interfaceText << "Checkpoint: " << cTrack->GetCheckpoint();
 	ComicSans->Draw(interfaceText.str(), 1000, 650, kWhite);
 	interfaceText.str("");
 
 	// current lap
-	interfaceText << cTrack->GetLap();
+	interfaceText << "Lap: " << cTrack->GetLap();
 	ComicSans->Draw(interfaceText.str(), 1000, 700, kWhite);
 	interfaceText.str("");
 
 	// players health
-	interfaceText << cPlayer->GetPlayerHealth();
+	interfaceText << "Health: " <<  cPlayer->GetPlayerHealth();
 	ComicSans->Draw(interfaceText.str(), 120, 750, kWhite);
 	interfaceText.str("");
 
+	// players health
+	interfaceText << "Shield: " << cPlayer->GetPlayerShield();
+	ComicSans->Draw(interfaceText.str(), 120, 780, kWhite);
+	interfaceText.str("");
+
 	//Player Speed
-	interfaceText << cPlayer->GetPlayerS();
+	interfaceText << "Speed: " << cPlayer->GetPlayerS();
 	ComicSans->Draw(interfaceText.str(), 1050, 500, kWhite);
 	interfaceText.str("");
 

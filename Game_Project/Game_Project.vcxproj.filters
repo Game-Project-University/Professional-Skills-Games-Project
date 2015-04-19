@@ -231,6 +231,9 @@
     <ClCompile Include="Health.cpp">
       <Filter>Items</Filter>
     </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -291,6 +294,9 @@
       <Filter>Particle Systems\Smoke</Filter>
     </ClInclude>
     <ClInclude Include="Health.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield.h">
       <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>

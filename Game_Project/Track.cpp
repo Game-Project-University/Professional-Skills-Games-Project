@@ -1,5 +1,4 @@
 #include "Track.h"
-#include "Health.h"
 
 IMesh* CTrack::itemMsh = nullptr;
 CTrack::CTrack()
@@ -70,9 +69,8 @@ CTrack::CTrack()
 
 	//-- Items
 	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
-	CBaseItem* item = new CHealth(itemMsh, 90, 0, 0, 0);
-
-	courseItems[0] = item;
+	courseItems[0] = new CHealth(itemMsh, 90, 0, 0, 0);
+	courseItems[1] = new CShield(itemMsh, 90, 0, 0, 40);
 }
 
 CTrack::~CTrack()
@@ -86,9 +84,12 @@ CTrack::~CTrack()
 
 void CTrack::TrackUpdate(float frameTime)
 {
-	if (courseItems[0] != nullptr)
+	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
-		courseItems[0]->SinHoverMovement(frameTime);
+		if (courseItems[i] != nullptr)
+		{
+			courseItems[i]->SinHoverMovement(frameTime);
+		}
 	}
 
 	// rotate vortex
@@ -239,7 +240,7 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
-		if (courseItems[0] != nullptr)
+		if (courseItems[i] != nullptr)
 		{
 			if (courseItems[i]->GetState() == false)
 			{
@@ -268,7 +269,7 @@ void CTrack::OwnedItems(CPlayer* cPlayer)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
-		if (courseItems[0] != nullptr)
+		if (courseItems[i] != nullptr)
 		{
 			if (courseItems[i]->GetOwner() == cPlayer)
 			{

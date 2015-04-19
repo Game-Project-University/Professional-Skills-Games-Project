@@ -11,10 +11,12 @@
 #include "PadBuilding.h"
 #include "Vortex.h"
 #include "Wallh.h"
+#include "Health.h"
+#include "Shield.h"
 
 const int NUMBER_OF_OBJECTS = 37;
 const int NUMBER_OF_CHECKPOINTS = 5;
-const int NUMBER_OF_ITEMS = 1;
+const int NUMBER_OF_ITEMS = 2;
 const int NUMBER_OF_VORTEX = 4;
 
 class CTrack
