@@ -230,6 +230,10 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 				{
 					courseItems[i] = new CHealth(itemMsh, 90, 0, 0, 0);
 				}
+				if (courseItems[1] == nullptr)
+				{
+					courseItems[i] = new CShield(itemMsh, 90, 0, 0, 40);
+				}
 			}
 		}
 	}

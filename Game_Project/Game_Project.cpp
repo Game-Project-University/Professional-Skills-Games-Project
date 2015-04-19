@@ -96,6 +96,8 @@ CSmokeSystem* cSmoke;
 
 bool smokeActivated = false;
 bool createSmoke = false;
+bool shieldActivated = false;
+bool createShield = false;
 ///////////////
 //--INTERFACE--//
 stringstream interfaceText;
@@ -132,6 +134,7 @@ float frameTime;
 IMesh* playerMsh;
 IMesh* aiMsh;
 IMesh* stateMsh;
+IMesh* shieldMsh;
 
 /*Font Variables*/
 // Positions of the FPS Text
@@ -530,6 +533,32 @@ void GameUpdate()
 				smokeActivated = false;
 				createSmoke = false;
 				delete(cSmoke);
+			}
+		}
+
+		if (cPlayer->GetPlayerShield() > 0)
+		{
+			shieldActivated = true;
+		}
+
+		// if the shield should appear
+		if (shieldActivated)
+		{
+			// if there isnt an instance of smoke class create one and set it to true
+			if (!createShield)
+			{
+				testMsh = myEngine->LoadMesh("shield.x");
+				testMdl = testMsh->CreateModel(0,0,0);
+				testMdl->Scale(0.4);
+				createShield = true;
+			}
+			testMdl->AttachToParent(cPlayer->GetModel());
+
+			if (cPlayer->GetPlayerShield() == 0)
+			{
+				shieldActivated = false;
+				createShield = false;
+				myEngine->RemoveMesh(testMsh);
 			}
 		}
 	}
