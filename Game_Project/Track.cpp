@@ -237,7 +237,7 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 				}
 				if (courseItems[2] == nullptr)
 				{
-					courseItems[i] = new CSpeed(itemMsh, 90, 0, 0, 40);
+					courseItems[i] = new CSpeed(itemMsh, 90, 0, 0, 80);
 				}
 			}
 		}
