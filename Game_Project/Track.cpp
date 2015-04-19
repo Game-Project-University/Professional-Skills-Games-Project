@@ -71,6 +71,7 @@ CTrack::CTrack()
 	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
 	courseItems[0] = new CHealth(itemMsh, 90, 0, 0, 0);
 	courseItems[1] = new CShield(itemMsh, 90, 0, 0, 40);
+	courseItems[2] = new CSpeed(itemMsh, 90, 0, 0, 80);
 }
 
 CTrack::~CTrack()
@@ -233,6 +234,10 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 				if (courseItems[1] == nullptr)
 				{
 					courseItems[i] = new CShield(itemMsh, 90, 0, 0, 40);
+				}
+				if (courseItems[2] == nullptr)
+				{
+					courseItems[i] = new CSpeed(itemMsh, 90, 0, 0, 40);
 				}
 			}
 		}

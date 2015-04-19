@@ -234,6 +234,9 @@
     <ClCompile Include="Shield.cpp">
       <Filter>Items</Filter>
     </ClCompile>
+    <ClCompile Include="Speed.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -297,6 +300,9 @@
       <Filter>Items</Filter>
     </ClInclude>
     <ClInclude Include="Shield.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Speed.h">
       <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,10 +13,11 @@
 #include "Wallh.h"
 #include "Health.h"
 #include "Shield.h"
+#include "Speed.h"
 
 const int NUMBER_OF_OBJECTS = 37;
 const int NUMBER_OF_CHECKPOINTS = 5;
-const int NUMBER_OF_ITEMS = 2;
+const int NUMBER_OF_ITEMS = 3;
 const int NUMBER_OF_VORTEX = 4;
 
 class CTrack
