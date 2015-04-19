@@ -20,6 +20,7 @@ protected:
 	float sineWaveAngle;
 	float sineWaveValue;
 	bool pickedUp;
+	bool used;
 
 public:
 	CBaseItem(IMesh* itemMsh, float sine, float x, float y, float z);
@@ -38,7 +39,8 @@ public:
 	//--GETTERS--//
 	inline IModel* GetModel(){ return itemMdl; };
 	inline bool GetState(){ return pickedUp; };
-	
+	inline bool GetUsed(){ return used; };
+
 	////////////////
 	//--MOVEMENT--//
 	void SinHoverMovement(float frameTime);

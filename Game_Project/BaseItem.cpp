@@ -10,7 +10,7 @@ CBaseItem::CBaseItem(IMesh* itemMsh, float sine, float x, float y, float z)
 	itemPos.posX = y;
 	itemPos.posX = z;
 	pickedUp = false;
-
+	used = false;
 	sineWaveAngle = sine;
 	sineWaveValue = 0;
 }
@@ -26,7 +26,6 @@ CBaseItem::~CBaseItem()
 
 void CBaseItem::Activate()
 {
-
 }
 
 ////////////////
