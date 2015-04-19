@@ -2,6 +2,8 @@
 
 CBaseItem::CBaseItem(IMesh* itemMsh, float sine, float x, float y, float z)
 {
+	mOwner = nullptr;
+
 	itemMdl = itemMsh->CreateModel(x, y, z);
 	itemMdl->Scale(0.2);
 	itemPos.posX = x;
@@ -22,7 +24,7 @@ CBaseItem::~CBaseItem()
 {
 }
 
-void CBaseItem::Activate(CBasePlayer* currentPlayer)
+void CBaseItem::Activate()
 {
 
 }

@@ -9,5 +9,5 @@ class CHealth : public CBaseItem
 public:
 	CHealth(IMesh* itemMsh, float sine, float x, float y, float z);
 	~CHealth();
-	void Activate(CBasePlayer* currentPlayer);
+	void Activate();
 };

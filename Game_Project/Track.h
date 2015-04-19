@@ -37,6 +37,7 @@ public:
 
 	void ResetPlayerPosition(CPlayer* cPlayer);
 	void TrackUpdate(float frameTime);
+	void OwnedItems(CPlayer* cPlayer);
 
 
 private:

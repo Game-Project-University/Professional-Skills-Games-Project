@@ -1,12 +1,11 @@
 #pragma once
 #include "Global.h"
-//#include "BaseItem.h"
 
 class CBasePlayer
 {
 protected:
 	IModel* playerMdl;
-	//CBaseItem* currentItem;
+
 	//- set the player movement speed
 	float playerMovementS;
 	//- set the player rotation speed

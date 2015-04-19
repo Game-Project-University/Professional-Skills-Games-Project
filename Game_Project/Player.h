@@ -1,5 +1,6 @@
 #pragma once
 #include "BasePlayer.h"
+#include "BaseItem.h"
 
 ////////////////
 //--CONSTANTS-//
@@ -10,7 +11,7 @@ const EKeyCode FORWARD = Key_W;
 const EKeyCode REVERSE = Key_S;
 const EKeyCode LEFT = Key_A;
 const EKeyCode RIGHT = Key_D;
-const EKeyCode HANDBRAKE = Key_Space;
+const EKeyCode ACTIVATE = Key_Space;
 
 struct SPlayerPos
 {
@@ -61,4 +62,8 @@ public:
 	//--Movement--//
 	void ForwardReverseMovement(float frameTime);
 	void RightLeftMovement(float frameTime);	
+	
+	///////////////////
+	// activate item //
+	void ActivateItem(CBaseItem* itemOwned);
 };

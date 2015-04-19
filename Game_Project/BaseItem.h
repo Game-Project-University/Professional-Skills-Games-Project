@@ -12,6 +12,9 @@ struct SItemPos
 class CBaseItem
 {
 protected:
+	// store who owns the item
+	CBasePlayer* mOwner;
+
 	IModel* itemMdl;
 	SItemPos itemPos;
 	float sineWaveAngle;
@@ -24,7 +27,12 @@ public:
 	virtual ~CBaseItem();
 
 	// Activates item
-	virtual void Activate(CBasePlayer* currentPlayer) = 0;
+	// set the owner of the item
+	void SetOwner(CBasePlayer* owner){ mOwner = owner; };
+	CBasePlayer* GetOwner(){ return mOwner; };
+
+	//void ItemUsed(){ delete(mOwner); mOwner = nullptr; };
+	virtual void Activate() = 0;
 
 	///////////////
 	//--GETTERS--//

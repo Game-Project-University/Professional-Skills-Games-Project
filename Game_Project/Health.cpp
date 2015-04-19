@@ -18,7 +18,7 @@ CHealth::~CHealth()
 {
 }
 
-void CHealth::Activate(CBasePlayer* currentPlayer)
+void CHealth::Activate()
 {
-	currentPlayer->IncreaseHealth(50);
+	mOwner->IncreaseHealth(20);
 }

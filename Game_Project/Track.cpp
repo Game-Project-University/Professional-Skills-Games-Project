@@ -68,7 +68,7 @@ CTrack::CTrack()
 
 	//-- Items
 	IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
-	CHealth* item = new CHealth(itemMsh, 90, 0, 0, 0);
+	CBaseItem* item = new CHealth(itemMsh, 90, 0, 0, 0);
 
 	courseItems[0] = item;
 }
@@ -167,6 +167,8 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion
 		cPlayer->SetPlayerPos(vortexObjects[3]->GetX(), vortexObjects[3]->GetY(), vortexObjects[3]->GetZ());
 		cPlayer->GetModel()->LookAt(courseCheckpoints[0]->GetModel());
 	}
+
+	OwnedItems(cPlayer);
 }
 
 //-- Reset the players position to the last checkpoint when player dies
@@ -218,6 +220,7 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 			{
 				sound->PlaySound();
 				courseItems[i]->Collide();
+				courseItems[i]->SetOwner(cPlayer);
 			}
 		}
 	}
@@ -230,4 +233,16 @@ template <class T, class S> bool CTrack::SphereToSphereCollision(T* cPLayer, S* 
 	float distZ = cPLayer->GetPlayerZ() - cCheckPoints->GetZ();
 	
 	return distX*distX + distZ*distZ <= radius1*2 + radius2*2;
+}
+
+//-- check if owned items are being used --//
+void CTrack::OwnedItems(CPlayer* cPlayer)
+{
+	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
+	{
+		if (courseItems[i]->GetOwner() == cPlayer)
+		{
+			cPlayer->ActivateItem(courseItems[i]);
+		}
+	}
 }

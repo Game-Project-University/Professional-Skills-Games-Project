@@ -335,6 +335,7 @@ void GameSetup()
 	{
 		waypoints[i] = stateMsh->CreateModel(pos[0][i], 0, pos[1][i]);
 	}
+
 	/////////////////
 	//-- SOOUNDS --//
 	SmashingSound = new CSound(2, 0.07f);
