@@ -489,9 +489,12 @@ void GameUpdate()
 
 		//- update the players position
 		cPlayer->UpdatePlayerPos();
-
+		for (int i = 0; i < 4; i++)
+		{
+			cAI[i]->UpdatePlayerPos();
+		}
 		//- Check for collision
-		cTrack->ObjectCollision(cPlayer, SmashingSound, ExplostionSound);
+		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound);
 
 		//- Chec for checkpoint collision
 		cTrack->CheckPointCollision(cPlayer);

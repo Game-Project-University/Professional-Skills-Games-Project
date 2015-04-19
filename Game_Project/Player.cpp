@@ -29,27 +29,6 @@ CPlayer::~CPlayer()
 
 }
 
-///////////////
-//--SETTERS--//
-void CPlayer::UpdatePlayerPos()
-{
-	playerPos.posX = playerMdl->GetX();
-	playerPos.posY = playerMdl->GetY();
-	playerPos.posZ = playerMdl->GetZ();
-}
-
-void CPlayer::UpdatePreviousPos()
-{
-	playerPrevPos.posX = playerMdl->GetX();
-	playerPrevPos.posY = playerMdl->GetY();
-	playerPrevPos.posZ = playerMdl->GetZ();
-}
-
-void CPlayer::MoveBeforeCollision()
-{
-	playerMdl->SetPosition(playerPrevPos.posX, playerPrevPos.posY, playerPrevPos.posZ);
-}
-
 //////////////////////
 //--PLAYERMOVEMENT--//
 

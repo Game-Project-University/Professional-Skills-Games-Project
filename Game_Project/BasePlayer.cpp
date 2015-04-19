@@ -75,6 +75,26 @@ void CBasePlayer::SetPlayerPos(float x, float y, float z)
 {
 	playerMdl->SetPosition(x, y, z);
 }
+
+void CBasePlayer::UpdatePlayerPos()
+{
+	playerPos.posX = playerMdl->GetX();
+	playerPos.posY = playerMdl->GetY();
+	playerPos.posZ = playerMdl->GetZ();
+}
+
+void CBasePlayer::UpdatePreviousPos()
+{
+	playerPrevPos.posX = playerMdl->GetX();
+	playerPrevPos.posY = playerMdl->GetY();
+	playerPrevPos.posZ = playerMdl->GetZ();
+}
+
+void CBasePlayer::MoveBeforeCollision()
+{
+	playerMdl->SetPosition(playerPrevPos.posX, playerPrevPos.posY, playerPrevPos.posZ);
+}
+
 //////////////////////
 //--PLAYERMOVEMENT--//
 void CBasePlayer::SinHoverMovement(float frameTime)

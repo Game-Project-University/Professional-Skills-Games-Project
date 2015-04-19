@@ -4,6 +4,7 @@
 #include "BlockBuilding.h"
 #include "Battleship.h"
 #include "Player.h"
+#include "AI.h"
 #include "Checkpoint.h"
 #include "Sound.h"
 #include "BaseItem.h"
@@ -22,7 +23,7 @@ public:
 	CTrack();
 	~CTrack();
 
-	void ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explosion);
+	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion);
 	void CheckPointCollision(CPlayer* cPlayer);
 	void ItemCollision(CPlayer* cPlayer, CSound* sound);
 

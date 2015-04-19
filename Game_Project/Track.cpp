@@ -94,7 +94,7 @@ void CTrack::TrackUpdate(float frameTime)
 }
 
 //-- AABB COLLISION
-void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion)
+void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explostion)
 {
 	// check for collision using AABB
 	// count through and array of objects
@@ -168,6 +168,21 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CSound* sound, CSound* explostion
 		cPlayer->GetModel()->LookAt(courseCheckpoints[0]->GetModel());
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		if (SphereToSphereCollision(cAI[i], vortexObjects[0], 10, 700))
+		{
+			cAI[i]->IncreaseWaypoint();
+			cAI[i]->SetPlayerPos(vortexObjects[1]->GetX(), vortexObjects[1]->GetY(), vortexObjects[1]->GetZ());
+		}
+
+		if (SphereToSphereCollision(cAI[i], vortexObjects[2], 10, 3000))
+		{
+			cAI[i]->IncreaseWaypoint(); 
+			cAI[i]->SetPlayerPos(vortexObjects[3]->GetX(), vortexObjects[3]->GetY(), vortexObjects[3]->GetZ());
+			cAI[i]->GetModel()->LookAt(courseCheckpoints[0]->GetModel());
+		}
+	}
 	OwnedItems(cPlayer);
 }
 
