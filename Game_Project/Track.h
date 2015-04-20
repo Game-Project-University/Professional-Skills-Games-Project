@@ -26,7 +26,9 @@ public:
 	CTrack();
 	~CTrack();
 
-	static IMesh* itemMsh;
+	static IMesh* HeartMsh;
+	static IMesh* SpeedMsh;
+	static IMesh* SheildMsh;
 
 	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion);
 	void CheckPointCollision(CPlayer* cPlayer);

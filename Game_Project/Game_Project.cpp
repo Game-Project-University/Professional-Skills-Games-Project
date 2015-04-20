@@ -179,7 +179,9 @@ bool ProgramSetup()
 	//
 	CSmokeSystem::particleMsh = myEngine->LoadMesh("Smoke.x");
 	//
-	CTrack::itemMsh = myEngine->LoadMesh("sphere.x");
+	CTrack::HeartMsh = myEngine->LoadMesh("heart.x");
+	CTrack::SpeedMsh = myEngine->LoadMesh("PlasticDrum1.x");
+	CTrack::SheildMsh = myEngine->LoadMesh("shield.x");
 
 	
 	//-- CREATE A SKYBOX FOR THE WORLD --//
@@ -324,10 +326,10 @@ void GameSetup()
 		cAI[i] = new CAI(aiMsh, i + 0, rand() % 300, 0, 1, -20 );
 	}*/
 
-	cAI[0] = new CAI(aiMsh, 20, rand() % 300, -10, 1, -20);
-	cAI[1] = new CAI(aiMsh, 30, rand() % 300,   0, 1, -30);
-	cAI[2] = new CAI(aiMsh, 25, rand() % 300, -10, 1, -40);
-	cAI[3] = new CAI(aiMsh, 35, rand() % 300,   0, 1, -50);
+	cAI[0] = new CAI(aiMsh, 50, rand() % 300, -10, 1, -20);
+	cAI[1] = new CAI(aiMsh, 70, rand() % 300,   0, 1, -30);
+	cAI[2] = new CAI(aiMsh, 35, rand() % 300, -10, 1, -40);
+	cAI[3] = new CAI(aiMsh, 90, rand() % 300,   0, 1, -50);
 
 	stateMsh = myEngine->LoadMesh("state.x");
 	//stateMsh = myEngine->LoadMesh("dummy.x");
@@ -455,24 +457,24 @@ void GameUpdate()
 	{
 		if (PLAYERSTATE == STARTRACE)
 		{
-			if (startingCounter >= 4 && startingCounter < 6)
+			if (startingCounter >= 2 && startingCounter < 4)
 			{
 				interfaceText << "3";
 			}
-			else if (startingCounter > 6 && startingCounter < 8)
+			else if (startingCounter > 4 && startingCounter < 6)
 			{
 				interfaceText << "2";
 			}
-			else if (startingCounter > 8 && startingCounter < 10)
+			else if (startingCounter > 6 && startingCounter < 8)
 			{
 				interfaceText << "1";
 			}
-			else if (startingCounter > 10 && startingCounter < 12)
+			else if (startingCounter > 8 && startingCounter < 9)
 			{
 				FontStartRaceX = 490;
 				interfaceText << "GO";
 			}
-			else if (startingCounter >= 12)
+			else if (startingCounter >= 9)
 			{
 				PLAYERSTATE = ALIVE;
 			}

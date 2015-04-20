@@ -1,6 +1,9 @@
 #include "Track.h"
 
-IMesh* CTrack::itemMsh = nullptr;
+IMesh* CTrack::HeartMsh = nullptr;
+IMesh* CTrack::SpeedMsh = nullptr;
+IMesh* CTrack::SheildMsh = nullptr;
+
 CTrack::CTrack()
 {
 	//-- checkpoints and laps variables to show on interface and track players progress
@@ -69,9 +72,9 @@ CTrack::CTrack()
 
 	//-- Items
 	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
-	courseItems[0] = new CHealth(itemMsh, 90, 0, 0, 0);
-	courseItems[1] = new CShield(itemMsh, 90, 0, 0, 40);
-	courseItems[2] = new CSpeed(itemMsh, 90, 0, 0, 80);
+	courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100);
+	courseItems[1] = new CShield(SheildMsh, 90, 10, 0, 100);
+	courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100);
 }
 
 CTrack::~CTrack()
@@ -229,15 +232,15 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 				// item recreation
 				if (courseItems[0] == nullptr)
 				{
-					courseItems[i] = new CHealth(itemMsh, 90, 0, 0, 0);
+					courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100);
 				}
 				if (courseItems[1] == nullptr)
 				{
-					courseItems[i] = new CShield(itemMsh, 90, 0, 0, 40);
+					courseItems[1] = new CShield(SheildMsh, 90, 10, 0, 100);
 				}
 				if (courseItems[2] == nullptr)
 				{
-					courseItems[i] = new CSpeed(itemMsh, 90, 0, 0, 80);
+					courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100);
 				}
 			}
 		}

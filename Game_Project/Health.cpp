@@ -4,7 +4,7 @@
 CHealth::CHealth(IMesh* itemMsh, float sine, float x, float y, float z)
 {
 	itemMdl = itemMsh->CreateModel(x, y, z);
-	itemMdl->Scale(0.2);
+	itemMdl->Scale(0.1);
 	itemPos.posX = x;
 	itemPos.posX = y;
 	itemPos.posX = z;
