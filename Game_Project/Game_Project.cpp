@@ -10,6 +10,7 @@
 #include "Track.h"
 #include "BaseItem.h"
 #include "SmokeSystem.h"
+#include "PlayerFireSystem.h"
 
 //gj
 /*-----------------------------------------------------------------------------------------
@@ -90,10 +91,13 @@ CSound* MainMenuSound;
 CSound* SmashingSound;
 CSound* ExplostionSound;
 CSound* PickupSound;
+CSound* CrowdSound;
+bool crowdCheering = false;
+float cheerTimer = 0.0f;
 
 //-- PARTICLES --//
+CFireSystem* cFire;
 CSmokeSystem* cSmoke;
-
 bool smokeActivated = false;
 bool createSmoke = false;
 bool shieldActivated = false;
@@ -175,7 +179,11 @@ bool ProgramSetup()
 	CWall::wallIsle = myEngine->LoadMesh("IsleStraight.x");
 	CBlockBuilding::blockBuildingMsh = myEngine->LoadMesh("Building07.x");
 	CBattleShip::battleShipMsh = myEngine->LoadMesh("Spaceship01Battlecruiser.x");
+	CCrowd::crowdMsh = myEngine->LoadMesh("sierra.x");
+	CCrowdBarrier::crowdBarrierMsh = myEngine->LoadMesh("Cue.x");
+	CCrowdWall::crowdWallMsh = myEngine->LoadMesh("Barrier.x");
 
+	CFireSystem::particleMsh = myEngine->LoadMesh("Smoke.x");
 	//
 	CSmokeSystem::particleMsh = myEngine->LoadMesh("Smoke.x");
 	//
@@ -334,6 +342,9 @@ void GameSetup()
 	stateMsh = myEngine->LoadMesh("state.x");
 	//stateMsh = myEngine->LoadMesh("dummy.x");
 
+	//Player Fire System
+	cFire = new CFireSystem();
+
 	// This will read in from file eventually
 	float pos[2][MAX_WAYPOINTS] = { { 0, 0, 0, 0, 0, -10, -40, -65, -80, -80, -80, -80, -70, -60, -40, -20, 0, 40, 80, 300, 340, 380, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 0, 0, 0, 0, 0, 0, 0, 0, },
 	{ 0, 40, 80, 120, 160, 165, 165, 170, 180, 190, 205, 220, 235, 250, 260, 260, 260, 260, 260, 260, 260, 260, 260, 220, 180, 140, 100, 60, 20, -20, -60, -100, -140, -180, -220, -260, -300, -340, -380, -420, -460, -500, -540, -580, -625, -300, -260, -220, -180, -140, -100, -60, -40 } };
@@ -348,6 +359,7 @@ void GameSetup()
 	SmashingSound = new CSound(2, 0.07f);
 	ExplostionSound = new CSound(3, 1.0f);
 	PickupSound = new CSound(4, 0.07f);
+	CrowdSound = new CSound(5, 0.1f);
 
 	//-- LOAD FONT --///
 	ComicSans = myEngine->LoadFont("Comic Sans MS", 36.0f);
@@ -516,12 +528,37 @@ void GameUpdate()
 		//- Chec for checkpoint collision
 		cTrack->CheckPointCollision(cPlayer);
 
+		//Update exhaust particle's position 
+		cFire->update(frameTime, cPlayer);
+
 		//- Chec for item collision
 		cTrack->ItemCollision(cPlayer, PickupSound);
 
 		if (cPlayer->GetPlayerHealth() < 50)
 		{
 			smokeActivated = true;
+		}
+
+		//Plays crowd cheering if player position is inside that track area
+		if (cPlayer->GetPlayerZ() > -220.0f && cPlayer->GetPlayerZ() < 180)
+		{
+			if (cPlayer->GetPlayerX() > 360.0f && cPlayer->GetPlayerX() < 480.0f)
+			{
+				if (crowdCheering == false)
+				{
+					CrowdSound->PlaySound();
+					crowdCheering = true;
+				}
+				if (crowdCheering == true)
+				{
+					cheerTimer += (10.0f * frameTime);
+					if (cheerTimer >= 35.0f)
+					{
+						cheerTimer = 0.0f;
+						crowdCheering = false;
+					}
+				}
+			}
 		}
 
 		// if the smoke should appear because the player has below 50 health
@@ -606,7 +643,7 @@ void GameUpdate()
 	cPlayer->UpdatePreviousPos();
 
 	//-- Item --//
-	cTrack->TrackUpdate(frameTime);
+	cTrack->TrackUpdate(frameTime, cPlayer);
 }
 
 ///////////////////////

@@ -14,11 +14,15 @@
 #include "Health.h"
 #include "Shield.h"
 #include "Speed.h"
+#include "Crowd.h"
+#include "CrowdBarrier.h"
+#include "CrowdWall.h"
 
-const int NUMBER_OF_OBJECTS = 37;
+const int NUMBER_OF_OBJECTS = 47;
 const int NUMBER_OF_CHECKPOINTS = 5;
 const int NUMBER_OF_ITEMS = 3;
 const int NUMBER_OF_VORTEX = 4;
+const int NUMBER_OF_CROWDS = 18;
 
 class CTrack
 {
@@ -44,7 +48,7 @@ public:
 	inline int GetLap(){ return lap; };
 
 	void ResetPlayerPosition(CPlayer* cPlayer);
-	void TrackUpdate(float frameTime);
+	void TrackUpdate(float frameTime, CPlayer* cPlayer);
 	void OwnedItems(CPlayer* cPlayer);
 
 
@@ -53,6 +57,7 @@ private:
 	CCheckpoint* courseCheckpoints[NUMBER_OF_CHECKPOINTS];
 	CBaseItem* courseItems[NUMBER_OF_ITEMS];
 	CVortex* vortexObjects[NUMBER_OF_VORTEX];
+	CCrowd* crowdObjects[NUMBER_OF_CROWDS];
 
 	int checkPoint;
 	int lap;

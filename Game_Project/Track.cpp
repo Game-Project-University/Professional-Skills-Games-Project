@@ -53,6 +53,17 @@ CTrack::CTrack()
 	courseObjects[36] = new CBlockBuilding(350.0f, 0.0f, -250.0f, 40.0f, 840.0f);
 	courseObjects[36]->ScaleZ(15);
 	courseObjects[36]->ScaleY(6);
+	courseObjects[37] = new CCrowdBarrier(375.0f, -1.0f, -20.0f, 5.0f, 350.0f, true);
+	courseObjects[38] = new CCrowdBarrier(375.0f, -1.0f, 5.0f, 5.0f, 350.0f, false);
+	courseObjects[39] = new CCrowdBarrier(475.0f, -1.0f, -20.0f, 5.0f, 350.0f, true);
+	courseObjects[40] = new CCrowdBarrier(475.0f, -1.0f, 5.0f, 5.0f, 350.0f, false);
+	courseObjects[41] = new CCrowdWall(375.0f, -2.0f, 168.0f, 7.5f, 20.0f, false);
+	courseObjects[42] = new CCrowdWall(475.0f, -2.0f, 168.0f, 7.5f, 20.0f, false);
+	courseObjects[43] = new CCrowdWall(375.0f, -2.0f, -12.5f, 7.5f, 20.0f, false);
+	courseObjects[44] = new CCrowdWall(475.0f, -2.0f, -12.5f, 7.5f, 20.0f, false);
+	courseObjects[45] = new CCrowdWall(375.0f, -2.0f, -182.5f, 7.5f, 20.0f, false);
+	courseObjects[46] = new CCrowdWall(475.0f, -2.0f, -182.5f, 7.5f, 20.0f, false);
+
 	//-- vortex 1
 	vortexObjects[0] = new CVortex(110.0f, 10.0f, 260.0f, false);
 	vortexObjects[0]->Scale(2);
@@ -70,6 +81,27 @@ CTrack::CTrack()
 	courseCheckpoints[3] = new CCheckpoint(70, 0, 260, true);
 	courseCheckpoints[4] = new CCheckpoint(420, 0, 200, false);
 
+	//Crowds
+	crowdObjects[0] = new CCrowd(374.0f, 0.0f, -45.0f);
+	crowdObjects[1] = new CCrowd(374.0f, 0.0f, -55.0f);
+	crowdObjects[2] = new CCrowd(374.0f, 0.0f, -100.0f);
+	crowdObjects[3] = new CCrowd(374.0f, 0.0f, -110.0f);
+	crowdObjects[4] = new CCrowd(374.0f, 0.0f, 55.0f);
+	crowdObjects[5] = new CCrowd(374.0f, 0.0f, 80.0f);
+	crowdObjects[6] = new CCrowd(374.0f, 0.0f, 100.0f);
+	crowdObjects[7] = new CCrowd(374.0f, 0.0f, 95.0f);
+	crowdObjects[8] = new CCrowd(374.0f, 0.0f, 20.0f);
+	//Far Side
+	crowdObjects[9] = new CCrowd(477.0f, 0.0f, -45.0f);
+	crowdObjects[10] = new CCrowd(477.0f, 0.0f, -110.0f);
+	crowdObjects[11] = new CCrowd(477.0f, 0.0f, -60.0f);
+	crowdObjects[12] = new CCrowd(477.0f, 0.0f, -80.0f);
+	crowdObjects[13] = new CCrowd(477.0f, 0.0f, -30.0f);
+	crowdObjects[14] = new CCrowd(477.0f, 0.0f, 20.0f);
+	crowdObjects[15] = new CCrowd(477.0f, 0.0f, 125.0f);
+	crowdObjects[16] = new CCrowd(477.0f, 0.0f, 50.0f);
+	crowdObjects[17] = new CCrowd(477.0f, 0.0f, 10.0f);
+
 	//-- Items
 	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
 	courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100);
@@ -86,7 +118,7 @@ CTrack::~CTrack()
 	}
 }
 
-void CTrack::TrackUpdate(float frameTime)
+void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
@@ -101,6 +133,16 @@ void CTrack::TrackUpdate(float frameTime)
 	{
 		vortexObjects[i]->RotateVortex(frameTime);
 	}
+
+	//Update crowds if player is in that track area
+	if (playerPtr->GetPlayerX() > 360.0f && playerPtr->GetPlayerX() < 480.0f)
+	{
+		for (int i = 0; i < NUMBER_OF_CROWDS; i++)
+		{
+			crowdObjects[i]->update(frameTime, playerPtr);
+		}
+	}
+
 }
 
 //-- AABB COLLISION

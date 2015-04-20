@@ -166,6 +166,18 @@
     <Filter Include="Particle Systems\Smoke">
       <UniqueIdentifier>{6a0bb6a1-76d9-47ba-b2df-ee26bef8d2d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\Crowd">
+      <UniqueIdentifier>{c26d1ea8-c3a9-4571-8f94-f9cfc13f9feb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\CrowdBarrier">
+      <UniqueIdentifier>{e098f5be-9e99-4363-bbd4-4af643c15bbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\CrowdWall">
+      <UniqueIdentifier>{bd61e293-d037-43bf-b4ae-5aace9001e40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle Systems\PlayerExhaustSystem">
+      <UniqueIdentifier>{c3754323-e19a-4386-b306-dc586da81fe7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -237,6 +249,18 @@
     <ClCompile Include="Speed.cpp">
       <Filter>Items</Filter>
     </ClCompile>
+    <ClCompile Include="Crowd.cpp">
+      <Filter>Course\Course Objects\Type of Object\Crowd</Filter>
+    </ClCompile>
+    <ClCompile Include="CrowdBarrier.cpp">
+      <Filter>Course\Course Objects\Type of Object\CrowdBarrier</Filter>
+    </ClCompile>
+    <ClCompile Include="CrowdWall.cpp">
+      <Filter>Course\Course Objects\Type of Object\CrowdWall</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFireSystem.cpp">
+      <Filter>Particle Systems\PlayerExhaustSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -304,6 +328,18 @@
     </ClInclude>
     <ClInclude Include="Speed.h">
       <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Crowd.h">
+      <Filter>Course\Course Objects\Type of Object\Crowd</Filter>
+    </ClInclude>
+    <ClInclude Include="CrowdBarrier.h">
+      <Filter>Course\Course Objects\Type of Object\CrowdBarrier</Filter>
+    </ClInclude>
+    <ClInclude Include="CrowdWall.h">
+      <Filter>Course\Course Objects\Type of Object\CrowdWall</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFireSystem.h">
+      <Filter>Particle Systems\PlayerExhaustSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
