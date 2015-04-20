@@ -138,8 +138,8 @@ IMesh* shieldMsh;
 
 /*Font Variables*/
 // Positions of the FPS Text
-const float FontFpsX = 40.0f;
-const float FontFpsY = 0.0f;
+const float FontFpsX = 15.0f;
+const float FontFpsY = 5.0f;
 float FontStartRaceX = 580;
 float FontStartRaceY = 200;
 
@@ -370,7 +370,7 @@ void GameUpdate()
 	
 	// current checkpoint
 	interfaceText << "Checkpoint: " << cTrack->GetCheckpoint();
-	ComicSans->Draw(interfaceText.str(), 1000, 650, kWhite);
+	ComicSans->Draw(interfaceText.str(), 900, 650, kWhite);
 	interfaceText.str("");
 
 	// current lap
@@ -380,17 +380,22 @@ void GameUpdate()
 
 	// players health
 	interfaceText << "Health: " <<  cPlayer->GetPlayerHealth();
-	ComicSans->Draw(interfaceText.str(), 120, 750, kWhite);
+	ComicSans->Draw(interfaceText.str(), 40, 725, kWhite);
 	interfaceText.str("");
 
-	// players health
+	// players shield
 	interfaceText << "Shield: " << cPlayer->GetPlayerShield();
-	ComicSans->Draw(interfaceText.str(), 120, 780, kWhite);
+	ComicSans->Draw(interfaceText.str(), 40, 760, kWhite);
 	interfaceText.str("");
 
 	//Player Speed
 	interfaceText << "Speed: " << cPlayer->GetPlayerS();
-	ComicSans->Draw(interfaceText.str(), 1050, 500, kWhite);
+	ComicSans->Draw(interfaceText.str(), 880, 550, kWhite);
+	interfaceText.str("");
+
+	//Player ammunition
+	interfaceText << "Ammunition: ";
+	ComicSans->Draw(interfaceText.str(), 40, 795, kWhite);
 	interfaceText.str("");
 
 	//Player Speed
