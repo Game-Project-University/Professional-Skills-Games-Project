@@ -23,9 +23,13 @@ protected:
 	bool used;
 	bool usable;
 
+	
+
 public:
-	CBaseItem();
+	CBaseItem(string itemType);
 	virtual ~CBaseItem();
+
+	string type;
 
 	// Activates item
 	// set the owner of the item

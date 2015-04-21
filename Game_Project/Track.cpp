@@ -12,6 +12,8 @@ CTrack::CTrack()
 
 	itemHeld = false;
 
+	font = myEngine->LoadFont("Comic Sans MS", 36.0f);
+
 	//-- creation of objects (x, y, z, width, height)
 	//-- i will make this read in from a file eventually
 	courseObjects[0]  = new CSkyScraper(-40.0f,0.0f,60.0f, 52.0f, 54.0f);
@@ -107,17 +109,17 @@ CTrack::CTrack()
 
 	//-- Items
 	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
-	courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100);
-	courseItems[1] = new CShield(SheildMsh, 90, 10, 0, 100);
-	courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100);
+	courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100, "health");
+	courseItems[1] = new CShield(SheildMsh, 90, 10, 0, 100, "Shield");
+	courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100, "Speed");
 
-	courseItems[3] = new CHealth(HeartMsh, 90, 20, 0, 245);
-	courseItems[4] = new CShield(SheildMsh, 90, 20, 0, 260);
-	courseItems[5] = new CSpeed(SpeedMsh, 90, 20, 0, 275);
+	courseItems[3] = new CHealth(HeartMsh, 90, 20, 0, 245, "health");
+	courseItems[4] = new CShield(SheildMsh, 90, 20, 0, 260, "Shield");
+	courseItems[5] = new CSpeed(SpeedMsh, 90, 20, 0, 275, "Speed");
 
-	courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, -220);
-	courseItems[7] = new CShield(SheildMsh, 90, 440, 0, -220);
-	courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220);
+	courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, -220, "health");
+	courseItems[7] = new CShield(SheildMsh, 90, 440, 0, -220, "Shield");
+	courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220, "Speed");
 }
 
 CTrack::~CTrack()
@@ -285,39 +287,39 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 				// item recreation
 				if (courseItems[0] == nullptr)
 				{
-					courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100);
+					courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100, "health");
 				}
 				if (courseItems[1] == nullptr)
 				{
-					courseItems[1] = new CShield(SheildMsh, 90, 10, 0, 100);
+					courseItems[1] = new CShield(SheildMsh, 90, 10, 0, 100, "Shield");
 				}
 				if (courseItems[2] == nullptr)
 				{
-					courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100);
+					courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100, "Speed");
 				}
 				if (courseItems[3] == nullptr)
 				{
-					courseItems[3] = new CHealth(HeartMsh, 90, 20, 0, 250);
+					courseItems[3] = new CHealth(HeartMsh, 90, 20, 0, 250, "health");
 				}
 				if (courseItems[4] == nullptr)
 				{
-					courseItems[4] = new CShield(SheildMsh, 90, 20, 0, 260);
+					courseItems[4] = new CShield(SheildMsh, 90, 20, 0, 260, "Shield");
 				}
 				if (courseItems[5] == nullptr)
 				{
-					courseItems[5] = new CSpeed(SpeedMsh, 90, 20, 0, 270);
+					courseItems[5] = new CSpeed(SpeedMsh, 90, 20, 0, 270, "Speed");
 				}
 				if (courseItems[6] == nullptr)
 				{
-					courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, 140);
+					courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, 140, "health");
 				}
 				if (courseItems[7] == nullptr)
 				{
-					courseItems[7] = new CShield(SheildMsh, 90, 440, 0, 140);
+					courseItems[7] = new CShield(SheildMsh, 90, 440, 0, 140, "Shield");
 				}
 				if (courseItems[8] == nullptr)
 				{
-					courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220);
+					courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220, "Speed");
 				}
 			}
 		}
@@ -335,6 +337,16 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 			{
 				if (SphereToSphereCollision(cPlayer, courseItems[i], 5.0f, 5.0f) && itemHeld == false)
 				{
+					if (courseItems[i]->type == "Shield")
+					{
+						ItemShow = "Item Collected: Shield";
+					}
+
+					if (courseItems[i]->type == "Speed")
+					{
+						ItemShow = "Item Collected: Speed";
+					}
+
 					sound->PlaySound();
 					courseItems[i]->Collide();
 					courseItems[i]->SetOwner(cPlayer);
@@ -343,6 +355,13 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 			}
 		}
 	}
+}
+
+void CTrack::DisplayItemHeld()
+{
+	interfaceText << ItemShow;
+	font->Draw(interfaceText.str(), 500, 798, kWhite);
+	interfaceText.str("");
 }
 
 //-- SPHERE TO SPHERE COLLISION --//
@@ -370,6 +389,7 @@ void CTrack::OwnedItems(CPlayer* cPlayer)
 					delete(courseItems[i]);
 					courseItems[i] = nullptr;
 					itemHeld = false;
+					ItemShow = "";
 				}
 			}
 		}

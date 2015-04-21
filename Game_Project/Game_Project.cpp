@@ -655,6 +655,8 @@ void GameUpdate()
 
 	//-- Item --//
 	cTrack->TrackUpdate(frameTime, cPlayer);
+
+	cTrack->DisplayItemHeld();
 }
 
 ///////////////////////

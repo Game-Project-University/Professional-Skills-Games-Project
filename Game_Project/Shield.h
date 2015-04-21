@@ -7,7 +7,7 @@ class CShield : public CBaseItem
 {
 	// Public Member Functions
 public:
-	CShield(IMesh* itemMsh, float sine, float x, float y, float z);
+	CShield(IMesh* itemMsh, float sine, float x, float y, float z, string itemtype);
 	~CShield();
 	void Activate();
 };

@@ -1,7 +1,7 @@
 #include "Speed.h"
 
 // Constructor
-CSpeed::CSpeed(IMesh* itemMsh, float sine, float x, float y, float z)
+CSpeed::CSpeed(IMesh* itemMsh, float sine, float x, float y, float z, string itemtype) : CBaseItem(itemtype)
 {
 	itemMdl = itemMsh->CreateModel(x, y, z);
 	itemMdl->Scale(6);

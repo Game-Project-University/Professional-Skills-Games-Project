@@ -1,7 +1,8 @@
 #include "BaseItem.h"
 
-CBaseItem::CBaseItem()
+CBaseItem::CBaseItem(string itemtype)
 {
+	type = itemtype;
 	mOwner = nullptr;
 }
 

@@ -34,6 +34,11 @@ public:
 	static IMesh* SpeedMsh;
 	static IMesh* SheildMsh;
 
+	stringstream interfaceText;
+	IFont* font;
+
+	string ItemShow;
+
 	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion);
 	void CheckPointCollision(CPlayer* cPlayer);
 	void ItemCollision(CPlayer* cPlayer, CSound* sound);
@@ -51,8 +56,9 @@ public:
 	void TrackUpdate(float frameTime, CPlayer* cPlayer);
 	void OwnedItems(CPlayer* cPlayer);
 
-	bool itemHeld;
+	void DisplayItemHeld();
 
+	bool itemHeld;
 
 private:
 	CObject* courseObjects[NUMBER_OF_OBJECTS];

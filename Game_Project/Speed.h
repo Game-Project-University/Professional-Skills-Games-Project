@@ -7,7 +7,7 @@ class CSpeed : public CBaseItem
 {
 	// Public Member Functions
 public:
-	CSpeed(IMesh* itemMsh, float sine, float x, float y, float z);
+	CSpeed(IMesh* itemMsh, float sine, float x, float y, float z, string itemtype);
 	~CSpeed();
 	void Activate();
 };

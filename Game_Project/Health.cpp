@@ -1,7 +1,7 @@
 #include "Health.h"
 
 // Constructor
-CHealth::CHealth(IMesh* itemMsh, float sine, float x, float y, float z)
+CHealth::CHealth(IMesh* itemMsh, float sine, float x, float y, float z, string itemtype) : CBaseItem(itemtype)
 {
 	itemMdl = itemMsh->CreateModel(x, y, z);
 	itemMdl->Scale(0.1);
