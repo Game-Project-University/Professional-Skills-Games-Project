@@ -20,6 +20,9 @@ CPlayer::CPlayer(IMesh* playerMsh) : CBasePlayer()
 	camerRotationS = 0.001; // speed of the rotation of the camera
 	cameraMaxX = 5.0; // max amount the camera can move to the right
 	cameraCounter = 0.0f; // counter used to track how much the camera has moved
+	amountRotated = 0.0f;
+	TurningActive = false;
+
 }
 
 //////////////////
@@ -57,37 +60,36 @@ void CPlayer::RightLeftMovement(float frameTime)
 	//- if the Keyhit D then enter statment 
 	if (myEngine->KeyHeld(RIGHT))
 	{
-		playerMdl->RotateLocalY(frameTime* playerRotationS);
+		playerMdl->RotateY(frameTime* playerRotationS);
 
-		//- statement to make the camera move offset to the car
-		if (cameraCounter < cameraMaxX)
+		if (amountRotated > -25.0f)
 		{
-			myCamera->MoveLocalX(camerRotationS);
-			cameraCounter += 0.001;
+			playerMdl->RotateLocalZ(-playerRotationS * frameTime);
+			amountRotated -= playerRotationS * frameTime;
 		}
-		
 	}
-	//- if the camera has been moved and the player is no longer turning slowly reset the position of the camera
-	else if (cameraCounter > 0)
+	else if(amountRotated < 0)
 	{
-		myCamera->MoveLocalX(-0.002);
-		cameraCounter -= 0.002;
+			playerMdl->RotateLocalZ(playerRotationS * frameTime);
+			amountRotated += playerRotationS * frameTime;
 	}
+
+	//- if the camera has been moved and the player is no longer turning slowly reset the position of the camera
 
 	if (myEngine->KeyHeld(LEFT))
 	{
-		playerMdl->RotateLocalY(-frameTime* playerRotationS);
+		playerMdl->RotateY(-frameTime* playerRotationS);
 
-		if (cameraCounter > -cameraMaxX)
+		if (amountRotated < 25.0f)
 		{
-			myCamera->MoveLocalX(-camerRotationS);
-			cameraCounter -= 0.001;
+			playerMdl->RotateLocalZ(playerRotationS * frameTime);
+			amountRotated += playerRotationS * frameTime;
 		}
 	}
-	else if (cameraCounter < 0)
+	else if(amountRotated > 0)
 	{
-		myCamera->MoveLocalX(0.002);
-		cameraCounter += 0.002;
+		playerMdl->RotateLocalZ(-playerRotationS * frameTime);
+		amountRotated -= playerRotationS * frameTime;
 	}
 }
 

@@ -80,6 +80,7 @@ CTrack::CTrack()
 	courseCheckpoints[2] = new CCheckpoint(-20, 0, 260, true);
 	courseCheckpoints[3] = new CCheckpoint(70, 0, 260, true);
 	courseCheckpoints[4] = new CCheckpoint(420, 0, 200, false);
+	courseCheckpoints[5] = new CCheckpoint(420, 0, -180, false);
 
 	//Crowds
 	crowdObjects[0] = new CCrowd(374.0f, 0.0f, -45.0f);
@@ -107,6 +108,14 @@ CTrack::CTrack()
 	courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100);
 	courseItems[1] = new CShield(SheildMsh, 90, 10, 0, 100);
 	courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100);
+
+	courseItems[3] = new CHealth(HeartMsh, 90, 20, 0, 245);
+	courseItems[4] = new CShield(SheildMsh, 90, 20, 0, 260);
+	courseItems[5] = new CSpeed(SpeedMsh, 90, 20, 0, 275);
+
+	courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, -220);
+	courseItems[7] = new CShield(SheildMsh, 90, 440, 0, -220);
+	courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220);
 }
 
 CTrack::~CTrack()
@@ -157,7 +166,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		{
 			cPlayer->SetMovementSpeed(-20);
 			cPlayer->MoveBeforeCollision();
-			cPlayer->DecreaseHealth(20);
+			cPlayer->DecreaseHealth(40);
 
 			if (cPlayer->GetPlayerHealth() > 0)
 			{
@@ -178,7 +187,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		{
 			cPlayer->SetMovementSpeed(-20);
 			cPlayer->MoveBeforeCollision();
-			cPlayer->DecreaseHealth(20);
+			cPlayer->DecreaseHealth(40);
 
 			if (cPlayer->GetPlayerHealth() > 0)
 			{
@@ -196,7 +205,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		{
 			cPlayer->SetMovementSpeed(-20);
 			cPlayer->MoveBeforeCollision();
-			cPlayer->DecreaseHealth(20);
+			cPlayer->DecreaseHealth(40);
 
 			if (cPlayer->GetPlayerHealth() > 0)
 			{
@@ -283,6 +292,30 @@ void CTrack::CheckPointCollision(CPlayer* cPlayer)
 				if (courseItems[2] == nullptr)
 				{
 					courseItems[2] = new CSpeed(SpeedMsh, 90, -10, 0, 100);
+				}
+				if (courseItems[3] == nullptr)
+				{
+					courseItems[3] = new CHealth(HeartMsh, 90, 20, 0, 250);
+				}
+				if (courseItems[4] == nullptr)
+				{
+					courseItems[4] = new CShield(SheildMsh, 90, 20, 0, 260);
+				}
+				if (courseItems[5] == nullptr)
+				{
+					courseItems[5] = new CSpeed(SpeedMsh, 90, 20, 0, 270);
+				}
+				if (courseItems[6] == nullptr)
+				{
+					courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, 140);
+				}
+				if (courseItems[7] == nullptr)
+				{
+					courseItems[7] = new CShield(SheildMsh, 90, 440, 0, 140);
+				}
+				if (courseItems[8] == nullptr)
+				{
+					courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220);
 				}
 			}
 		}

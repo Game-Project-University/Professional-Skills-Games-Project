@@ -24,6 +24,9 @@ private:
 	float cameraMaxX;
 	float cameraCounter;
 
+	float amountRotated;
+	bool TurningActive;
+
 public:
 	CPlayer(IMesh* playerMsh);
 	~CPlayer();

@@ -147,6 +147,7 @@ const float FontFpsY = 5.0f;
 float FontStartRaceX = 580;
 float FontStartRaceY = 200;
 
+bool wreckedText = false;
 //////////////////////////////
 //--PROGRAM SETUP/SHUTDOWN--//
 bool ProgramSetup()
@@ -518,10 +519,12 @@ void GameUpdate()
 
 		//- update the players position
 		cPlayer->UpdatePlayerPos();
+
 		for (int i = 0; i < 4; i++)
 		{
 			cAI[i]->UpdatePlayerPos();
 		}
+
 		//- Check for collision
 		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound);
 
@@ -621,9 +624,17 @@ void GameUpdate()
 			deadCounter = 0;
 			cPlayer->ResetPlayerHealth();
 			cTrack->ResetPlayerPosition(cPlayer);
+			delete(sprite);
+			wreckedText = false;
 		}
 		else
 		{
+			if (wreckedText == false)
+			{
+				sprite = myEngine->CreateSprite("WRECKED2.png");
+				wreckedText = true;
+			}
+			
 			deadCounter += frameTime * 0.8;
 		}
 	}

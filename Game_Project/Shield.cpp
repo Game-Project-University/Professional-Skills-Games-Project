@@ -21,6 +21,6 @@ CShield::~CShield()
 
 void CShield::Activate()
 {
-	mOwner->IncreaseShield(20);
+	mOwner->IncreaseShield(10);
 	used = true;
 }

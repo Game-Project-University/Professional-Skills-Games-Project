@@ -19,8 +19,8 @@
 #include "CrowdWall.h"
 
 const int NUMBER_OF_OBJECTS = 47;
-const int NUMBER_OF_CHECKPOINTS = 5;
-const int NUMBER_OF_ITEMS = 3;
+const int NUMBER_OF_CHECKPOINTS = 6;
+const int NUMBER_OF_ITEMS = 9;
 const int NUMBER_OF_VORTEX = 4;
 const int NUMBER_OF_CROWDS = 18;
 

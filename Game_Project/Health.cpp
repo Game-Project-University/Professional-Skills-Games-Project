@@ -21,6 +21,6 @@ CHealth::~CHealth()
 
 void CHealth::Activate()
 {
-	mOwner->IncreaseHealth(50);
+	mOwner->IncreaseHealth(20);
 	used = true;
 }
