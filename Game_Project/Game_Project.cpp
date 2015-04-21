@@ -144,7 +144,7 @@ IMesh* shieldMsh;
 // Positions of the FPS Text
 const float FontFpsX = 15.0f;
 const float FontFpsY = 5.0f;
-float FontStartRaceX = 580;
+float FontStartRaceX = 510;
 float FontStartRaceY = 200;
 
 bool wreckedText = false;
@@ -219,8 +219,8 @@ void FrontEndSetup()
 	sprite->SetZ(0);
 
 	//--LOAD FONT--///
-	frontFont = myEngine->LoadFont("Comic Sans MS", 36.0f);
-	RaceStartFont = myEngine->LoadFont("Comic Sans MS", 300.0f);
+	frontFont = myEngine->LoadFont("arial", 36.0f);
+	RaceStartFont = myEngine->LoadFont("arial", 500.0f);
 
 	//--CAMERA CREATION--//
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
@@ -470,8 +470,8 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	PLAYERSTATE = ALIVE;
-	/*if (DelayCounter > 2)
+	//PLAYERSTATE = ALIVE;
+	if (DelayCounter > 2)
 	{
 		if (PLAYERSTATE == STARTRACE)
 		{
@@ -489,7 +489,7 @@ void GameUpdate()
 			}
 			else if (startingCounter > 8 && startingCounter < 9)
 			{
-				FontStartRaceX = 490;
+				FontStartRaceX = 290;
 				interfaceText << "GO";
 			}
 			else if (startingCounter >= 9)
@@ -503,7 +503,7 @@ void GameUpdate()
 			startingCounter += frameTime * 1.1;
 		}
 	}
-	DelayCounter += frameTime;*/
+	DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{
