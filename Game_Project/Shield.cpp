@@ -4,7 +4,7 @@
 CShield::CShield(IMesh* itemMsh, float sine, float x, float y, float z, string itemtype) : CBaseItem(itemtype)
 {
 	itemMdl = itemMsh->CreateModel(x, y, z);
-	itemMdl->Scale(0.4);
+	itemMdl->Scale(0.15);
 	itemPos.posX = x;
 	itemPos.posX = y;
 	itemPos.posX = z;

@@ -4,7 +4,7 @@
 CSpeed::CSpeed(IMesh* itemMsh, float sine, float x, float y, float z, string itemtype) : CBaseItem(itemtype)
 {
 	itemMdl = itemMsh->CreateModel(x, y, z);
-	itemMdl->Scale(6);
+	itemMdl->Scale(3);
 	itemPos.posX = x;
 	itemPos.posX = y;
 	itemPos.posX = z;
