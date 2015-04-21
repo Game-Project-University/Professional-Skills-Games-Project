@@ -74,7 +74,7 @@ ISprite* sprite;
 ICamera* myCamera;
 ISprite* speedSprites[10];
 
-IModel* waypoints[MAX_WAYPOINTS];
+IModel* waypoints[MAX_LANES][MAX_WAYPOINTS];
 IModel* testMdl;
 IMesh* testMsh;
 
@@ -120,12 +120,18 @@ enum PLAYERSTATES
 	STARTRACE, ALIVE, DEAD, ENDRACE
 };
 
+enum RACESTATES
+{
+	GO, STOP
+};
+
 ////////////////////
 //--DEAD COUNTER--//
 float deadCounter = 0;
 
 GAMESTATES GAMESTATE = MAINMENU;
 PLAYERSTATES PLAYERSTATE = STARTRACE;
+RACESTATES RACESTATE = STOP;
 
 bool setup = false;
 
@@ -335,10 +341,10 @@ void GameSetup()
 		cAI[i] = new CAI(aiMsh, i + 0, rand() % 300, 0, 1, -20 );
 	}*/
 
-	cAI[0] = new CAI(aiMsh, 50, rand() % 300, -10, 1, -20);
-	cAI[1] = new CAI(aiMsh, 70, rand() % 300,   0, 1, -30);
-	cAI[2] = new CAI(aiMsh, 35, rand() % 300, -10, 1, -40);
-	cAI[3] = new CAI(aiMsh, 90, rand() % 300,   0, 1, -50);
+	cAI[0] = new CAI(aiMsh, -10, 1, -20, rand() % 4);
+	cAI[1] = new CAI(aiMsh,   0, 1, -30, rand() % 4);
+	cAI[2] = new CAI(aiMsh, -10, 1, -40, rand() % 4);
+	cAI[3] = new CAI(aiMsh,   0, 1, -50, rand() % 4);
 
 	stateMsh = myEngine->LoadMesh("state.x");
 	//stateMsh = myEngine->LoadMesh("dummy.x");
@@ -347,12 +353,28 @@ void GameSetup()
 	cFire = new CFireSystem();
 
 	// This will read in from file eventually
-	float pos[2][MAX_WAYPOINTS] = { { 0, 0, 0, 0, 0, -10, -40, -65, -80, -80, -80, -80, -70, -60, -40, -20, 0, 40, 80, 300, 340, 380, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 0, 0, 0, 0, 0, 0, 0, 0, },
-	{ 0, 40, 80, 120, 160, 165, 165, 170, 180, 190, 205, 220, 235, 250, 260, 260, 260, 260, 260, 260, 260, 260, 260, 220, 180, 140, 100, 60, 20, -20, -60, -100, -140, -180, -220, -260, -300, -340, -380, -420, -460, -500, -540, -580, -625, -300, -260, -220, -180, -140, -100, -60, -40 } };
+	float pos1[2][MAX_WAYPOINTS] = { {-8, -8, -8,  -8,  -8, -10, -40, -65, -88, -88, -88, -88, -78, -60, -40, -20,   0,  40,  80, 300, 340, 380, 428, 412, 412, 412, 412, 412, 412, 412, 412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  420,   0,    -8,   -8,   -8,   -8,   -8,  -8,  -8, },
+									 { 0, 40, 80, 120, 150, 157, 157, 162, 180, 190, 205, 220, 235, 242, 252, 252, 252, 252, 252, 252, 252, 252, 268, 220, 180, 140, 100,  60,  20, -20, -60, -100, -140, -180, -220, -260, -300, -340, -380, -420, -460, -500, -540, -580, -625, -300, -260, -220, -180, -140, -100, -60, -40 } };
+
+	float pos2[2][MAX_WAYPOINTS] = { { 0,  0,  0,   0,   0, -10, -40, -65, -80, -80, -80, -80, -70, -60, -40, -20,   0,  40,  80, 300, 340, 380, 420, 420, 420, 420, 420, 420, 420, 420, 420,  420,  420,  420,  420,  420,  420,  420,  420,  420,  420,  420,  420,  420,  420,    0,    0,    0,    0,    0,    0,   0,   0, },
+									 { 0, 40, 80, 120, 160, 165, 165, 170, 180, 190, 205, 220, 235, 250, 260, 260, 260, 260, 260, 260, 260, 260, 260, 220, 180, 140, 100,  60,  20, -20, -60, -100, -140, -180, -220, -260, -300, -340, -380, -420, -460, -500, -540, -580, -625, -300, -260, -220, -180, -140, -100, -60, -40 } };
+
+	float pos3[2][MAX_WAYPOINTS] = { { 8,  8,  8,   8,   8, -10, -40, -65, -72, -72, -72, -72, -62, -60, -40, -20,   0,  40,  80, 300, 340, 380, 412, 428, 428, 428, 428, 428, 428, 428, 428,  428,  428,  428,  428,  428,  428,  428,  428,  428,  428,  428,  428,  428,  420,    0,    8,    8,    8,    8,    8,   8,   8, },
+									 { 0, 40, 80, 120, 170, 172, 172, 178, 180, 190, 205, 220, 235, 258, 268, 268, 268, 268, 268, 268, 268, 268, 252, 220, 180, 140, 100,  60,  20, -20, -60, -100, -140, -180, -220, -260, -300, -340, -380, -420, -460, -500, -540, -580, -625, -300, -260, -220, -180, -140, -100, -60, -40 } };
+	
+	for (int i = 0; i < MAX_WAYPOINTS; i++)
+	{
+		waypoints[0][i] = stateMsh->CreateModel(pos1[0][i], 0, pos1[1][i]);
+	}
+	
+	for (int i = 0; i < MAX_WAYPOINTS; i++)
+	{
+		waypoints[1][i] = stateMsh->CreateModel(pos2[0][i], 0, pos2[1][i]);
+	}
 
 	for (int i = 0; i < MAX_WAYPOINTS; i++)
 	{
-		waypoints[i] = stateMsh->CreateModel(pos[0][i], 0, pos[1][i]);
+		waypoints[2][i] = stateMsh->CreateModel(pos3[0][i], 0, pos3[1][i]);
 	}
 
 	/////////////////
@@ -471,37 +493,36 @@ void GameUpdate()
 	cPlayer->SinHoverMovement(frameTime);
 
 	//PLAYERSTATE = ALIVE;
-	if (DelayCounter > 2)
+	
+	if (PLAYERSTATE == STARTRACE)
 	{
-		if (PLAYERSTATE == STARTRACE)
+		if (startingCounter >= 2 && startingCounter < 4)
 		{
-			if (startingCounter >= 2 && startingCounter < 4)
-			{
-				interfaceText << "3";
-			}
-			else if (startingCounter > 4 && startingCounter < 6)
-			{
-				interfaceText << "2";
-			}
-			else if (startingCounter > 6 && startingCounter < 8)
-			{
-				interfaceText << "1";
-			}
-			else if (startingCounter > 8 && startingCounter < 9)
-			{
-				FontStartRaceX = 290;
-				interfaceText << "GO";
-			}
-			else if (startingCounter >= 9)
-			{
-				PLAYERSTATE = ALIVE;
-			}
-
-			RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
-			interfaceText.str("");
-
-			startingCounter += frameTime * 1.1;
+			interfaceText << "3";
 		}
+		else if (startingCounter > 4 && startingCounter < 6)
+		{
+			interfaceText << "2";
+		}
+		else if (startingCounter > 6 && startingCounter < 8)
+		{
+			interfaceText << "1";
+		}
+		else if (startingCounter > 8 && startingCounter < 9)
+		{
+			FontStartRaceX = 290;
+			interfaceText << "GO";
+		}
+		else if (startingCounter >= 9)
+		{
+			PLAYERSTATE = ALIVE;
+			RACESTATE = GO;
+		}
+
+		RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
+		interfaceText.str("");
+
+		startingCounter += frameTime * 1.1;
 	}
 	DelayCounter += frameTime;
 
@@ -645,10 +666,14 @@ void GameUpdate()
 	}
 
 	//-- AI --//
-	for (int i = 0; i < 4; i++)
+	if (RACESTATE == GO)
 	{
-		cAI[i]->SinHoverMovement(frameTime);
-		cAI[i]->MoveToWaypoint(frameTime, waypoints);
+		for (int i = 0; i < 4; i++)
+		{
+			cAI[i]->SinHoverMovement(frameTime);
+			cAI[i]->MoveToWaypoint(frameTime, waypoints);
+			cAI[i]->IncreaseAccelration();
+		}
 	}
 
 	cPlayer->UpdatePreviousPos();

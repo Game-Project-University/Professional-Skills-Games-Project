@@ -21,16 +21,16 @@ float GetDistance(float X, float Z)
 
 ///////////////////
 //--CONTRUCTORS--//
-CAI::CAI(IMesh* aiMsh, float speed, float sine, float x, float y, float z)
+CAI::CAI(IMesh* aiMsh, float x, float y, float z, int lane)
 {
 	//- set the ai movement speed
-	playerMovementS = speed;
+	playerMovementS = 0.0f;
 	//- set the speed that the ai accelrates
-	playerAccelrationS = 0.005;
+	playerAccelrationS = 0.05f;
 	//- set the max ai speed
-	playerMaxSpeed = 100.0f;
+	playerMaxSpeed = 70.0f;
 	//- set the angle of the sinewave to start at 0
-	sineWaveAngle = sine;
+	sineWaveAngle = rand() % 300;
 	sineWaveValue = 0;
 
 	// create AI model
@@ -41,6 +41,7 @@ CAI::CAI(IMesh* aiMsh, float speed, float sine, float x, float y, float z)
 	distance = 0.0f;
 
 	aiCurrentWaypoint = 0;
+	aiCurrentLane = lane;
 }
 
 //////////////////
@@ -54,20 +55,21 @@ CAI::~CAI()
 //////////////////////
 //--PLAYERMOVEMENT--//
 
-void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[])
+void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[][MAX_WAYPOINTS])
 {
-	GetVector(waypoints[aiCurrentWaypoint], playerMdl, wayVectorX, wayVectorZ);
+	GetVector(waypoints[aiCurrentLane][aiCurrentWaypoint], playerMdl, wayVectorX, wayVectorZ);
 	distance = GetDistance(wayVectorX, wayVectorZ);
 
 	if (distance > 0.5)
 	{
-		playerMdl->LookAt(waypoints[aiCurrentWaypoint]->GetX(), playerMdl->GetY(), waypoints[aiCurrentWaypoint]->GetZ());
+		playerMdl->LookAt(waypoints[aiCurrentLane][aiCurrentWaypoint]->GetX(), playerMdl->GetY(), waypoints[aiCurrentLane][aiCurrentWaypoint]->GetZ());
 	}
 	else
 	{
 		IncreaseWaypoint();
 	}
 	playerMdl->MoveLocalZ(frameTime* playerMovementS);
+	//IncreaseAccelration();
 }
 
 void CAI::IncreaseWaypoint()

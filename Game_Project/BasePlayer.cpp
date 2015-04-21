@@ -9,7 +9,7 @@ CBasePlayer::CBasePlayer()
 	//- set the player rotation speed
 	playerRotationS = 100.0f;
 	//- set the speed that the player accelrates
-	playerAccelrationS = 0.05;
+	playerAccelrationS = 0.05f;
 	//- set the max player speed
 	playerMaxSpeed = 70.0f;
 	//- set the max reverse player speed

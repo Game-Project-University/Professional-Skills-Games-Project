@@ -52,3 +52,4 @@ using namespace tle;
 //--GLOBAL VARIABLES--//
 extern I3DEngine* myEngine;
 const int MAX_WAYPOINTS = 53;
+const int MAX_LANES = 3;

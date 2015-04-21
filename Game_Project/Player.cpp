@@ -4,7 +4,6 @@
 //--CONTRUCTORS--//
 CPlayer::CPlayer(IMesh* playerMsh) : CBasePlayer()
 {
-
 	// create player model
 	playerMdl = playerMsh->CreateModel(0.0f, 0.0f, -14.0f);
 	//- Camera Attachment to player
