@@ -10,6 +10,8 @@ CTrack::CTrack()
 	checkPoint = 0;
 	lap = 0;
 
+	itemHeld = false;
+
 	//-- creation of objects (x, y, z, width, height)
 	//-- i will make this read in from a file eventually
 	courseObjects[0]  = new CSkyScraper(-40.0f,0.0f,60.0f, 52.0f, 54.0f);
@@ -331,11 +333,12 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 		{
 			if (courseItems[i]->GetState() == false)
 			{
-				if (SphereToSphereCollision(cPlayer, courseItems[i], 5.0f, 5.0f))
+				if (SphereToSphereCollision(cPlayer, courseItems[i], 5.0f, 5.0f) && itemHeld == false)
 				{
 					sound->PlaySound();
 					courseItems[i]->Collide();
 					courseItems[i]->SetOwner(cPlayer);
+					itemHeld = true;
 				}
 			}
 		}
@@ -366,6 +369,7 @@ void CTrack::OwnedItems(CPlayer* cPlayer)
 				{
 					delete(courseItems[i]);
 					courseItems[i] = nullptr;
+					itemHeld = false;
 				}
 			}
 		}

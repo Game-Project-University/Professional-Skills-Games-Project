@@ -51,6 +51,8 @@ public:
 	void TrackUpdate(float frameTime, CPlayer* cPlayer);
 	void OwnedItems(CPlayer* cPlayer);
 
+	bool itemHeld;
+
 
 private:
 	CObject* courseObjects[NUMBER_OF_OBJECTS];
