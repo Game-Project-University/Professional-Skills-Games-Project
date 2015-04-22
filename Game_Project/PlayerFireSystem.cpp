@@ -40,7 +40,7 @@ void CFireSystem::update(float frametime, CPlayer* playerPtr)
 		{
 			if (particleArray[i].mLifeTime > particleArray[i].mlifeSpan)
 			{
-				particleArray[i].mPartMdl->SetPosition(playerPtr->GetPlayerX(), random(playerPtr->GetPlayerY() - 0.2f, playerPtr->GetPlayerY() + 0.2f), playerPtr->GetPlayerZ());
+				particleArray[i].mPartMdl->SetPosition(playerPtr->GetX(), random(playerPtr->GetY() - 0.2f, playerPtr->GetY() + 0.2f), playerPtr->GetZ());
 				particleArray[i].mDirX = random(-250, 250);
 				particleArray[i].mDirY = random(-400, -200);
 				particleArray[i].mDirZ = random(500, 1000);
@@ -62,7 +62,7 @@ void CFireSystem::update(float frametime, CPlayer* playerPtr)
 			}
 		}
 		else
-			particleArray[i].mPartMdl->SetPosition(playerPtr->GetPlayerX(), playerPtr->GetPlayerY(), playerPtr->GetPlayerZ());
+			particleArray[i].mPartMdl->SetPosition(playerPtr->GetX(), playerPtr->GetY(), playerPtr->GetZ());
 	}
 }
 

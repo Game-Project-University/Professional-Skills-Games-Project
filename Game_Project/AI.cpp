@@ -26,9 +26,9 @@ CAI::CAI(IMesh* aiMsh, float x, float y, float z, int lane)
 	//- set the ai movement speed
 	playerMovementS = 0.0f;
 	//- set the speed that the ai accelrates
-	playerAccelrationS = 0.05f;
+	playerAccelrationS = 0.03f;
 	//- set the max ai speed
-	playerMaxSpeed = 70.0f;
+	playerMaxSpeed = 65.0f;
 	//- set the angle of the sinewave to start at 0
 	sineWaveAngle = rand() % 300;
 	sineWaveValue = 0;
@@ -69,7 +69,11 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[][MAX_WAYPOINTS])
 		IncreaseWaypoint();
 	}
 	playerMdl->MoveLocalZ(frameTime* playerMovementS);
-	//IncreaseAccelration();
+	
+	if (playerMovementS < playerMaxSpeed)
+	{ 
+		IncreaseAccelration();
+	}
 }
 
 void CAI::IncreaseWaypoint()

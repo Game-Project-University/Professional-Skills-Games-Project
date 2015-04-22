@@ -434,7 +434,7 @@ void GameUpdate()
 	interfaceText.str("");
 
 	//Player Speed
-	interfaceText << "X: " << cPlayer->GetPlayerX() << "           Z: " <<  cPlayer->GetPlayerZ();
+	interfaceText << "X: " << cPlayer->GetX() << "           Z: " <<  cPlayer->GetZ();
 	ComicSans->Draw(interfaceText.str(), 50, 50, kWhite);
 	interfaceText.str("");
 
@@ -548,6 +548,7 @@ void GameUpdate()
 
 		//- Check for collision
 		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound);
+		cTrack->AICollision(cPlayer, cAI, SmashingSound);
 
 		//- Chec for checkpoint collision
 		cTrack->CheckPointCollision(cPlayer);
@@ -564,9 +565,9 @@ void GameUpdate()
 		}
 
 		//Plays crowd cheering if player position is inside that track area
-		if (cPlayer->GetPlayerZ() > -220.0f && cPlayer->GetPlayerZ() < 180)
+		if (cPlayer->GetZ() > -220.0f && cPlayer->GetZ() < 180)
 		{
-			if (cPlayer->GetPlayerX() > 360.0f && cPlayer->GetPlayerX() < 480.0f)
+			if (cPlayer->GetX() > 360.0f && cPlayer->GetX() < 480.0f)
 			{
 				if (crowdCheering == false)
 				{
@@ -672,11 +673,16 @@ void GameUpdate()
 		{
 			cAI[i]->SinHoverMovement(frameTime);
 			cAI[i]->MoveToWaypoint(frameTime, waypoints);
-			cAI[i]->IncreaseAccelration();
+			//cAI[i]->IncreaseAccelration();
 		}
 	}
 
 	cPlayer->UpdatePreviousPos();
+
+	for (int i = 0; i < 4; i++)
+	{ 
+		cAI[i]->UpdatePreviousPos();
+	}
 
 	//-- Item --//
 	cTrack->TrackUpdate(frameTime, cPlayer);

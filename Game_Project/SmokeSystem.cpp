@@ -30,7 +30,7 @@ void CSmokeSystem::update(float frametime, CPlayer* playerPtr)
 	{
 		if (particleArray[i].mLifeTime > particleArray[i].mlifeSpan)
 		{
-			particleArray[i].mPartMdl->SetPosition(playerPtr->GetPlayerX(), playerPtr->GetPlayerY(), playerPtr->GetPlayerZ());
+			particleArray[i].mPartMdl->SetPosition(playerPtr->GetX(), playerPtr->GetY(), playerPtr->GetZ());
 			particleArray[i].mDirX = random(-5, 5);
 			particleArray[i].mVelocity = random(5, 7);
 			particleArray[i].mLifeTime = 0.0f * frametime;	

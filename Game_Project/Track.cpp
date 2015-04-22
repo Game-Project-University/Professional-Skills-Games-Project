@@ -148,7 +148,7 @@ void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr)
 	}
 
 	//Update crowds if player is in that track area
-	if (playerPtr->GetPlayerX() > 360.0f && playerPtr->GetPlayerX() < 480.0f)
+	if (playerPtr->GetX() > 360.0f && playerPtr->GetX() < 480.0f)
 	{
 		for (int i = 0; i < NUMBER_OF_CROWDS; i++)
 		{
@@ -364,11 +364,60 @@ void CTrack::DisplayItemHeld()
 	interfaceText.str("");
 }
 
-//-- SPHERE TO SPHERE COLLISION --//
-template <class T, class S> bool CTrack::SphereToSphereCollision(T* cPLayer, S* cCheckPoints, float radius1, float radius2)
+//-- ITEM COLLISION --//
+void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 {
-	float distX = cPLayer->GetPlayerX() - cCheckPoints->GetX();
-	float distZ = cPLayer->GetPlayerZ() - cCheckPoints->GetZ();
+	
+	// Collision with player to AI
+	for (int i = 0; i < 4; i++)
+	{
+		if (SphereToSphereCollision(cPlayer, cAI[i], 4.0f, 4.0f))
+		{
+			//cPlayer->SetMovementSpeed(-20);
+			cPlayer->MoveBeforeCollision();
+			//cPlayer->DecreaseHealth(1);
+
+			sound->PlaySound();
+		
+		}
+
+		if (SphereToSphereCollision(cAI[i], cPlayer, 4.0f, 4.0f))
+		{
+			//cPlayer->SetMovementSpeed(-20);
+			cAI[i]->MoveBeforeCollision();
+			//cPlayer->DecreaseHealth(1);
+
+			sound->PlaySound();
+
+		}
+	}
+
+	// Collision with AI to AI
+	for (int j = 0; j < 4; j++)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (j != i)
+			{
+				if (SphereToSphereCollision(cAI[j], cAI[i], 4.0f, 4.0f))
+				{
+					//cPlayer->SetMovementSpeed(-20);
+					cAI[i]->MoveBeforeCollision();
+					//cPlayer->DecreaseHealth(1);
+
+					sound->PlaySound();
+
+				}
+			}
+		}
+	}
+}
+
+//-- SPHERE TO SPHERE COLLISION --//
+template <class T, class S> bool CTrack::SphereToSphereCollision(T* cType1, S* cType2, float radius1, float radius2)
+{
+	float distX = cType1->GetX() - cType2->GetX();
+	float distZ = cType1->GetZ() - cType2->GetZ();
 	
 	return distX*distX + distZ*distZ <= radius1*2 + radius2*2;
 }

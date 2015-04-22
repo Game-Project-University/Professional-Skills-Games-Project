@@ -56,9 +56,9 @@ public:
 	inline float GetPlayerS(){ return playerMovementS; };
 	inline int GetPlayerHealth(){ return health; };
 	inline int GetPlayerShield(){ return shield; };
-	inline float GetPlayerX(){ return playerPos.posX; };
-	inline float GetPlayerY(){ return playerPos.posY; };
-	inline float GetPlayerZ(){ return playerPos.posZ; };
+	inline float GetX(){ return playerPos.posX; };
+	inline float GetY(){ return playerPos.posY; };
+	inline float GetZ(){ return playerPos.posZ; };
 
 	//////////////
 	//--SETTERS--//
