@@ -7,13 +7,13 @@ IMesh* CTrack::SheildMsh = nullptr;
 CTrack::CTrack()
 {
 	//-- checkpoints and laps variables to show on interface and track players progress
-	checkPoint = 0;
-	lap = 0;
-
+	
 	itemHeld = false;
 
 	font = myEngine->LoadFont("Comic Sans MS", 36.0f);
 
+	playerAi = false;
+	aiPlayer = false;
 	//-- creation of objects (x, y, z, width, height)
 	//-- i will make this read in from a file eventually
 	courseObjects[0]  = new CSkyScraper(-40.0f,0.0f,60.0f, 52.0f, 54.0f);
@@ -168,10 +168,20 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		if (cPlayer->GetPlayerPos().posX > courseObjects[i]->GetBoundaries().minX && cPlayer->GetPlayerPos().posX < courseObjects[i]->GetBoundaries().maxX &&
 			cPlayer->GetPlayerPos().posZ > courseObjects[i]->GetBoundaries().minZ && cPlayer->GetPlayerPos().posZ < courseObjects[i]->GetBoundaries().maxZ)
 		{
-			cPlayer->SetMovementSpeed(-20);
-			cPlayer->MoveBeforeCollision();
-			cPlayer->DecreaseHealth(40);
-
+		
+			if (cPlayer->GetPlayerS() > 0)
+			{
+				cPlayer->SetMovementSpeed(-20);
+				cPlayer->MoveBeforeCollision();
+				cPlayer->DecreaseHealth(40);
+			}
+			else if (cPlayer->GetPlayerS() < 0)
+			{
+				cPlayer->SetMovementSpeed(20);
+				cPlayer->MoveBeforeCollision();
+				cPlayer->DecreaseHealth(40);
+			}
+			
 			if (cPlayer->GetPlayerHealth() > 0)
 			{
 				sound->PlaySound();
@@ -256,34 +266,34 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 void CTrack::ResetPlayerPosition(CPlayer* cPlayer)
 {
 	// if the checkpoint is = to 0 eg the starting checkpoint then when the car blows up reset the cars position to this checkpoint 
-	if (checkPoint == 0)
+	if (cPlayer->GetCheckpoint() == 0)
 	{
 		cPlayer->GetModel()->SetPosition(courseCheckpoints[0]->GetX(), 0.0f, courseCheckpoints[0]->GetZ());
 	}
 	// set the cars position to the last checkpoint that the player drove through 
 	else
 	{
-		cPlayer->GetModel()->SetPosition(courseCheckpoints[checkPoint - 1]->GetX(), 0.0f, courseCheckpoints[checkPoint - 1]->GetZ());
+		cPlayer->GetModel()->SetPosition(courseCheckpoints[cPlayer->GetCheckpoint() - 1]->GetX(), 0.0f, courseCheckpoints[cPlayer->GetCheckpoint() - 1]->GetZ());
 	}
 }
 
 //-- CHECKPOINT COLLISION --//
-void CTrack::CheckPointCollision(CPlayer* cPlayer)
+void CTrack::CheckPointCollision(CBasePlayer* cPlayer)
 {
 	for (int i = 0; i < NUMBER_OF_CHECKPOINTS; i++)
 	{
 		// (playerpos, checkpoint position, radious of player, radious of checkpoint)
 		if (SphereToSphereCollision(cPlayer, courseCheckpoints[i], 10.0f, 60.0f))
 		{
-			if (checkPoint == i)
+			if (cPlayer->GetCheckpoint() == i)
 			{
-				checkPoint++;
+				cPlayer->IncrementCheckpoint();
 			}
 			// if the checkpoint is equal to the number of checkpoints (so the lap is nearly complete) then when the collision happens with the starting checkpoint increment the lap variable
-			if (checkPoint == NUMBER_OF_CHECKPOINTS && SphereToSphereCollision(cPlayer, courseCheckpoints[0], 10.0f, 60.0f))
+			if (cPlayer->GetCheckpoint() == NUMBER_OF_CHECKPOINTS && SphereToSphereCollision(cPlayer, courseCheckpoints[0], 10.0f, 60.0f))
 			{
-				checkPoint = 0;
-				lap++;
+				cPlayer->ResetCheckpoint();
+				cPlayer->IncrementLap();
 				// item recreation
 				if (courseItems[0] == nullptr)
 				{
@@ -373,25 +383,24 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 	{
 		if (SphereToSphereCollision(cPlayer, cAI[i], 4.0f, 4.0f))
 		{
-			//cPlayer->SetMovementSpeed(-20);
-			cPlayer->MoveBeforeCollision();
-			//cPlayer->DecreaseHealth(1);
+				cPlayer->SetMovementSpeed(-10);
+				cPlayer->MoveBeforeCollision();
+				cAI[i]->SetMovementSpeed(10);
+				//cPlayer->DecreaseHealth(1);
 
-			sound->PlaySound();
-		
+				sound->PlaySound();
 		}
 
 		if (SphereToSphereCollision(cAI[i], cPlayer, 4.0f, 4.0f))
 		{
-			//cPlayer->SetMovementSpeed(-20);
-			cAI[i]->MoveBeforeCollision();
-			//cPlayer->DecreaseHealth(1);
+				cAI[i]->SetMovementSpeed(-10);
+				cAI[i]->MoveBeforeCollision();
+				cPlayer->SetMovementSpeed(10);
+				//cPlayer->DecreaseHealth(1);
 
-			sound->PlaySound();
-
+				sound->PlaySound();
 		}
 	}
-
 	// Collision with AI to AI
 	for (int j = 0; j < 4; j++)
 	{
@@ -401,7 +410,7 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 			{
 				if (SphereToSphereCollision(cAI[j], cAI[i], 4.0f, 4.0f))
 				{
-					//cPlayer->SetMovementSpeed(-20);
+					cAI[i]->SetMovementSpeed(-2);
 					cAI[i]->MoveBeforeCollision();
 					//cPlayer->DecreaseHealth(1);
 

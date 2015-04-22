@@ -18,6 +18,9 @@ CBasePlayer::CBasePlayer()
 	sineWaveAngle = 0;
 	sineWaveValue = 0;
 	//currentItem = NULL;
+
+	checkPoint=0;
+	lap=0;
 }
 
 CBasePlayer::~CBasePlayer()
@@ -75,7 +78,7 @@ void CBasePlayer::DecreaseHealth(int value)
 
 		if (shield < 0)
 		{
-			health -= shield;
+			health += shield;
 			shield = 0;
 
 			if (health < 0)
@@ -123,6 +126,19 @@ void CBasePlayer::MoveBeforeCollision()
 	playerMdl->SetPosition(playerPrevPos.posX, playerPrevPos.posY, playerPrevPos.posZ);
 }
 
+void CBasePlayer::IncrementLap()
+{
+	lap++;
+}
+void CBasePlayer::IncrementCheckpoint()
+{
+	checkPoint++;
+}
+
+void CBasePlayer::ResetCheckpoint()
+{
+	checkPoint=0;
+}
 //////////////////////
 //--PLAYERMOVEMENT--//
 void CBasePlayer::SinHoverMovement(float frameTime)

@@ -28,7 +28,8 @@ protected:
 	float sineWaveValue;
 	int health;
 	int shield;
-
+	int checkPoint;
+	int lap;
 
 	//-- player pos accessor --//
 	SPlayerPos playerPos;
@@ -59,6 +60,8 @@ public:
 	inline float GetX(){ return playerPos.posX; };
 	inline float GetY(){ return playerPos.posY; };
 	inline float GetZ(){ return playerPos.posZ; };
+	int GetCheckpoint(){ return checkPoint; };
+	inline int GetLap(){ return lap; };
 
 	//////////////
 	//--SETTERS--//
@@ -68,6 +71,9 @@ public:
 	void DecreaseHealth(int value);
 	void ResetPlayerHealth();
 	void SetPlayerPos(float x, float y, float z);
+	void IncrementLap();
+	void IncrementCheckpoint();
+	void ResetCheckpoint();
 
 	////////////////
 	//--MOVEMENT--//

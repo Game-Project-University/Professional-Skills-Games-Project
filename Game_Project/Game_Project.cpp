@@ -404,12 +404,12 @@ void GameUpdate()
 	interfaceText.str("");
 	
 	// current checkpoint
-	interfaceText << "Checkpoint: " << cTrack->GetCheckpoint();
+	interfaceText << "Checkpoint: " << cPlayer->GetCheckpoint();
 	ComicSans->Draw(interfaceText.str(), 900, 650, kWhite);
 	interfaceText.str("");
 
 	// current lap
-	interfaceText << "Lap: " << cTrack->GetLap();
+	interfaceText << "Lap: " << cPlayer->GetLap();
 	ComicSans->Draw(interfaceText.str(), 1000, 700, kWhite);
 	interfaceText.str("");
 
@@ -492,9 +492,9 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	//PLAYERSTATE = ALIVE;
+	PLAYERSTATE = ALIVE;
 	
-	if (PLAYERSTATE == STARTRACE)
+	/*if (PLAYERSTATE == STARTRACE)
 	{
 		if (startingCounter >= 2 && startingCounter < 4)
 		{
@@ -524,7 +524,7 @@ void GameUpdate()
 
 		startingCounter += frameTime * 1.1;
 	}
-	DelayCounter += frameTime;
+	DelayCounter += frameTime;*/
 
 	if (PLAYERSTATE == ALIVE)
 	{
@@ -661,7 +661,7 @@ void GameUpdate()
 		}
 	}
 
-	if (cTrack->GetLap() == 3)
+	if (cPlayer->GetLap() == 3)
 	{
 	PLAYERSTATE = ENDRACE;
 	}

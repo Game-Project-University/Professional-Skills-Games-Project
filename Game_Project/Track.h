@@ -39,8 +39,11 @@ public:
 
 	string ItemShow;
 
+	bool playerAi;
+	bool aiPlayer;
+
 	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion);
-	void CheckPointCollision(CPlayer* cPlayer);
+	void CheckPointCollision(CBasePlayer* cPlayer);
 	void ItemCollision(CPlayer* cPlayer, CSound* sound);
 	void AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound);
 
@@ -49,9 +52,7 @@ public:
 	
 	//-- GETTER FUNCTIONS --//
 	// return the checkpoint that has mostly recently been passed
-	inline int GetCheckpoint(){ return checkPoint; };
 	// return the lap that the player is on
-	inline int GetLap(){ return lap; };
 
 	void ResetPlayerPosition(CPlayer* cPlayer);
 	void TrackUpdate(float frameTime, CPlayer* cPlayer);
@@ -68,8 +69,6 @@ private:
 	CVortex* vortexObjects[NUMBER_OF_VORTEX];
 	CCrowd* crowdObjects[NUMBER_OF_CROWDS];
 
-	int checkPoint;
-	int lap;
 
 	
 };
