@@ -17,12 +17,14 @@
 #include "Crowd.h"
 #include "CrowdBarrier.h"
 #include "CrowdWall.h"
+#include "Arrow.h"
 
 const int NUMBER_OF_OBJECTS = 47;
 const int NUMBER_OF_CHECKPOINTS = 6;
 const int NUMBER_OF_ITEMS = 9;
 const int NUMBER_OF_VORTEX = 4;
 const int NUMBER_OF_CROWDS = 18;
+const int NUMBER_OF_ARROWS = 12;
 
 class CTrack
 {
@@ -68,7 +70,7 @@ private:
 	CBaseItem* courseItems[NUMBER_OF_ITEMS];
 	CVortex* vortexObjects[NUMBER_OF_VORTEX];
 	CCrowd* crowdObjects[NUMBER_OF_CROWDS];
-
+	CArrow* arrowObjects[NUMBER_OF_ARROWS];
 
 	
 };

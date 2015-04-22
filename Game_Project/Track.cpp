@@ -107,6 +107,20 @@ CTrack::CTrack()
 	crowdObjects[16] = new CCrowd(477.0f, 0.0f, 50.0f);
 	crowdObjects[17] = new CCrowd(477.0f, 0.0f, 10.0f);
 
+	//Arrows - ( x / y / z / +rotation amount )
+	arrowObjects[0] = new CArrow(-15.25f, 11.0f, 17.0f, 0.0f);
+	arrowObjects[1] = new CArrow(15.25f, 11.0f, 17.0f, 0.0f);
+	arrowObjects[2] = new CArrow(0.0f, 12.0f, 190.0f, 270.0f);
+	arrowObjects[3] = new CArrow(-120.0f, 15.0f, 160.0f, 0.0f);
+	arrowObjects[4] = new CArrow(-120.0f, 15.0f, 180.0f, 0.0f);
+	arrowObjects[5] = new CArrow(-85.0f, 14.0f, 270.0f, 90.0f);
+	arrowObjects[6] = new CArrow(477.0f, 12.0f, 240.0f, 180.0f);
+	arrowObjects[7] = new CArrow(477.0f, 12.0f, 260.0f, 180.0f);
+	arrowObjects[8] = new CArrow(367.0f, 18.0f, 0.0f, 180.0f);
+	arrowObjects[9] = new CArrow(483.0f, 18.0f, 0.0f, 180.0f);
+	arrowObjects[10] = new CArrow(367.0f, 18.0f, -50.0f, 180.0f);
+	arrowObjects[11] = new CArrow(483.0f, 18.0f, -50.0f, 180.0f);
+
 	//-- Items
 	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
 	courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100, "health");
@@ -154,6 +168,12 @@ void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr)
 		{
 			crowdObjects[i]->update(frameTime, playerPtr);
 		}
+	}
+
+	//Update Arrow "Colour"
+	for (int i = 0; i < NUMBER_OF_ARROWS; i++)
+	{
+		arrowObjects[i]->update(frameTime);
 	}
 
 }
