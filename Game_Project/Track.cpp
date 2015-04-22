@@ -403,9 +403,18 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 	{
 		if (SphereToSphereCollision(cPlayer, cAI[i], 4.0f, 4.0f))
 		{
+			if (cPlayer->GetPlayerS() > 0)
+			{
 				cPlayer->SetMovementSpeed(-10);
 				cPlayer->MoveBeforeCollision();
 				cAI[i]->SetMovementSpeed(10);
+			}
+			else if (cPlayer->GetPlayerS() < 0)
+			{
+				cPlayer->SetMovementSpeed(10);
+				cPlayer->MoveBeforeCollision();
+				cAI[i]->SetMovementSpeed(10);
+			}
 				//cPlayer->DecreaseHealth(1);
 
 				sound->PlaySound();
@@ -433,9 +442,7 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 					cAI[i]->SetMovementSpeed(-2);
 					cAI[i]->MoveBeforeCollision();
 					//cPlayer->DecreaseHealth(1);
-
 					sound->PlaySound();
-
 				}
 			}
 		}
