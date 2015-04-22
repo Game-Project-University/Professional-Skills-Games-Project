@@ -72,7 +72,7 @@ IFont* frontFont;
 IFont* RaceStartFont;
 ISprite* sprite;
 ICamera* myCamera;
-ISprite* speedSprites[10];
+ISprite* speedSprites[11];
 
 IModel* waypoints[MAX_LANES][MAX_WAYPOINTS];
 IModel* testMdl;
@@ -189,6 +189,7 @@ bool ProgramSetup()
 	CCrowd::crowdMsh = myEngine->LoadMesh("sierra.x");
 	CCrowdBarrier::crowdBarrierMsh = myEngine->LoadMesh("Cue.x");
 	CCrowdWall::crowdWallMsh = myEngine->LoadMesh("Barrier.x");
+	CArrow::arrowMsh = myEngine->LoadMesh("Arrow.x");
 
 	CFireSystem::particleMsh = myEngine->LoadMesh("Smoke.x");
 	//
@@ -319,6 +320,7 @@ void GameSetup()
 	speedSprites[7] = myEngine->CreateSprite("50.png");
 	speedSprites[8] = myEngine->CreateSprite("60.png");
 	speedSprites[9] = myEngine->CreateSprite("70.png");
+	speedSprites[10] = myEngine->CreateSprite("80 Plus.png");
 
 	////////////////////////
 	// -- CREATE COURSE --//
@@ -424,8 +426,8 @@ void GameUpdate()
 	interfaceText.str("");
 
 	//Player Speed
-	interfaceText << "Speed: " << cPlayer->GetPlayerS();
-	ComicSans->Draw(interfaceText.str(), 880, 550, kWhite);
+	interfaceText << "Speed: " << (int)cPlayer->GetPlayerS();
+	ComicSans->Draw(interfaceText.str(), 920, 550, kWhite);
 	interfaceText.str("");
 
 	//Player ammunition
@@ -488,6 +490,11 @@ void GameUpdate()
 		speedSprites[9]->SetPosition(1200, 400);
 	else
 		speedSprites[9]->SetPosition(-250.0f, -250.0f);
+
+	if (cPlayer->GetPlayerS() >= 80.0f)
+		speedSprites[10]->SetPosition(1185, 370);
+	else
+		speedSprites[10]->SetPosition(-250.0f, -250.0f);
 
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);

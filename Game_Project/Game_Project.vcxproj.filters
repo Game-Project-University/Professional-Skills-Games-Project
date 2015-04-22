@@ -178,6 +178,9 @@
     <Filter Include="Particle Systems\PlayerExhaustSystem">
       <UniqueIdentifier>{c3754323-e19a-4386-b306-dc586da81fe7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Course\Course Objects\Type of Object\Arrow%28s%29">
+      <UniqueIdentifier>{3d3afdcc-11fd-4b85-94fd-c463b477e3dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -261,6 +264,9 @@
     <ClCompile Include="PlayerFireSystem.cpp">
       <Filter>Particle Systems\PlayerExhaustSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Arrow.cpp">
+      <Filter>Course\Course Objects\Type of Object\Arrow%28s%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -340,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="PlayerFireSystem.h">
       <Filter>Particle Systems\PlayerExhaustSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrow.h">
+      <Filter>Course\Course Objects\Type of Object\Arrow%28s%29</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
