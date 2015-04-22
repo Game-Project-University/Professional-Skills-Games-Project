@@ -97,6 +97,11 @@ void CBasePlayer::DecreaseHealth(int value)
 	}
 }
 
+void CBasePlayer::RemoveShield()
+{
+	shield = 0;
+}
+
 void CBasePlayer::ResetPlayerHealth()
 {
 	health = 100;

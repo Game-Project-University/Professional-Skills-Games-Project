@@ -74,6 +74,7 @@ public:
 	void IncrementLap();
 	void IncrementCheckpoint();
 	void ResetCheckpoint();
+	void RemoveShield();
 
 	////////////////
 	//--MOVEMENT--//

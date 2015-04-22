@@ -154,6 +154,8 @@ float FontStartRaceX = 510;
 float FontStartRaceY = 200;
 
 bool wreckedText = false;
+
+float sheildTimer = 0;
 //////////////////////////////
 //--PROGRAM SETUP/SHUTDOWN--//
 bool ProgramSetup()
@@ -492,9 +494,9 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	PLAYERSTATE = ALIVE;
+	//PLAYERSTATE = ALIVE;
 	
-	/*if (PLAYERSTATE == STARTRACE)
+	if (PLAYERSTATE == STARTRACE)
 	{
 		if (startingCounter >= 2 && startingCounter < 4)
 		{
@@ -524,7 +526,7 @@ void GameUpdate()
 
 		startingCounter += frameTime * 1.1;
 	}
-	DelayCounter += frameTime;*/
+	DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{
@@ -623,13 +625,23 @@ void GameUpdate()
 			}
 			testMdl->AttachToParent(cPlayer->GetModel());
 
-			if (cPlayer->GetPlayerShield() == 0)
+
+			if (sheildTimer > 2)
+			{
+				shieldActivated = false;
+				createShield = false;
+				myEngine->RemoveMesh(testMsh);
+				sheildTimer = 0;
+				cPlayer->RemoveShield();
+			}
+			else if (cPlayer->GetPlayerShield() == 0)
 			{
 				shieldActivated = false;
 				createShield = false;
 				myEngine->RemoveMesh(testMsh);
 			}
-		}
+			sheildTimer += 0.5 * frameTime;
+		}		
 	}
 
 	if (PLAYERSTATE == DEAD)
