@@ -75,14 +75,20 @@ public:
 	//////////////
 	//--SETTERS--//
 	void SetMovementSpeed(float value);
+
 	void IncreaseHealth(int value);
+
 	void IncreaseShield(int value);
+
 	void DecreaseHealth(int value);
+
 	void ResetPlayerHealth();
 	void SetPlayerPos(float x, float y, float z);
+
 	void IncrementLap();
 	void IncrementCheckpoint();
 	void ResetCheckpoint();
+
 	void RemoveShield();
 
 	////////////////

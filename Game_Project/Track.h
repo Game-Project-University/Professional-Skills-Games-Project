@@ -45,7 +45,7 @@ public:
 	bool aiPlayer;
 
 	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion);
-	void CheckPointCollision(CBasePlayer* cPlayer);
+	void CheckPointCollision(CBasePlayer* cPlayer,CAI* cAi[]);
 	void ItemCollision(CPlayer* cPlayer, CSound* sound);
 	void AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound);
 
@@ -56,7 +56,7 @@ public:
 	// return the checkpoint that has mostly recently been passed
 	// return the lap that the player is on
 
-	void ResetPlayerPosition(CPlayer* cPlayer);
+	void ResetPlayerPosition(CBasePlayer* cPlayer);
 	void TrackUpdate(float frameTime, CPlayer* cPlayer);
 	void OwnedItems(CPlayer* cPlayer);
 

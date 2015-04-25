@@ -156,6 +156,7 @@ float FontStartRaceY = 200;
 bool wreckedText = false;
 
 float sheildTimer = 0;
+float aiDeathTimer = 0;
 //////////////////////////////
 //--PROGRAM SETUP/SHUTDOWN--//
 bool ProgramSetup()
@@ -560,7 +561,7 @@ void GameUpdate()
 		cTrack->AICollision(cPlayer, cAI, SmashingSound);
 
 		//- Chec for checkpoint collision
-		cTrack->CheckPointCollision(cPlayer);
+		cTrack->CheckPointCollision(cPlayer, cAI);
 
 		//Update exhaust particle's position 
 		cFire->update(frameTime, cPlayer);
@@ -680,19 +681,59 @@ void GameUpdate()
 		}
 	}
 
-	if (cPlayer->GetLap() == 3)
+	if (cPlayer->GetLap() == 4)
 	{
-	PLAYERSTATE = ENDRACE;
+		PLAYERSTATE = ENDRACE;
 	}
 
 	//-- AI --//
 	if (RACESTATE == GO)
 	{
 		for (int i = 0; i < 4; i++)
+		{ 
+			if (cAI[i]->GetPlayerHealth() > 0)
+			{
+				cAI[i]->SinHoverMovement(frameTime);
+				cAI[i]->MoveToWaypoint(frameTime, waypoints);
+			}
+		}
+
+		for (int i = 0; i < 4; i++)
 		{
-			cAI[i]->SinHoverMovement(frameTime);
-			cAI[i]->MoveToWaypoint(frameTime, waypoints);
-			//cAI[i]->IncreaseAccelration();
+			if (cAI[i]->GetPlayerHealth() <= 0)
+			{
+				if (cAI[i]->deathTimer > 2)
+				{
+					cAI[i]->ResetPlayerHealth();
+					cTrack->ResetPlayerPosition(cAI[i]);
+					cAI[i]->deathTimer = 0;
+				//	if (i == 0)
+				//	{
+					//	cAI[i]->MoveAIBack(-10);
+					//}
+
+					if (i == 1)
+					{
+						cAI[i]->MoveAIBack(-10);
+					}
+
+					if (i == 2)
+					{
+						cAI[i]->MoveAIBack(-20);
+					}
+
+					if (i == 3)
+					{
+						cAI[i]->MoveAIBack(-30);
+					}
+					
+					
+				}
+				else
+				{
+					cAI[i]->deathTimer += frameTime * 0.8;
+				}
+			}
 		}
 	}
 

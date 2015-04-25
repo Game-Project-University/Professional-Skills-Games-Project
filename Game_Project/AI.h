@@ -22,4 +22,8 @@ public:
 	//--Movement--//
 	void MoveToWaypoint(float frameTime, IModel* waypoints[][MAX_WAYPOINTS]);
 	void IncreaseWaypoint();
+
+	void MoveAIBack(float value);
+
+	float deathTimer;
 };

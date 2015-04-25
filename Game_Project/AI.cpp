@@ -42,6 +42,8 @@ CAI::CAI(IMesh* aiMsh, float x, float y, float z, int lane)
 
 	aiCurrentWaypoint = 0;
 	aiCurrentLane = lane;
+
+	deathTimer = 0;
 }
 
 //////////////////
@@ -86,4 +88,9 @@ void CAI::IncreaseWaypoint()
 	{
 		aiCurrentWaypoint++;
 	}
+}
+
+void CAI::MoveAIBack(float value)
+{
+	playerMdl->MoveLocalZ(value);
 }

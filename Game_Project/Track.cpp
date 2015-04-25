@@ -24,7 +24,7 @@ CTrack::CTrack()
 	courseObjects[5]  = new CSkyScraper(40.0f, 0.0f, 120.0f, 52.0f, 54.0f);
 	courseObjects[6]  = new CBlockBuilding(36.0f, 0.0f, 170.0f, 40.0f, 54.0f);
 	courseObjects[7]  = new CBlockBuilding(0.0f, 0.0f, 210.0f, 40.0f, 54.0f);
-	courseObjects[8]  = new CBlockBuilding(-30.0f, 0.0f, 210.0f, 40.0f, 54.0f);
+	courseObjects[8]  = new CBlockBuilding(-30.0f, 0.0f, 210.0f, 30.0f, 54.0f);
 	courseObjects[9]  = new CBlockBuilding(-85.0f, 0.0f, 120.0f, 40.0f, 54.0f);
 	courseObjects[10] = new CBattleShip(-130.0f, 20.0f, 200.0f, 20.0f, 170.0f);
 	courseObjects[11] = new CPadBuilding(-100.0f, -5.0f, 310.0f, 90.0f, 60.0f);
@@ -283,7 +283,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 
 //-- Reset the players position to the last checkpoint when player dies
 
-void CTrack::ResetPlayerPosition(CPlayer* cPlayer)
+void CTrack::ResetPlayerPosition(CBasePlayer* cPlayer)
 {
 	// if the checkpoint is = to 0 eg the starting checkpoint then when the car blows up reset the cars position to this checkpoint 
 	if (cPlayer->GetCheckpoint() == 0)
@@ -298,7 +298,7 @@ void CTrack::ResetPlayerPosition(CPlayer* cPlayer)
 }
 
 //-- CHECKPOINT COLLISION --//
-void CTrack::CheckPointCollision(CBasePlayer* cPlayer)
+void CTrack::CheckPointCollision(CBasePlayer* cPlayer, CAI* cAI[])
 {
 	for (int i = 0; i < NUMBER_OF_CHECKPOINTS; i++)
 	{
@@ -341,15 +341,32 @@ void CTrack::CheckPointCollision(CBasePlayer* cPlayer)
 				}
 				if (courseItems[6] == nullptr)
 				{
-					courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, 140, "health");
+					courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, -220, "health");
 				}
 				if (courseItems[7] == nullptr)
 				{
-					courseItems[7] = new CShield(SheildMsh, 90, 440, 0, 140, "Shield");
+					courseItems[7] = new CShield(SheildMsh, 90, 440, 0, -220, "Shield");
 				}
 				if (courseItems[8] == nullptr)
 				{
 					courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220, "Speed");
+				}
+			}
+		}
+
+		for (int j = 0; j < 4; j++)
+		{
+			if (SphereToSphereCollision(cAI[j], courseCheckpoints[i], 10.0f, 60.0f))
+			{
+				if (cAI[j]->GetCheckpoint() == i)
+				{
+					cAI[j]->IncrementCheckpoint();
+				}
+
+				if (cAI[j]->GetCheckpoint() == NUMBER_OF_CHECKPOINTS && SphereToSphereCollision(cAI[j], courseCheckpoints[0], 10.0f, 60.0f))
+				{
+					cAI[j]->ResetCheckpoint();
+					cAI[j]->IncrementLap();
 				}
 			}
 		}
@@ -407,19 +424,19 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 			if (dotProduct(cPlayer, cAI[i]) < 0.0f) // infront of the ai collided with
 			{
 				cPlayer->MoveBeforeCollision();
-				cPlayer->SetMovementSpeed(20);
-				cAI[i]->SetMovementSpeed(-20);
+				cPlayer->SetMovementSpeed(40);
+				cAI[i]->SetMovementSpeed(-240);
 				cPlayer->DecreaseHealth(5);
-				cAI[i]->DecreaseHealth(20);
+				cAI[i]->DecreaseHealth(100);
 			}
-			else //if (cPlayer->GetPlayerS() < 0)
+			else 
 			{
 				cPlayer->SetMovementSpeed(-10);
 				cPlayer->MoveBeforeCollision();
 				cPlayer->DecreaseHealth(20);
 
 				cAI[i]->SetMovementSpeed(20);
-				cAI[i]->DecreaseHealth(5);
+				cAI[i]->DecreaseHealth(50);
 			}
 				sound->PlaySound();
 		}
@@ -438,21 +455,21 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 					{
 						cAI[j]->MoveBeforeCollision();
 						cAI[j]->SetMovementSpeed(10);
-						cAI[j]->DecreaseHealth(5);
+						cAI[j]->DecreaseHealth(50);
 
 						cAI[i]->MoveBeforeCollision();
 						cAI[i]->SetMovementSpeed(-10);
-						cAI[i]->DecreaseHealth(20);
+						cAI[i]->DecreaseHealth(100);
 					}
 					else  // if the J ai is infront of the i ai 
 					{
 						cAI[j]->MoveBeforeCollision();
 						cAI[j]->SetMovementSpeed(-10);
-						cAI[j]->DecreaseHealth(20);
+						cAI[j]->DecreaseHealth(100);
 
 						cAI[i]->MoveBeforeCollision();
 						cAI[i]->SetMovementSpeed(10);
-						cAI[i]->DecreaseHealth(5);
+						cAI[i]->DecreaseHealth(50);
 					}
 					sound->PlaySound();
 				}
