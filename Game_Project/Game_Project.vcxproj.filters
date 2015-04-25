@@ -261,6 +261,9 @@
     <ClCompile Include="PlayerFireSystem.cpp">
       <Filter>Particle Systems\PlayerExhaustSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Arrow.cpp">
+      <Filter>Course\Course Objects\Type of Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="PlayerFireSystem.h">
       <Filter>Particle Systems\PlayerExhaustSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrow.h">
+      <Filter>Course\Course Objects\Type of Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

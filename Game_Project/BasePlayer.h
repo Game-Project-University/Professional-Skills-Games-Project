@@ -8,6 +8,13 @@ struct SPlayerPos
 	float posZ;
 };
 
+struct Vector3
+{
+	float x;
+	float y;
+	float z;
+};
+
 class CBasePlayer
 {
 protected:
@@ -34,6 +41,8 @@ protected:
 	//-- player pos accessor --//
 	SPlayerPos playerPos;
 	SPlayerPos playerPrevPos;
+
+	Vector3 playerFacingV;
 
 public:
 	CBasePlayer();
@@ -81,4 +90,8 @@ public:
 	void IncreaseAccelration();
 	void DecreaseAccelration();
 	void SinHoverMovement(float frameTime);
+
+	// facing vector //
+
+	Vector3 GetFacingVector();
 };

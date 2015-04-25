@@ -398,38 +398,46 @@ void CTrack::DisplayItemHeld()
 void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 {
 	
+	
 	// Collision with player to AI
 	for (int i = 0; i < 4; i++)
 	{
 		if (SphereToSphereCollision(cPlayer, cAI[i], 4.0f, 4.0f))
 		{
-			if (cPlayer->GetPlayerS() > 0)
+			if (dotProduct(cPlayer, cAI[i]) < 0.0f) // infront of the ai collided with
+			{
+				cPlayer->MoveBeforeCollision();
+				cPlayer->SetMovementSpeed(20);
+				cAI[i]->SetMovementSpeed(-20);
+			}
+
+		/*	if (cPlayer->GetPlayerS() > 0)
 			{
 				cPlayer->SetMovementSpeed(-10);
 				cPlayer->MoveBeforeCollision();
 				cAI[i]->SetMovementSpeed(10);
-			}
-			else if (cPlayer->GetPlayerS() < 0)
+			}*/
+
+			else //if (cPlayer->GetPlayerS() < 0)
 			{
-				cPlayer->SetMovementSpeed(10);
+				cPlayer->SetMovementSpeed(-20);
 				cPlayer->MoveBeforeCollision();
-				cAI[i]->SetMovementSpeed(10);
+				cAI[i]->SetMovementSpeed(20);
 			}
-				//cPlayer->DecreaseHealth(1);
-
 				sound->PlaySound();
 		}
 
-		if (SphereToSphereCollision(cAI[i], cPlayer, 4.0f, 4.0f))
-		{
-				cAI[i]->SetMovementSpeed(-10);
-				cAI[i]->MoveBeforeCollision();
-				cPlayer->SetMovementSpeed(10);
+	   //if (SphereToSphereCollision(cAI[i], cPlayer, 4.0f, 4.0f))
+		//{
+		//		cAI[i]->SetMovementSpeed(-10);
+		//		cAI[i]->MoveBeforeCollision();
+		//		cPlayer->SetMovementSpeed(10);
 				//cPlayer->DecreaseHealth(1);
 
-				sound->PlaySound();
-		}
+			//	sound->PlaySound();
+		//}
 	}
+
 	// Collision with AI to AI
 	for (int j = 0; j < 4; j++)
 	{
@@ -437,11 +445,24 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 		{
 			if (j != i)
 			{
-				if (SphereToSphereCollision(cAI[j], cAI[i], 4.0f, 4.0f))
+				if (SphereToSphereCollision(cAI[j], cAI[i], 4.0f, 4.0f)) 
 				{
-					cAI[i]->SetMovementSpeed(-2);
-					cAI[i]->MoveBeforeCollision();
-					//cPlayer->DecreaseHealth(1);
+					if (dotProduct(cAI[j], cAI[i]) < 0.0f) // if the J ai is infront of the i ai 
+					{
+						cAI[j]->MoveBeforeCollision();
+						cAI[j]->SetMovementSpeed(10);
+
+						cAI[i]->MoveBeforeCollision();
+						cAI[i]->SetMovementSpeed(-10);
+					}
+					else  // if the J ai is infront of the i ai 
+					{
+						cAI[j]->MoveBeforeCollision();
+						cAI[j]->SetMovementSpeed(-10);
+
+						cAI[i]->MoveBeforeCollision();
+						cAI[i]->SetMovementSpeed(10);
+					}
 					sound->PlaySound();
 				}
 			}
@@ -479,4 +500,15 @@ void CTrack::OwnedItems(CPlayer* cPlayer)
 			}
 		}
 	}
+}
+
+template <class T, class S> float CTrack::dotProduct(T* mdl1, S* mdl2)
+{
+	float distanceX = mdl2->GetX() - mdl1->GetX();
+	float distanceZ = mdl2->GetZ() - mdl1->GetZ();
+
+	float modelXfacingV = mdl1->GetFacingVector().x;
+	float modelZfacingV = mdl1->GetFacingVector().z;
+
+	return (modelXfacingV * distanceX) + (modelZfacingV * distanceZ);
 }

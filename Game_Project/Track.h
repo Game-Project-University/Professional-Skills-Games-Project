@@ -64,6 +64,8 @@ public:
 
 	bool itemHeld;
 
+	template <class T, class S> float dotProduct(T* mdl1, S* mdl2);
+
 private:
 	CObject* courseObjects[NUMBER_OF_OBJECTS];
 	CCheckpoint* courseCheckpoints[NUMBER_OF_CHECKPOINTS];
@@ -71,6 +73,4 @@ private:
 	CVortex* vortexObjects[NUMBER_OF_VORTEX];
 	CCrowd* crowdObjects[NUMBER_OF_CROWDS];
 	CArrow* arrowObjects[NUMBER_OF_ARROWS];
-
-	
 };

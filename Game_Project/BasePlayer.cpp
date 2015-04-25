@@ -158,3 +158,17 @@ void CBasePlayer::SinHoverMovement(float frameTime)
 		sineWaveAngle = 0.0f;
 	}
 }
+
+///
+
+Vector3 CBasePlayer::GetFacingVector()
+{
+	float matrix[4][4];
+	playerMdl->GetMatrix(&matrix[0][0]);
+
+	playerFacingV.x = matrix[2][0];
+	playerFacingV.y = matrix[2][1];
+	playerFacingV.z = matrix[2][2];
+
+	return playerFacingV;
+}

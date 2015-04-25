@@ -120,6 +120,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="BaseItem.cpp" />
     <ClCompile Include="BaseParticle.cpp" />
     <ClCompile Include="BasePlayer.cpp" />
@@ -149,6 +150,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="Arrow.h" />
     <ClInclude Include="BaseItem.h" />
     <ClInclude Include="BaseParticle.h" />
     <ClInclude Include="BasePlayer.h" />
