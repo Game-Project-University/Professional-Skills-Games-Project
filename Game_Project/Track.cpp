@@ -137,7 +137,7 @@ CTrack::CTrack()
 
 	//-- models to fix players direction on respawn
 
-	FixLookObjects[0] = HeartMsh->CreateModel(0, 0, 10);
+	/*FixLookObjects[0] = HeartMsh->CreateModel(0, 0, 10);
 	FixLookObjects[0]->Scale(0.2);
 	FixLookObjects[1] = HeartMsh->CreateModel(0, 0, 130);
 	FixLookObjects[1]->Scale(0.2);
@@ -148,7 +148,7 @@ CTrack::CTrack()
 	FixLookObjects[4] = HeartMsh->CreateModel(420, 0, 190);
 	FixLookObjects[4]->Scale(0.2);
 	FixLookObjects[5] = HeartMsh->CreateModel(420, 0, -190);
-	FixLookObjects[5]->Scale(0.2);
+	FixLookObjects[5]->Scale(0.2);*/
 }
 
 CTrack::~CTrack()
