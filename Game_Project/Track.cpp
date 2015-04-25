@@ -409,33 +409,20 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 				cPlayer->MoveBeforeCollision();
 				cPlayer->SetMovementSpeed(20);
 				cAI[i]->SetMovementSpeed(-20);
+				cPlayer->DecreaseHealth(5);
+				cAI[i]->DecreaseHealth(20);
 			}
-
-		/*	if (cPlayer->GetPlayerS() > 0)
+			else //if (cPlayer->GetPlayerS() < 0)
 			{
 				cPlayer->SetMovementSpeed(-10);
 				cPlayer->MoveBeforeCollision();
-				cAI[i]->SetMovementSpeed(10);
-			}*/
+				cPlayer->DecreaseHealth(20);
 
-			else //if (cPlayer->GetPlayerS() < 0)
-			{
-				cPlayer->SetMovementSpeed(-20);
-				cPlayer->MoveBeforeCollision();
 				cAI[i]->SetMovementSpeed(20);
+				cAI[i]->DecreaseHealth(5);
 			}
 				sound->PlaySound();
 		}
-
-	   //if (SphereToSphereCollision(cAI[i], cPlayer, 4.0f, 4.0f))
-		//{
-		//		cAI[i]->SetMovementSpeed(-10);
-		//		cAI[i]->MoveBeforeCollision();
-		//		cPlayer->SetMovementSpeed(10);
-				//cPlayer->DecreaseHealth(1);
-
-			//	sound->PlaySound();
-		//}
 	}
 
 	// Collision with AI to AI
@@ -451,17 +438,21 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 					{
 						cAI[j]->MoveBeforeCollision();
 						cAI[j]->SetMovementSpeed(10);
+						cAI[j]->DecreaseHealth(5);
 
 						cAI[i]->MoveBeforeCollision();
 						cAI[i]->SetMovementSpeed(-10);
+						cAI[i]->DecreaseHealth(20);
 					}
 					else  // if the J ai is infront of the i ai 
 					{
 						cAI[j]->MoveBeforeCollision();
 						cAI[j]->SetMovementSpeed(-10);
+						cAI[j]->DecreaseHealth(20);
 
 						cAI[i]->MoveBeforeCollision();
 						cAI[i]->SetMovementSpeed(10);
+						cAI[i]->DecreaseHealth(5);
 					}
 					sound->PlaySound();
 				}

@@ -21,6 +21,6 @@ CSpeed::~CSpeed()
 
 void CSpeed::Activate()
 {
-	mOwner->SetMovementSpeed(mOwner->GetPlayerS()+80);
+	mOwner->SetMovementSpeed(mOwner->GetPlayerS()+60);
 	used = true;
 }

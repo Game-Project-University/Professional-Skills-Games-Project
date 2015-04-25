@@ -26,9 +26,9 @@ CAI::CAI(IMesh* aiMsh, float x, float y, float z, int lane)
 	//- set the ai movement speed
 	playerMovementS = 0.0f;
 	//- set the speed that the ai accelrates
-	playerAccelrationS = 0.03f;
+	playerAccelrationS = 1.03f;
 	//- set the max ai speed
-	playerMaxSpeed = 65.0f;
+	playerMaxSpeed = 73.0f;
 	//- set the angle of the sinewave to start at 0
 	sineWaveAngle = rand() % 300;
 	sineWaveValue = 0;
