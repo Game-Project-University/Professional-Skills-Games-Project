@@ -346,10 +346,10 @@ void GameSetup()
 		cAI[i] = new CAI(aiMsh, i + 0, rand() % 300, 0, 1, -20 );
 	}*/
 
-	cAI[0] = new CAI(aiMsh, -10, 1, -20, rand() % 4);
-	cAI[1] = new CAI(aiMsh,   0, 1, -30, rand() % 4);
-	cAI[2] = new CAI(aiMsh, -10, 1, -40, rand() % 4);
-	cAI[3] = new CAI(aiMsh,   0, 1, -50, rand() % 4);
+	cAI[0] = new CAI(aiMsh, -10, 1, -20, rand() % 4, 2);
+	cAI[1] = new CAI(aiMsh,   0, 1, -30, rand() % 4, 3);
+	cAI[2] = new CAI(aiMsh, -10, 1, -40, rand() % 4, 4);
+	cAI[3] = new CAI(aiMsh,   0, 1, -50, rand() % 4, 5);
 
 	stateMsh = myEngine->LoadMesh("state.x");
 	//stateMsh = myEngine->LoadMesh("dummy.x");
@@ -402,6 +402,29 @@ void GameUpdate()
 		PLAYERSTATE = DEAD;
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		// ai number
+		interfaceText << "AI: " << i+1;
+		ComicSans->Draw(interfaceText.str(), 600, 60 + (i * 25), kWhite);
+		interfaceText.str("");
+		
+		// current checkpoint
+		interfaceText << "Checkpoint: " << cAI[i]->GetCheckpoint();
+		ComicSans->Draw(interfaceText.str(), 700, 60 + (i * 25), kWhite);
+		interfaceText.str("");
+
+		// current lap
+		interfaceText << "Lap: " << cAI[i]->GetLap();
+		ComicSans->Draw(interfaceText.str(), 900, 60 + (i * 25), kWhite);
+		interfaceText.str("");
+
+		// current position
+		interfaceText << "Position: " << cAI[i]->GetPosition();
+		ComicSans->Draw(interfaceText.str(), 1000, 60+(i*25), kWhite);
+		interfaceText.str("");
+	}
+
 	//-- STATS INTERFACE --//
 	// frametime
 	interfaceText << "FPS: " << 1 / frameTime;
@@ -416,6 +439,11 @@ void GameUpdate()
 	// current lap
 	interfaceText << "Lap: " << cPlayer->GetLap();
 	ComicSans->Draw(interfaceText.str(), 1000, 700, kWhite);
+	interfaceText.str("");
+
+	// current position
+	interfaceText << "Position: " << cPlayer->GetPosition();
+	ComicSans->Draw(interfaceText.str(), 1100, 700, kWhite);
 	interfaceText.str("");
 
 	// players health
@@ -568,6 +596,8 @@ void GameUpdate()
 
 		//- Chec for item collision
 		cTrack->ItemCollision(cPlayer, PickupSound);
+
+		cTrack->RacePosition(cPlayer, cAI);
 
 		if (cPlayer->GetPlayerHealth() < 50)
 		{

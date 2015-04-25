@@ -426,6 +426,166 @@ void CTrack::DisplayItemHeld()
 	interfaceText.str("");
 }
 
+void CTrack::RacePosition(CPlayer* cPlayer, CAI* cAI[])
+{
+	// Test Players position against AI
+	for (int i = 0; i < 4; i++)
+	{
+		// If player is on the same lap as the AI
+		if (cPlayer->GetLap() == cAI[i]->GetLap())
+		{
+			// And heading towards the same checkpoint
+			if (cPlayer->GetCheckpoint() == cAI[i]->GetCheckpoint())
+			{
+				// Calculate whos closer to the checkpoint
+				float playerDist = distance(cPlayer, courseCheckpoints[cPlayer->GetCheckpoint()-1]);
+				float aiDist = distance(cAI[i], courseCheckpoints[cAI[i]->GetCheckpoint()-1]);
+
+				// Store the race positions
+				int playerPos = cPlayer->GetPosition();
+				int aiPos = cAI[i]->GetPosition();
+				
+				// If the Ai is closer to the checkpoint
+				if (playerDist > aiDist)
+				{
+					// Test if the players position is better than the AI's
+					if (playerPos < aiPos)
+					{
+						// If so swap them around as the AI is closer 
+						cPlayer->SetPosition(aiPos);
+						cAI[i]->SetPosition(playerPos);
+					}
+					// Else positions are correct
+				}
+				// If the player is closer to the checkpoint
+				else if (playerDist < aiDist)
+				{
+					// Test if the AI's position is better than the players
+					if (playerPos > aiPos)
+					{
+						// If so swap them around as the player is closer 
+						cPlayer->SetPosition(aiPos);
+						cAI[i]->SetPosition(playerPos);
+					}
+					// Else positions are correct
+				}
+			}
+		}
+		// And player is heading towards a further along checkpoint than the AI
+		else if (cPlayer->GetCheckpoint() > cAI[i]->GetCheckpoint())
+		{
+			// Position of players
+			int playerPos = cPlayer->GetPosition();
+			int aiPos = cAI[i]->GetPosition();
+
+			// If AI's position is better than the players swap them around
+			if (playerPos > aiPos)
+			{
+				cPlayer->SetPosition(aiPos);
+				cAI[i]->SetPosition(playerPos);
+			}
+			// Else positions are correct
+		}
+		// And AI is heading towards a further along checkpoint than the player
+		else if (cPlayer->GetCheckpoint() < cAI[i]->GetCheckpoint())
+		{
+			// Position of players
+			int playerPos = cPlayer->GetPosition();
+			int aiPos = cAI[i]->GetPosition();
+
+			// If Players position is better than the AI's swap them around
+			if (playerPos < aiPos)
+			{
+				cPlayer->SetPosition(aiPos);
+				cAI[i]->SetPosition(playerPos);
+			}
+			// Else positions are correct
+		}
+	}
+
+	// Test AI's position against other AI
+	for (int j = 0; j < 4; j++)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (j != i)
+			{
+				// If AI-i is on the same lap as the AI-j
+				if (cAI[i]->GetLap() == cAI[j]->GetLap())
+				{
+					// And heading towards the same checkpoint
+					if (cAI[i]->GetCheckpoint() == cAI[j]->GetCheckpoint())
+					{
+						// Calculate whos closer to the checkpoint
+						float aiDisti = distance(cAI[i], courseCheckpoints[cAI[i]->GetCheckpoint() - 1]);
+						float aiDistj = distance(cAI[j], courseCheckpoints[cAI[j]->GetCheckpoint() - 1]);
+
+						// Store the race positions
+						int aiPosi = cAI[i]->GetPosition();
+						int aiPosj = cAI[j]->GetPosition();
+
+						// If the AI-j is closer to the checkpoint
+						if (aiDisti > aiDistj)
+						{
+							// Test if the AI-i position is better than the AI-j
+							if (aiPosi < aiPosj)
+							{
+								// If so swap them around as the AI-j is closer 
+								cAI[i]->SetPosition(aiPosj);
+								cAI[j]->SetPosition(aiPosi);
+							}
+							// Else positions are correct
+						}
+						// If the AI-i is closer to the checkpoint
+						else if (aiDisti < aiDistj)
+						{
+							// Test if the AI-j position is better than the AI-i
+							if (aiPosi > aiPosj)
+							{
+								// If so swap them around as the AI-i is closer 
+								cAI[i]->SetPosition(aiPosj);
+								cAI[j]->SetPosition(aiPosi);
+							}
+							// Else positions are correct
+						}
+					}
+				}
+				// And AI-i is heading towards a further along checkpoint than the AI
+				else if (cAI[i]->GetCheckpoint() > cAI[j]->GetCheckpoint())
+				{
+					// Position of players
+					int aiPosi = cAI[i]->GetPosition();
+					int aiPosj = cAI[j]->GetPosition(); 
+
+					// If AI-j position is better than the AI-i swap them around
+					if (aiPosi > aiPosj)
+					{
+						cAI[i]->SetPosition(aiPosj);
+						cAI[j]->SetPosition(aiPosi);
+					}
+					// Else positions are correct
+				}
+				// And AI-j is heading towards a further along checkpoint than the AI-i
+				else if (cAI[i]->GetCheckpoint() < cAI[j]->GetCheckpoint())
+				{
+					// Position of players
+					int aiPosi = cAI[i]->GetPosition();
+					int aiPosj = cAI[j]->GetPosition();
+
+					// If AI-i position is better than the AI-j swap them around
+					if (aiPosi < aiPosj)
+					{
+						cAI[i]->SetPosition(aiPosj);
+						cAI[j]->SetPosition(aiPosi);
+					}
+					// Else positions are correct
+				}
+			}
+		}
+	}
+}
+
+
 //-- ITEM COLLISION --//
 void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 {
@@ -534,4 +694,15 @@ template <class T, class S> float CTrack::dotProduct(T* mdl1, S* mdl2)
 	float modelZfacingV = mdl1->GetFacingVector().z;
 
 	return (modelXfacingV * distanceX) + (modelZfacingV * distanceZ);
+}
+
+template <class T, class S> float CTrack::distance(T* mdl1, S* mdl2)
+{
+	float distanceX = mdl2->GetX() - mdl1->GetX();
+	float distanceZ = mdl2->GetZ() - mdl1->GetZ();
+
+	distanceX = distanceX * distanceX;
+	distanceZ = distanceZ * distanceZ;
+
+	return distanceX + distanceZ;
 }

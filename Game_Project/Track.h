@@ -49,6 +49,7 @@ public:
 	void CheckPointCollision(CBasePlayer* cPlayer,CAI* cAi[]);
 	void ItemCollision(CPlayer* cPlayer, CSound* sound);
 	void AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound);
+	void RacePosition(CPlayer* cPlayer, CAI* cAI[]);
 
 	// template class for spheretospherecollision so that this function can be used on any objects
 	template <class T,class S> bool SphereToSphereCollision(T* cPLayer, S* cCheckPoints, float radius1, float radius2);
@@ -66,6 +67,7 @@ public:
 	bool itemHeld;
 
 	template <class T, class S> float dotProduct(T* mdl1, S* mdl2);
+	template <class T, class S> float distance(T* mdl1, S* mdl2);
 
 private:
 	CObject* courseObjects[NUMBER_OF_OBJECTS];

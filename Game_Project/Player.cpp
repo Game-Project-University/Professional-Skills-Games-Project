@@ -2,7 +2,7 @@
 
 ///////////////////
 //--CONTRUCTORS--//
-CPlayer::CPlayer(IMesh* playerMsh) : CBasePlayer()
+CPlayer::CPlayer(IMesh* playerMsh, int pos) : CBasePlayer()
 {
 	// create player model
 	playerMdl = playerMsh->CreateModel(0.0f, 0.0f, -14.0f);
@@ -21,6 +21,8 @@ CPlayer::CPlayer(IMesh* playerMsh) : CBasePlayer()
 	cameraCounter = 0.0f; // counter used to track how much the camera has moved
 	amountRotated = 0.0f;
 	TurningActive = false;
+
+	position = pos;
 }
 
 //////////////////

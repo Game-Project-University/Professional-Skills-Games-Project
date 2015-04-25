@@ -28,7 +28,7 @@ private:
 	bool TurningActive;
 
 public:
-	CPlayer(IMesh* playerMsh);
+	CPlayer(IMesh* playerMsh, int pos);
 	~CPlayer();
 
 	inline ICamera* GetCamera(){ return myCamera; };

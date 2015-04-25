@@ -144,6 +144,11 @@ void CBasePlayer::ResetCheckpoint()
 {
 	checkPoint=0;
 }
+
+void CBasePlayer::SetPosition(int value)
+{
+	position = value;
+}
 //////////////////////
 //--PLAYERMOVEMENT--//
 void CBasePlayer::SinHoverMovement(float frameTime)

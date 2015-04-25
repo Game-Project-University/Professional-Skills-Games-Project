@@ -15,7 +15,7 @@ private:
 	float distance;
 
 public:
-	CAI(IMesh* aiMsh, float x, float y, float z, int lane);
+	CAI(IMesh* aiMsh, float x, float y, float z, int lane, int pos);
 	~CAI();
 
 	////////////////

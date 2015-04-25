@@ -21,14 +21,14 @@ float GetDistance(float X, float Z)
 
 ///////////////////
 //--CONTRUCTORS--//
-CAI::CAI(IMesh* aiMsh, float x, float y, float z, int lane)
+CAI::CAI(IMesh* aiMsh, float x, float y, float z, int lane, int pos)
 {
 	//- set the ai movement speed
 	playerMovementS = 0.0f;
 	//- set the speed that the ai accelrates
 	playerAccelrationS = 1.03f;
 	//- set the max ai speed
-	playerMaxSpeed = 73.0f;
+	playerMaxSpeed = 20.0f;
 	//- set the angle of the sinewave to start at 0
 	sineWaveAngle = rand() % 300;
 	sineWaveValue = 0;
@@ -44,6 +44,8 @@ CAI::CAI(IMesh* aiMsh, float x, float y, float z, int lane)
 	aiCurrentLane = lane;
 
 	deathTimer = 0;
+
+	position = pos;
 }
 
 //////////////////

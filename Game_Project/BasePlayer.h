@@ -37,6 +37,7 @@ protected:
 	int shield;
 	int checkPoint;
 	int lap;
+	int position;
 
 	//-- player pos accessor --//
 	SPlayerPos playerPos;
@@ -71,6 +72,7 @@ public:
 	inline float GetZ(){ return playerPos.posZ; };
 	int GetCheckpoint(){ return checkPoint; };
 	inline int GetLap(){ return lap; };
+	inline int GetPosition(){ return position; };
 
 	//////////////
 	//--SETTERS--//
@@ -90,6 +92,8 @@ public:
 	void ResetCheckpoint();
 
 	void RemoveShield();
+
+	void SetPosition(int value);
 
 	////////////////
 	//--MOVEMENT--//
