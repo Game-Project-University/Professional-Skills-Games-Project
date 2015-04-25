@@ -23,7 +23,6 @@ private:
 	float camerRotationS;
 	float cameraMaxX;
 	float cameraCounter;
-	
 
 	float amountRotated;
 	bool TurningActive;
@@ -42,4 +41,5 @@ public:
 	///////////////////
 	// activate item //
 	void ActivateItem(CBaseItem* itemOwned);
+
 };

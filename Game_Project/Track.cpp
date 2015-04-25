@@ -134,6 +134,21 @@ CTrack::CTrack()
 	courseItems[6] = new CHealth(HeartMsh, 90, 420, 0, -220, "health");
 	courseItems[7] = new CShield(SheildMsh, 90, 440, 0, -220, "Shield");
 	courseItems[8] = new CSpeed(SpeedMsh, 90, 400, 0, -220, "Speed");
+
+	//-- models to fix players direction on respawn
+
+	FixLookObjects[0] = HeartMsh->CreateModel(0, 0, 10);
+	FixLookObjects[0]->Scale(0.2);
+	FixLookObjects[1] = HeartMsh->CreateModel(0, 0, 130);
+	FixLookObjects[1]->Scale(0.2);
+	FixLookObjects[2] = HeartMsh->CreateModel(-10, 0, 260);
+	FixLookObjects[2]->Scale(0.2);
+	FixLookObjects[3] = HeartMsh->CreateModel(80, 0, 260);
+	FixLookObjects[3]->Scale(0.2);
+	FixLookObjects[4] = HeartMsh->CreateModel(420, 0, 190);
+	FixLookObjects[4]->Scale(0.2);
+	FixLookObjects[5] = HeartMsh->CreateModel(420, 0, -190);
+	FixLookObjects[5]->Scale(0.2);
 }
 
 CTrack::~CTrack()
@@ -293,7 +308,7 @@ void CTrack::ResetPlayerPosition(CBasePlayer* cPlayer)
 	// set the cars position to the last checkpoint that the player drove through 
 	else
 	{
-		cPlayer->GetModel()->SetPosition(courseCheckpoints[cPlayer->GetCheckpoint() - 1]->GetX(), 0.0f, courseCheckpoints[cPlayer->GetCheckpoint() - 1]->GetZ());
+		cPlayer->GetModel()->SetPosition(courseCheckpoints[cPlayer->GetCheckpoint()]->GetX(), 0.0f, courseCheckpoints[cPlayer->GetCheckpoint() - 1]->GetZ());
 	}
 }
 
@@ -443,39 +458,39 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 	}
 
 	// Collision with AI to AI
-	for (int j = 0; j < 4; j++)
-	{
-		for (int i = 0; i < 4; i++)
-		{
-			if (j != i)
-			{
-				if (SphereToSphereCollision(cAI[j], cAI[i], 4.0f, 4.0f)) 
-				{
-					if (dotProduct(cAI[j], cAI[i]) < 0.0f) // if the J ai is infront of the i ai 
-					{
-						cAI[j]->MoveBeforeCollision();
-						cAI[j]->SetMovementSpeed(10);
-						cAI[j]->DecreaseHealth(50);
+	//for (int j = 0; j < 4; j++)
+	//{
+	//	for (int i = 0; i < 4; i++)
+	//	{
+	//		if (j != i)
+	//		{
+	//			if (SphereToSphereCollision(cAI[j], cAI[i], 4.0f, 4.0f)) 
+	//			{
+	//				if (dotProduct(cAI[j], cAI[i]) < 0.0f) // if the J ai is infront of the i ai 
+	//				{
+	//					cAI[j]->MoveBeforeCollision();
+	//					cAI[j]->SetMovementSpeed(10);
+	//					cAI[j]->DecreaseHealth(50);
 
-						cAI[i]->MoveBeforeCollision();
-						cAI[i]->SetMovementSpeed(-10);
-						cAI[i]->DecreaseHealth(100);
-					}
-					else  // if the J ai is infront of the i ai 
-					{
-						cAI[j]->MoveBeforeCollision();
-						cAI[j]->SetMovementSpeed(-10);
-						cAI[j]->DecreaseHealth(100);
+	//					cAI[i]->MoveBeforeCollision();
+	//					cAI[i]->SetMovementSpeed(-10);
+	//					cAI[i]->DecreaseHealth(100);
+	//				}
+	//				else  // if the J ai is infront of the i ai 
+	//				{
+	//					cAI[j]->MoveBeforeCollision();
+	//					cAI[j]->SetMovementSpeed(-10);
+	//					cAI[j]->DecreaseHealth(100);
 
-						cAI[i]->MoveBeforeCollision();
-						cAI[i]->SetMovementSpeed(10);
-						cAI[i]->DecreaseHealth(50);
-					}
-					sound->PlaySound();
-				}
-			}
-		}
-	}
+	//					cAI[i]->MoveBeforeCollision();
+	//					cAI[i]->SetMovementSpeed(10);
+	//					cAI[i]->DecreaseHealth(100);
+	//				}
+	//				sound->PlaySound();
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 //-- SPHERE TO SPHERE COLLISION --//

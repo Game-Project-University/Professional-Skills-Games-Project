@@ -98,6 +98,5 @@ public:
 	void SinHoverMovement(float frameTime);
 
 	// facing vector //
-
 	Vector3 GetFacingVector();
 };

@@ -705,29 +705,7 @@ void GameUpdate()
 				if (cAI[i]->deathTimer > 2)
 				{
 					cAI[i]->ResetPlayerHealth();
-					cTrack->ResetPlayerPosition(cAI[i]);
 					cAI[i]->deathTimer = 0;
-				//	if (i == 0)
-				//	{
-					//	cAI[i]->MoveAIBack(-10);
-					//}
-
-					if (i == 1)
-					{
-						cAI[i]->MoveAIBack(-10);
-					}
-
-					if (i == 2)
-					{
-						cAI[i]->MoveAIBack(-20);
-					}
-
-					if (i == 3)
-					{
-						cAI[i]->MoveAIBack(-30);
-					}
-					
-					
 				}
 				else
 				{

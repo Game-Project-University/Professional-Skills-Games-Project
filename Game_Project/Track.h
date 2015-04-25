@@ -35,6 +35,7 @@ public:
 	static IMesh* HeartMsh;
 	static IMesh* SpeedMsh;
 	static IMesh* SheildMsh;
+	static IMesh* DummyMsh;
 
 	stringstream interfaceText;
 	IFont* font;
@@ -73,4 +74,5 @@ private:
 	CVortex* vortexObjects[NUMBER_OF_VORTEX];
 	CCrowd* crowdObjects[NUMBER_OF_CROWDS];
 	CArrow* arrowObjects[NUMBER_OF_ARROWS];
+	IModel* FixLookObjects[NUMBER_OF_CHECKPOINTS];
 };

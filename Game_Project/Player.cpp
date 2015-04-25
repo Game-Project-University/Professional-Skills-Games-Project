@@ -21,7 +21,6 @@ CPlayer::CPlayer(IMesh* playerMsh) : CBasePlayer()
 	cameraCounter = 0.0f; // counter used to track how much the camera has moved
 	amountRotated = 0.0f;
 	TurningActive = false;
-
 }
 
 //////////////////
