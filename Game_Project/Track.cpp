@@ -308,7 +308,7 @@ void CTrack::ResetPlayerPosition(CBasePlayer* cPlayer)
 	// set the cars position to the last checkpoint that the player drove through 
 	else
 	{
-		cPlayer->GetModel()->SetPosition(courseCheckpoints[cPlayer->GetCheckpoint()]->GetX(), 0.0f, courseCheckpoints[cPlayer->GetCheckpoint() - 1]->GetZ());
+		cPlayer->GetModel()->SetPosition(courseCheckpoints[cPlayer->GetCheckpoint()-1]->GetX(), 0.0f, courseCheckpoints[cPlayer->GetCheckpoint() - 1]->GetZ());
 	}
 }
 
