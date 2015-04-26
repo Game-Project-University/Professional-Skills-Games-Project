@@ -19,8 +19,8 @@ CBasePlayer::CBasePlayer()
 	sineWaveValue = 0;
 	//currentItem = NULL;
 
-	checkPoint=0;
-	lap=0;
+	checkPoint = 0;
+	lap = 0;
 }
 
 CBasePlayer::~CBasePlayer()
@@ -142,7 +142,7 @@ void CBasePlayer::IncrementCheckpoint()
 
 void CBasePlayer::ResetCheckpoint()
 {
-	checkPoint=0;
+	checkPoint = 0;
 }
 
 void CBasePlayer::SetPosition(int value)
