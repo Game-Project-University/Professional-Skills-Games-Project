@@ -98,6 +98,13 @@ float cheerTimer = 0.0f;
 //-- PARTICLES --//
 CFireSystem* cFire;
 CSmokeSystem* cSmoke;
+
+CFireSystem* cFire2;
+CFireSystem* cFire3;
+CFireSystem* cFire4;
+CFireSystem* cFire5;
+
+
 bool smokeActivated = false;
 bool createSmoke = false;
 bool shieldActivated = false;
@@ -357,6 +364,11 @@ void GameSetup()
 	//Player Fire System
 	cFire = new CFireSystem();
 
+	cFire2 = new CFireSystem();
+	cFire3 = new CFireSystem();
+	cFire4 = new CFireSystem();
+	cFire5 = new CFireSystem();
+
 	// This will read in from file eventually
 	float pos1[2][MAX_WAYPOINTS] = { {-8, -8, -8,  -8,  -8, -10, -40, -65, -88, -88, -88, -88, -78, -60, -40, -20,   0,  40,  80, 300, 340, 380, 428, 412, 412, 412, 412, 412, 412, 412, 412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  412,  420,   0,    -8,   -8,   -8,   -8,   -8,  -8,  -8, },
 									 { 0, 40, 80, 120, 150, 157, 157, 162, 180, 190, 205, 220, 235, 242, 252, 252, 252, 252, 252, 252, 252, 252, 268, 220, 180, 140, 100,  60,  20, -20, -60, -100, -140, -180, -220, -260, -300, -340, -380, -420, -460, -500, -540, -580, -625, -300, -260, -220, -180, -140, -100, -60, -40 } };
@@ -593,6 +605,11 @@ void GameUpdate()
 
 		//Update exhaust particle's position 
 		cFire->update(frameTime, cPlayer);
+
+		cFire->updateAi(frameTime, cAI[0], cPlayer->GetCamera());
+		cFire->updateAi(frameTime, cAI[1], cPlayer->GetCamera());
+		cFire->updateAi(frameTime, cAI[2], cPlayer->GetCamera());
+		cFire->updateAi(frameTime, cAI[3], cPlayer->GetCamera());
 
 		//- Chec for item collision
 		cTrack->ItemCollision(cPlayer, PickupSound);
