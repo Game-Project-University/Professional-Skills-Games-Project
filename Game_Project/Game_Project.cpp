@@ -443,7 +443,7 @@ void GameUpdate()
 
 	// current position
 	interfaceText << "Position: " << cPlayer->GetPosition();
-	ComicSans->Draw(interfaceText.str(), 1100, 700, kWhite);
+	ComicSans->Draw(interfaceText.str(), 940, 745, kWhite);
 	interfaceText.str("");
 
 	// players health
@@ -530,9 +530,9 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	PLAYERSTATE = ALIVE;
+	//PLAYERSTATE = ALIVE;
 	
-	/*if (PLAYERSTATE == STARTRACE)
+	if (PLAYERSTATE == STARTRACE)
 	{
 		if (startingCounter >= 2 && startingCounter < 4)
 		{
@@ -562,7 +562,7 @@ void GameUpdate()
 
 		startingCounter += frameTime * 1.1;
 	}
-	DelayCounter += frameTime;*/
+	DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{
@@ -765,7 +765,7 @@ void GameShutdown()
 	//Remove everything in the setup
 	//- Tl Engine related
 	myEngine->RemoveFont(ComicSans);
-	myEngine->RemoveMesh(playerMsh);
+	//myEngine->RemoveMesh(playerMsh);
 	myEngine->RemoveMesh(aiMsh);
 
 	for (int i = 0; i < 4; i++)
