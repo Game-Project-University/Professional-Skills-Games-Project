@@ -3,7 +3,7 @@
 #include "BaseParticle.h"
 #include "Player.h"
 
-const int fireNo = 70;
+const int fireNo = 200;
 class CFireSystem : CBaseParticle
 {
 public:

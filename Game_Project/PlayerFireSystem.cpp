@@ -9,9 +9,9 @@ CFireSystem::CFireSystem() : CBaseParticle()
 		particleArray[i].mPartMdl = particleMsh->CreateModel(0, 0, 0);
 		particleArray[i].mVelocity = 70.0f;
 		particleArray[i].mLifeTime = 0.0f;
-		particleArray[i].mlifeSpan = random(1.0f, 3.0f);
-		particleArray[i].mPartMdl->Scale(0.025);
-		particleArray[i].mPartMdl->SetSkin("Fire.jpg");
+		particleArray[i].mlifeSpan = random(0.2f, 3.0);
+		particleArray[i].mPartMdl->Scale(0.05);
+		particleArray[i].mPartMdl->SetSkin("blockhole.jpg");
 	}
 }
 
@@ -36,33 +36,35 @@ void CFireSystem::update(float frametime, CPlayer* playerPtr)
 
 	for (int i = 0; i < fireNo; i++)
 	{
-		if (i < speed)
-		{
+		//if (i < speed)
+		//{
 			if (particleArray[i].mLifeTime > particleArray[i].mlifeSpan)
 			{
-				particleArray[i].mPartMdl->SetPosition(playerPtr->GetX(), random(playerPtr->GetY() - 0.2f, playerPtr->GetY() + 0.2f), playerPtr->GetZ());
-				particleArray[i].mDirX = random(-250, 250);
-				particleArray[i].mDirY = random(-400, -200);
-				particleArray[i].mDirZ = random(500, 1000);
-				particleArray[i].mLifeTime = 0.0f * frametime;
+				particleArray[i].mPartMdl->SetPosition(playerPtr->GetX(), random(playerPtr->GetY()- 0.5f, playerPtr->GetY() + 0.5f), playerPtr->GetZ());
+				particleArray[i].mDirX = random(-400, 400);
+				particleArray[i].mDirY = random(-400, 0);
+				particleArray[i].mDirZ = random(1000, 2000);
+				particleArray[i].mLifeTime = 0.0f;
+				particleArray[i].mPartMdl->LookAt(playerPtr->GetCamera());
+				particleArray[i].mPartMdl->Scale(0.03);
 			}
 			else
 			{
-				particleArray[i].mPartMdl->RotateLocalX(random(-500, 500) * frametime);
-				particleArray[i].mPartMdl->RotateLocalY(random(-250, 250) * frametime);
+				//particleArray[i].mPartMdl->RotateLocalX(random(-500, 500) * frametime);
+				//particleArray[i].mPartMdl->RotateLocalY(random(-250, 250) * frametime);
 				particleArray[i].mPartMdl->MoveLocalZ(particleArray[i].mDirZ * frametime);
 				particleArray[i].mPartMdl->MoveLocalY(particleArray[i].mDirY * frametime);
 				particleArray[i].mPartMdl->MoveLocalX(particleArray[i].mDirX * frametime);
 				//particleArray[i].mPartMdl->MoveY(particleArray[i].mVelocity * frametime);
 				particleArray[i].mLifeTime += 10 * frametime;
-				particleArray[i].mPartMdl->LookAt(playerPtr->GetCamera());
-				particleArray[i].mPartMdl->Scale(0.025);
-				particleArray[i].mPartMdl->RotateLocalX(random(-500, 500) * frametime);
-				particleArray[i].mPartMdl->RotateLocalY(random(-250, 250) * frametime);
+				
+				//particleArray[i].mPartMdl->Scale(0.055);
+				//particleArray[i].mPartMdl->RotateLocalX(random(-500, 500) * frametime);
+				//particleArray[i].mPartMdl->RotateLocalY(random(-250, 250) * frametime);
 			}
-		}
-		else
-			particleArray[i].mPartMdl->SetPosition(playerPtr->GetX(), playerPtr->GetY(), playerPtr->GetZ());
+		//}
+		//else
+		//	particleArray[i].mPartMdl->SetPosition(playerPtr->GetX(), playerPtr->GetY(), playerPtr->GetZ());
 	}
 }
 

@@ -412,7 +412,6 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 					{
 						ItemShow = "Item Collected: Speed";
 					}
-
 					sound->PlaySound();
 					courseItems[i]->Collide();
 					courseItems[i]->SetOwner(cPlayer);
