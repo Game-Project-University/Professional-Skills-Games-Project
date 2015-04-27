@@ -606,10 +606,10 @@ void GameUpdate()
 		//Update exhaust particle's position 
 		cFire->update(frameTime, cPlayer);
 
-		cFire->updateAi(frameTime, cAI[0], cPlayer->GetCamera());
-		cFire->updateAi(frameTime, cAI[1], cPlayer->GetCamera());
-		cFire->updateAi(frameTime, cAI[2], cPlayer->GetCamera());
-		cFire->updateAi(frameTime, cAI[3], cPlayer->GetCamera());
+		cFire2->updateAi(frameTime, cAI[0], cPlayer->GetCamera());
+		cFire3->updateAi(frameTime, cAI[1], cPlayer->GetCamera());
+		cFire4->updateAi(frameTime, cAI[2], cPlayer->GetCamera());
+		cFire5->updateAi(frameTime, cAI[3], cPlayer->GetCamera());
 
 		//- Chec for item collision
 		cTrack->ItemCollision(cPlayer, PickupSound);
