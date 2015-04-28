@@ -101,6 +101,8 @@ CSound* StormWarningSound;
 CSound* CrowdSound;
 CSound* ShortBeep;
 CSound* LongBeep;
+CSound* UseSound;
+
 bool crowdCheering = false;
 float cheerTimer = 0.0f;
 
@@ -461,6 +463,7 @@ void GameSetup()
 	StormWarningSound = new CSound(6, 0.25f);
 	ShortBeep = new CSound(7, 0.04f);
 	LongBeep = new CSound(8, 0.04f);
+	UseSound = new CSound(9, 0.08f);
 
 	//-- LOAD FONT --///
 	CentGoth = myEngine->LoadFont("Century Gothic", 36.0f);
@@ -682,7 +685,7 @@ void GameUpdate()
 		}
 
 		//- Check for collision
-		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound);
+		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound, UseSound);
 		cTrack->AICollision(cPlayer, cAI, SmashingSound);
 
 		//Update exhaust particle's position 

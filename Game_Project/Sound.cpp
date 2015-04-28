@@ -49,6 +49,11 @@ CSound::CSound(int soundNumber, float volume)
 		buffer = alutCreateBufferFromFile(".\\media\\beeplong.wav");
 	}
 
+	if (soundNumber == 9)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\MegahealthQuake.wav");
+	}
+
 	//****************
 	// Sources
 

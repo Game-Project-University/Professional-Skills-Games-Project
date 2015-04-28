@@ -268,7 +268,7 @@ void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr, bool asteroidStorm
 }
 
 //-- AABB COLLISION
-void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explostion)
+void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explostion, CSound* use)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -432,7 +432,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		}
 	}
 
-	OwnedItems(cPlayer);
+	OwnedItems(cPlayer, use);
 }
 
 //-- Reset the players position to the last checkpoint when player dies
@@ -858,7 +858,7 @@ bool CTrack::bulletToAICollision(float BulletX, float BulletZ, CAI* ai, float ra
 }
 
 //-- check if owned items are being used --//
-void CTrack::OwnedItems(CPlayer* cPlayer)
+void CTrack::OwnedItems(CPlayer* cPlayer, CSound* sound)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
@@ -867,9 +867,10 @@ void CTrack::OwnedItems(CPlayer* cPlayer)
 			if (courseItems[i]->GetOwner() == cPlayer)
 			{
 				cPlayer->ActivateItem(courseItems[i]);
-
+				
 				if (courseItems[i]->GetUsed())
 				{
+					sound->PlaySound();
 					delete(courseItems[i]);
 					courseItems[i] = nullptr;
 					itemHeld = false;

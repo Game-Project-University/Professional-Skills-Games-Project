@@ -49,7 +49,7 @@ public:
 	bool playerAi;
 	bool aiPlayer;
 
-	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion);
+	void ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explosion, CSound* use);
 	void CheckPointCollision(CBasePlayer* cPlayer,CAI* cAi[]);
 	void ItemCollision(CPlayer* cPlayer, CSound* sound);
 	void AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound);
@@ -66,7 +66,7 @@ public:
 
 	void ResetPlayerPosition(CBasePlayer* cPlayer);
 	void TrackUpdate(float frameTime, CPlayer* cPlayer, bool asteroidStormActive);
-	void OwnedItems(CPlayer* cPlayer);
+	void OwnedItems(CPlayer* cPlayer, CSound* sound);
 
 	void DisplayItemHeld();
 
