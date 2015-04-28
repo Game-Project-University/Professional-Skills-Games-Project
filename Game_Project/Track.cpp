@@ -119,9 +119,6 @@ CTrack::CTrack()
 	courseObjects[84] = new CWall(378, 0, -180, 10.0f, 18.0f, true);
 	courseObjects[85] = new CWall(476, 0, -180, 10.0f, 18.0f, true);
 	courseObjects[86] = new CWall(364, 0, -180, 10.0f, 18.0f, true);
-	//courseObjects[87] = new CWall(420, 0, -180, 10.0f, 18.0f, true);
-	//courseObjects[88] = new CWall(420, 0, -180, 10.0f, 18.0f, true);
-
 
 	//-- vortex 1
 	vortexObjects[0] = new CVortex(110.0f, 10.0f, 260.0f, false);
@@ -360,6 +357,8 @@ void CTrack::ResetPlayerPosition(CBasePlayer* cPlayer)
 	if (cPlayer->GetCheckpoint() == 0)
 	{
 		cPlayer->GetModel()->SetPosition(courseCheckpoints[0]->GetX(), 0.0f, courseCheckpoints[0]->GetZ());
+
+
 	}
 	// set the cars position to the last checkpoint that the player drove through 
 	else

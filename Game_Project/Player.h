@@ -17,12 +17,14 @@ class CPlayer : public CBasePlayer
 {
 private:
 	ICamera* myCamera;
+	CGun* gun;
 
 	//////////////////////////////////
 	//--CAMERA MOVEMENTS VARIABLES--//
 	float camerRotationS;
 	float cameraMaxX;
 	float cameraCounter;
+	float timer;
 
 	float amountRotated;
 	bool TurningActive;
@@ -41,5 +43,7 @@ public:
 	///////////////////
 	// activate item //
 	void ActivateItem(CBaseItem* itemOwned);
+
+	void PlayerUpdate(float frametime);
 
 };

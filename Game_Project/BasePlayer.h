@@ -1,5 +1,6 @@
 #pragma once
 #include "Global.h"
+#include "gun.h"
 
 struct SPlayerPos
 {
@@ -103,4 +104,8 @@ public:
 
 	// facing vector //
 	Vector3 GetFacingVector();
+
+	float GetFacingVectorX();
+	float GetFacingVectorY();
+	float GetFacingVectorZ();
 };

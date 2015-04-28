@@ -133,6 +133,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClCompile Include="EntityManagers.cpp" />
     <ClCompile Include="Game_Project.cpp" />
     <ClCompile Include="Global.cpp" />
+    <ClCompile Include="gun.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PadBuilding.cpp" />
@@ -162,6 +163,7 @@ copy "C:\ProgramData\TL-Engine\3rd Party\TL-Xtreme\shader\*.*" "$(OutDir)" &gt; 
     <ClInclude Include="CrowdWall.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="gun.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PadBuilding.h" />

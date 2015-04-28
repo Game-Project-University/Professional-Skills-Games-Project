@@ -21,8 +21,10 @@ CPlayer::CPlayer(IMesh* playerMsh, int pos) : CBasePlayer()
 	cameraCounter = 0.0f; // counter used to track how much the camera has moved
 	amountRotated = 0.0f;
 	TurningActive = false;
+	timer = 0;
 
 	position = pos;
+	gun = new CGun();
 }
 
 //////////////////
@@ -110,6 +112,42 @@ void CPlayer::ActivateItem(CBaseItem* itemOwned)
 		if ( itemOwned->GetUsed() == false)
 		{
 				itemOwned->Activate();
+		}
+	}
+}
+
+// gun stuff
+
+
+void CPlayer::PlayerUpdate(float frametime)
+{
+	if (myEngine->KeyHit(Key_F))
+	{
+		gun->setfacing(GetFacingVectorX(), GetFacingVectorZ());
+		gun->SetShooting(true);
+	}
+
+	if (gun->ReturnShooting() == true)
+	{
+		if (gun->ReturnBulletCreated() == false)
+		{
+			gun->CreateBullet(playerMdl->GetX(), playerMdl->GetY(), playerMdl->GetZ());
+		}
+
+		if (gun->ReturnBulletCreated() == true)
+		{
+			timer += 2 * frametime;
+			if (timer < 2)
+			{
+				gun->MoveBullet(frametime);
+			}
+			else
+			{
+				gun->RemoveModel();
+				timer = 0;
+				gun->SetShooting(false);
+				gun->SetCreatedBullet(false);
+			}
 		}
 	}
 }

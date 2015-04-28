@@ -11,6 +11,7 @@
 #include "BaseItem.h"
 #include "SmokeSystem.h"
 #include "PlayerFireSystem.h"
+#include "gun.h"
 
 //gj
 /*-----------------------------------------------------------------------------------------
@@ -212,6 +213,9 @@ bool ProgramSetup()
 	CTrack::SpeedMsh = myEngine->LoadMesh("PlasticDrum1.x");
 	CTrack::SheildMsh = myEngine->LoadMesh("shield.x");
 
+	CGun::bulletMsh = myEngine->LoadMesh("Bullet.x");
+
+
 	
 	//-- CREATE A SKYBOX FOR THE WORLD --//
 	IMesh* skyboxMsh = myEngine->LoadMesh("Skybox.x");
@@ -361,17 +365,6 @@ void GameSetup()
 	{
 		speedSprites[i] = myEngine->CreateSprite("SpeedBar.png");
 	}
-	/*speedSprites[0] = myEngine->CreateSprite("-30.png");
-	speedSprites[1] = myEngine->CreateSprite("-20.png");
-	speedSprites[2] = myEngine->CreateSprite("-10.png");
-	speedSprites[3] = myEngine->CreateSprite("10.png");
-	speedSprites[4] = myEngine->CreateSprite("20.png");
-	speedSprites[5] = myEngine->CreateSprite("30.png");
-	speedSprites[6] = myEngine->CreateSprite("40.png");
-	speedSprites[7] = myEngine->CreateSprite("50.png");
-	speedSprites[8] = myEngine->CreateSprite("60.png");
-	speedSprites[9] = myEngine->CreateSprite("70.png");
-	speedSprites[10] = myEngine->CreateSprite("80 Plus.png");*/
 
 	////////////////////////
 	// -- CREATE COURSE --//
@@ -526,28 +519,28 @@ void GameUpdate()
 	}
 
 
-	for (int i = 0; i < 4; i++)
-	{
-		// ai number
-		interfaceText << "AI: " << i+1;
-		CentGoth->Draw(interfaceText.str(), 600, 360 + (i * 25), kWhite);
-		interfaceText.str("");
-		
-		// current checkpoint
-		interfaceText << "Checkpoint: " << cAI[i]->GetCheckpoint();
-		CentGoth->Draw(interfaceText.str(), 680, 360 + (i * 25), kWhite);
-		interfaceText.str("");
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	// ai number
+	//	interfaceText << "AI: " << i+1;
+	//	CentGoth->Draw(interfaceText.str(), 600, 360 + (i * 25), kWhite);
+	//	interfaceText.str("");
+	//	
+	//	// current checkpoint
+	//	interfaceText << "Checkpoint: " << cAI[i]->GetCheckpoint();
+	//	CentGoth->Draw(interfaceText.str(), 680, 360 + (i * 25), kWhite);
+	//	interfaceText.str("");
 
-		// current lap
-		interfaceText << "Lap: " << cAI[i]->GetLap();
-		CentGoth->Draw(interfaceText.str(), 900, 360 + (i * 25), kWhite);
-		interfaceText.str("");
+	//	// current lap
+	//	interfaceText << "Lap: " << cAI[i]->GetLap();
+	//	CentGoth->Draw(interfaceText.str(), 900, 360 + (i * 25), kWhite);
+	//	interfaceText.str("");
 
-		// current position
-		interfaceText << "Position: " << cAI[i]->GetPosition();
-		CentGoth->Draw(interfaceText.str(), 1000, 360 + (i * 25), kWhite);
-		interfaceText.str("");
-	}
+	//	// current position
+	//	interfaceText << "Position: " << cAI[i]->GetPosition();
+	//	CentGoth->Draw(interfaceText.str(), 1000, 360 + (i * 25), kWhite);
+	//	interfaceText.str("");
+	//}
 
 	//-- STATS INTERFACE --//
 	// frametime
@@ -556,9 +549,9 @@ void GameUpdate()
 	//interfaceText.str("");
 	
 	// current checkpoint
-	interfaceText << "Checkpoint: " << cPlayer->GetCheckpoint();
-	CentGoth->Draw(interfaceText.str(), 900, 650, kWhite);
-	interfaceText.str("");
+	//interfaceText << "Checkpoint: " << cPlayer->GetCheckpoint();
+	//CentGoth->Draw(interfaceText.str(), 900, 650, kWhite);
+	//interfaceText.str("");
 
 	////Player ammunition
 	//interfaceText << "Ammunition: ";
@@ -572,9 +565,9 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	//PLAYERSTATE = ALIVE;
+	PLAYERSTATE = ALIVE;
 	
-	if (PLAYERSTATE == STARTRACE)
+	/*if (PLAYERSTATE == STARTRACE)
 	{
 		if (startingCounter >= 2 && startingCounter < 4)
 		{
@@ -604,10 +597,12 @@ void GameUpdate()
 
 		startingCounter += frameTime * 1.1;
 	}
-	DelayCounter += frameTime;
+	DelayCounter += frameTime;*/
 
 	if (PLAYERSTATE == ALIVE)
 	{
+
+		cPlayer->PlayerUpdate(frameTime);
 
 		//- player movement direction dependent on what key is hit
 		cPlayer->GetModel()->MoveLocalZ(frameTime* cPlayer->GetPlayerS());
@@ -900,14 +895,15 @@ void main()
 			myEngine->DrawScene();
 			// update the game e.g play the game
 			GameUpdate();
+
 			// if the key 1 is pressed go back to the main menu 
-			if (myEngine->KeyHit(Key_1))
-			{
-				GAMESTATE = MAINMENU;
-				setup = false;
+			//if (myEngine->KeyHit(Key_1))
+			//{
+			//	GAMESTATE = MAINMENU;
+			//	setup = false;
 				// shut down the game 
-				GameShutdown();
-			}
+			//	GameShutdown();
+			//}
 		}
 			
 		//--Exit Statement--//

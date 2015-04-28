@@ -177,3 +177,33 @@ Vector3 CBasePlayer::GetFacingVector()
 
 	return playerFacingV;
 }
+
+////// gun stuff
+
+float CBasePlayer::GetFacingVectorX()
+{
+	float matrix[4][4];
+	playerMdl->GetMatrix(&matrix[0][0]);
+
+	playerFacingV.x = matrix[2][0];
+
+	return playerFacingV.x;
+}
+float CBasePlayer::GetFacingVectorY()
+{
+	float matrix[4][4];
+	playerMdl->GetMatrix(&matrix[0][0]);
+
+	playerFacingV.y = matrix[2][1];
+
+	return playerFacingV.y;
+}
+float CBasePlayer::GetFacingVectorZ()
+{
+	float matrix[4][4];
+	playerMdl->GetMatrix(&matrix[0][0]);
+
+	playerFacingV.z = matrix[2][2];
+
+	return playerFacingV.z;
+}
