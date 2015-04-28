@@ -39,6 +39,16 @@ CSound::CSound(int soundNumber, float volume)
 		buffer = alutCreateBufferFromFile(".\\media\\StormAlarm.wav");
 	}
 
+	if (soundNumber == 7)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\beepshort.wav");
+	}
+
+	if (soundNumber == 8)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\beeplong.wav");
+	}
+
 	//****************
 	// Sources
 

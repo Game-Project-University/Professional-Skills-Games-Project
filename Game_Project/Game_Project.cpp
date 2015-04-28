@@ -99,6 +99,8 @@ CSound* ExplostionSound;
 CSound* PickupSound;
 CSound* StormWarningSound;
 CSound* CrowdSound;
+CSound* ShortBeep;
+CSound* LongBeep;
 bool crowdCheering = false;
 float cheerTimer = 0.0f;
 
@@ -134,6 +136,8 @@ float startingCounter = 0;
 float DelayCounter = 0;
 int speed = 0;
 bool displayed = false;
+bool sounds[4] = { false, false, false, false };
+
 //////////////////
 //-GAME STATES--//
 enum GAMESTATES
@@ -455,6 +459,8 @@ void GameSetup()
 	PickupSound = new CSound(4, 0.07f);
 	CrowdSound = new CSound(5, 0.1f);
 	StormWarningSound = new CSound(6, 0.25f);
+	ShortBeep = new CSound(7, 0.04f);
+	LongBeep = new CSound(8, 0.04f);
 
 	//-- LOAD FONT --///
 	CentGoth = myEngine->LoadFont("Century Gothic", 36.0f);
@@ -596,25 +602,49 @@ void GameUpdate()
 	cPlayer->SinHoverMovement(frameTime);
 
 	//PLAYERSTATE = ALIVE;
-	
+
 	if (PLAYERSTATE == STARTRACE)
 	{
 		if (startingCounter >= 2 && startingCounter < 4)
 		{
 			interfaceText << "3";
+
+			if (sounds[0] == false)
+			{ 
+				ShortBeep->PlaySound();
+				sounds[0] = true;
+			}
 		}
 		else if (startingCounter > 4 && startingCounter < 6)
 		{
 			interfaceText << "2";
+
+			if (sounds[1] == false)
+			{
+				ShortBeep->PlaySound();
+				sounds[1] = true;
+			}
 		}
 		else if (startingCounter > 6 && startingCounter < 8)
 		{
 			interfaceText << "1";
+
+			if (sounds[2] == false)
+			{
+				ShortBeep->PlaySound();
+				sounds[2] = true;
+			}
 		}
 		else if (startingCounter > 8 && startingCounter < 9)
 		{
 			FontStartRaceX = 290;
 			interfaceText << "GO";
+
+			if (sounds[3] == false)
+			{
+				LongBeep->PlaySound();
+				sounds[3] = true;
+			}
 		}
 		else if (startingCounter >= 9)
 		{
@@ -625,7 +655,7 @@ void GameUpdate()
 		RaceStartFont->Draw(interfaceText.str(), FontStartRaceX, FontStartRaceY, kWhite);
 		interfaceText.str("");
 
-		startingCounter += frameTime * 1.1;
+		startingCounter += frameTime /** 1.1*/;
 	}
 	DelayCounter += frameTime;
 
