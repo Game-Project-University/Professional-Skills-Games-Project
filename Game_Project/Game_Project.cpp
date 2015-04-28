@@ -649,7 +649,13 @@ void GameUpdate()
 
 		cPlayer->RightLeftMovement(frameTime);
 
-		
+		//- update the players position
+		cPlayer->UpdatePlayerPos();
+
+		for (int i = 0; i < 4; i++)
+		{
+			cAI[i]->UpdatePlayerPos();
+		}
 
 		//- Check for collision
 		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound);
@@ -749,15 +755,7 @@ void GameUpdate()
 		}		
 	}
 
-	//- update the players position
-	cPlayer->UpdatePlayerPos();
-
 	cTrack->RacePosition(cPlayer, cAI);
-
-	for (int i = 0; i < 4; i++)
-	{
-		cAI[i]->UpdatePlayerPos();
-	}
 
 	if (PLAYERSTATE == DEAD)
 	{
