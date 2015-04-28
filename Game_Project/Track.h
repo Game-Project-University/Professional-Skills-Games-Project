@@ -28,7 +28,7 @@ const int NUMBER_OF_VORTEX = 4;
 const int NUMBER_OF_CROWDS = 18;
 const int NUMBER_OF_ARROWS = 12;
 const int NUMBER_OF_ASTEROIDS = 15;
-const int MAXLAPS = 1;
+const int MAXLAPS = 3;
 
 class CTrack
 {
