@@ -17,6 +17,10 @@ CTrack::CTrack()
 	aiPlayer = false;
 	//-- creation of objects (x, y, z, width, height)
 	//-- i will make this read in from a file eventually
+	courseObjects[70] = new CSkyScraper(-40.0f, 0.0f, -120.0f, 52.0f, 54.0f);
+	courseObjects[69] = new CSkyScraper(40.0f, 0.0f, -120.0f, 52.0f, 54.0f);
+	courseObjects[68] = new CSkyScraper(-40.0f, 0.0f, -60.0f, 52.0f, 54.0f);
+	courseObjects[67] = new CSkyScraper(40.0f, 0.0f, -60.0f, 52.0f, 54.0f);
 	courseObjects[0]  = new CSkyScraper(-40.0f,0.0f,60.0f, 52.0f, 54.0f);
 	courseObjects[1]  = new CSkyScraper(40.0f, 0.0f, 60.0f, 52.0f, 54.0f);
 	courseObjects[2]  = new CSkyScraper(-40.0f, 0.0f, 0.0f, 52.0f, 54.0f);
@@ -50,6 +54,7 @@ CTrack::CTrack()
 	courseObjects[30] = new CWall(450.0f, 0.0f, 220.0f, 10.0f, 18.0f, false);
 	courseObjects[31] = new CWall(390.0f, 0.0f, 230.0f, 10.0f, 18.0f, false);
 	courseObjects[32] = new CWall(390.0f, 0.0f, 210.0f, 10.0f, 18.0f, false);
+
 	courseObjects[33] = new CSkyScraper(360.0f, 0.0f, 200.0f, 52.0f, 54.0f);
 	courseObjects[34] = new CSkyScraper(480.0f, 0.0f, 200.0f, 52.0f, 54.0f);
 	courseObjects[35] = new CBlockBuilding(500.0f, 0.0f, -250.0f, 40.0f, 840.0f);
@@ -68,6 +73,55 @@ CTrack::CTrack()
 	courseObjects[44] = new CCrowdWall(475.0f, -2.0f, -12.5f, 7.5f, 20.0f, false);
 	courseObjects[45] = new CCrowdWall(375.0f, -2.0f, -182.5f, 7.5f, 20.0f, false);
 	courseObjects[46] = new CCrowdWall(475.0f, -2.0f, -182.5f, 7.5f, 20.0f, false);
+
+	courseObjects[47] = new CWall(440.0f, 0.0f, 210.0f, 10.0f, 18.0f, true);
+	courseObjects[48] = new CWall(400.0f, 0.0f, 210.0f, 10.0f, 18.0f, true);
+	courseObjects[49] = new CWall(448.0f, 0.0f, -600.0f, 10.0f, 18.0f, true);
+	courseObjects[50] = new CWall(392.0f, 0.0f, -600.0f, 10.0f, 18.0f, true);
+	courseObjects[51] = new CWall(462.0f, 0.0f, -600.0f, 10.0f, 18.0f, true);
+	courseObjects[52] = new CWall(378.0f, 0.0f, -600.0f, 10.0f, 18.0f, true);
+	courseObjects[53] = new CWall(476.0f, 0.0f, -600.0f, 10.0f, 18.0f, true);
+	courseObjects[54] = new CWall(364.0f, 0.0f, -600.0f, 10.0f, 18.0f, true);
+
+	courseObjects[55] = new CWall(-20.0f, 0.0f, -300.0f, 10.0f, 18.0f, false);
+	courseObjects[56] = new CWall(20.0f, 0.0f, -300.0f, 10.0f, 18.0f, false);
+	courseObjects[57] = new CWall(-20.0f, 0.0f, -280.0f, 10.0f, 18.0f, false);
+	courseObjects[58] = new CWall(20.0f, 0.0f, -280.0f, 10.0f, 18.0f, false);
+	courseObjects[59] = new CWall(-20.0f, 0.0f, -260.0f, 10.0f, 18.0f, false);
+	courseObjects[60] = new CWall(20.0f, 0.0f, -260.0f, 10.0f, 18.0f, false);
+	courseObjects[61] = new CWall(-20.0f, 0.0f, -340.0f, 10.0f, 18.0f, false);
+	courseObjects[62] = new CWall(20.0f, 0.0f, -340.0f, 10.0f, 18.0f, false);
+	courseObjects[63] = new CWall(-20.0f, 0.0f, -320.0f, 10.0f, 18.0f, false);
+	courseObjects[64] = new CWall(20.0f, 0.0f, -320.0f, 10.0f, 18.0f, false);
+	courseObjects[65] = new CWall(-20.0f, 0.0f, -300.0f, 10.0f, 18.0f, false);
+	courseObjects[66] = new CWall(20.0f, 0.0f, -300.0f, 10.0f, 18.0f, false);
+
+	courseObjects[67] = new CWall(-20.0f, 0.0f, -280.0f, 10.0f, 18.0f, false);
+	courseObjects[68] = new CWall(20.0f, 0.0f, -280.0f, 10.0f, 18.0f, false);
+	courseObjects[69] = new CWall(-20.0f, 0.0f, -260.0f, 10.0f, 18.0f, false);
+	courseObjects[70] = new CWall(20.0f, 0.0f, -260.0f, 10.0f, 18.0f, false);
+	courseObjects[71] = new CWall(-20.0f, 0.0f, -240.0f, 10.0f, 18.0f, false);
+	courseObjects[72] = new CWall(20.0f, 0.0f, -240.0f, 10.0f, 18.0f, false);
+	courseObjects[73] = new CWall(-20.0f, 0.0f, -220.0f, 10.0f, 18.0f, false);
+	courseObjects[74] = new CWall(20.0f, 0.0f, -220.0f, 10.0f, 18.0f, false);
+	courseObjects[75] = new CWall(-20.0f, 0.0f, -200.0f, 10.0f, 18.0f, false);
+	courseObjects[76] = new CWall(20.0f, 0.0f, -200.0f, 10.0f, 18.0f, false);
+	courseObjects[77] = new CWall(-20.0f, 0.0f, -180.0f, 10.0f, 18.0f, false);
+	courseObjects[78] = new CWall(20.0f, 0.0f, -180.0f, 10.0f, 18.0f, false);
+	courseObjects[77] = new CWall(-20.0f, 0.0f, -160.0f, 10.0f, 18.0f, false);
+	courseObjects[78] = new CWall(20.0f, 0.0f, -160.0f, 10.0f, 18.0f, false);
+	courseObjects[79] = new CWall(-20.0f, 0.0f, -140.0f, 10.0f, 18.0f, false);
+	courseObjects[80] = new CWall(20.0f, 0.0f, -140.0f, 10.0f, 18.0f, false);
+
+	courseObjects[81] = new CWall(448, 0, -180, 10.0f, 18.0f, true);
+	courseObjects[82] = new CWall(392, 0, -180, 10.0f, 18.0f, true);
+	courseObjects[83] = new CWall(463, 0, -180, 10.0f, 18.0f, true);
+	courseObjects[84] = new CWall(378, 0, -180, 10.0f, 18.0f, true);
+	courseObjects[85] = new CWall(476, 0, -180, 10.0f, 18.0f, true);
+	courseObjects[86] = new CWall(364, 0, -180, 10.0f, 18.0f, true);
+	//courseObjects[87] = new CWall(420, 0, -180, 10.0f, 18.0f, true);
+	//courseObjects[88] = new CWall(420, 0, -180, 10.0f, 18.0f, true);
+
 
 	//-- vortex 1
 	vortexObjects[0] = new CVortex(110.0f, 10.0f, 260.0f, false);
