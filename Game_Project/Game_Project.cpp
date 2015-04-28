@@ -322,8 +322,6 @@ void GameSetup()
 
 	//////////////////////////
 	//-- INGAME INTERFACE --//
-	/*sprite = myEngine->CreateSprite("mainUI layout.png");
-	sprite->SetZ(0.1);*/
 
 	// Sheild
 	sprite = myEngine->CreateSprite("Health.png");
@@ -361,7 +359,7 @@ void GameSetup()
 
 	for (int i = 101; i < 201; i++)
 	{
-		speedSprites[i] = myEngine->CreateSprite("SpeedBarBoost.png");
+		speedSprites[i] = myEngine->CreateSprite("SpeedBar.png");
 	}
 	/*speedSprites[0] = myEngine->CreateSprite("-30.png");
 	speedSprites[1] = myEngine->CreateSprite("-20.png");
@@ -528,39 +526,39 @@ void GameUpdate()
 	}
 
 
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	// ai number
-	//	interfaceText << "AI: " << i+1;
-	//	ComicSans->Draw(interfaceText.str(), 600, 60 + (i * 25), kWhite);
-	//	interfaceText.str("");
-	//	
-	//	// current checkpoint
-	//	interfaceText << "Checkpoint: " << cAI[i]->GetCheckpoint();
-	//	ComicSans->Draw(interfaceText.str(), 700, 60 + (i * 25), kWhite);
-	//	interfaceText.str("");
+	for (int i = 0; i < 4; i++)
+	{
+		// ai number
+		interfaceText << "AI: " << i+1;
+		CentGoth->Draw(interfaceText.str(), 600, 360 + (i * 25), kWhite);
+		interfaceText.str("");
+		
+		// current checkpoint
+		interfaceText << "Checkpoint: " << cAI[i]->GetCheckpoint();
+		CentGoth->Draw(interfaceText.str(), 680, 360 + (i * 25), kWhite);
+		interfaceText.str("");
 
-	//	// current lap
-	//	interfaceText << "Lap: " << cAI[i]->GetLap();
-	//	ComicSans->Draw(interfaceText.str(), 900, 60 + (i * 25), kWhite);
-	//	interfaceText.str("");
+		// current lap
+		interfaceText << "Lap: " << cAI[i]->GetLap();
+		CentGoth->Draw(interfaceText.str(), 900, 360 + (i * 25), kWhite);
+		interfaceText.str("");
 
-	//	// current position
-	//	interfaceText << "Position: " << cAI[i]->GetPosition();
-	//	ComicSans->Draw(interfaceText.str(), 1000, 60+(i*25), kWhite);
-	//	interfaceText.str("");
-	//}
+		// current position
+		interfaceText << "Position: " << cAI[i]->GetPosition();
+		CentGoth->Draw(interfaceText.str(), 1000, 360 + (i * 25), kWhite);
+		interfaceText.str("");
+	}
 
-	////-- STATS INTERFACE --//
-	//// frametime
+	//-- STATS INTERFACE --//
+	// frametime
 	//interfaceText << "FPS: " << 1 / frameTime;
 	//ComicSans->Draw(interfaceText.str(), FontFpsX, FontFpsY, kWhite);
 	//interfaceText.str("");
-	//
-	//// current checkpoint
-	//interfaceText << "Checkpoint: " << cPlayer->GetCheckpoint();
-	//ComicSans->Draw(interfaceText.str(), 900, 650, kWhite);
-	//interfaceText.str("");
+	
+	// current checkpoint
+	interfaceText << "Checkpoint: " << cPlayer->GetCheckpoint();
+	CentGoth->Draw(interfaceText.str(), 900, 650, kWhite);
+	interfaceText.str("");
 
 	////Player ammunition
 	//interfaceText << "Ammunition: ";
@@ -570,62 +568,6 @@ void GameUpdate()
 	//interfaceText << "X: " << cPlayer->GetX() << "           Z: " <<  cPlayer->GetZ();
 	//ComicSans->Draw(interfaceText.str(), 50, 50, kWhite);
 	//interfaceText.str("");
-
-	//Player Speed Representation
-	/*if (cPlayer->GetPlayerS() <= -30.0f)
-		speedSprites[0]->SetPosition(1200, 580);
-	else
-		speedSprites[0]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() <= -20.0f)
-		speedSprites[1]->SetPosition(1200, 560);
-	else
-		speedSprites[1]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() <= -10.0f)
-		speedSprites[2]->SetPosition(1200, 540);
-	else
-		speedSprites[2]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 10.0f)
-		speedSprites[3]->SetPosition(1200, 520);
-	else
-		speedSprites[3]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 20.0f)
-		speedSprites[4]->SetPosition(1200, 500);
-	else
-		speedSprites[4]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 30.0f)
-		speedSprites[5]->SetPosition(1200, 480);
-	else
-		speedSprites[5]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 40.0f)
-		speedSprites[6]->SetPosition(1200, 460);
-	else
-		speedSprites[6]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 50.0f)
-		speedSprites[7]->SetPosition(1200, 440);
-	else
-		speedSprites[7]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 60.0f)
-		speedSprites[8]->SetPosition(1200, 420);
-	else
-		speedSprites[8]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 70.0f)
-		speedSprites[9]->SetPosition(1200, 400);
-	else
-		speedSprites[9]->SetPosition(-250.0f, -250.0f);
-
-	if (cPlayer->GetPlayerS() >= 80.0f)
-		speedSprites[10]->SetPosition(1185, 370);
-	else
-		speedSprites[10]->SetPosition(-250.0f, -250.0f);*/
 
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
@@ -679,6 +621,8 @@ void GameUpdate()
 		//- update the players position
 		cPlayer->UpdatePlayerPos();
 
+		cTrack->RacePosition(cPlayer, cAI);
+
 		for (int i = 0; i < 4; i++)
 		{
 			cAI[i]->UpdatePlayerPos();
@@ -687,9 +631,6 @@ void GameUpdate()
 		//- Check for collision
 		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound);
 		cTrack->AICollision(cPlayer, cAI, SmashingSound);
-
-		//- Chec for checkpoint collision
-		cTrack->CheckPointCollision(cPlayer, cAI);
 
 		//Update exhaust particle's position 
 		cFire->update(frameTime, cPlayer);
@@ -701,8 +642,6 @@ void GameUpdate()
 
 		//- Chec for item collision
 		cTrack->ItemCollision(cPlayer, PickupSound);
-
-		cTrack->RacePosition(cPlayer, cAI);
 
 		if (cPlayer->GetPlayerHealth() < 50)
 		{
@@ -861,6 +800,9 @@ void GameUpdate()
 	cTrack->TrackUpdate(frameTime, cPlayer);
 
 	cTrack->DisplayItemHeld();
+
+	//- Chec for checkpoint collision
+	cTrack->CheckPointCollision(cPlayer, cAI);
 }
 
 ///////////////////////
