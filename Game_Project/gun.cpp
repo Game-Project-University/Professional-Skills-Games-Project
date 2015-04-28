@@ -29,6 +29,10 @@ void CGun::MoveBullet(float frametime)
 {
 	bullet->MoveX(facingX * bulletSpeed * frametime);
 	bullet->MoveZ(facingZ * bulletSpeed * frametime);
+
+	bulletX = bullet->GetX();
+	bulletZ = bullet->GetZ();
+
 }
 
 void CGun::RemoveModel()

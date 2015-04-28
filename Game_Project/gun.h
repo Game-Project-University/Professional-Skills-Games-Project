@@ -23,6 +23,10 @@ public:
 
 	void setfacing(float x, float z){ facingX = x; facingZ = z; };
 
+
+	float GetX(){ return bulletX; };
+	float GetZ(){ return bulletZ; };
+
 private:
 	bool shooting;
 	bool bulletCreated;
@@ -30,6 +34,9 @@ private:
 
 	float facingX;
 	float facingZ;
+
+	float bulletX;
+	float bulletZ;
 
 	IModel* bullet;
 

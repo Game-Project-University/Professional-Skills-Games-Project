@@ -250,7 +250,7 @@ void FrontEndSetup()
 	myCamera = myEngine->CreateCamera(kFPS, 0.0f, 0.0f, 0.0f);
 
 	//--SOUND--//
-	MainMenuSound = new CSound(1,0.02f);
+	MainMenuSound = new CSound(1,0.04f);
 	//-- source properties --//
 	MainMenuSound->SetSourcePos(0.0f, 0.0f, 0.0f);
 	MainMenuSound->SetSourceVel(0.0f, 0.0f, 0.0f);
@@ -565,9 +565,9 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	PLAYERSTATE = ALIVE;
+	//PLAYERSTATE = ALIVE;
 	
-	/*if (PLAYERSTATE == STARTRACE)
+	if (PLAYERSTATE == STARTRACE)
 	{
 		if (startingCounter >= 2 && startingCounter < 4)
 		{
@@ -597,7 +597,7 @@ void GameUpdate()
 
 		startingCounter += frameTime * 1.1;
 	}
-	DelayCounter += frameTime;*/
+	DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{
@@ -613,15 +613,7 @@ void GameUpdate()
 
 		cPlayer->RightLeftMovement(frameTime);
 
-		//- update the players position
-		cPlayer->UpdatePlayerPos();
-
-		cTrack->RacePosition(cPlayer, cAI);
-
-		for (int i = 0; i < 4; i++)
-		{
-			cAI[i]->UpdatePlayerPos();
-		}
+		
 
 		//- Check for collision
 		cTrack->ObjectCollision(cPlayer, cAI, SmashingSound, ExplostionSound);
@@ -719,6 +711,16 @@ void GameUpdate()
 			}
 			sheildTimer += 0.5 * frameTime;
 		}		
+	}
+
+	//- update the players position
+	cPlayer->UpdatePlayerPos();
+
+	cTrack->RacePosition(cPlayer, cAI);
+
+	for (int i = 0; i < 4; i++)
+	{
+		cAI[i]->UpdatePlayerPos();
 	}
 
 	if (PLAYERSTATE == DEAD)

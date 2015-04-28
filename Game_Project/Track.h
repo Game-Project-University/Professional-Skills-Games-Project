@@ -18,8 +18,9 @@
 #include "CrowdBarrier.h"
 #include "CrowdWall.h"
 #include "Arrow.h"
+#include "gun.h"
 
-const int NUMBER_OF_OBJECTS = 87;
+const int NUMBER_OF_OBJECTS = 91;
 const int NUMBER_OF_CHECKPOINTS = 7;
 const int NUMBER_OF_ITEMS = 9;
 const int NUMBER_OF_VORTEX = 4;
@@ -54,6 +55,8 @@ public:
 
 	// template class for spheretospherecollision so that this function can be used on any objects
 	template <class T,class S> bool SphereToSphereCollision(T* cPLayer, S* cCheckPoints, float radius1, float radius2);
+
+	bool bulletToAICollision(float BulletX, float BulletZ, CAI* ai, float radius1, float radius2);
 	
 	//-- GETTER FUNCTIONS --//
 	// return the checkpoint that has mostly recently been passed

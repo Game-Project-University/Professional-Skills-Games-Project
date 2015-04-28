@@ -17,10 +17,10 @@ CTrack::CTrack()
 	aiPlayer = false;
 	//-- creation of objects (x, y, z, width, height)
 	//-- i will make this read in from a file eventually
-	courseObjects[70] = new CSkyScraper(-40.0f, 0.0f, -120.0f, 52.0f, 54.0f);
-	courseObjects[69] = new CSkyScraper(40.0f, 0.0f, -120.0f, 52.0f, 54.0f);
-	courseObjects[68] = new CSkyScraper(-40.0f, 0.0f, -60.0f, 52.0f, 54.0f);
-	courseObjects[67] = new CSkyScraper(40.0f, 0.0f, -60.0f, 52.0f, 54.0f);
+	courseObjects[87] = new CSkyScraper(-40.0f, 0.0f, -120.0f, 52.0f, 54.0f);
+	courseObjects[88] = new CSkyScraper(40.0f, 0.0f, -120.0f, 52.0f, 54.0f);
+	courseObjects[89] = new CSkyScraper(-40.0f, 0.0f, -60.0f, 52.0f, 54.0f);
+	courseObjects[90] = new CSkyScraper(40.0f, 0.0f, -60.0f, 52.0f, 54.0f);
 	courseObjects[0]  = new CSkyScraper(-40.0f,0.0f,60.0f, 52.0f, 54.0f);
 	courseObjects[1]  = new CSkyScraper(40.0f, 0.0f, 60.0f, 52.0f, 54.0f);
 	courseObjects[2]  = new CSkyScraper(-40.0f, 0.0f, 0.0f, 52.0f, 54.0f);
@@ -249,6 +249,13 @@ void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr)
 //-- AABB COLLISION
 void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound* explostion)
 {
+	for (int i = 0; i < 4; i++)
+	{
+		if(bulletToAICollision(cPlayer->GetGun()->GetX(), cPlayer->GetGun()->GetZ(), cAI[i], 10, 20))
+		{
+			cAI[i]->DecreaseHealth(3);
+		}
+	}
 	// check for collision using AABB
 	// count through and array of objects
 	for (int i = 0; i < NUMBER_OF_OBJECTS; i++)
@@ -259,7 +266,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		
 			if (cPlayer->GetPlayerS() > 0)
 			{
-				cPlayer->SetMovementSpeed(-20);
+				cPlayer->SetMovementSpeed(-50);
 				cPlayer->MoveBeforeCollision();
 				cPlayer->DecreaseHealth(40);
 			}
@@ -689,8 +696,7 @@ void CTrack::RacePosition(CPlayer* cPlayer, CAI* cAI[])
 //-- ITEM COLLISION --//
 void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 {
-	
-	
+
 	// Collision with player to AI
 	for (int i = 0; i < 4; i++)
 	{
@@ -700,7 +706,7 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 			{
 				cPlayer->MoveBeforeCollision();
 				cPlayer->SetMovementSpeed(40);
-				cAI[i]->SetMovementSpeed(-240);
+				cAI[i]->SetMovementSpeed(-40);
 				cPlayer->DecreaseHealth(5);
 				cAI[i]->DecreaseHealth(100);
 			}
@@ -710,7 +716,7 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 				cPlayer->MoveBeforeCollision();
 				cPlayer->DecreaseHealth(20);
 
-				cAI[i]->SetMovementSpeed(20);
+				cAI[i]->SetMovementSpeed(0);
 				cAI[i]->DecreaseHealth(50);
 			}
 				sound->PlaySound();
@@ -760,6 +766,16 @@ template <class T, class S> bool CTrack::SphereToSphereCollision(T* cType1, S* c
 	float distZ = cType1->GetZ() - cType2->GetZ();
 	
 	return distX*distX + distZ*distZ <= radius1*2 + radius2*2;
+}
+
+// bullets collision
+
+bool CTrack::bulletToAICollision(float BulletX, float BulletZ, CAI* ai, float radius1, float radius2)
+{
+	float distX = BulletX - ai->GetX();
+	float distZ = BulletZ - ai->GetZ();
+
+	return distX*distX + distZ*distZ <= radius1 * 2 + radius2 * 2;
 }
 
 //-- check if owned items are being used --//

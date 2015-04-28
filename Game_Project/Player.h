@@ -35,6 +35,8 @@ public:
 
 	inline ICamera* GetCamera(){ return myCamera; };
 
+	CGun* GetGun(){ return gun; };
+
 	////////////////
 	//--Movement--//
 	void ForwardReverseMovement(float frameTime);

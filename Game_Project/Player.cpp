@@ -23,6 +23,8 @@ CPlayer::CPlayer(IMesh* playerMsh, int pos) : CBasePlayer()
 	TurningActive = false;
 	timer = 0;
 
+	playerAccelrationS = 0.9;
+
 	position = pos;
 	gun = new CGun();
 }
