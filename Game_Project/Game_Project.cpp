@@ -152,6 +152,8 @@ bool setup = false;
 //////////////////////////
 //--FRAMETIME VARIABLE--//
 float frameTime;
+float LapTime;
+
 
 ////////////////////
 //--LOAD MESHSES--//
@@ -838,7 +840,6 @@ void main()
 	{	
 		//--TIMER INTIALISING--//
 		frameTime = myEngine->Timer();
-
 		//-- THE MAIN MENU STATE --//
 		if (GAMESTATE == MAINMENU)
 		{
@@ -891,6 +892,7 @@ void main()
 		//-- IN GAME STATE --//
 		else if (GAMESTATE == INGAME)
 		{
+			LapTime += frameTime;
 			//-- SET THE SCENE ONCE --//
 			if (setup == false)
 			{
@@ -917,6 +919,10 @@ void main()
 		if (myEngine->KeyHit(EXIT))
 		{
 			myEngine->Stop();
+		}
+		if (myEngine->KeyHit(Key_9))
+		{
+			cout << LapTime << endl;
 		}
 	}
 	// shut down the Tl-Engine

@@ -696,7 +696,7 @@ void CTrack::RacePosition(CPlayer* cPlayer, CAI* cAI[])
 //-- ITEM COLLISION --//
 void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 {
-
+	
 	// Collision with player to AI
 	for (int i = 0; i < 4; i++)
 	{
@@ -706,7 +706,7 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 			{
 				cPlayer->MoveBeforeCollision();
 				cPlayer->SetMovementSpeed(40);
-				cAI[i]->SetMovementSpeed(-40);
+				cAI[i]->SetMovementSpeed(-240);
 				cPlayer->DecreaseHealth(5);
 				cAI[i]->DecreaseHealth(100);
 			}
