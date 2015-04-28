@@ -700,7 +700,7 @@ void CTrack::AICollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound)
 			{
 				cPlayer->MoveBeforeCollision();
 				cPlayer->SetMovementSpeed(40);
-				cAI[i]->SetMovementSpeed(-240);
+				cAI[i]->SetMovementSpeed(-20);
 				cPlayer->DecreaseHealth(5);
 				cAI[i]->DecreaseHealth(100);
 			}

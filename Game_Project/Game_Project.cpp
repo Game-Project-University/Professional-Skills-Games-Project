@@ -570,9 +570,9 @@ void GameUpdate()
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
 
-	PLAYERSTATE = ALIVE;
+	//PLAYERSTATE = ALIVE;
 	
-	/*if (PLAYERSTATE == STARTRACE)
+	if (PLAYERSTATE == STARTRACE)
 	{
 		if (startingCounter >= 2 && startingCounter < 4)
 		{
@@ -602,7 +602,7 @@ void GameUpdate()
 
 		startingCounter += frameTime * 1.1;
 	}
-	DelayCounter += frameTime;*/
+	DelayCounter += frameTime;
 
 	if (PLAYERSTATE == ALIVE)
 	{
