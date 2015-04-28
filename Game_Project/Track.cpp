@@ -122,8 +122,11 @@ CTrack::CTrack()
 
 	//-- vortex 1
 	vortexObjects[0] = new CVortex(110.0f, 10.0f, 260.0f, false);
-	vortexObjects[0]->Scale(2);
+	vortexObjects[0]->Scale(3);
+	vortexObjects[0]->RotateLocalVortex(90);
 	vortexObjects[1] = new CVortex(300.0f, 10.0f, 260.0f, false);
+	vortexObjects[1]->Scale(3);
+	vortexObjects[1]->RotateLocalVortex(270);
 
 	// vortex2
 	vortexObjects[2] = new CVortex(425.0f, 50.0f, -700.0f, true);
@@ -342,9 +345,13 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		}
 	}
 	
-	if (SphereToSphereCollision(cPlayer, vortexObjects[0], 10, 700))
+	if (SphereToSphereCollision(cPlayer, vortexObjects[0], 10, 500))
 	{
-		cPlayer->SetPlayerPos(vortexObjects[1]->GetX(), vortexObjects[1]->GetY(), vortexObjects[1]->GetZ());
+		cPlayer->SetPlayerPos(vortexObjects[1]->GetX()+50, cPlayer->GetY(), cPlayer->GetZ());
+	}
+	if (SphereToSphereCollision(cPlayer, vortexObjects[1], 10, 500))
+	{
+		cPlayer->SetPlayerPos(vortexObjects[0]->GetX() - 50, cPlayer->GetY(), cPlayer->GetZ());
 	}
 
 	if (SphereToSphereCollision(cPlayer, vortexObjects[2], 10,3000))

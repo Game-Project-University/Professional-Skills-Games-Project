@@ -212,7 +212,7 @@ bool ProgramSetup()
 	// LOAD MESHES
 	CPadBuilding::padBuildingMsh = myEngine->LoadMesh("Building08.x");
 	CSkyScraper::skyScraperMsh = myEngine->LoadMesh("Building03.x");
-	CVortex::vortexMsh = myEngine->LoadMesh("sphere.x");
+	CVortex::vortexMsh = myEngine->LoadMesh("BlackholeQuad.x");
 	CWall::wallMsh = myEngine->LoadMesh("Wall.x");
 	CWall::wallIsle = myEngine->LoadMesh("IsleStraight.x");
 	CBlockBuilding::blockBuildingMsh = myEngine->LoadMesh("Building07.x");

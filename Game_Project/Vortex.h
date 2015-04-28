@@ -13,6 +13,7 @@ public:
 	float GetZ(){ return vortexMdl->GetZ(); };
 
 	void RotateVortex(float frametime);
+	void RotateLocalVortex(float value);
 	void Scale(float value){ vortexMdl->Scale(value); };
 
 	static IMesh* vortexMsh;
