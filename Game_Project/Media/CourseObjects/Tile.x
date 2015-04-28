@@ -128,7 +128,7 @@ Mesh {
    0.000000;0.000000;0.000000;;
 
    TextureFilename {
-    "Fire2_tlxadd.jpg";
+    "Fire2_tlxmul2.jpg";
    }
   }
  }
