@@ -102,6 +102,7 @@ CSound* CrowdSound;
 CSound* ShortBeep;
 CSound* LongBeep;
 CSound* UseSound;
+CSound* TadaSound;
 
 bool crowdCheering = false;
 float cheerTimer = 0.0f;
@@ -464,6 +465,7 @@ void GameSetup()
 	ShortBeep = new CSound(7, 0.04f);
 	LongBeep = new CSound(8, 0.04f);
 	UseSound = new CSound(9, 0.08f);
+	TadaSound = new CSound(12, 0.65f);
 
 	//-- LOAD FONT --///
 	CentGoth = myEngine->LoadFont("Century Gothic", 36.0f);
@@ -834,6 +836,8 @@ void GameUpdate()
 	{
 		if (displayed == false)
 		{ 
+			TadaSound->PlaySound();
+			
 			cPlayer->SetLap(MAXLAPS);
 
 			sprite = myEngine->CreateSprite("BigBoxLined.png");

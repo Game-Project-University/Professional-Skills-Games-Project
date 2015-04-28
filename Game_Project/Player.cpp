@@ -1,4 +1,7 @@
 #include "Player.h"
+#include "Sound.h"
+
+CSound* ShootSound = new CSound(11, 0.08f);
 
 ///////////////////
 //--CONTRUCTORS--//
@@ -119,12 +122,14 @@ void CPlayer::ActivateItem(CBaseItem* itemOwned)
 }
 
 // gun stuff
-
-
 void CPlayer::PlayerUpdate(float frametime)
 {
 	if (myEngine->KeyHit(Key_F))
 	{
+		if (gun->ReturnShooting() == false)
+		{ 
+			ShootSound->PlaySound();
+		}
 		gun->setfacing(GetFacingVectorX(), GetFacingVectorZ());
 		gun->SetShooting(true);
 	}

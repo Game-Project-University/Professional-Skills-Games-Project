@@ -59,6 +59,16 @@ CSound::CSound(int soundNumber, float volume)
 		buffer = alutCreateBufferFromFile(".\\media\\PortalGun.wav");
 	}
 
+	if (soundNumber == 11)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\shoot.wav");
+	}
+
+	if (soundNumber == 12)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\tada.wav");
+	}
+
 
 	//****************
 	// Sources
