@@ -74,8 +74,15 @@ void CAI::MoveToWaypoint(float frameTime, IModel* waypoints[][MAX_WAYPOINTS])
 	}
 	playerMdl->MoveLocalZ(frameTime* playerMovementS);
 	
-	if (playerMovementS < playerMaxSpeed)
-	{ 
+	if (aiCurrentWaypoint == 4 || aiCurrentWaypoint == 5 || aiCurrentWaypoint == 7 || aiCurrentWaypoint == 8 || aiCurrentWaypoint == 11 || aiCurrentWaypoint == 12 || aiCurrentWaypoint == 21 || aiCurrentWaypoint == 22)
+	{
+		if (playerMovementS >= 46)
+		{ 
+			DecreaseAccelration();
+		}
+	}
+	else if (playerMovementS < playerMaxSpeed)
+	{
 		IncreaseAccelration();
 	}
 }
