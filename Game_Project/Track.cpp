@@ -174,6 +174,12 @@ CTrack::CTrack()
 	arrowObjects[10] = new CArrow(367.0f, 18.0f, -50.0f, 180.0f);
 	arrowObjects[11] = new CArrow(483.0f, 18.0f, -50.0f, 180.0f);
 
+	//-- Asteroids (No constructor parameters, asteroids start off under the map - set inside the constructor)
+	for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++)
+	{
+		asteroidObjects[i] = new CAsteroid();
+	}
+
 	//-- Items
 	//IMesh* itemMsh = myEngine->LoadMesh("Sphere.x");
 	courseItems[0] = new CHealth(HeartMsh, 90, 0, 0, 100, "health");
@@ -213,7 +219,7 @@ CTrack::~CTrack()
 	}
 }
 
-void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr)
+void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr, bool asteroidStormActive)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
@@ -242,6 +248,15 @@ void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr)
 	for (int i = 0; i < NUMBER_OF_ARROWS; i++)
 	{
 		arrowObjects[i]->update(frameTime);
+	}
+
+	//Asteroids update if storm is active
+	if (asteroidStormActive == true)
+	{
+		for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++)
+		{
+			asteroidObjects[i]->Update(frameTime, playerPtr);
+		}
 	}
 
 }
@@ -353,6 +368,39 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 			cAI[i]->GetModel()->LookAt(courseCheckpoints[0]->GetModel());
 		}
 	}
+
+	for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++)
+	{
+		float x = asteroidObjects[i]->GetModel()->GetLocalX() - cPlayer->GetModel()->GetLocalX();
+		float y = asteroidObjects[i]->GetModel()->GetLocalY() - cPlayer->GetModel()->GetLocalY();
+		float z = asteroidObjects[i]->GetModel()->GetLocalZ() - cPlayer->GetModel()->GetLocalZ();
+		float collisionDist = sqrt(x*x + y*y + z*z);
+		if (collisionDist < 15.0f)
+		{
+			if (cPlayer->GetPlayerS() > 0)
+			{
+				cPlayer->SetMovementSpeed(-20);
+				cPlayer->MoveBeforeCollision();
+				cPlayer->DecreaseHealth(10);
+			}
+			else if (cPlayer->GetPlayerS() < 0)
+			{
+				cPlayer->SetMovementSpeed(20);
+				cPlayer->MoveBeforeCollision();
+				cPlayer->DecreaseHealth(10);
+			}
+
+			if (cPlayer->GetPlayerHealth() > 0)
+			{
+				sound->PlaySound();
+			}
+			else
+			{
+				explostion->PlaySound();
+			}
+		}
+	}
+
 	OwnedItems(cPlayer);
 }
 

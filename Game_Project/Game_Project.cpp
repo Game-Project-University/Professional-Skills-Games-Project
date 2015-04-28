@@ -97,6 +97,7 @@ CSound* MainMenuSound;
 CSound* SmashingSound;
 CSound* ExplostionSound;
 CSound* PickupSound;
+CSound* StormWarningSound;
 CSound* CrowdSound;
 bool crowdCheering = false;
 float cheerTimer = 0.0f;
@@ -115,6 +116,17 @@ bool smokeActivated = false;
 bool createSmoke = false;
 bool shieldActivated = false;
 bool createShield = false;
+
+//Asteroid Storm
+ISprite* warningSprite;
+float asteroidStormIncomingCountdown = 500.0f;
+float asteroidStormWarningCountdown = 125.0f;
+float asteroidStormCountdown = 500.0f;
+float asteroidStormWarningFlashCountdown = 12.5f;
+bool asteroidStormWarningFlashOn = false;
+bool asteroidStormActive = false;
+bool asteroidStormWarningActive = false;
+
 ///////////////
 //--INTERFACE--//
 stringstream interfaceText;
@@ -209,6 +221,8 @@ bool ProgramSetup()
 	CCrowdBarrier::crowdBarrierMsh = myEngine->LoadMesh("Cue.x");
 	CCrowdWall::crowdWallMsh = myEngine->LoadMesh("Barrier.x");
 	CArrow::arrowMsh = myEngine->LoadMesh("Arrow.x");
+	CAsteroid::asteroidMsh = myEngine->LoadMesh("Asteroid.x");
+	CAsteroid::outerMsh = myEngine->LoadMesh("shield.x");
 
 	CFireSystem::particleMsh = myEngine->LoadMesh("Smoke2.x");
 	//
@@ -376,6 +390,8 @@ void GameSetup()
 		speedSprites[i] = myEngine->CreateSprite("SpeedBar.png");
 	}
 
+	warningSprite = myEngine->CreateSprite("Storm Warning.png");
+
 	////////////////////////
 	// -- CREATE COURSE --//
 	cTrack = new CTrack();
@@ -444,6 +460,7 @@ void GameSetup()
 	ExplostionSound = new CSound(3, 1.0f);
 	PickupSound = new CSound(4, 0.07f);
 	CrowdSound = new CSound(5, 0.1f);
+	StormWarningSound = new CSound(6, 0.25f);
 
 	//-- LOAD FONT --///
 	CentGoth = myEngine->LoadFont("Century Gothic", 36.0f);
@@ -512,6 +529,13 @@ void GameUpdate()
 	CentGothMed->Draw(interfaceText.str(), 1015, 801, kWhite);
 	interfaceText.str("");
 
+	//Asteroid Storm Warning text
+	interfaceText << "Asteroid Storm ";
+	if (asteroidStormWarningFlashOn)
+		CentGothMed->Draw(interfaceText.str(), 320.0f, 12.5f, kRed);
+	else if (!asteroidStormWarningFlashOn)
+		CentGothMed->Draw(interfaceText.str(), -250.0f, -250.0f, kRed);
+	interfaceText.str("");
 
 	float speedf = cPlayer->GetPlayerS();
 
@@ -805,8 +829,49 @@ void GameUpdate()
 		cAI[i]->UpdatePreviousPos();
 	}
 
+	//Asteroid Storm
+	if (asteroidStormActive == false && asteroidStormWarningActive == false)
+	{
+		warningSprite->SetPosition(-250.0f, -250.0f);
+		asteroidStormIncomingCountdown -= 40.0f * frameTime;
+		if (asteroidStormIncomingCountdown <= 0.0f)
+		{
+			asteroidStormWarningActive = true;
+			StormWarningSound->PlaySound();
+		}
+	}
+	if (asteroidStormActive == false && asteroidStormWarningActive == true)
+	{
+		asteroidStormWarningCountdown -= 40.0f * frameTime;
+		if (asteroidStormWarningCountdown <= 0.0f)
+		{
+			asteroidStormWarningActive = false;
+			asteroidStormActive = true;
+		}
+
+		asteroidStormWarningFlashCountdown -= 40.0f * frameTime;
+		if (asteroidStormWarningFlashOn == true)
+		{
+			warningSprite->SetPosition(250, 12);
+			if (asteroidStormWarningFlashCountdown <= 0.0f)
+			{
+				asteroidStormWarningFlashCountdown = 25.0f;
+				asteroidStormWarningFlashOn = false;
+			}
+		}
+		if (asteroidStormWarningFlashOn == false)
+		{
+			warningSprite->SetPosition(-250.0f, -250.0f);
+			if (asteroidStormWarningFlashCountdown <= 0.0f)
+			{
+				asteroidStormWarningFlashCountdown = 25.0f;
+				asteroidStormWarningFlashOn = true;
+			}
+		}
+	}
+
 	//-- Item --//
-	cTrack->TrackUpdate(frameTime, cPlayer);
+	cTrack->TrackUpdate(frameTime, cPlayer, asteroidStormActive);
 
 	cTrack->DisplayItemHeld();
 

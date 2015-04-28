@@ -19,6 +19,7 @@
 #include "CrowdWall.h"
 #include "Arrow.h"
 #include "gun.h"
+#include "Asteroid.h"
 
 const int NUMBER_OF_OBJECTS = 91;
 const int NUMBER_OF_CHECKPOINTS = 7;
@@ -26,6 +27,7 @@ const int NUMBER_OF_ITEMS = 9;
 const int NUMBER_OF_VORTEX = 4;
 const int NUMBER_OF_CROWDS = 18;
 const int NUMBER_OF_ARROWS = 12;
+const int NUMBER_OF_ASTEROIDS = 15;
 const int MAXLAPS = 3;
 
 class CTrack
@@ -63,7 +65,7 @@ public:
 	// return the lap that the player is on
 
 	void ResetPlayerPosition(CBasePlayer* cPlayer);
-	void TrackUpdate(float frameTime, CPlayer* cPlayer);
+	void TrackUpdate(float frameTime, CPlayer* cPlayer, bool asteroidStormActive);
 	void OwnedItems(CPlayer* cPlayer);
 
 	void DisplayItemHeld();
@@ -80,5 +82,6 @@ private:
 	CVortex* vortexObjects[NUMBER_OF_VORTEX];
 	CCrowd* crowdObjects[NUMBER_OF_CROWDS];
 	CArrow* arrowObjects[NUMBER_OF_ARROWS];
+	CAsteroid* asteroidObjects[NUMBER_OF_ASTEROIDS];
 	//IModel* FixLookObjects[NUMBER_OF_CHECKPOINTS];
 };

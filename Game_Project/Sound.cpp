@@ -34,6 +34,10 @@ CSound::CSound(int soundNumber, float volume)
 		buffer = alutCreateBufferFromFile(".\\media\\cheer-02.wav");
 	}
 
+	if (soundNumber == 6)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\StormAlarm.wav");
+	}
 
 	//****************
 	// Sources
