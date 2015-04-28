@@ -129,9 +129,12 @@ CTrack::CTrack()
 	vortexObjects[1]->RotateLocalVortex(270);
 
 	// vortex2
-	vortexObjects[2] = new CVortex(425.0f, 50.0f, -700.0f, true);
-	vortexObjects[2]->Scale(5);
+	vortexObjects[2] = new CVortex(425.0f, 10.0f, -660.0f, true);
+	vortexObjects[2]->Scale(4);
+	vortexObjects[2]->RotateLocalVortex(180);
 	vortexObjects[3] = new CVortex(0.0f, 5.0f, -300.0f, true);
+	vortexObjects[3]->Scale(3);
+	vortexObjects[3]->RotateLocalVortex(180);
 
 	//-- checkpoint creation (x, y, y, wether the checkpoint is to be rotated or not)
 	courseCheckpoints[0] = new CCheckpoint(0, 0, 0, false);
@@ -354,10 +357,17 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		cPlayer->SetPlayerPos(vortexObjects[0]->GetX() - 50, cPlayer->GetY(), cPlayer->GetZ());
 	}
 
-	if (SphereToSphereCollision(cPlayer, vortexObjects[2], 10,3000))
+	if (SphereToSphereCollision(cPlayer, vortexObjects[2], 10, 600))
 	{
-		cPlayer->SetPlayerPos(vortexObjects[3]->GetX(), vortexObjects[3]->GetY(), vortexObjects[3]->GetZ());
+		//cPlayer->SetPlayerPos(vortexObjects[3]->GetX(), cPlayer->GetY(), vortexObjects[3]->GetZ() + 40);
+		cPlayer->SetPlayerPos(cPlayer->GetX()-425, cPlayer->GetY(), vortexObjects[3]->GetZ() + 40);
 		cPlayer->GetModel()->LookAt(courseCheckpoints[0]->GetModel());
+	}
+	if (SphereToSphereCollision(cPlayer, vortexObjects[3], 10, 300))
+	{
+		//cPlayer->SetPlayerPos(vortexObjects[2]->GetX() , cPlayer->GetY(), vortexObjects[2]->GetZ()+ 80);
+		cPlayer->SetPlayerPos(cPlayer->GetX()+425, cPlayer->GetY(), vortexObjects[2]->GetZ() + 80);
+		cPlayer->GetModel()->LookAt(courseCheckpoints[4]->GetModel());
 	}
 
 	for (int i = 0; i < 4; i++)
