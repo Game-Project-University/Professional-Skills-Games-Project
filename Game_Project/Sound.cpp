@@ -54,6 +54,12 @@ CSound::CSound(int soundNumber, float volume)
 		buffer = alutCreateBufferFromFile(".\\media\\MegahealthQuake.wav");
 	}
 
+	if (soundNumber == 10)
+	{
+		buffer = alutCreateBufferFromFile(".\\media\\PortalGun.wav");
+	}
+
+
 	//****************
 	// Sources
 

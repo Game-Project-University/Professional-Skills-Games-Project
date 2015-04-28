@@ -5,6 +5,8 @@ IMesh* CTrack::SpeedMsh = nullptr;
 IMesh* CTrack::SheildMsh = nullptr;
 ISprite* isprite;
 
+CSound* PortalSound = new CSound(10, 0.08f);
+
 CTrack::CTrack()
 {
 	//-- checkpoints and laps variables to show on interface and track players progress
@@ -352,22 +354,26 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 	if (SphereToSphereCollision(cPlayer, vortexObjects[0], 10, 500))
 	{
 		cPlayer->SetPlayerPos(vortexObjects[1]->GetX()+50, cPlayer->GetY(), cPlayer->GetZ());
+		PortalSound->PlaySound();
 	}
 	if (SphereToSphereCollision(cPlayer, vortexObjects[1], 10, 500))
 	{
 		cPlayer->SetPlayerPos(vortexObjects[0]->GetX() - 50, cPlayer->GetY(), cPlayer->GetZ());
+		PortalSound->PlaySound();
 	}
 	if (SphereToSphereCollision(cPlayer, vortexObjects[2], 10, 600))
 	{
 		//cPlayer->SetPlayerPos(vortexObjects[3]->GetX(), cPlayer->GetY(), vortexObjects[3]->GetZ() + 40);
 		cPlayer->SetPlayerPos(cPlayer->GetX()-425, cPlayer->GetY(), vortexObjects[3]->GetZ() + 40);
 		cPlayer->GetModel()->LookAt(courseCheckpoints[0]->GetModel());
+		PortalSound->PlaySound();
 	}
 	if (SphereToSphereCollision(cPlayer, vortexObjects[3], 10, 300))
 	{
 		//cPlayer->SetPlayerPos(vortexObjects[2]->GetX() , cPlayer->GetY(), vortexObjects[2]->GetZ()+ 80);
 		cPlayer->SetPlayerPos(cPlayer->GetX()+425, cPlayer->GetY(), vortexObjects[2]->GetZ() + 80);
 		cPlayer->GetModel()->LookAt(courseCheckpoints[4]->GetModel());
+		PortalSound->PlaySound();
 	}
 
 
