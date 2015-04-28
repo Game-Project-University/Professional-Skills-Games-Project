@@ -81,6 +81,9 @@ IModel* waypoints[MAX_LANES][MAX_WAYPOINTS];
 IModel* testMdl;
 IMesh* testMsh;
 
+IModel* floorMdl;
+IMesh* floorMsh;
+
 ///////////////
 //--OBJECTS--//
 CTrack* cTrack;
@@ -319,10 +322,10 @@ void GameSetup()
 {
 	/////////////////////////////
 	//--TEST THAT MODELS WORK--//
-	testMsh = myEngine->LoadMesh("Tile.x"); 
-	testMdl = testMsh->CreateModel(0,-5,0);
-	testMdl->SetSkin("Fire2_tlxadd.jpg");
-	testMdl->Scale(200);
+	floorMsh = myEngine->LoadMesh("Tile.x");
+	floorMdl = floorMsh->CreateModel(0, -5, 0);
+	floorMdl->SetSkin("Fire2_tlxadd.jpg");
+	floorMdl->Scale(200);
 
 	//////////////////////////
 	//-- INGAME INTERFACE --//
@@ -445,6 +448,8 @@ void GameSetup()
 //-- GAMEUPDATE --//
 void GameUpdate()
 {	
+	floorMdl->RotateLocalY(0.3);
+
 	if (cPlayer->GetPlayerHealth() == 0)
 	{
 		PLAYERSTATE = DEAD;
