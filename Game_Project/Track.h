@@ -25,6 +25,7 @@ const int NUMBER_OF_ITEMS = 9;
 const int NUMBER_OF_VORTEX = 4;
 const int NUMBER_OF_CROWDS = 18;
 const int NUMBER_OF_ARROWS = 12;
+const int MAXLAPS = 3;
 
 class CTrack
 {

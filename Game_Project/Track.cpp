@@ -3,6 +3,7 @@
 IMesh* CTrack::HeartMsh = nullptr;
 IMesh* CTrack::SpeedMsh = nullptr;
 IMesh* CTrack::SheildMsh = nullptr;
+ISprite* isprite;
 
 CTrack::CTrack()
 {
@@ -405,13 +406,21 @@ void CTrack::ItemCollision(CPlayer* cPlayer, CSound* sound)
 				{
 					if (courseItems[i]->type == "Shield")
 					{
-						ItemShow = "Item Collected: Shield";
+						isprite = myEngine->CreateSprite("ShieldPick.png");
+						isprite->SetPosition(20, 20);
+						isprite->SetZ(0);
 					}
-
-					if (courseItems[i]->type == "Speed")
+					else if (courseItems[i]->type == "Speed")
 					{
-						ItemShow = "Item Collected: Speed";
+						isprite = myEngine->CreateSprite("SpeedPick.png");
+						isprite->SetPosition(20, 20);
+						isprite->SetZ(0);
 					}
+					else
+					{
+						isprite = myEngine->CreateSprite("dummy.png");
+					}
+					
 					sound->PlaySound();
 					courseItems[i]->Collide();
 					courseItems[i]->SetOwner(cPlayer);
@@ -716,7 +725,7 @@ void CTrack::OwnedItems(CPlayer* cPlayer)
 					delete(courseItems[i]);
 					courseItems[i] = nullptr;
 					itemHeld = false;
-					ItemShow = "";
+					isprite->SetPosition(2000, 2000);
 				}
 			}
 		}

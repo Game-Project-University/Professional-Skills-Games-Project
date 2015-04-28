@@ -67,12 +67,14 @@ Havok include and library files
 
 ////////////////////////
 //--GLOBAL VARIABLES--//
-IFont* ComicSans;
+IFont* CentGoth;
+IFont* CentGothMed;
+IFont* CentGothLarge;
 IFont* frontFont;
 IFont* RaceStartFont;
 ISprite* sprite;
 ICamera* myCamera;
-ISprite* speedSprites[11];
+ISprite* speedSprites[200];
 
 IModel* waypoints[MAX_LANES][MAX_WAYPOINTS];
 IModel* testMdl;
@@ -114,6 +116,7 @@ bool createShield = false;
 stringstream interfaceText;
 float startingCounter = 0;
 float DelayCounter = 0;
+int speed = 0;
 
 //////////////////
 //-GAME STATES--//
@@ -319,8 +322,48 @@ void GameSetup()
 
 	//////////////////////////
 	//-- INGAME INTERFACE --//
-	sprite = myEngine->CreateSprite("mainUI layout.png");
-	speedSprites[0] = myEngine->CreateSprite("-30.png");
+	/*sprite = myEngine->CreateSprite("mainUI layout.png");
+	sprite->SetZ(0.1);*/
+
+	// Sheild
+	sprite = myEngine->CreateSprite("Health.png");
+	sprite->SetPosition(210, 735);
+	sprite->SetZ(0);
+	// Health
+	sprite = myEngine->CreateSprite("Shield.png");
+	sprite->SetPosition(210, 785);
+	sprite->SetZ(0);
+	// BackGround
+	sprite = myEngine->CreateSprite("BigBoxLined.png");
+	sprite->SetPosition(20, 670);
+	sprite->SetZ(0.1);
+	sprite = myEngine->CreateSprite("BigBoxLined.png");
+	sprite->SetPosition(860, 20);
+	sprite->SetZ(0.1);
+	sprite = myEngine->CreateSprite("SpeedBackground.png");
+	sprite->SetPosition(995, 801);
+	sprite->SetZ(0.1);
+	sprite = myEngine->CreateSprite("SpeedoBackground.png");
+	sprite->SetPosition(1175, 625);
+	sprite->SetZ(0.1);
+
+	//speedSprites[i]->SetPosition(1185, 850 - (2 * i));
+
+	// Item
+	sprite = myEngine->CreateSprite("ItemSlotLarge.png");
+	sprite->SetPosition(20, 20);
+	sprite->SetZ(0.1);
+
+	for (int i = 0; i < 101; i++)
+	{
+		speedSprites[i] = myEngine->CreateSprite("SpeedBar.png");
+	}
+
+	for (int i = 101; i < 201; i++)
+	{
+		speedSprites[i] = myEngine->CreateSprite("SpeedBarBoost.png");
+	}
+	/*speedSprites[0] = myEngine->CreateSprite("-30.png");
 	speedSprites[1] = myEngine->CreateSprite("-20.png");
 	speedSprites[2] = myEngine->CreateSprite("-10.png");
 	speedSprites[3] = myEngine->CreateSprite("10.png");
@@ -330,7 +373,7 @@ void GameSetup()
 	speedSprites[7] = myEngine->CreateSprite("50.png");
 	speedSprites[8] = myEngine->CreateSprite("60.png");
 	speedSprites[9] = myEngine->CreateSprite("70.png");
-	speedSprites[10] = myEngine->CreateSprite("80 Plus.png");
+	speedSprites[10] = myEngine->CreateSprite("80 Plus.png");*/
 
 	////////////////////////
 	// -- CREATE COURSE --//
@@ -402,7 +445,9 @@ void GameSetup()
 	CrowdSound = new CSound(5, 0.1f);
 
 	//-- LOAD FONT --///
-	ComicSans = myEngine->LoadFont("Comic Sans MS", 36.0f);
+	CentGoth = myEngine->LoadFont("Century Gothic", 36.0f);
+	CentGothMed = myEngine->LoadFont("Century Gothic", 64.0f);
+	CentGothLarge = myEngine->LoadFont("Century Gothic", 220.0f);
 }
 
 ////////////////////
@@ -414,77 +459,120 @@ void GameUpdate()
 		PLAYERSTATE = DEAD;
 	}
 
-	for (int i = 0; i < 4; i++)
+	// Player Position
+	interfaceText << cPlayer->GetPosition();
+	CentGothLarge->Draw(interfaceText.str(), 60, 660, kWhite);
+	interfaceText.str("");
+
+	if (cPlayer->GetPosition() == 1)
+	{ 
+		interfaceText << "ST";
+		CentGoth->Draw(interfaceText.str(), 130, 700, kWhite);
+	}
+	else if (cPlayer->GetPosition() == 2)
 	{
-		// ai number
-		interfaceText << "AI: " << i+1;
-		ComicSans->Draw(interfaceText.str(), 600, 60 + (i * 25), kWhite);
-		interfaceText.str("");
-		
-		// current checkpoint
-		interfaceText << "Checkpoint: " << cAI[i]->GetCheckpoint();
-		ComicSans->Draw(interfaceText.str(), 700, 60 + (i * 25), kWhite);
-		interfaceText.str("");
+		interfaceText << "ND";
+		CentGoth->Draw(interfaceText.str(), 160, 700, kWhite);
+	}
+	else if (cPlayer->GetPosition() == 3)
+	{
+		interfaceText << "RD";
+		CentGoth->Draw(interfaceText.str(), 160, 700, kWhite);
+	}
+	else 
+	{
+		interfaceText << "TH";
+		CentGoth->Draw(interfaceText.str(), 160, 700, kWhite);
+	}
+	interfaceText.str("");
 
-		// current lap
-		interfaceText << "Lap: " << cAI[i]->GetLap();
-		ComicSans->Draw(interfaceText.str(), 900, 60 + (i * 25), kWhite);
-		interfaceText.str("");
+	// Health
+	interfaceText << cPlayer->GetPlayerHealth();
+	CentGoth->Draw(interfaceText.str(), 270, 740, kWhite);
+	interfaceText.str("");
+	// Shield 
+	interfaceText << cPlayer->GetPlayerShield();
+	CentGoth->Draw(interfaceText.str(), 270, 790, kWhite);
+	interfaceText.str("");
 
-		// current position
-		interfaceText << "Position: " << cAI[i]->GetPosition();
-		ComicSans->Draw(interfaceText.str(), 1000, 60+(i*25), kWhite);
-		interfaceText.str("");
+	// Time
+	interfaceText << "Time  " /* Put time here */;
+	CentGothMed->Draw(interfaceText.str(), 910, 50, kWhite);
+	interfaceText.str("");
+	// Lap
+	interfaceText << "Lap  " << cPlayer->GetLap() << "/" << MAXLAPS;
+	CentGothMed->Draw(interfaceText.str(), 910, 110, kWhite);
+	interfaceText.str("");
+
+	//Player Speed
+	interfaceText << abs((int)cPlayer->GetPlayerS());
+	CentGothMed->Draw(interfaceText.str(), 1015, 801, kWhite);
+	interfaceText.str("");
+
+
+	float speedf = cPlayer->GetPlayerS();
+
+	speed = (int)speedf;
+
+
+	for (int i = 0; i < 200; i++)
+	{
+		if (i < speed)
+		{ 
+				speedSprites[i]->SetPosition(1185, 848 - (1 * i));
+		}
+		else
+		{ 
+			speedSprites[i]->SetPosition(-250.0f, -250.0f);
+		}
 	}
 
-	//-- STATS INTERFACE --//
-	// frametime
-	interfaceText << "FPS: " << 1 / frameTime;
-	ComicSans->Draw(interfaceText.str(), FontFpsX, FontFpsY, kWhite);
-	interfaceText.str("");
-	
-	// current checkpoint
-	interfaceText << "Checkpoint: " << cPlayer->GetCheckpoint();
-	ComicSans->Draw(interfaceText.str(), 900, 650, kWhite);
-	interfaceText.str("");
 
-	// current lap
-	interfaceText << "Lap: " << cPlayer->GetLap();
-	ComicSans->Draw(interfaceText.str(), 1000, 700, kWhite);
-	interfaceText.str("");
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	// ai number
+	//	interfaceText << "AI: " << i+1;
+	//	ComicSans->Draw(interfaceText.str(), 600, 60 + (i * 25), kWhite);
+	//	interfaceText.str("");
+	//	
+	//	// current checkpoint
+	//	interfaceText << "Checkpoint: " << cAI[i]->GetCheckpoint();
+	//	ComicSans->Draw(interfaceText.str(), 700, 60 + (i * 25), kWhite);
+	//	interfaceText.str("");
 
-	// current position
-	interfaceText << "Position: " << cPlayer->GetPosition();
-	ComicSans->Draw(interfaceText.str(), 940, 745, kWhite);
-	interfaceText.str("");
+	//	// current lap
+	//	interfaceText << "Lap: " << cAI[i]->GetLap();
+	//	ComicSans->Draw(interfaceText.str(), 900, 60 + (i * 25), kWhite);
+	//	interfaceText.str("");
 
-	// players health
-	interfaceText << "Health: " <<  cPlayer->GetPlayerHealth();
-	ComicSans->Draw(interfaceText.str(), 40, 725, kWhite);
-	interfaceText.str("");
+	//	// current position
+	//	interfaceText << "Position: " << cAI[i]->GetPosition();
+	//	ComicSans->Draw(interfaceText.str(), 1000, 60+(i*25), kWhite);
+	//	interfaceText.str("");
+	//}
 
-	// players shield
-	interfaceText << "Shield: " << cPlayer->GetPlayerShield();
-	ComicSans->Draw(interfaceText.str(), 40, 760, kWhite);
-	interfaceText.str("");
+	////-- STATS INTERFACE --//
+	//// frametime
+	//interfaceText << "FPS: " << 1 / frameTime;
+	//ComicSans->Draw(interfaceText.str(), FontFpsX, FontFpsY, kWhite);
+	//interfaceText.str("");
+	//
+	//// current checkpoint
+	//interfaceText << "Checkpoint: " << cPlayer->GetCheckpoint();
+	//ComicSans->Draw(interfaceText.str(), 900, 650, kWhite);
+	//interfaceText.str("");
 
-	//Player Speed
-	interfaceText << "Speed: " << (int)cPlayer->GetPlayerS();
-	ComicSans->Draw(interfaceText.str(), 920, 550, kWhite);
-	interfaceText.str("");
+	////Player ammunition
+	//interfaceText << "Ammunition: ";
+	//ComicSans->Draw(interfaceText.str(), 40, 795, kWhite);
+	//interfaceText.str("");
 
-	//Player ammunition
-	interfaceText << "Ammunition: ";
-	ComicSans->Draw(interfaceText.str(), 40, 795, kWhite);
-	interfaceText.str("");
-
-	//Player Speed
-	interfaceText << "X: " << cPlayer->GetX() << "           Z: " <<  cPlayer->GetZ();
-	ComicSans->Draw(interfaceText.str(), 50, 50, kWhite);
-	interfaceText.str("");
+	//interfaceText << "X: " << cPlayer->GetX() << "           Z: " <<  cPlayer->GetZ();
+	//ComicSans->Draw(interfaceText.str(), 50, 50, kWhite);
+	//interfaceText.str("");
 
 	//Player Speed Representation
-	if (cPlayer->GetPlayerS() <= -30.0f)
+	/*if (cPlayer->GetPlayerS() <= -30.0f)
 		speedSprites[0]->SetPosition(1200, 580);
 	else
 		speedSprites[0]->SetPosition(-250.0f, -250.0f);
@@ -537,7 +625,7 @@ void GameUpdate()
 	if (cPlayer->GetPlayerS() >= 80.0f)
 		speedSprites[10]->SetPosition(1185, 370);
 	else
-		speedSprites[10]->SetPosition(-250.0f, -250.0f);
+		speedSprites[10]->SetPosition(-250.0f, -250.0f);*/
 
 	//-- Player movement --//
 	cPlayer->SinHoverMovement(frameTime);
@@ -728,7 +816,7 @@ void GameUpdate()
 		}
 	}
 
-	if (cPlayer->GetLap() == 4)
+	if (cPlayer->GetLap() == MAXLAPS + 1)
 	{
 		PLAYERSTATE = ENDRACE;
 	}
@@ -781,7 +869,7 @@ void GameShutdown()
 {
 	//Remove everything in the setup
 	//- Tl Engine related
-	myEngine->RemoveFont(ComicSans);
+	myEngine->RemoveFont(CentGoth);
 	//myEngine->RemoveMesh(playerMsh);
 	myEngine->RemoveMesh(aiMsh);
 
