@@ -7,12 +7,6 @@ CVortex::CVortex(float x, float y, float z, bool rotated)
 	vortexMdl = vortexMsh->CreateModel(x, y, z);
 	vortexMdl->SetSkin("blackhole.png");
 	vortexMdl->Scale(2);
-	
-	//if (rotated)
-	//{
-	//	vortexMdl->RotateLocalY(90);
-	//}
-	
 }
 
 CVortex::~CVortex()

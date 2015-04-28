@@ -133,7 +133,7 @@ stringstream interfaceText;
 float startingCounter = 0;
 float DelayCounter = 0;
 int speed = 0;
-
+bool displayed = false;
 //////////////////
 //-GAME STATES--//
 enum GAMESTATES
@@ -783,11 +783,70 @@ void GameUpdate()
 	if (cPlayer->GetLap() == MAXLAPS)
 	{
 		PLAYERSTATE = ENDRACE;
+		if (cPlayer->GetTime() == 0)
+		{
+			cPlayer->SetTime(LapTime);
+		}
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (cAI[i]->GetLap() == MAXLAPS)
+		{
+			cAI[i]->SetTime(LapTime);
+		}
 	}
 
 	if (PLAYERSTATE == ENDRACE)
 	{
+		if (displayed == false)
+		{ 
+			cPlayer->SetLap(MAXLAPS);
 
+			sprite = myEngine->CreateSprite("BigBoxLined.png");
+			sprite->SetPosition(440, 350);
+			sprite->SetZ(0.1);
+
+			displayed = true;
+		}
+
+		interfaceText << "RACE COMPLETE!";
+		CentGoth->Draw(interfaceText.str(), 510, 373, kWhite);
+		interfaceText.str("");
+
+		interfaceText << "You came " << cPlayer->GetPosition();
+		CentGoth->Draw(interfaceText.str(), 510, 413, kWhite);
+		interfaceText.str("");
+
+		if (cPlayer->GetPosition() == 1)
+		{
+			interfaceText << " ST";
+			CentGoth->Draw(interfaceText.str(), 690, 413, kWhite);
+		}
+		else if (cPlayer->GetPosition() == 2)
+		{
+			interfaceText << " ND";
+			CentGoth->Draw(interfaceText.str(), 690, 413, kWhite);
+		}
+		else if (cPlayer->GetPosition() == 3)
+		{
+			interfaceText << " RD";
+			CentGoth->Draw(interfaceText.str(), 690, 413, kWhite);
+		}
+		else
+		{
+			interfaceText << " TH";
+			CentGoth->Draw(interfaceText.str(), 690, 413, kWhite);
+		}
+		interfaceText.str("");
+
+		interfaceText << "In " << cPlayer->GetTime() << " seconds";
+		CentGoth->Draw(interfaceText.str(), 510, 453, kWhite);
+		interfaceText.str("");
+
+		interfaceText << "Press 'ESC' to close";
+		CentGoth->Draw(interfaceText.str(), 510, 483, kWhite);
+		interfaceText.str("");
 	}
 
 	//-- AI --//

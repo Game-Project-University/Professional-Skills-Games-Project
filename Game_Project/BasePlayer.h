@@ -39,7 +39,7 @@ protected:
 	int checkPoint;
 	int lap;
 	int position;
-
+	float time;
 	//-- player pos accessor --//
 	SPlayerPos playerPos;
 	SPlayerPos playerPrevPos;
@@ -74,6 +74,7 @@ public:
 	int GetCheckpoint(){ return checkPoint; };
 	inline int GetLap(){ return lap; };
 	inline int GetPosition(){ return position; };
+	inline int GetTime(){ return time; };
 
 	//////////////
 	//--SETTERS--//
@@ -95,7 +96,8 @@ public:
 	void RemoveShield();
 
 	void SetPosition(int value);
-
+	void SetLap(int value);
+	void SetTime(int value);
 	////////////////
 	//--MOVEMENT--//
 	void IncreaseAccelration();

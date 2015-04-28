@@ -21,6 +21,7 @@ CBasePlayer::CBasePlayer()
 
 	checkPoint = 0;
 	lap = 0;
+	time = 0;
 }
 
 CBasePlayer::~CBasePlayer()
@@ -148,6 +149,16 @@ void CBasePlayer::ResetCheckpoint()
 void CBasePlayer::SetPosition(int value)
 {
 	position = value;
+}
+
+void CBasePlayer::SetLap(int value)
+{
+	lap = value;
+}
+
+void CBasePlayer::SetTime(int value)
+{
+	time = value;
 }
 //////////////////////
 //--PLAYERMOVEMENT--//
