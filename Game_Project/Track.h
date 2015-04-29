@@ -65,7 +65,7 @@ public:
 	// return the lap that the player is on
 
 	void ResetPlayerPosition(CBasePlayer* cPlayer);
-	void TrackUpdate(float frameTime, CPlayer* cPlayer, bool asteroidStormActive);
+	void TrackUpdate(float frameTime, CPlayer* cPlayer, bool asteroidStormActive, CSound* asteroidHit);
 	void OwnedItems(CPlayer* cPlayer, CSound* sound);
 
 	void DisplayItemHeld();

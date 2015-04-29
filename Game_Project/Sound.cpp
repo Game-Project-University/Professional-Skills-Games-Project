@@ -69,6 +69,10 @@ CSound::CSound(int soundNumber, float volume)
 		buffer = alutCreateBufferFromFile(".\\media\\tada.wav");
 	}
 
+	if (soundNumber == 13)
+	{
+		buffer = alutCreateBufferFromFile(".AsteroidBoom.wav");
+	}
 
 	//****************
 	// Sources

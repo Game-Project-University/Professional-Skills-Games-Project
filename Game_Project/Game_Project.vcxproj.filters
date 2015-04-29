@@ -184,6 +184,9 @@
     <Filter Include="Course\Course Objects\Type of Object\Asteroid">
       <UniqueIdentifier>{46feac7e-f6e0-4395-8bc3-18fe18745d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Particle Systems\AsteroidFireTrail">
+      <UniqueIdentifier>{c3915e82-8ac1-4088-8918-34565e9840f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -274,7 +277,10 @@
       <Filter>Gun</Filter>
     </ClCompile>
     <ClCompile Include="Asteroid.cpp">
-      <Filter>Course\Course Objects\Type of Object\CrowdWall</Filter>
+      <Filter>Course\Course Objects\Type of Object\Asteroid</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidFireSystem.cpp">
+      <Filter>Particle Systems\AsteroidFireTrail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="Asteroid.h">
       <Filter>Course\Course Objects\Type of Object\Asteroid</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidFireSystem.h">
+      <Filter>Particle Systems\AsteroidFireTrail</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

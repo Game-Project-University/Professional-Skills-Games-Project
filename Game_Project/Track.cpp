@@ -227,7 +227,7 @@ CTrack::~CTrack()
 	}
 }
 
-void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr, bool asteroidStormActive)
+void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr, bool asteroidStormActive, CSound* asteroidHit)
 {
 	for (int i = 0; i < NUMBER_OF_ITEMS; i++)
 	{
@@ -263,7 +263,16 @@ void CTrack::TrackUpdate(float frameTime, CPlayer* playerPtr, bool asteroidStorm
 	{
 		for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++)
 		{
-			asteroidObjects[i]->Update(frameTime, playerPtr);
+			asteroidObjects[i]->Update(frameTime, playerPtr, asteroidHit);
+		}
+	}
+
+	if (asteroidStormActive == false)
+	{
+		for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++)
+		{
+			if (asteroidObjects[i]->GetModel()->GetY() > -100.0f)
+				asteroidObjects[i]->MoveOffTheTrack();
 		}
 	}
 
@@ -414,6 +423,7 @@ void CTrack::ObjectCollision(CPlayer* cPlayer, CAI* cAI[], CSound* sound, CSound
 		float collisionDist = sqrt(x*x + y*y + z*z);
 		if (collisionDist < 15.0f)
 		{
+			asteroidObjects[i]->ResetAsteroidPosition();
 			if (cPlayer->GetPlayerS() > 0)
 			{
 				cPlayer->SetMovementSpeed(-20);

@@ -103,6 +103,7 @@ CSound* ShortBeep;
 CSound* LongBeep;
 CSound* UseSound;
 CSound* TadaSound;
+CSound* AsteroidHitSound;
 
 bool crowdCheering = false;
 float cheerTimer = 0.0f;
@@ -124,7 +125,7 @@ bool createShield = false;
 
 //Asteroid Storm
 ISprite* warningSprite;
-float asteroidStormIncomingCountdown = 500.0f;
+float asteroidStormIncomingCountdown = 1000.0f;
 float asteroidStormWarningCountdown = 125.0f;
 float asteroidStormCountdown = 500.0f;
 float asteroidStormWarningFlashCountdown = 12.5f;
@@ -240,6 +241,8 @@ bool ProgramSetup()
 	CTrack::SheildMsh = myEngine->LoadMesh("shield.x");
 
 	CGun::bulletMsh = myEngine->LoadMesh("Bullet.x");
+
+	CAsteroidFireSystem::assFireParticleMsh = myEngine->LoadMesh("Smoke2.x");
 
 
 	
@@ -466,6 +469,7 @@ void GameSetup()
 	LongBeep = new CSound(8, 0.04f);
 	UseSound = new CSound(9, 0.08f);
 	TadaSound = new CSound(12, 0.65f);
+	AsteroidHitSound = new CSound(13, 5.0f);
 
 	//-- LOAD FONT --///
 	CentGoth = myEngine->LoadFont("Century Gothic", 36.0f);
@@ -537,7 +541,7 @@ void GameUpdate()
 	//Asteroid Storm Warning text
 	interfaceText << "Asteroid Storm ";
 	if (asteroidStormWarningFlashOn)
-		CentGothMed->Draw(interfaceText.str(), 320.0f, 12.5f, kRed);
+		CentGothMed->Draw(interfaceText.str(), 320.0f, 3.0f, kRed);
 	else if (!asteroidStormWarningFlashOn)
 		CentGothMed->Draw(interfaceText.str(), -250.0f, -250.0f, kRed);
 	interfaceText.str("");
@@ -963,8 +967,23 @@ void GameUpdate()
 		}
 	}
 
+	if (asteroidStormActive)
+	{
+		asteroidStormCountdown -= 40.0f * frameTime;
+		if (asteroidStormCountdown <= 0.0f)
+		{
+			asteroidStormWarningActive = false;
+			asteroidStormWarningCountdown = 125.0f;
+			asteroidStormWarningFlashOn = false;
+			asteroidStormWarningFlashCountdown = 12.5f;
+			asteroidStormActive = false;
+			asteroidStormCountdown = 1000.0f;
+			asteroidStormIncomingCountdown = 500.0f;
+		}
+	}
+
 	//-- Item --//
-	cTrack->TrackUpdate(frameTime, cPlayer, asteroidStormActive);
+	cTrack->TrackUpdate(frameTime, cPlayer, asteroidStormActive, AsteroidHitSound);
 
 	cTrack->DisplayItemHeld();
 
